@@ -9,6 +9,7 @@ import java.util.*;
 
 public class PEmbroiderTSP {
 	public static final String logPrefix = "[PEmbroider Optimize] ";
+	public static boolean silent = false;
 	
 	public static class Edge{
 		int i0; //index
@@ -35,6 +36,11 @@ public class PEmbroiderTSP {
 		  for (int i = 0; i < edges.size(); i++){
 		    edges.set(i,reverseEdge(edges.get(i)));
 		  }
+	}
+	private static void log(String x) {
+		if (!silent) {
+			System.out.println(logPrefix+x);
+		}
 	}
 	
 	public static ArrayList<Edge> NN(ArrayList<ArrayList<PVector>> polylines, int i0){
@@ -182,7 +188,7 @@ public class PEmbroiderTSP {
 				polylines2.add(polylines.get(i));
 			}
 		}
-		System.out.println(logPrefix+"Input:"+sumLengthPolylines(polylines2));
+		log("Input:"+sumLengthPolylines(polylines2));
 		
 		float minL = Float.POSITIVE_INFINITY;
 		ArrayList<Edge> minE = new ArrayList<Edge>();
@@ -227,13 +233,13 @@ public class PEmbroiderTSP {
 
 			float l1 = sumLength(edges);
 
-			System.out.println(logPrefix+"Trial:"+i+"\tNN:"+l0+"\t2-Opt:"+l1);
+			log("Trial:"+i+"\tNN:"+l0+"\t2-Opt:"+l1);
 			if (l1 < minL) {
 				minL = l1;
 				minE = edges;
 			}
 		}
-		System.out.println(logPrefix+"Final:"+minL);
+		log("Final:"+minL);
 
 		int next = -1;
 		int zero = -1;
