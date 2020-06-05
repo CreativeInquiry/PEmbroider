@@ -14,7 +14,8 @@ void setup() {
   E.setPath(outputFilePath); 
 
   test_hatch_parallel(); // see other possible tests, below
-  // test_hatch_concentric(); 
+  E.clear();
+  test_hatch_concentric(); 
   // test_cull();
   // test_cull2(); 
   // test_spiral(); 

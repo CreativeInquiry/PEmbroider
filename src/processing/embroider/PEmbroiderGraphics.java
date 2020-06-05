@@ -104,6 +104,12 @@ public class PEmbroiderGraphics {
 	public void setPath(String _path) {
 		path = _path;
 	}
+	
+	public void clear() {
+		polylines.clear();
+		colors.clear();
+		cullGroups.clear();
+	}
 
 	/* STYLE SETTING */
 	public void fill(int r, int g, int b) {

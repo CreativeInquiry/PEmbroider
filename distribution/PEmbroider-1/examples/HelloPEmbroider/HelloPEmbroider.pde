@@ -13,12 +13,12 @@ void setup() {
   String outputFilePath = sketchPath("out.vp3");
   E.setPath(outputFilePath); 
 
-  //test_hatch_parallel(); // see other possible tests, below
+  test_hatch_parallel(); // see other possible tests, below
   // test_hatch_concentric(); 
   // test_cull();
   // test_cull2(); 
   // test_spiral(); 
-   test_image(); 
+  //test_image(); 
 
   E.visualize();
   E.endDraw(); // write out the file
@@ -141,10 +141,10 @@ void test_image() {
   stroke(0);
 
   E.fill(255, 100, 0);
-  E.HATCH_MODE = PEmbroiderGraphics.PARALLEL;
+  E.HATCH_MODE = PEmbroiderGraphics.CONCENTRIC;
   E.circle(0, 0, width);
 
-  String imagePath = dataPath("matisse_wtf.png"); 
+  String imagePath = dataPath("matisse.png"); 
   println("imagePath = " + imagePath); 
   PImage img = loadImage(imagePath);
   E.fill(0, 0, 255);
