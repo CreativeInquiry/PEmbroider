@@ -51,7 +51,7 @@
 	<property name="project.examples" location="examples"/>
 	<property name="project.reference" location="reference"/>
 	<property name="project.dist" location="distribution"/>
-	<property name="project.dist.version" location="distribution/${project.name}-${library.version}"/>
+	<property name="project.dist.version" location="distribution/${project.name}"/>
 	<property name="install.source" location="resources/README.md"/>
 	<property name="install.destination" location="${project.dist.version}/README.md"/>
 	<property name="libprops.source" location="resources/library.properties"/>
@@ -315,8 +315,8 @@ ${line}
 		
         <move file="${project.dist.version}/${project.name}.zip" todir="${project.dist.version}/web/download" />
 		
-		<copy file="${project.dist.version}/web/download/${project.name}.zip" tofile="${project.dist.version}/web/download/${project.name}-${library.version}.zip" />
-		<copy file="${project.dist.version}/web/download/${project.name}.txt" tofile="${project.dist.version}/web/download/${project.name}-${library.version}.txt" />
+		<copy file="${project.dist.version}/web/download/${project.name}.zip" tofile="${project.dist.version}/web/download/${project.name}.zip" />
+		<copy file="${project.dist.version}/web/download/${project.name}.txt" tofile="${project.dist.version}/web/download/${project.name}.txt" />
 		
 		<move todir="${project.dist.version}">
 			<fileset dir="${project.dist.version}/web" />

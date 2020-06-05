@@ -6,9 +6,20 @@ PEmbroiderGraphics E;
 void setup() {
   size (512, 512);
   E = new PEmbroiderGraphics(this, width, height);
-  E.setPath("/Users/studio/out.vp3"); // full path; .vp3 or .dst
 
-  test_hatch_parallel(); // see other tests, below
+  // Note: We use sketchPath() because a FULL path is necessary, 
+  // e.g. "/Users/username/Documents/..." etcetera.
+  // We can write .vp3 or .dst files.
+  String outputFilePath = sketchPath("out.vp3");
+  E.setPath(outputFilePath); 
+
+  test_hatch_parallel(); // see other possible tests, below
+  E.clear();
+  test_hatch_concentric(); 
+  // test_cull();
+  // test_cull2(); 
+  // test_spiral(); 
+  //test_image(); 
 
   E.visualize();
   E.endDraw(); // write out the file
@@ -72,7 +83,7 @@ void test_cull() {
   E.CIRCLE_DETAIL = 20;
   E.fill(255, 0, 0);
   E.HATCH_MODE = PEmbroiderGraphics.CONCENTRIC;
-  
+
   E.circle(50, 20, 100);
   E.circle(50, 50, 40);
 
@@ -85,8 +96,12 @@ void test_cull2() {
   E.fill(0);
   E.HATCH_MODE = PEmbroiderGraphics.CONCENTRIC;
   E.beginCull();
-  for (int i = 0; i < 200; i++) {
-    E.circle(random(width), random(height), random(30, 120));
+  for (int i = 0; i < 100; i++) {
+    float cD = random(50, 200-i); // diameter
+    float cL = random(0, width - cD);
+    float cT = random(0, height - cD); 
+
+    E.circle(cL, cT, cD);
   }
   E.endCull();
 }
@@ -120,18 +135,21 @@ void test_spiral() {
   E.rect(200, 30, 90, 70);
 }
 
+
 //--------------------------------------------
 void test_image() {
   E.beginCull();
   stroke(0);
 
   E.fill(255, 100, 0);
-  E.HATCH_MODE = PEmbroiderGraphics.SPIRAL;
+  E.HATCH_MODE = PEmbroiderGraphics.CONCENTRIC;
   E.circle(0, 0, width);
 
-  PImage im = loadImage("matisse.png");
+  String imagePath = dataPath("matisse.png"); 
+  println("imagePath = " + imagePath); 
+  PImage img = loadImage(imagePath);
   E.fill(0, 0, 255);
-  E.image(im, 0, 0, width, height);
+  E.image(img, 0, 0, width, height);
 
   E.endCull();
 }
