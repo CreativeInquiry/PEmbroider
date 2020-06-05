@@ -32,12 +32,13 @@ void draw() {
 
   E.HATCH_MODE = PEmbroiderGraphics.CROSS;
   E.noStroke();
-
   E.ellipse(300, 50, 150, 100);
+  
   E.text("Spacebar to save!", 95, 400);
 
   if (!mousePressed) {
-    E.optimize();
+    // Very important function, produces optimized paths!
+    E.optimize(); 
   }
   
   // params: colors, stitches, route
@@ -46,7 +47,7 @@ void draw() {
 
 
 void keyPressed() {
-
+  // Export the embroidery file when we press the space bar. 
   if (key == ' ') {
     String outputFilePath = sketchPath("out_at_frame_"+frameCount+".vp3");
     E.setPath(outputFilePath); 
