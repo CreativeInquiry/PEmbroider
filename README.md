@@ -34,14 +34,19 @@ Here are the same steps, in screenshots:
 
 ![Compilation steps in Eclipse](images/eclipse_steps.png)
 
-If there are any issues, download a fresh copy of this repositoy, and try following Processing's official documentation entirely: [https://github.com/processing/processing-library-template](https://github.com/processing/processing-library-template).
+If there are any issues, download a fresh copy of this repository, and try following Processing's official documentation entirely: [https://github.com/processing/processing-library-template](https://github.com/processing/processing-library-template).
 
 
 ---
 
 ## Using the Library
 
-After building the library, it can now be accessed from processing.
+After building the library, it can now be accessed from Processing. *Alternatively*, you can also [download](https://github.com/CreativeInquiry/PEmbroider/blob/master/distribution/Pembroider-1/download/Pembroider.zip) the precompiled PEmbroider library directly and follow the installation instructions below: 
+
+1. Download [https://github.com/CreativeInquiry/PEmbroider/blob/master/distribution/Pembroider-1/download/Pembroider.zip](https://github.com/CreativeInquiry/PEmbroider/blob/master/distribution/Pembroider-1/download/Pembroider.zip)
+2. Unzip this bundle, and install it on your computer so that it has the following directory location: `/Users/username/Documents/libraries/PEmbroider/`. (Inside, you should see directories like: `examples`, `library`, `reference`, `src`, etcetera.)
+
+
 
 - In the Processing app, *Sketch* → *Import Library* → *Pembroider*
 

@@ -2,7 +2,7 @@
 # UTF-8 supported.
 
 # The name of your Library as you want it formatted.
-name = Pembroider
+name = PEmbroider
 
 # List of authors. Links can be provided using the syntax [author name](url).
 authors = [Your Name](http://yoururl.com)
