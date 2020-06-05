@@ -1347,7 +1347,7 @@ public class PEmbroiderGraphics {
 
 			ArrayList<PVector> ps = segmentIntersectPolygon(new PVector(px,py), new PVector(qx,qy), poly);
 
-			for (int j = 0; j < ps.size(); j+=2) {
+			for (int j = 0; j < ps.size()-1; j+=2) {
 				ArrayList<PVector> seg = new ArrayList<PVector>();
 				seg.add(ps.get(j));
 				seg.add(ps.get(j+1));
