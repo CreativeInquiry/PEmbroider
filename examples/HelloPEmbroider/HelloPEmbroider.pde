@@ -144,7 +144,7 @@ void test_image() {
   E.HATCH_MODE = PEmbroiderGraphics.PARALLEL;
   E.circle(0, 0, width);
 
-  String imagePath = dataPath("matisse_wtf.png"); 
+  String imagePath = dataPath("matisse.png"); 
   println("imagePath = " + imagePath); 
   PImage img = loadImage(imagePath);
   E.fill(0, 0, 255);
