@@ -1,10 +1,13 @@
-// Simple test program for the PEmbroider library for Processing
+// Simple test program for the PEmbroider library for Processing. 
+// Alters the design interactively, exporting the design when
+// the user presses the space bar.
+
 
 import processing.embroider.*;
 PEmbroiderGraphics E;
 
 void setup() {
-  size (480, 480);
+  size (500, 500);
   E = new PEmbroiderGraphics(this, width, height);
 }
 
@@ -34,7 +37,7 @@ void draw() {
   E.noStroke();
   E.ellipse(300, 50, 150, 100);
   
-  E.text("Spacebar to save!", 95, 400);
+  E.text("Space bar to save!", 90, 400);
 
   if (!mousePressed) {
     // Very important function, produces optimized paths!
@@ -49,7 +52,7 @@ void draw() {
 void keyPressed() {
   // Export the embroidery file when we press the space bar. 
   if (key == ' ') {
-    String outputFilePath = sketchPath("out_at_frame_"+frameCount+".vp3");
+    String outputFilePath = sketchPath("PEmbroider_interactive_demo_" + frameCount + ".vp3");
     E.setPath(outputFilePath); 
     E.endDraw(); // write out the file
   }
