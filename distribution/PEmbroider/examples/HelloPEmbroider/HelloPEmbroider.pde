@@ -12,16 +12,21 @@ void setup() {
   // We can write .vp3 or .dst files.
   String outputFilePath = sketchPath("out.vp3");
   E.setPath(outputFilePath); 
-
-  test_hatch_parallel(); // see other possible tests, below
+  E.beginDraw(); 
   E.clear();
-  test_hatch_concentric(); 
+  
+  test_hatch_parallel(); // OR see other possible tests, below
+  // test_hatch_concentric(); 
   // test_cull();
   // test_cull2(); 
   // test_spiral(); 
-  //test_image(); 
+  // test_image(); 
+  // test_perlin(); 
+  // test_perlin2(); 
+  // test_field(); 
 
   E.visualize();
+  E.optimize(); // slow but good and important
   E.endDraw(); // write out the file
 }
 

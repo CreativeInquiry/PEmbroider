@@ -48,14 +48,15 @@ public class PEmbroiderGraphics {
 	static public final int SPIRAL    =4;
 	static public final int PERLIN    =5;
 	static public final int VECFIELD  =6;
+	static public final int DRUNK     =7;
 	
 	//stroke modes
-	static public final int NORMAL    =7;
-	static public final int TANGENT   =8;
+	static public final int NORMAL    =10;
+	static public final int TANGENT   =11;
 
-	static public final int ADAPTIVE = 8;
-	static public final int FORCE_VECTOR = 9;
-	static public final int FORCE_RASTER = 10;
+	static public final int ADAPTIVE = 20;
+	static public final int FORCE_VECTOR = 21;
+	static public final int FORCE_RASTER = 22;
 	
 	public int ELLIPSE_MODE = PConstants.CORNER;
 	public int RECT_MODE = PConstants.CORNER;
@@ -1406,7 +1407,61 @@ public class PEmbroiderGraphics {
 
 		return hatch;
 	}
-
+	
+	public ArrayList<ArrayList<PVector>> hatchDrunkWalk(ArrayList<PVector> poly, int rad, int maxIter){
+		// this function is for 1 simple polygon (no holes, no multiple polygons)
+		
+		ArrayList<ArrayList<PVector>> hatch = new ArrayList<ArrayList<PVector>>(); // this is the set of polylines representing the hatches
+		hatch.add(new ArrayList<PVector>()); // typically there are >1 polylines, but in this simple example we just need 1, so we add that 1 here
+		
+		PVector p = randomPointInPolygon(poly); // find a starting point that's inside the polygon
+		for (int i = 0; i < maxIter; i++) { // start fumbling
+			hatch.get(0).add(p);  // add the point to the polyline
+			PVector q = new PVector();
+			do {
+			  q.x = p.x + app.random(-rad,rad); // for simplicity; technically we should compute from polar coordinates
+			  q.y = p.y + app.random(-rad,rad); // app.random() is equivalent random() in a Processing sketch, app refers to the PApplet object
+			}while(!pointInPolygon(q,poly));
+			p = q;
+		}
+		return hatch; // done! now go register this hatch method in hatch()
+	}
+	
+	public ArrayList<ArrayList<PVector>> hatchDrunkWalkRaster(PImage im, int rad, int maxIter){
+		// for polygons already rendered as an image. this is usually more robust for complex polygons and is the default most of the time
+		
+		ArrayList<ArrayList<PVector>> contours = PEmbroiderTrace.findContours(im); // find the polygons in the raster image
+		ArrayList<ArrayList<PVector>> hatch = new ArrayList<ArrayList<PVector>>(); // this is the set of polylines representing the hatches
+		
+		im.loadPixels();
+		for (int k = 0; k < contours.size(); k++) {
+			
+			// first find a starting point that's not in a hole
+			int trial = 100;
+			PVector p = new PVector(); int j;
+			for (j = 0; j < trial; j++) {
+				p = randomPointInPolygon(contours.get(k));
+				if ((im.pixels[(int)p.y*im.width+(int)p.x]>>16&0xFF)>0x7F) {// found white pixel
+					break;
+				}
+			}
+			if (j == trial) {
+				continue; // couldn't find a white pixel, probably the entire polygon is just a big hole!
+			}
+			hatch.add(new ArrayList<PVector>());
+			for (int i = 0; i < maxIter; i++) { // start fumbling
+				hatch.get(hatch.size()-1).add(p);  // add the point to the polyline
+				PVector q = new PVector();
+				do {
+				  q.x = p.x + app.random(-rad,rad); // for simplicity; technically we should compute from polar coordinates
+				  q.y = p.y + app.random(-rad,rad); // app.random() is equivalent random() in a Processing sketch, app refers to the PApplet object
+				}while((im.pixels[(int)q.y*im.width+(int)q.x]>>16&0xFF)<0x7F); // keep fumbling around until white pixel is found
+				p = q;
+			}
+		}
+		return hatch; // done! now go register this hatch method in hatchRaster()
+	}
+	
 	public ArrayList<PVector> resample(ArrayList<PVector> poly, float minLen, float maxLen, float randomize, float randomizeOffset) {
 		float maxTurn = 0.2f;
 		ArrayList<PVector> poly2 = new ArrayList<PVector>();
@@ -1612,6 +1667,8 @@ public class PEmbroiderGraphics {
 			polys = hatchPerlin(poly,HATCH_SPARSITY,STITCH_LENGTH,HATCH_SCALE,9999);
 		}else if (HATCH_MODE == VECFIELD) {
 			polys = hatchCustomField(poly,HATCH_VECFIELD,HATCH_SPARSITY,STITCH_LENGTH,9999);
+		}else if (HATCH_MODE == DRUNK) {
+			polys = hatchDrunkWalk(poly,10,999);
 		}
 		for (int i = 0; i < polys.size(); i++) {
 			pushPolyline(polys.get(i),currentFill,1f);
@@ -1634,6 +1691,8 @@ public class PEmbroiderGraphics {
 			polys = perlinField(im, HATCH_SPARSITY, 0.01f*HATCH_SCALE, STITCH_LENGTH, 3, 100, 9999);
 		}else if (HATCH_MODE == VECFIELD) {
 			polys = customField(im,HATCH_VECFIELD,HATCH_SPARSITY,3,100,9999);
+		}else if (HATCH_MODE == DRUNK) {
+			polys = hatchDrunkWalkRaster(im,10,999);
 		}
 		for (int i = 0; i < polys.size(); i++) {
 			for (int j = 0; j < polys.get(i).size(); j++) {
@@ -1840,8 +1899,7 @@ public class PEmbroiderGraphics {
 			if (isFill) {
 				if ((HATCH_MODE == PARALLEL || HATCH_MODE == CROSS) && (HATCH_BACKEND != FORCE_RASTER)) {
 					
-					ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
-					polys = hatchParallelComplex(polyBuff,HATCH_ANGLE,HATCH_SPARSITY);
+					ArrayList<ArrayList<PVector>> polys = hatchParallelComplex(polyBuff,HATCH_ANGLE,HATCH_SPARSITY);
 					
 					if (HATCH_MODE == CROSS) {
 						polys.addAll(hatchParallelComplex(polyBuff,HATCH_ANGLE2,HATCH_SPARSITY));
