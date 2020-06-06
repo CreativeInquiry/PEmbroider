@@ -409,8 +409,9 @@ public class PEmbroiderGraphics {
 	public void pushPolyline(ArrayList<PVector> poly, int color, float resampleRandomizeOffset) {
 		ArrayList<PVector> poly2 = new ArrayList<PVector>();
 		for (int i = 0; i < poly.size(); i++) {
+			poly2.add(poly.get(i).copy());
 			for (int j = 0; j < matStack.size(); j++) {
-				poly2.add(matStack.get(j).mult(poly.get(i), null));
+				poly2.set(i, matStack.get(j).mult(poly2.get(i), null));
 			}
 		}
 		colors.add(color);
