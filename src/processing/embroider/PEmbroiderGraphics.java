@@ -53,6 +53,10 @@ public class PEmbroiderGraphics {
 	//stroke modes
 	static public final int NORMAL    =10;
 	static public final int TANGENT   =11;
+	
+	static public final int COUNT       =12;
+	static public final int WEIGHT      =13;
+	static public final int SPARSITY     =14;
 
 	static public final int ADAPTIVE = 20;
 	static public final int FORCE_VECTOR = 21;
@@ -71,6 +75,7 @@ public class PEmbroiderGraphics {
 	public int HATCH_BACKEND = ADAPTIVE;
 	
 	public int STROKE_MODE = NORMAL;
+	public int STROKE_TANGENT_MODE = WEIGHT;
 	public int STROKE_WEIGHT = 1;
 	public float STROKE_SPARSITY = 4;
 	public int STROKE_JOIN = PConstants.ROUND;
@@ -1137,15 +1142,27 @@ public class PEmbroiderGraphics {
 			}
 		}else {
 			if (STROKE_MODE == TANGENT) {
-				ArrayList<ArrayList<PVector>> polys2 = strokePolyTangentRaster(polys,STROKE_WEIGHT,STROKE_SPARSITY,STROKE_CAP,STROKE_JOIN,close);
+				int cnt = STROKE_WEIGHT;
+				float spa = STROKE_SPARSITY;
+				if (STROKE_WEIGHT > 1) {
+					if (STROKE_TANGENT_MODE == WEIGHT) {
+						cnt = (int)PApplet.ceil((float)STROKE_WEIGHT/(float)STROKE_SPARSITY)+1;
+						spa = (float)STROKE_WEIGHT/(float)cnt;
+					}else if (STROKE_TANGENT_MODE == SPARSITY) {
+						cnt = (int)PApplet.ceil((float)STROKE_WEIGHT/(float)STROKE_SPARSITY)+1;
+					}
+				}
+
+				ArrayList<ArrayList<PVector>> polys2 = strokePolyTangentRaster(polys,cnt,spa,STROKE_CAP,STROKE_JOIN,close);
 				for (int i = 0; i < polys2.size(); i++) {
 					
 					pushPolyline(polys2.get(i),currentStroke,0f);
 				}
+					
 			}else if (STROKE_MODE == NORMAL) {
 				
 				for (int i = 0; i < polys.size(); i++) {
-					ArrayList<ArrayList<PVector>> polys2 = strokePolyNormal(polys.get(i),STROKE_WEIGHT,STROKE_SPARSITY,close);
+					ArrayList<ArrayList<PVector>> polys2 = strokePolyNormal(polys.get(i),(float)STROKE_WEIGHT/2.0f,STROKE_SPARSITY,close);
 					for (int j = 0; j < polys2.size(); j++) {
 						pushPolyline(polys2.get(j),currentStroke,0f);
 					}
