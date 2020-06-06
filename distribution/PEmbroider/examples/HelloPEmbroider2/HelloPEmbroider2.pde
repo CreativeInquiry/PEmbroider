@@ -29,7 +29,7 @@ void test_hatch_parallel(){
  E.ellipse(200,60,100,50);
  
  E.HATCH_ANGLE = 0;
- E.HATCH_SPARSITY = 8;
+ E.HATCH_SPACING = 8;
  E.HATCH_MODE = PEmbroiderGraphics.PARALLEL;
  E.triangle(250,200,150,250,300,280);
 }
@@ -83,7 +83,7 @@ void test_cull2(){
 }
 void test_spiral(){
     E.HATCH_MODE = PEmbroiderGraphics.SPIRAL;
-  E.HATCH_SPARSITY = 4;
+  E.HATCH_SPACING = 4;
  E.fill(0,0,255);
  E.noStroke();
  E.beginShape();
@@ -147,13 +147,13 @@ void test_perlin2(){
  
  E.circle(0,0,200);
  
- E.HATCH_SPARSITY = 8;
+ E.HATCH_SPACING = 8;
  E.circle(200,0,200);
  
- E.HATCH_SPARSITY = 2;
+ E.HATCH_SPACING = 2;
  E.circle(0,200,200);
  
- E.HATCH_SPARSITY = 4;
+ E.HATCH_SPACING = 4;
  E.HATCH_SCALE = 0.2;
  E.circle(200,200,200);
 }
@@ -297,7 +297,7 @@ void test_cheese(){
 void test_contour_api(){
     E.HATCH_MODE = PEmbroiderGraphics.PARALLEL;
   //E.HATCH_FORCE_RASTER = true;
-  E.HATCH_SPARSITY =5;
+  E.HATCH_SPACING =5;
   E.fill(0);
   E.noStroke();
   
@@ -353,7 +353,7 @@ void test_text(){
 
 void test_stroke(){
   E.strokeWeight(20);
-E.STROKE_SPARSITY = 3;
+E.STROKE_SPACING = 3;
 E.stroke(0);
 E.strokeJoin(MITER);
 E.STROKE_MODE = PEmbroiderGraphics.TANGENT;
@@ -404,7 +404,7 @@ void test_ttf2(){
   
   E.fill(0);
   E.stroke(0);
-  E.STROKE_SPARSITY = 3;
+  E.STROKE_SPACING = 3;
   E.strokeWeight(10);
   E.text("A",515,0);
   
@@ -417,9 +417,9 @@ void test_tear(){
 //E.fill(0);
 //E.noStroke();
 //E.HATCH_MODE = PEmbroiderGraphics.CONCENTRIC;
-E.STROKE_SPARSITY = 4;
+E.STROKE_SPACING = 4;
 E.STROKE_MODE = PEmbroiderGraphics.TANGENT;
-//E.STROKE_SPARSITY = 4;
+//E.STROKE_SPACING = 4;
 
   float x = 50;
   float y = 50;
@@ -429,8 +429,8 @@ E.STROKE_MODE = PEmbroiderGraphics.TANGENT;
   
   E.fill(0);
   E.HATCH_MODE = PEmbroiderGraphics.CONCENTRIC;
-  E.HATCH_SPARSITY = 20;
-  //E.STROKE_MODE =PEmbroiderGraphics.NORMAL;
+  E.HATCH_SPACING = 20;
+  //E.STROKE_MODE =PEmbroiderGraphics.PERPENDICULAR;
   //E.strokeWeight(10);
   
   for (int i = 0; i < 4; i++){

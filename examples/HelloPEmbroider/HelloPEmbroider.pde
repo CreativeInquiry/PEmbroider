@@ -59,7 +59,7 @@ void test_hatch_parallel() {
   E.ellipse(200, 60, 100, 50);
 
   E.HATCH_ANGLE = 0;
-  E.HATCH_SPARSITY = 8;
+  E.HATCH_SPACING = 8;
   E.HATCH_MODE = PEmbroiderGraphics.PARALLEL;
   E.triangle(250, 200, 150, 250, 300, 280);
 }
@@ -114,7 +114,7 @@ void test_cull2() {
 //--------------------------------------------
 void test_spiral() {
   E.HATCH_MODE = PEmbroiderGraphics.SPIRAL;
-  E.HATCH_SPARSITY = 4;
+  E.HATCH_SPACING = 4;
   E.fill(0, 0, 255);
   E.noStroke();
   E.beginShape();
@@ -180,13 +180,13 @@ void test_perlin2() {
 
   E.circle(0, 0, 200);
 
-  E.HATCH_SPARSITY = 8;
+  E.HATCH_SPACING = 8;
   E.circle(200, 0, 200);
 
-  E.HATCH_SPARSITY = 2;
+  E.HATCH_SPACING = 2;
   E.circle(0, 200, 200);
 
-  E.HATCH_SPARSITY = 4;
+  E.HATCH_SPACING = 4;
   E.HATCH_SCALE = 0.2;
   E.circle(200, 200, 200);
 }

@@ -37,7 +37,7 @@ void generateEmbroideryFromRasterGraphics() {
   E.stroke(0); 
 
   E.HATCH_MODE = PEmbroiderGraphics.CONCENTRIC;
-  E.HATCH_SPARSITY = 3;
+  E.HATCH_SPACING = 3;
   E.hatchRaster(PG, 0, 0);
 }
 
