@@ -6,7 +6,7 @@ PEmbroiderGraphics E;
 
 void setup() {
   noLoop(); 
-  size (500, 500);
+  size (730, 370);
   E = new PEmbroiderGraphics(this, width, height);
 
   String outputFilePath = sketchPath("PEmbroider_shape_culling.vp3");
@@ -49,6 +49,22 @@ void setup() {
   E.circle(270, 200, 120);
   E.HATCH_ANGLE = radians(90);
   E.circle(330, 200, 120);
+  E.endCull();
+  
+  //-----------------------
+  // Occluding circles with mixed hatch modes
+  E.HATCH_ANGLE = radians(90);
+  
+  E.HATCH_MODE = PEmbroiderGraphics.CONCENTRIC;
+  E.circle(500, 50, 120);
+  E.HATCH_MODE = PEmbroiderGraphics.PARALLEL;
+  E.circle(560, 50, 120);
+  
+  E.beginCull();
+  E.HATCH_MODE = PEmbroiderGraphics.CONCENTRIC;
+  E.circle(500, 200, 120);
+  E.HATCH_MODE = PEmbroiderGraphics.PARALLEL;
+  E.circle(560, 200, 120);
   E.endCull();
 
   //-----------------------
