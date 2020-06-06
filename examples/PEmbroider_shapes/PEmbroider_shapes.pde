@@ -19,7 +19,7 @@ void setup() {
   E.fill(0, 0, 0); 
   E.noStroke(); 
 
-  E.HATCH_SPARSITY = 4;
+  E.HATCH_SPACING = 4;
   E.HATCH_ANGLE = radians(60);
   E.HATCH_MODE = PEmbroiderGraphics.PARALLEL;
 
@@ -43,7 +43,7 @@ void setup() {
   E.endShape(CLOSE);
 
   //-----------------------
-  // Shapes can have curved sides
+  // Shapes can mix straight and curved sides
   E.beginShape();
   E.vertex(50, 400);
   E.quadraticVertex(200, 350, 150, 400);
@@ -73,6 +73,6 @@ void setup() {
 
   //-----------------------
   E.visualize();
-  E.optimize(); // slow, but good and important
+  E.optimize(); // slow, but very good and important
   E.endDraw(); // write out the file
 }

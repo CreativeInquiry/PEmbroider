@@ -13,7 +13,7 @@ void setup() {
   E.setPath(outputFilePath); 
   E.beginDraw(); 
   E.clear();
-  E.HATCH_SPARSITY = 6;
+  E.HATCH_SPACING = 6;
   E.strokeWeight(1); 
   E.fill(0, 0, 0); 
 

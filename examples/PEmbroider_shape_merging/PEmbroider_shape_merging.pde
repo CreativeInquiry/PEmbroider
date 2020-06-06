@@ -37,7 +37,7 @@ void generateEmbroideryFromRasterGraphics() {
   E.stroke(0); 
 
   E.HATCH_MODE = PEmbroiderGraphics.CONCENTRIC;
-  E.HATCH_SPARSITY = 3;
+  E.HATCH_SPACING = 3;
   E.hatchRaster(PG, 0, 0);
 }
 
@@ -50,16 +50,21 @@ void renderRasterGraphics() {
   PG.fill(255);
   PG.stroke(0);
   PG.strokeWeight(3);
+  
+  // Circle biting from a square
   PG.rect(50, 100, 100, 100);
   PG.circle(150, 100, 100);
 
+  // Square biting from a circle
   PG.circle(400, 100, 100);
   PG.rect(300, 100, 100, 100);
 
+  // Square and circle merged
   PG.noStroke();
   PG.rect(52, 302, 96, 96);
   PG.circle(152, 302, 96);
 
+  // Merged shapes with holes
   PG.noStroke();
   PG.rect(250, 300, 150, 150);
   PG.circle(402, 302, 96);
