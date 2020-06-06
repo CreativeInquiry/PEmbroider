@@ -25,17 +25,17 @@ void setup() {
 
   //-----------------------
   E.HATCH_MODE = PEmbroiderGraphics.PERLIN;
-  E.HATCH_SPARSITY = 4;
+  E.HATCH_SPACING = 4;
   E.HATCH_SCALE = 1.0;
   E.rect( 50, 50, 100, 100);
 
   E.HATCH_MODE = PEmbroiderGraphics.PERLIN;
-  E.HATCH_SPARSITY = 8;
+  E.HATCH_SPACING = 8;
   E.HATCH_SCALE = 1.0;
   E.rect(200, 50, 100, 100);
 
   E.HATCH_MODE = PEmbroiderGraphics.PERLIN;
-  E.HATCH_SPARSITY = 4;
+  E.HATCH_SPACING = 4;
   E.HATCH_SCALE = 4.5;
   E.rect(350, 50, 100, 100);
 
@@ -47,13 +47,13 @@ void setup() {
   E.HATCH_MODE = PEmbroiderGraphics.CROSS;
   E.HATCH_ANGLE = radians(90);
   E.HATCH_ANGLE2 = radians(0); 
-  E.HATCH_SPARSITY = 4;
+  E.HATCH_SPACING = 4;
   E.circle(50, 200, 100);
 
   E.HATCH_MODE = PEmbroiderGraphics.CROSS;
   E.HATCH_ANGLE = radians(90); 
   E.HATCH_ANGLE2 = radians(75); 
-  E.HATCH_SPARSITY = 8;
+  E.HATCH_SPACING = 8;
   E.circle(200, 200, 100);
 
   // The purpose of the "drunk walk" hatch mode is 
@@ -74,7 +74,7 @@ void setup() {
   MyVecField mvf = new MyVecField();
   E.HATCH_MODE = PEmbroiderGraphics.VECFIELD;
   E.HATCH_VECFIELD = mvf;
-  E.HATCH_SPARSITY = 4;
+  E.HATCH_SPACING = 4;
   E.ellipse ( 50, 350, 400, 100);
 
 
