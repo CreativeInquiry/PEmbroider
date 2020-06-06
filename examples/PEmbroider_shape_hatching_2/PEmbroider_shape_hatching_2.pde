@@ -56,14 +56,20 @@ void setup() {
   E.HATCH_SPACING = 8;
   E.circle(200, 200, 100);
 
+
+  /*
   // The purpose of the "drunk walk" hatch mode is 
-  // not necessarily to be useful in itself -- but rather
-  // as a simple pedagogic example for how to make your
-  // own hatch technique (in the PEmbroider source code), 
+  // not to be useful in itself -- but rather, it is 
+  // a simple pedagogic example for how to code your
+  // OWN hatch technique (in the PEmbroider source code), 
   // if you wanted to extend the PEmbroider library. 
+  // This is commented out because in practice, the DRUNK 
+  // hatch mode produces really bad snarls. Don't use it!
+  //
   E.HATCH_MODE = PEmbroiderGraphics.DRUNK;
   E.circle(350, 200, 100);
-
+  */
+  
 
   //-----------------------
   // The VECFIELD hatch mode allows you to create a 
