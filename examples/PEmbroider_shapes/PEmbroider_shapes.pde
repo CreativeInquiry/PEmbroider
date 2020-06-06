@@ -19,7 +19,7 @@ void setup() {
   E.fill(0, 0, 0); 
   E.noStroke(); 
 
-  E.HATCH_SPARSITY = 4;
+  E.HATCH_SPACING = 4;
   E.HATCH_ANGLE = radians(60);
   E.HATCH_MODE = PEmbroiderGraphics.PARALLEL;
 

@@ -20,7 +20,7 @@ void draw() {
   E.clear();
 
   E.HATCH_MODE = PEmbroiderGraphics.PARALLEL;
-  E.HATCH_SPARSITY = max(2.5, mouseX/20.0);
+  E.HATCH_SPACING = max(2.5, mouseX/20.0);
   E.HATCH_ANGLE = millis()/15000.0; 
   E.HATCH_ANGLE2 = frameCount*0.001;
   E.fill(0, 0, 255);
@@ -29,7 +29,7 @@ void draw() {
   float dx = mouseX - width/2;
   float dy = mouseY - height/2;
   E.HATCH_ANGLE = HALF_PI + atan2(dy, dx); 
-  E.HATCH_SPARSITY = 8;
+  E.HATCH_SPACING = 8;
   randomSeed(5);
   E.circle(width/2-120, height/2-120, 240);
 
