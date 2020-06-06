@@ -51,12 +51,12 @@ public class PEmbroiderGraphics {
 	static public final int DRUNK     =7;
 	
 	//stroke modes
-	static public final int NORMAL    =10;
+	static public final int PERPENDICULAR    =10;
 	static public final int TANGENT   =11;
 	
 	static public final int COUNT       =12;
 	static public final int WEIGHT      =13;
-	static public final int SPARSITY     =14;
+	static public final int SPACING     =14;
 
 	static public final int ADAPTIVE = 20;
 	static public final int FORCE_VECTOR = 21;
@@ -69,15 +69,15 @@ public class PEmbroiderGraphics {
 	public int HATCH_MODE = 1;
 	public float HATCH_ANGLE  =  PApplet.QUARTER_PI;
 	public float HATCH_ANGLE2 = -PApplet.QUARTER_PI;
-	public float HATCH_SPARSITY = 4;
+	public float HATCH_SPACING = 4;
 	public float HATCH_SCALE = 1;
 	public int HATCH_COUNT = 10;
 	public int HATCH_BACKEND = ADAPTIVE;
 	
-	public int STROKE_MODE = NORMAL;
+	public int STROKE_MODE = PERPENDICULAR;
 	public int STROKE_TANGENT_MODE = WEIGHT;
 	public int STROKE_WEIGHT = 1;
-	public float STROKE_SPARSITY = 4;
+	public float STROKE_SPACING = 4;
 	public int STROKE_JOIN = PConstants.ROUND;
 	public int STROKE_CAP = PConstants.ROUND;
 	
@@ -1143,13 +1143,13 @@ public class PEmbroiderGraphics {
 		}else {
 			if (STROKE_MODE == TANGENT) {
 				int cnt = STROKE_WEIGHT;
-				float spa = STROKE_SPARSITY;
+				float spa = STROKE_SPACING;
 				if (STROKE_WEIGHT > 1) {
 					if (STROKE_TANGENT_MODE == WEIGHT) {
-						cnt = (int)PApplet.ceil((float)STROKE_WEIGHT/(float)STROKE_SPARSITY)+1;
+						cnt = (int)PApplet.ceil((float)STROKE_WEIGHT/(float)STROKE_SPACING)+1;
 						spa = (float)STROKE_WEIGHT/(float)cnt;
-					}else if (STROKE_TANGENT_MODE == SPARSITY) {
-						cnt = (int)PApplet.ceil((float)STROKE_WEIGHT/(float)STROKE_SPARSITY)+1;
+					}else if (STROKE_TANGENT_MODE == SPACING) {
+						cnt = (int)PApplet.ceil((float)STROKE_WEIGHT/(float)STROKE_SPACING)+1;
 					}
 				}
 
@@ -1159,10 +1159,10 @@ public class PEmbroiderGraphics {
 					pushPolyline(polys2.get(i),currentStroke,0f);
 				}
 					
-			}else if (STROKE_MODE == NORMAL) {
+			}else if (STROKE_MODE == PERPENDICULAR) {
 				
 				for (int i = 0; i < polys.size(); i++) {
-					ArrayList<ArrayList<PVector>> polys2 = strokePolyNormal(polys.get(i),(float)STROKE_WEIGHT/2.0f,STROKE_SPARSITY,close);
+					ArrayList<ArrayList<PVector>> polys2 = strokePolyNormal(polys.get(i),(float)STROKE_WEIGHT/2.0f,STROKE_SPACING,close);
 					for (int j = 0; j < polys2.size(); j++) {
 						pushPolyline(polys2.get(j),currentStroke,0f);
 					}
@@ -1670,21 +1670,21 @@ public class PEmbroiderGraphics {
 	public void hatch(ArrayList<PVector> poly) {
 		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
 		if (HATCH_MODE == PARALLEL) {
-			polys = hatchParallel(poly,HATCH_ANGLE,HATCH_SPARSITY);
+			polys = hatchParallel(poly,HATCH_ANGLE,HATCH_SPACING);
 		}else if (HATCH_MODE == CROSS) {
-			polys = hatchParallel(poly,HATCH_ANGLE, HATCH_SPARSITY);
-			polys.addAll(hatchParallel(poly,HATCH_ANGLE2,HATCH_SPARSITY));
+			polys = hatchParallel(poly,HATCH_ANGLE, HATCH_SPACING);
+			polys.addAll(hatchParallel(poly,HATCH_ANGLE2,HATCH_SPACING));
 		}else if (HATCH_MODE == CONCENTRIC) {
-			polys = hatchInset(poly,HATCH_SPARSITY,9999);
+			polys = hatchInset(poly,HATCH_SPACING,9999);
 			for (int i = 0; i < polys.size(); i++) {
 				polys.get(i).add(polys.get(i).get(0));
 			}
 		}else if (HATCH_MODE == SPIRAL) {
-			polys = hatchSpiral(poly,HATCH_SPARSITY,9999);
+			polys = hatchSpiral(poly,HATCH_SPACING,9999);
 		}else if (HATCH_MODE == PERLIN) {
-			polys = hatchPerlin(poly,HATCH_SPARSITY,STITCH_LENGTH,HATCH_SCALE,9999);
+			polys = hatchPerlin(poly,HATCH_SPACING,STITCH_LENGTH,HATCH_SCALE,9999);
 		}else if (HATCH_MODE == VECFIELD) {
-			polys = hatchCustomField(poly,HATCH_VECFIELD,HATCH_SPARSITY,STITCH_LENGTH,9999);
+			polys = hatchCustomField(poly,HATCH_VECFIELD,HATCH_SPACING,STITCH_LENGTH,9999);
 		}else if (HATCH_MODE == DRUNK) {
 			polys = hatchDrunkWalk(poly,10,999);
 		}
@@ -1696,19 +1696,19 @@ public class PEmbroiderGraphics {
 	public void hatchRaster(PImage im, float x, float y) {
 		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
 		if (HATCH_MODE == PARALLEL) {
-			polys = hatchParallelRaster(im,HATCH_ANGLE,HATCH_SPARSITY,STITCH_LENGTH/4);
+			polys = hatchParallelRaster(im,HATCH_ANGLE,HATCH_SPACING,STITCH_LENGTH/4);
 		}else if (HATCH_MODE == CROSS) {
-			polys = hatchParallelRaster(im,HATCH_ANGLE,HATCH_SPARSITY,STITCH_LENGTH/4);
-			polys.addAll(hatchParallelRaster(im,HATCH_ANGLE2,HATCH_SPARSITY,STITCH_LENGTH/4));
+			polys = hatchParallelRaster(im,HATCH_ANGLE,HATCH_SPACING,STITCH_LENGTH/4);
+			polys.addAll(hatchParallelRaster(im,HATCH_ANGLE2,HATCH_SPACING,STITCH_LENGTH/4));
 			
 		}else if (HATCH_MODE == CONCENTRIC) {
-			polys = isolines(im,HATCH_SPARSITY);
+			polys = isolines(im,HATCH_SPACING);
 		}else if (HATCH_MODE == SPIRAL) {
-			polys = isolines(im,HATCH_SPARSITY);
+			polys = isolines(im,HATCH_SPACING);
 		}else if (HATCH_MODE == PERLIN) {
-			polys = perlinField(im, HATCH_SPARSITY, 0.01f*HATCH_SCALE, STITCH_LENGTH, 3, 100, 9999);
+			polys = perlinField(im, HATCH_SPACING, 0.01f*HATCH_SCALE, STITCH_LENGTH, 3, 100, 9999);
 		}else if (HATCH_MODE == VECFIELD) {
-			polys = customField(im,HATCH_VECFIELD,HATCH_SPARSITY,3,100,9999);
+			polys = customField(im,HATCH_VECFIELD,HATCH_SPACING,3,100,9999);
 		}else if (HATCH_MODE == DRUNK) {
 			polys = hatchDrunkWalkRaster(im,10,999);
 		}
@@ -1917,10 +1917,10 @@ public class PEmbroiderGraphics {
 			if (isFill) {
 				if ((HATCH_MODE == PARALLEL || HATCH_MODE == CROSS) && (HATCH_BACKEND != FORCE_RASTER)) {
 					
-					ArrayList<ArrayList<PVector>> polys = hatchParallelComplex(polyBuff,HATCH_ANGLE,HATCH_SPARSITY);
+					ArrayList<ArrayList<PVector>> polys = hatchParallelComplex(polyBuff,HATCH_ANGLE,HATCH_SPACING);
 					
 					if (HATCH_MODE == CROSS) {
-						polys.addAll(hatchParallelComplex(polyBuff,HATCH_ANGLE2,HATCH_SPARSITY));
+						polys.addAll(hatchParallelComplex(polyBuff,HATCH_ANGLE2,HATCH_SPACING));
 					}
 					for (int i = 0; i < polys.size(); i++) {
 						pushPolyline(polys.get(i),currentFill,1f);
@@ -2304,9 +2304,9 @@ public class PEmbroiderGraphics {
 		}
 		ArrayList<ArrayList<PVector>> hatches = new ArrayList<ArrayList<PVector>>();
 		for (int i = 0; i < polys.size(); i++) {
-			hatches.addAll(hatchParallel(polys.get(i),HATCH_ANGLE,HATCH_SPARSITY));
-			//			hatches.addAll(hatchInset(polys.get(i),HATCH_SPARSITY,99));
-			//			hatches.addAll(hatchSpiral(polys.get(i),HATCH_SPARSITY,99));
+			hatches.addAll(hatchParallel(polys.get(i),HATCH_ANGLE,HATCH_SPACING));
+			//			hatches.addAll(hatchInset(polys.get(i),HATCH_SPACING,99));
+			//			hatches.addAll(hatchSpiral(polys.get(i),HATCH_SPACING,99));
 		}
 		if (isFill) {
 			for (int i = 0; i < hatches.size(); i++) {
@@ -2699,10 +2699,10 @@ public class PEmbroiderGraphics {
 				if ((HATCH_MODE == PARALLEL || HATCH_MODE == CROSS) && (HATCH_BACKEND != FORCE_RASTER)) {
 					
 					ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
-					polys = hatchParallelComplex(conts,HATCH_ANGLE,HATCH_SPARSITY);
+					polys = hatchParallelComplex(conts,HATCH_ANGLE,HATCH_SPACING);
 					
 					if (HATCH_MODE == CROSS) {
-						polys.addAll(hatchParallelComplex(conts,HATCH_ANGLE2,HATCH_SPARSITY));
+						polys.addAll(hatchParallelComplex(conts,HATCH_ANGLE2,HATCH_SPACING));
 					}
 					
 					for (int i = 0; i < polys.size(); i++) {

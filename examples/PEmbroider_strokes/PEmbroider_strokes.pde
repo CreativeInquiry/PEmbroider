@@ -21,7 +21,7 @@ void setup() {
   // a stroke and no fill; 
   // a fill and no stroke;
   // both stroke and fill.
-  E.HATCH_SPARSITY = 8;
+  E.HATCH_SPACING = 8;
   E.noFill();
   E.stroke(0); 
   E.strokeWeight(1); 
@@ -39,22 +39,22 @@ void setup() {
 
   
   //-----------------------
-  // In "NORMAL" mode, strokes are  
+  // In "PERPENDICULAR" mode, strokes are  
   // rendered with perpendicular stitches. 
   E.noFill();
   E.stroke(0); 
-  E.STROKE_MODE = PEmbroiderGraphics.NORMAL;
+  E.STROKE_MODE = PEmbroiderGraphics.PERPENDICULAR;
   
   E.strokeWeight(5); 
-  E.STROKE_SPARSITY = 4;
+  E.STROKE_SPACING = 4;
   E.circle (200, 50, 100);
 
   E.strokeWeight(10); 
-  E.STROKE_SPARSITY = 4;
+  E.STROKE_SPACING = 4;
   E.circle (350, 50, 100);
   
   E.strokeWeight(10); 
-  E.STROKE_SPARSITY = 8;
+  E.STROKE_SPACING = 8;
   E.circle (500, 50, 100);
   
   //-----------------------
@@ -63,18 +63,18 @@ void setup() {
   E.noFill();
   E.stroke(0); 
   E.STROKE_MODE = PEmbroiderGraphics.TANGENT;
-  E.STROKE_SPARSITY = 4;
+  E.STROKE_SPACING = 4;
   
   E.strokeWeight(5); 
-  E.STROKE_SPARSITY = 4;
+  E.STROKE_SPACING = 4;
   E.circle (200, 200, 100);
 
   E.strokeWeight(10); 
-  E.STROKE_SPARSITY = 4;
+  E.STROKE_SPACING = 4;
   E.circle (350, 200, 100);
   
   E.strokeWeight(10); 
-  E.STROKE_SPARSITY = 8;
+  E.STROKE_SPACING = 8;
   E.circle (500, 200, 100);
   
 
@@ -87,7 +87,7 @@ void setup() {
   
   E.beginShape();
   E.strokeWeight(10); 
-  E.STROKE_SPARSITY = 4;
+  E.STROKE_SPACING = 4;
   E.vertex(200, 350);
   E.vertex(400, 375);
   E.vertex(600, 350); 
