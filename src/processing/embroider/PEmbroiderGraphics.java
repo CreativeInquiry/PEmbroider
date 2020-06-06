@@ -71,7 +71,6 @@ public class PEmbroiderGraphics {
 	public float HATCH_ANGLE2 = -PApplet.QUARTER_PI;
 	public float HATCH_SPACING = 4;
 	public float HATCH_SCALE = 1;
-	public int HATCH_COUNT = 10;
 	public int HATCH_BACKEND = ADAPTIVE;
 	
 	public int STROKE_MODE = PERPENDICULAR;
@@ -169,7 +168,47 @@ public class PEmbroiderGraphics {
 	public void bezierDetail(int n) {
 		BEZIER_DETAIL = n;
 	}
-
+	
+	public void hatchMode(int mode) {
+		HATCH_MODE = mode;
+	}
+	public void strokeMode(int mode) {
+		STROKE_MODE = mode;
+	}
+	public void strokeMode(int mode, int tanMode) {
+		STROKE_MODE = mode;
+		STROKE_TANGENT_MODE = tanMode;
+	}
+	public void hatchAngle(float ang) {
+		HATCH_ANGLE = ang;
+	}
+	public void hatchAngles(float ang1, float ang2) {
+		HATCH_ANGLE  = ang1;
+		HATCH_ANGLE2 = ang2;
+	}
+	public void hatchAngleDeg(float ang) {
+		hatchAngle(PApplet.radians(ang));
+	}
+	public void hatchAnglesDeg(float ang1, float ang2) {
+		hatchAngles(PApplet.radians(ang1),PApplet.radians(ang2));
+	}
+	public void hatchSpacing(float d) {
+		HATCH_SPACING = d;
+	}
+	public void strokeSpacing(float d) {
+		STROKE_SPACING = d;
+	}
+	
+	public void hatchScale(float s) {
+		HATCH_SCALE = s;
+	}
+	public void hatchBackend(int mode) {
+		HATCH_BACKEND = mode;
+	}
+	public void setVecField(VectorField vf) {
+		HATCH_VECFIELD = vf;
+	}
+	
 	/* MATH */
 	public static float det(PVector r1, PVector r2, PVector r3) {
 		float a = r1.x; float b = r1.y; float c = r1.z;

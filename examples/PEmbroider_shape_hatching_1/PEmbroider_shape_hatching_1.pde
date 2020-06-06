@@ -6,6 +6,8 @@
 
 
 import processing.embroider.*;
+import static processing.embroider.PEmbroiderGraphics.*; // PEmbroiderGraphics.PARALLEL -> PARALLEL
+
 PEmbroiderGraphics E;
 
 void setup() {
@@ -23,47 +25,47 @@ void setup() {
 
 
   //-----------------------
-  E.HATCH_MODE = PEmbroiderGraphics.PARALLEL;
-  E.HATCH_ANGLE = radians(45);
-  E.HATCH_SPACING = 4;
+  E.hatchMode(PARALLEL);
+  E.hatchAngleDeg(45);
+  E.hatchSpacing(4);
   E.circle( 50, 50, 100);
 
-  E.HATCH_MODE = PEmbroiderGraphics.PARALLEL;
-  E.HATCH_ANGLE = radians(90);
-  E.HATCH_SPACING = 4;
+  E.hatchMode(PARALLEL);
+  E.hatchAngle(radians(90));
+  E.hatchSpacing(4);
   E.circle(200, 50, 100);
 
-  E.HATCH_MODE = PEmbroiderGraphics.PARALLEL;
-  E.HATCH_ANGLE = radians(90);
-  E.HATCH_SPACING = 8;
+  E.hatchMode(PARALLEL);
+  E.hatchAngle(radians(90));
+  E.hatchSpacing(8);
   E.circle(350, 50, 100);
 
 
   //-----------------------
-  E.HATCH_MODE = PEmbroiderGraphics.CONCENTRIC;
-  E.HATCH_SPACING = 4;
+  E.hatchMode(CONCENTRIC);
+  E.hatchSpacing(4);
   E.circle( 50, 200, 100);
 
-  E.HATCH_MODE = PEmbroiderGraphics.CONCENTRIC;
-  E.HATCH_SPACING = 4;
+  E.hatchMode(CONCENTRIC);
+  E.hatchSpacing(4);
   E.rect(200, 200, 100, 100);
 
-  E.HATCH_MODE = PEmbroiderGraphics.CONCENTRIC;
-  E.HATCH_SPACING = 8;
+  E.hatchMode(CONCENTRIC);
+  E.hatchSpacing(8);
   E.rect (350, 200, 100, 100);
 
 
   //-----------------------
-  E.HATCH_MODE = PEmbroiderGraphics.SPIRAL;
-  E.HATCH_SPACING = 4;
+  E.hatchMode(SPIRAL);
+  E.hatchSpacing(8);
   E.circle( 50, 350, 100);
 
-  E.HATCH_MODE = PEmbroiderGraphics.SPIRAL;
-  E.HATCH_SPACING = 8;
+  E.hatchMode(SPIRAL);
+  E.hatchSpacing(8);
   E.circle(200, 350, 100);
 
-  E.HATCH_MODE = PEmbroiderGraphics.SPIRAL;
-  E.HATCH_SPACING = 8;
+  E.hatchMode(SPIRAL);
+  E.hatchSpacing(8);
   E.rect(350, 350, 100, 100);
 
 
