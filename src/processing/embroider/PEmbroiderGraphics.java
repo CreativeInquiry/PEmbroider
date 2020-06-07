@@ -90,6 +90,7 @@ public class PEmbroiderGraphics {
 	public PFont TRUE_FONT;
 	public float FONT_SCALE = 1f;
 	public int FONT_ALIGN = PConstants.LEFT;
+	public int FONT_ALIGN_VERTICAL = PConstants.BASELINE;
 	
 	static String logPrefix = "[PEmbroider] ";
 
@@ -207,6 +208,18 @@ public class PEmbroiderGraphics {
 	}
 	public void setVecField(VectorField vf) {
 		HATCH_VECFIELD = vf;
+	}
+	
+	public void stitchLength(float x) {
+		STITCH_LENGTH = x;
+	}
+	public void minStitchLength(float x) {
+		MIN_STITCH_LENGTH = x;
+	}
+	public void setStitch(float msl, float sl, float rn) {
+		MIN_STITCH_LENGTH = msl;
+		STITCH_LENGTH = sl;
+		RESAMPLE_NOISE = rn;
 	}
 	
 	/* MATH */
@@ -2681,6 +2694,11 @@ public class PEmbroiderGraphics {
 	public void textAlign(int align) {
 		FONT_ALIGN = align;
 	}
+	public void textAlign(int halign, int valign) {
+		FONT_ALIGN = halign;
+		FONT_ALIGN_VERTICAL = valign;
+	}
+	
 	public void textSize(float size) {
 		FONT_SCALE = size;
 	}
@@ -2702,7 +2720,18 @@ public class PEmbroiderGraphics {
 				pushPolyline(polys.get(i),0);
 			}
 		}else if (TRUE_FONT != null) {
-			PGraphics pg = app.createGraphics((int)(str.length()*FONT_SCALE*1.5),(int)(FONT_SCALE*2));
+			PGraphics pg0 = app.createGraphics(1, 1);
+			pg0.beginDraw();
+			pg0.textFont(TRUE_FONT);
+			pg0.textSize(FONT_SCALE);
+			float tw = pg0.textWidth(str);
+			float ta = pg0.textAscent();
+			float td = pg0.textDescent();
+			
+//			PApplet.println(tw,ta,td);
+			pg0.endDraw();
+			
+			PGraphics pg = app.createGraphics((int)PApplet.ceil(tw),(int)PApplet.ceil(ta+td));
 			pg.beginDraw();
 			pg.background(0);
 			pg.fill(255);
@@ -2710,8 +2739,8 @@ public class PEmbroiderGraphics {
 			
 			pg.textFont(TRUE_FONT);
 			pg.textSize(FONT_SCALE);
-			pg.textAlign(PConstants.LEFT,PConstants.CENTER);
-			pg.text(str,0,FONT_SCALE);
+			pg.textAlign(PConstants.LEFT,PConstants.TOP);
+			pg.text(str,0,0);
 			pg.endDraw();
 //			hatchRaster(pg,x,y);
 			ArrayList<ArrayList<PVector>> conts = PEmbroiderTrace.findContours(pg);
@@ -2729,6 +2758,23 @@ public class PEmbroiderGraphics {
 					conts.get(i).add(conts.get(i).get(0));
 				}
 			}
+
+			float dx = 0;
+			float dy = 0;
+			
+			if (FONT_ALIGN == PConstants.RIGHT) {
+				dx -= tw;
+			}else if (FONT_ALIGN == PConstants.CENTER) {
+				dx -= tw/2;
+			}
+			if (FONT_ALIGN_VERTICAL == PConstants.BASELINE) {
+				dy -= ta;
+			}else if (FONT_ALIGN_VERTICAL == PConstants.BOTTOM) {
+				dy -= ta+td;
+			}
+
+			pushMatrix();
+			translate(dx,dy);
 			
 			if (isStroke) {
 				
@@ -2751,6 +2797,8 @@ public class PEmbroiderGraphics {
 					hatchRaster(pg, x, y);
 				}
 			}
+			
+			popMatrix();
 		}
 		
 	}
