@@ -1777,33 +1777,6 @@ public class PEmbroiderGraphics {
 
 	/* SHAPE INTERFACE */
 	
-	public ArrayList<ArrayList<PVector>> hatchImg(ArrayList<PVector> poly) {
-		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
-		if (HATCH_MODE == PARALLEL) {
-			polys = hatchParallel(poly,HATCH_ANGLE,HATCH_SPACING);
-		}else if (HATCH_MODE == CROSS) {
-			polys = hatchParallel(poly,HATCH_ANGLE, HATCH_SPACING);
-			polys.addAll(hatchParallel(poly,HATCH_ANGLE2,HATCH_SPACING));
-		}else if (HATCH_MODE == CONCENTRIC) {
-			polys = hatchInset(poly,HATCH_SPACING,9999);
-			for (int i = 0; i < polys.size(); i++) {
-				polys.get(i).add(polys.get(i).get(0));
-			}
-		}else if (HATCH_MODE == SPIRAL) {
-			polys = hatchSpiral(poly,HATCH_SPACING,9999);
-		}else if (HATCH_MODE == PERLIN) {
-			polys = hatchPerlin(poly,HATCH_SPACING,STITCH_LENGTH,HATCH_SCALE,9999);
-		}else if (HATCH_MODE == VECFIELD) {
-			polys = hatchCustomField(poly,HATCH_VECFIELD,HATCH_SPACING,STITCH_LENGTH,9999);
-		}else if (HATCH_MODE == DRUNK) {
-			polys = hatchDrunkWalk(poly,10,999);
-		}
-		for (int i = 0; i < polys.size(); i++) {
-			pushPolyline(polys.get(i),currentFill,1f);
-		}
-		return polys;
-	}
-
 	public void hatch(ArrayList<PVector> poly) {
 		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
 		if (HATCH_MODE == PARALLEL) {
