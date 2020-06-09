@@ -508,6 +508,289 @@ public class PEmbroiderWriter {
 		}
 
 	}
+	
+	public static class PES {
+	    static final int MASK_07_BIT = 0b01111111;
+	    static final int JUMP_CODE = 0b00010000;
+	    static final int TRIM_CODE = 0b00100000;
+	    static final int FLAG_LONG = 0b10000000;
+
+	    static final int PEC_ICON_WIDTH = 48;
+	    static final int PEC_ICON_HEIGHT = 38;
+
+	    public static void write(String name, float[] bounds, ArrayList<PVector> stitches, ArrayList<Integer> colors) throws IOException {
+
+			class _BinWriter{
+				int position = 0;
+				OutputStream stream;
+				OutputStream original;
+				Stack<ByteArrayOutputStream> streamStack;
+					
+				_BinWriter() throws IOException{
+					stream = new FileOutputStream(name+".pes");
+					original = stream;
+					streamStack = new Stack<>();
+				}
+	
+				public void writeInt8(int value) throws IOException {
+					position += 1;
+					stream.write(value);
+				};
+			    public void writeInt16LE(int value) throws IOException {
+			        position += 2;
+			        stream.write(value & 0xFF);
+			        stream.write((value >> 8) & 0xFF);
+			    }
+				public void writeInt16BE(int value) throws IOException {
+					position += 2;
+					stream.write((value >> 8) & 0xFF);
+					stream.write(value & 0xFF);
+				}
+			    private ByteArrayOutputStream pop() {
+			        ByteArrayOutputStream pop = streamStack.pop();
+			        if (streamStack.isEmpty()) {
+			            stream = original;
+			        } else {
+			            stream = streamStack.peek();
+			        }
+			        return pop;
+			    }
+			    public void writeSpaceHolder24LE(int value) throws IOException {
+			        ByteArrayOutputStream baos = pop();
+			        stream.write(value & 0xFF);
+			        stream.write((value >> 8) & 0xFF);
+			        stream.write((value >> 16) & 0xFF);
+			        stream.write(baos.toByteArray());
+			    }
+
+				public int tell() {
+					return position;
+				}
+				public void write(String string) throws IOException {
+					position += string.length();
+					stream.write(string.getBytes());
+				}
+			    public void write(byte[] bytes) throws IOException {
+			        position += bytes.length;
+			        stream.write(bytes);
+			    }
+				public void space_holder(int skip) {
+					position += skip;
+					ByteArrayOutputStream push = new ByteArrayOutputStream();
+					if (streamStack == null) {
+						streamStack = new Stack<>();
+					}
+					streamStack.push(push);
+					stream = push;
+				}
+			    public void write_pec() throws IOException {
+
+			        write_pec_header();
+			        write_pec_block();
+			        write_pec_graphics();
+			        stream.close();
+			    }
+			    public int find_color(int color) {
+					int r = (color >> 16) & 0xFF;
+					int g = (color >> 8) & 0xFF;
+					int b = (color) & 0xFF;
+			    	int[] std = new int[] {//https://edutechwiki.unige.ch/en/Embroidery_format_PEC
+			    	0x1a0a94,0x0f75ff,0x00934c,0xbabdfe,0xec0000,0xe4995a,0xcc48ab,0xfdc4fa,0xdd84cd,0x6bd38a,
+			    	0xe4a945,0xffbd42,0xffe600,0x6cd900,0xc1a941,0xb5ad97,0xba9c5f,0xfaf59e,0x808080,0x000000,
+			    	0x001cdf,0xdf00b8,0x626262,0x69260d,0xff0060,0xbf8200,0xf39178,0xff6805,0xf0f0f0,0xc832cd,
+			    	0xb0bf9b,0x65bfeb,0xffba04,0xfff06c,0xfeca15,0xf38101,0x37a923,0x23465f,0xa6a695,0xcebfa6,
+			    	0x96aa02,0xffe3c6,0xff99d7,0x007004,0xedccfb,0xc089d8,0xe7d9b4,0xe90e86,0xcf6829,0x408615,
+			    	0xdb1797,0xffa704,0xb9ffff,0x228927,0xb612cd,0x00aa00,0xfea9dc,0xfed510,0x0097df,0xffff84,
+			    	0xcfe774,0xffc864,0xffc8c8,0xffc8c8};
+			    	float md = 195075;
+			    	int mi = 0;
+			    	for (int i = 0; i < std.length; i++) {
+						int r0 = (std[i] >> 16) & 0xFF;
+						int g0 = (std[i] >> 8) & 0xFF;
+						int b0 = (std[i]) & 0xFF;
+						float d = (float)(Math.pow(r-r0,2)+Math.pow(g-g0, 2)+Math.pow(b-b0, 2));
+						if (d < md) {
+							md = d;
+							mi = i;
+						}
+			    	}
+			    	return mi+1;
+			    }
+			    
+			    public void write_pec_header() throws IOException {
+			        String name = "Untitled";
+			        name = name.substring(0, 8);
+			        write(String.format(Locale.ENGLISH, "LA:%-16s\r", name).getBytes());
+			        for (int i = 0; i < 12; i++) {
+			            writeInt8(0x20);
+			        }
+			        writeInt8(0xFF);
+			        writeInt8(0x00);
+
+			        writeInt8(PEC_ICON_WIDTH / 8);
+			        writeInt8(PEC_ICON_HEIGHT);
+
+			            writeInt8(0x20);
+			            writeInt8(0x20);
+			            writeInt8(0x20);
+			            writeInt8(0x20);
+			            writeInt8(0x64);
+			            writeInt8(0x20);
+			            writeInt8(0x00);
+			            writeInt8(0x20);
+			            writeInt8(0x00);
+			            writeInt8(0x20);
+			            writeInt8(0x20);
+			            writeInt8(0x20);
+
+						ArrayList<Integer> palette = new ArrayList<Integer>();
+						for (int i = 0; i < colors.size(); i++) {
+							if (i==0 || (!colors.get(i).equals(colors.get(i-1)))) {
+								palette.add(colors.get(i));
+							}
+						}
+						System.out.println(logPrefix+"Color count: "+palette.size());
+						writeInt8(palette.size()-1);
+//			        
+						for (int i = 0; i < palette.size(); i++) {
+							writeInt8(find_color(palette.get(i)));
+						}
+			        for (int i = 0; i < (463-palette.size()); i++) {
+			            writeInt8(0x20);
+			        }
+			    }
+			    void write_pec_block() throws IOException {
+			        int width = (int) Math.rint(bounds[2]-bounds[0]);
+			        int height = (int) Math.rint(bounds[3]-bounds[1]);
+			        int stitch_block_start_position = tell();
+			        writeInt8(0x00);
+			        writeInt8(0x00);
+			        space_holder(3);
+
+			        writeInt8(0x31);
+			        writeInt8(0xFF);
+			        writeInt8(0xF0);
+			        /* write 2 byte x size */
+			        writeInt16LE((short) Math.round(width));
+			        /* write 2 byte y size */
+			        writeInt16LE((short) Math.round(height));
+
+			        /* Write 4 miscellaneous int16's */
+			        writeInt16LE((short) 0x1E0);
+			        writeInt16LE((short) 0x1B0);
+
+			        writeInt16BE((0x9000 | -Math.round(bounds[0])));
+			        writeInt16BE((0x9000 | -Math.round(bounds[1])));
+
+			        pec_encode();
+
+			        int stitch_block_length = tell() - stitch_block_start_position;
+			        writeSpaceHolder24LE(stitch_block_length);
+			    }
+			    void write_pec_graphics() throws IOException {
+			        write(new byte[]{
+			                (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00,
+			                (byte) 0xF0, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0x0F,
+			                (byte) 0x08, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x10,
+			                (byte) 0x04, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x20,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x40,
+			                (byte) 0x04, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x20,
+			                (byte) 0x08, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x10,
+			                (byte) 0xF0, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0x0F,
+			                (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00
+			        });
+			    }
+
+			    public int encode_long_form(int value) {
+			        value &= 0b00001111_11111111;
+			        value |= 0b10000000_00000000;
+			        return value;
+			    }
+
+
+			    private void pec_encode() throws IOException {
+			        boolean color_two = true;
+
+			        int dx, dy;
+			        boolean jumping = false;
+			        double xx = 0, yy = 0;
+
+			        for (int i = 0, ie = stitches.size(); i < ie; i++) {
+
+			        	if (i > 0 && !colors.get(i).equals(colors.get(i-1))) {
+			        		// color change
+		                    writeInt8(0xfe);
+		                    writeInt8(0xb0);
+		                    writeInt8((color_two) ? 2 : 1);
+		                    color_two = !color_two;
+						}
+			            float x = stitches.get(i).x;
+			            float y = stitches.get(i).y;
+			            
+//			            System.out.println(x+" "+y);
+			            dx = (int) Math.rint(x - xx);
+			            dy = (int) Math.rint(y - yy);
+			            xx += dx;
+			            yy += dy;
+
+			            if ((jumping) && (dx != 0) && (dy != 0)) {
+			            	writeInt8((byte) 0x00);
+			            	writeInt8((byte) 0x00);
+			            	jumping = false;
+			            }
+			            if (dx < 63 && dx > -64 && dy < 63 && dy > -64) {
+			            	writeInt8(dx & MASK_07_BIT);
+			            	writeInt8(dy & MASK_07_BIT);
+			            } else {
+			            	dx = encode_long_form(dx);
+			            	dy = encode_long_form(dy);
+			            	writeInt16BE(dx);
+			            	writeInt16BE(dy);
+			            }
+	
+			            
+			        }
+			        writeInt8(0xff);//end
+			    }
+			}; _BinWriter bin = new _BinWriter();
+	        bin.write("#PES0001");
+	        bin.writeInt8(0x16);
+	        for (int i = 0; i < 13; i++) {
+	            bin.writeInt8(0x00);
+	        }
+			bin.write_pec();
+	    }
+
+	}
 
 	public static class PEC {
 	    static final int MASK_07_BIT = 0b01111111;
@@ -953,6 +1236,8 @@ public class PEmbroiderWriter {
 				VP3.write(tokens[0], bounds, stitches, flatColors);
 			}else if (tokens[1].equalsIgnoreCase("PEC")) {
 				PEC.write(tokens[0], bounds, stitches, flatColors);
+			}else if (tokens[1].equalsIgnoreCase("PES")) {
+				PES.write(tokens[0], bounds, stitches, flatColors);
 			}else if (tokens[1].equalsIgnoreCase("SVG")) {
 				SVG.write(tokens[0], bounds, stitches, flatColors);
 			}else if (tokens[1].equalsIgnoreCase("PDF")) {
@@ -962,7 +1247,7 @@ public class PEmbroiderWriter {
 			}else if (tokens[1].equalsIgnoreCase("GCODE")) {
 				GCODE.write(tokens[0], bounds, stitches, flatColors);	
 			}else {
-				System.out.println(logPrefix+"Unsupported format. Try vp3, dst, pec, svg, pdf, tsv or gcode.");
+				System.out.println(logPrefix+"Unsupported format. Try vp3, dst, pec, pes, svg, pdf, tsv or gcode.");
 				throw new IOException("Unimplemented");
 			}
 			System.out.println(logPrefix+"Written!");

@@ -15,7 +15,7 @@ void setup() {
   size (500, 500);
   E = new PEmbroiderGraphics(this, width, height);
 
-  String outputFilePath = sketchPath("PEmbroider_shape_hatching_1.vp3");
+  String outputFilePath = sketchPath("PEmbroider_shape_hatching_1.pes");
   E.setPath(outputFilePath); 
   E.beginDraw(); 
   E.clear();
