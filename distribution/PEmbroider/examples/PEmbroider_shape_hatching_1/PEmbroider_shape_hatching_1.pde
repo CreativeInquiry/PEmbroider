@@ -23,7 +23,9 @@ void setup() {
   E.fill(0, 0, 0); 
   E.noStroke(); 
 
-
+  //E.toggleResample(false);
+  //E.RESAMPLE_NOISE = 1;
+  
   //-----------------------
   E.hatchMode(PARALLEL);
   E.hatchAngleDeg(45);

@@ -62,6 +62,9 @@ public class PEmbroiderGraphics {
 	static public final int FORCE_VECTOR = 21;
 	static public final int FORCE_RASTER = 22;
 	
+	static public final int STROKE_OVER_FILL = 31;
+	static public final int FILL_OVER_STROKE = 32;
+	
 	public int ELLIPSE_MODE = PConstants.CORNER;
 	public int RECT_MODE = PConstants.CORNER;
 	public int BEZIER_DETAIL = 40;
@@ -80,6 +83,9 @@ public class PEmbroiderGraphics {
 	public int STROKE_JOIN = PConstants.ROUND;
 	public int STROKE_CAP = PConstants.ROUND;
 	
+	public boolean FIRST_STROKE_THEN_FILL = false;
+	public boolean NO_RESAMPLE = false;
+	
 	public VectorField HATCH_VECFIELD;
 
 	public float STITCH_LENGTH = 10;
@@ -91,6 +97,9 @@ public class PEmbroiderGraphics {
 	public float FONT_SCALE = 1f;
 	public int FONT_ALIGN = PConstants.LEFT;
 	public int FONT_ALIGN_VERTICAL = PConstants.BASELINE;
+	
+	boolean randomizeOffsetEvenOdd = false;
+	float randomizeOffsetPrevious = 0.0f;
 	
 	static String logPrefix = "[PEmbroider] ";
 
@@ -220,6 +229,17 @@ public class PEmbroiderGraphics {
 		MIN_STITCH_LENGTH = msl;
 		STITCH_LENGTH = sl;
 		RESAMPLE_NOISE = rn;
+	}
+	
+	public void setRenderOrder(int mode) {
+		if (mode == STROKE_OVER_FILL) {
+			FIRST_STROKE_THEN_FILL = false;
+		}else if (mode == FILL_OVER_STROKE) {
+			FIRST_STROKE_THEN_FILL = true;
+		}
+	}
+	public void toggleResample(boolean b) {
+		NO_RESAMPLE = !b;
 	}
 	
 	/* MATH */
@@ -472,8 +492,12 @@ public class PEmbroiderGraphics {
 			}
 		}
 		colors.add(color);
-//		    	polylines.add(poly2);
-		polylines.add(resample(poly2,MIN_STITCH_LENGTH,STITCH_LENGTH,RESAMPLE_NOISE,resampleRandomizeOffset));
+		if (NO_RESAMPLE) {
+		    polylines.add(poly2);
+		}else {
+			polylines.add(resample(poly2,MIN_STITCH_LENGTH,STITCH_LENGTH,RESAMPLE_NOISE,resampleRandomizeOffset));
+		}
+		
 		cullGroups.add(currentCullGroup);
 	}
 	public void pushPolyline(ArrayList<PVector> poly, int color) {
@@ -1571,7 +1595,10 @@ public class PEmbroiderGraphics {
 			}
 
 			if (i == 0 && randomizeOffset > 0) {
-				float r = (Math.max(1,maxLen*randomizeOffset*app.random(0f,1f)))/l;
+				float rr = app.random(0f,1f);
+//				float rr = 0.5f - randomizeOffsetPrevious;
+//				randomizeOffsetPrevious = rr;
+				float r = (Math.max(1,maxLen*randomizeOffset*rr))/l;
 //				    			PApplet.println(r,randomizeOffset);
 				PVector p = p0.copy().mult(1-r).add(p1.copy().mult(r));
 				poly2.add(p);
@@ -1582,19 +1609,50 @@ public class PEmbroiderGraphics {
 					continue;
 				}
 			}
+//			PVector p2 = poly.get(i+1).copy();
+//			
+//			if (i == poly.size()-1 && randomizeOffset > 0) {
+//				float rr = app.random(0f,1f);
+////				float rr = 0.5f - randomizeOffsetPrevious;
+//				float r = (Math.max(1,maxLen*randomizeOffset*rr))/l;
+////				    			PApplet.println(r,randomizeOffset);
+//				PVector p = p0.copy().mult(r).add(p1.copy().mult(1-r));
+////				poly2.add(p);
+//				p1 = p;
+//			}
+//			
+//			randomizeOffsetEvenOdd = !randomizeOffsetEvenOdd;
 
 			int n = (int)Math.ceil(l/maxLen);
+//			if (!randomizeOffsetEvenOdd) {
+//				n = n + 2;
+//			}else {
+//				n = Math.max(0, n - 2);
+//			}
 			if (n > 1) {
 				float d = l/(float)n;
 				float[] lin = new float[n-1];
 				for (int j = 1; j < n; j++) {
-					lin[j-1] = (float)j/(float)n + app.random(-1f,1f)*randomize*(1f/(float)n)*0.5f;
+//					float rr = app.random(-1f,1f);
+					float rr = 0;
+					if (app.random(0f,1f)<0.5f) {
+						rr = app.randomGaussian()-1;
+					}else {
+						rr = app.randomGaussian()+1;
+					}
+					rr = Math.min(Math.max(rr, -1), 1);
+					lin[j-1] = (float)j/(float)n + rr*randomize*(1f/(float)n)*0.5f;
 				}
 				for (int j = 0; j < n-1; j++) {
 					poly2.add(p0.copy().mult(1-lin[j]).add(p1.copy().mult(lin[j])));
 				}
 			}
 			poly2.add(p1);
+			
+//			if (i == poly.size()-1 && randomizeOffset > 0) {
+//				
+//				poly2.add(p2);
+//			}
 		}
 		
 		return poly2;
@@ -1942,10 +2000,13 @@ public class PEmbroiderGraphics {
 			return;
 		}
 		if (polyBuff.size() == 1 && (HATCH_BACKEND == FORCE_VECTOR || HATCH_MODE == SPIRAL)) {
+			if (isStroke && FIRST_STROKE_THEN_FILL) {
+				_stroke(polyBuff,close);
+			}
 			if (isFill) {
 				hatch(polyBuff.get(0));
 			}
-			if (isStroke) {
+			if (isStroke && !FIRST_STROKE_THEN_FILL) {
 				_stroke(polyBuff,close);
 //				if (close) {
 //					polyBuff.get(0).add(polyBuff.get(0).get(0));
@@ -1954,7 +2015,7 @@ public class PEmbroiderGraphics {
 			}
 			
 		}else {
-			if (isStroke) {
+			if (isStroke && FIRST_STROKE_THEN_FILL) {
 //				_stroke(polyBuff,close);
 				
 				_stroke((ArrayList<ArrayList<PVector>>)deepClone(polyBuff),close);
@@ -2004,6 +2065,9 @@ public class PEmbroiderGraphics {
 					pg.endDraw();
 					hatchRaster(pg, bb.x, bb.y);
 				}
+			}
+			if (isStroke && !FIRST_STROKE_THEN_FILL) {
+				_stroke((ArrayList<ArrayList<PVector>>)deepClone(polyBuff),close);
 			}
 		}
 		currentCullGroup++;
@@ -2360,12 +2424,17 @@ public class PEmbroiderGraphics {
 			//			hatches.addAll(hatchInset(polys.get(i),HATCH_SPACING,99));
 			//			hatches.addAll(hatchSpiral(polys.get(i),HATCH_SPACING,99));
 		}
+		if (isStroke && FIRST_STROKE_THEN_FILL) {
+			for (int i = 0; i < polys.size(); i++) {
+				pushPolyline(polys.get(i),currentStroke,0f);
+			}
+		}
 		if (isFill) {
 			for (int i = 0; i < hatches.size(); i++) {
 				pushPolyline(hatches.get(i),currentFill,1f);
 			}
 		}
-		if (isStroke) {
+		if (isStroke && !FIRST_STROKE_THEN_FILL) {
 			for (int i = 0; i < polys.size(); i++) {
 				pushPolyline(polys.get(i),currentStroke,0f);
 			}
@@ -2674,7 +2743,7 @@ public class PEmbroiderGraphics {
 
 
 	
-	public void optimize() {
+	public void optimize(int trials,int maxIter) {
 		if (polylines.size() <= 1) {
 			return;
 		}
@@ -2682,13 +2751,16 @@ public class PEmbroiderGraphics {
 		for (int i = 1; i <= polylines.size(); i++) {
 			if (i == polylines.size() || !colors.get(i).equals(colors.get(i-1))){
 				ArrayList<ArrayList<PVector>> p = new ArrayList<ArrayList<PVector>>(polylines.subList(idx0,i));
-				p = PEmbroiderTSP.solve(p);
+				p = PEmbroiderTSP.solve(p,trials,maxIter);
 				
 				polylines.subList(idx0,i).clear();
 				polylines.addAll(idx0,p);
 				idx0 = i;
 			}
 		}
+	}
+	public void optimize() {
+		optimize(5,999);
 	}
 
 	public void textAlign(int align) {
@@ -2776,7 +2848,7 @@ public class PEmbroiderGraphics {
 			pushMatrix();
 			translate(dx,dy);
 			
-			if (isStroke) {
+			if (isStroke && FIRST_STROKE_THEN_FILL) {
 				
 				_stroke((ArrayList<ArrayList<PVector>>)deepClone(conts),true);
 			}
@@ -2796,6 +2868,10 @@ public class PEmbroiderGraphics {
 				}else {
 					hatchRaster(pg, x, y);
 				}
+			}
+			if (isStroke && !FIRST_STROKE_THEN_FILL) {
+				
+				_stroke((ArrayList<ArrayList<PVector>>)deepClone(conts),true);
 			}
 			
 			popMatrix();

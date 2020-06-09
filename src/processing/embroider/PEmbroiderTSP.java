@@ -173,10 +173,10 @@ public class PEmbroiderTSP {
 	}
 	
 	public static ArrayList<ArrayList<PVector>> solve(ArrayList<ArrayList<PVector>> polylines) {
-		return solve(polylines,5);
+		return solve(polylines,5,999);
 	}
 	
-	public static ArrayList<ArrayList<PVector>> solve(ArrayList<ArrayList<PVector>> polylines, int trials) {
+	public static ArrayList<ArrayList<PVector>> solve(ArrayList<ArrayList<PVector>> polylines, int trials, int maxIter) {
 
 		if (polylines.size() < 2) {
 			return polylines;
@@ -229,7 +229,7 @@ public class PEmbroiderTSP {
 
 			float l0 = sumLength(edges);
 
-			opt2(edges,999);
+			opt2(edges,maxIter);
 
 			float l1 = sumLength(edges);
 
