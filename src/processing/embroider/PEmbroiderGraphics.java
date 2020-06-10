@@ -1750,6 +1750,102 @@ public class PEmbroiderGraphics {
 		PApplet.println(poly2.size(),n);
 		return poly2;
 	}
+	
+	public ArrayList<ArrayList<PVector>> resampleCrossIntersection(ArrayList<ArrayList<PVector>> polys, float angle, float spacing, float len){
+//		for (int i = 0; i < polys.size(); i++) {
+//			for (int j = 0; j < polys.get(i).size(); j++) {
+//				PApplet.println(polys.get(i).get(j));
+//				
+//			}
+//		}
+		float base = len/2;
+		float relang = PApplet.atan2(spacing, base);
+//		float d = PApplet.sqrt(base*base+spacing*spacing);
+		float d = len * PApplet.cos(PApplet.HALF_PI-relang);	
+		
+		PApplet.println("computed cross ang",relang,"spacing",d);
+		
+		float ang = angle - relang;
+		
+		BCircle bcirc = new BCircle(polys,0);
+		bcirc.r *= 1.05;
+
+		float x0 = bcirc.x - bcirc.r * PApplet.cos(ang);
+		float y0 = bcirc.y - bcirc.r * PApplet.sin(ang);
+
+		float x1 = bcirc.x + bcirc.r * PApplet.cos(ang);
+		float y1 = bcirc.y + bcirc.r * PApplet.sin(ang);
+
+		float l = new PVector(x0,y0).dist(new PVector(x1,y1));
+
+		int n = (int)Math.ceil(l/d);
+
+		ArrayList<ArrayList<PVector>> crosslines = new ArrayList<ArrayList<PVector>>();
+		
+		for (int i = 0; i < n; i++) {
+			float t = (float)i/(float)(n-1);
+			float x = x0 * (1-t) + x1 * t;
+			float y = y0 * (1-t) + y1 * t;
+
+			float px = x + bcirc.r * PApplet.cos(ang-PConstants.HALF_PI);
+			float py = y + bcirc.r * PApplet.sin(ang-PConstants.HALF_PI);
+
+			float qx = x + bcirc.r * PApplet.cos(ang+PConstants.HALF_PI);
+			float qy = y + bcirc.r * PApplet.sin(ang+PConstants.HALF_PI);
+
+//			PApplet.println(x0,y0,x1,y1,px,py,qx,qy);
+			
+			ArrayList<PVector> crsl = new ArrayList<PVector>();
+			crsl.add(new PVector(px,py));
+			crsl.add(new PVector(qx,qy));
+			crosslines.add(crsl);
+		}
+		
+		
+		ArrayList<ArrayList<PVector>> result = new ArrayList<ArrayList<PVector>>();
+		
+		for (int i = 0; i < polys.size(); i++) {
+			if (polys.get(i).size() < 2) {
+				continue;
+			}
+
+			ArrayList<PVector> resamped = new ArrayList<PVector>();
+			
+			for (int j = 0; j < polys.get(i).size()-1; j++) {
+				
+				PVector a = polys.get(i).get(j);
+				PVector b = polys.get(i).get(j+1);
+				
+				resamped.add(a);
+				
+				ArrayList<Float> iparams = new ArrayList<Float>();
+				for (int k = 0; k < crosslines.size(); k++) {
+					PVector p = crosslines.get(k).get(0);
+					PVector q = crosslines.get(k).get(1);
+					PVector o = segmentIntersect3D(a,b,p,q);
+					if (o != null) {
+						iparams.add(o.x);
+					}
+				}
+				float[] iparamsArr = new float[iparams.size()];
+				for (int k = 0; k < iparams.size(); k++) {
+					iparamsArr[k] = (float)iparams.get(k);
+				}
+				iparamsArr = PApplet.sort(iparamsArr);
+				
+				for (int k = 0; k < iparams.size(); k++) {
+					PVector _p0 = a.copy();
+					PVector _p1 = b.copy();
+					resamped.add( _p0.mult(1-iparamsArr[k]).add(_p1.mult(iparamsArr[k])) );
+				}
+				resamped.add(b);
+			}
+			
+			result.add(resamped);
+			
+		}
+		return result;
+	}
 
 
 	void _ellipse(float cx, float cy, float rx, float ry) {
@@ -2032,11 +2128,21 @@ public class PEmbroiderGraphics {
 					
 					ArrayList<ArrayList<PVector>> polys = hatchParallelComplex(polyBuff,HATCH_ANGLE,HATCH_SPACING);
 					
+					boolean didit = false;
+					if (HATCH_MODE == PARALLEL && !NO_RESAMPLE) {
+						polys = resampleCrossIntersection(polys,HATCH_ANGLE,HATCH_SPACING,STITCH_LENGTH);
+						NO_RESAMPLE = true;
+						didit = true;
+					}
+					
 					if (HATCH_MODE == CROSS) {
 						polys.addAll(hatchParallelComplex(polyBuff,HATCH_ANGLE2,HATCH_SPACING));
 					}
 					for (int i = 0; i < polys.size(); i++) {
 						pushPolyline(polys.get(i),currentFill,1f);
+					}
+					if (didit) {
+						NO_RESAMPLE = false;
 					}
 				}else {
 					BBox bb = new BBox(polyBuff,0);
