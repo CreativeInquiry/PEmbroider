@@ -102,7 +102,14 @@ public class PEmbroiderGraphics {
 	float randomizeOffsetPrevious = 0.0f;
 	
 	static String logPrefix = "[PEmbroider] ";
-
+	
+	/**
+	* The constructor for PEmbroiderGraphics object.
+	*
+	* @param  _app the running PApplet instance: in Processing, just pass the keyword `this`
+	* @param  w    width 
+	* @param  h    height
+	*/
 	public PEmbroiderGraphics(PApplet _app, int w, int h) {
 		app = _app;
 		width = w;
@@ -116,25 +123,46 @@ public class PEmbroiderGraphics {
 		cullGroups = new ArrayList<Integer>();
 	}
 
+	/**
+	* Set the output file path.
+	* 
+	* @param  _path output file path. The format will be automatically inferred from the extension
+	*/
 	public void setPath(String _path) {
 		path = _path;
 	}
 	
+	/**
+	* Clear all current drawings
+	* 
+	*/
 	public void clear() {
 		polylines.clear();
 		colors.clear();
 		cullGroups.clear();
 	}
 
-	/* STYLE SETTING */
+	/* ======================================== STYLE SETTING ======================================== */
+	
+	/** Change fill color
+	 *  @param r red color 0-255
+	 *  @param g green color 0-255
+	 *  @param b blue color 0-255
+	 *  @see   stroke
+	 */
 	public void fill(int r, int g, int b) {
 		isFill = true;
 		currentFill = 0xFF000000 | ((r & 255) << 16) | ((g & 255) << 8) | (b & 255);
 	}
+	/** Change fill color
+	 *  @param gray  grayscale value 0-255
+	 */
 	public void fill(int gray) {
 		fill(gray,gray,gray);
 	}
-
+	/** Disable filling shapes
+	 *
+	 */
 	public void noFill() {
 		isFill = false;
 	}
@@ -149,88 +177,195 @@ public class PEmbroiderGraphics {
 		isStroke = true;
 		currentStroke = 0xFF000000 | ((r & 255) << 16) | ((g & 255) << 8) | (b & 255);
 	}
+	
+	/** Change stroke color
+	 *  @param gray  grayscale value 0-255
+	 */
 	public void stroke(int gray) {
 		stroke(gray,gray,gray);
 	}
-
+	/** Disable outlining shapes
+	 *
+	 */
 	public void noStroke() {
 		isStroke = false;
 	}
-	
+	/** Change width of stroke
+	 *  @param d  the stroke weight to use
+	 */
 	public void strokeWeight(int d) {
 		STROKE_WEIGHT = d;
 	}
-
+	/** Change stroke join (turning point) style
+	 *  @param j  Same as Processing strokejoin, this can be ROUND, MITER, BEVEL etc.
+	 *  @see   strokeCap
+	 */
 	public void strokeJoin(int j) {
 		STROKE_JOIN = j;
 	}
-	
+	/** Change stroke cap (end point) style
+	 *  @param j  Same as Processing strokeCap, this can be ROUND, SQUARE, PROJECT etc.
+	 *  @see strokejoin
+	 */
 	public void strokeCap(int j) {
 		STROKE_CAP = j;
 	}
-	
+	/** Modifies the location from which ellipses are drawn by changing the way in which parameters given to ellipse() are intepreted.
+	 *  also governs circle()
+	 *  
+	 *  @param j  Same as Processing ellipseMode, this can be RADIUS, CENTER, CORNER, CORNERS etc.
+	 *  @see   rectMode
+	 */
 	public void ellipseMode(int mode) {
 		ELLIPSE_MODE = mode;
 	}
+	/** Modifies the location from which rectangles are drawn by changing the way in which parameters given to rect() are intepreted.
+	 *  
+	 *  @param j  Same as Processing rectMode, this can be RADIUS, CENTER, CORNER, CORNERS etc.
+	 *  @see   ellipseMode
+	 */
 	public void rectMode(int mode) {
 		RECT_MODE = mode;
 	}
+	/** Change number of steps bezier curve is interpolated. 
+	 *  
+	 *  @param n higher this number, smoother the bezier
+	 */
 	public void bezierDetail(int n) {
 		BEZIER_DETAIL = n;
 	}
-	
+	/** Change hatching pattern
+	 *  
+	 *  @param mode  this can be one of PARALLEL, CROSS, CONCENTRIC, SPIRAL, PERLIN, VECFIELD, DRUNK	
+	 */
 	public void hatchMode(int mode) {
 		HATCH_MODE = mode;
 	}
+	/** Change outline drawing method
+	 *  
+	 *  @param mode  this can be either PERPENDICULAR or TANGENT	
+	 */
 	public void strokeMode(int mode) {
 		STROKE_MODE = mode;
 	}
+	/** Change outline drawing method
+	 *  
+	 *  @param mode     this can be either PERPENDICULAR or TANGENT	
+	 *  @param tanMode  this can be one of COUNT (stroke weight used as line count), WEIGHT (honour stroke weight setting over spacing) or SPACING (honour spacing over stroke weight)
+	 */
 	public void strokeMode(int mode, int tanMode) {
 		STROKE_MODE = mode;
 		STROKE_TANGENT_MODE = tanMode;
 	}
+	/** Change angle of parallel hatch lines
+	 *  
+	 *  @param ang     the angle from +x in radians
+	 *  @see   hatchAngleDeg
+	 *  @see   hatchAngles
+	 */
 	public void hatchAngle(float ang) {
 		HATCH_ANGLE = ang;
 	}
+	/** Change angles of parallel and cross hatching lines
+	 *  
+	 *  @param ang1     the angle from +x in radians (for parallel hatches and the first direction of cross hatching)
+	 *  @param ang2     the angle from +x in radians (for second direction of cross hatching)
+	 *  @see   hatchAngle
+	 *  @see   hatchAnglesDeg
+	 */
 	public void hatchAngles(float ang1, float ang2) {
 		HATCH_ANGLE  = ang1;
 		HATCH_ANGLE2 = ang2;
 	}
+	/** Change angle of parallel hatch lines
+	 *  
+	 *  @param ang     the angle from +x in degrees
+	 *  @see   hatchAngle
+	 *  @see   hatchAnglesDeg
+	 */
 	public void hatchAngleDeg(float ang) {
 		hatchAngle(PApplet.radians(ang));
 	}
+	/** Change angles of parallel and cross hatching lines
+	 *  
+	 *  @param ang1     the angle from +x in degrees (for parallel hatches and the first direction of cross hatching)
+	 *  @param ang2     the angle from +x in degrees (for second direction of cross hatching)
+	 *  @see   hatchAngles
+	 *  @see   hatchAngleDeg
+	 */
 	public void hatchAnglesDeg(float ang1, float ang2) {
 		hatchAngles(PApplet.radians(ang1),PApplet.radians(ang2));
 	}
+	/** Changes the spacing between hatching lines: a.k.a sparsity or anti-density
+	 *  
+	 *  @param d   the spacing in pixels
+	 *  @see       strokeSpacing
+	 */
 	public void hatchSpacing(float d) {
 		HATCH_SPACING = d;
 	}
+	/** Changes the spacing between stroke lines: a.k.a sparsity or anti-density
+	 *  
+	 *  @param d   the spacing in pixels
+	 *  @see       hatchSpacing
+	 */
 	public void strokeSpacing(float d) {
 		STROKE_SPACING = d;
 	}
-	
+	/** Changes the scaling for perlin noise hatching
+	 *  
+	 *  @param s   the scale
+	 */
 	public void hatchScale(float s) {
 		HATCH_SCALE = s;
 	}
+	/** Switches the algorithms used to compute the drawing
+	 *  
+	 *  @param mode   one of ADAPTIVE (use most appropriate method for each situation according to Lingdong) FORCE_VECTOR (uses vector math whenever possible) FORCE_RASTER (first render shapes as raster and re-extract the structures, generally more robust)
+	 */
 	public void hatchBackend(int mode) {
 		HATCH_BACKEND = mode;
 	}
+	/** Set the vector field used for vector field hatching
+	 *  
+	 *  @param vf a vector field defination -- simple, just a class with a get(x,y) method
+	 */
 	public void setVecField(VectorField vf) {
 		HATCH_VECFIELD = vf;
 	}
-	
+	/** Set the desirable stitch length. Stitches will try their best to be around this length, but actual length will vary slightly for best result
+	 *  
+	 *  @param x the desirable stitch length
+	 *  @see minSitchLength
+	 *  @see setStitch
+	 */
 	public void stitchLength(float x) {
 		STITCH_LENGTH = x;
 	}
+	/** Set the minimum stitch length. Drawings with higher precision than this will be resampled down to have at least this stitch length
+	 *  
+	 *  @param x the minimum stitch length
+	 *  @see stichLength
+	 *  @see setStitch
+	 */
 	public void minStitchLength(float x) {
 		MIN_STITCH_LENGTH = x;
 	}
+	/** Set stitch properties
+	 *  
+	 *  @param msl minimum stitch length
+	 *  @param sl  desirable stitch length
+	 *  @param rn  resample noise -- to avoid alignment patterns
+	 */
 	public void setStitch(float msl, float sl, float rn) {
 		MIN_STITCH_LENGTH = msl;
 		STITCH_LENGTH = sl;
 		RESAMPLE_NOISE = rn;
 	}
-	
+	/** Set render order: render strokes over fill, or other way around?
+	 *  
+	 *  @param mode  this can either be STROKE_OVER_FILL or FILL_OVER_STROKE
+	 */
 	public void setRenderOrder(int mode) {
 		if (mode == STROKE_OVER_FILL) {
 			FIRST_STROKE_THEN_FILL = false;
@@ -238,11 +373,23 @@ public class PEmbroiderGraphics {
 			FIRST_STROKE_THEN_FILL = true;
 		}
 	}
+	/** Turn resampling on and off. For embroidery machines, you might want it; for plotters you probably won't need it.
+	 *  
+	 *  @param b   true for on, false for off
+	 */
 	public void toggleResample(boolean b) {
 		NO_RESAMPLE = !b;
 	}
 	
-	/* MATH */
+	/* ======================================== MATH ======================================== */
+	
+	/** Compute the determinant of a 3x3 matrix as 3 row vectors.
+	 *  
+	 *  @param r1 row 1
+	 *  @param r2 row 2
+	 *  @param r3 row 3
+	 *  @return the determinant
+	 */
 	public static float det(PVector r1, PVector r2, PVector r3) {
 		float a = r1.x; float b = r1.y; float c = r1.z;
 		float d = r2.x; float e = r2.y; float f = r2.z;
@@ -250,7 +397,15 @@ public class PEmbroiderGraphics {
 		return a*e*i + b*f*g + c*d*h - c*e*g - b*d*i - a*f*h;
 	}
 
-
+	/** Intersect two segments in 3D, returns lerp params instead of actual points, because the latter can cheaply be derived from the former; more expensive the other way around.
+	 *  Also works for 2D.
+	 *  
+	 *  @param p0 first endpoint of first segment
+	 *  @param p1 second endpoint of first segment
+	 *  @param q0 first endpoint of second segment
+	 *  @param q1 second endpoint of second segment
+	 *  @return vec where vec.x is the lerp param for first segment, and vec.y is the lerp param for the second segment
+	 */
 	public static PVector segmentIntersect3D (PVector p0, PVector p1, PVector q0, PVector q1){
 		// returns lerp params, not actual point!
 
@@ -272,7 +427,11 @@ public class PEmbroiderGraphics {
 		}
 		return new PVector(t,s);
 	}
-
+	/** Averages a bunch of points
+	 *  
+	 *  @param poly a bunch of points
+	 *  @return a vector holding the average value
+	 */
 	public PVector centerpoint(ArrayList<PVector> poly) {
 		float x=0;
 		float y=0;
@@ -282,7 +441,12 @@ public class PEmbroiderGraphics {
 		}
 		return new PVector(x/(float)poly.size(),y/(float)poly.size());
 	}
-	
+	/** Averages a bunch of bunches of points
+	 *  
+	 *  @param poly a bunch of bunches of points
+	 *  @param whatever literally pass in whatever. It is necessary because of type erasure in Java, which basically means Java cannot tell the difference between List<T> and List<List<T>> in arguments, so a difference in number of arguments is required for overloading to work
+	 *  @return a vector holding the average value
+	 */
 	public PVector centerpoint(ArrayList<ArrayList<PVector>> poly, int whatever) {
 		float x=0;
 		float y=0;
@@ -294,25 +458,42 @@ public class PEmbroiderGraphics {
 		}
 		return new PVector(x/(float)poly.size(),y/(float)poly.size());
 	}
-
+	/** Class for a bounding box
+	 * 
+	 */
 	public class BBox{
 		public float x;
 		public float y;
 		public float w;
 		public float h;
-
+		/** Constructor that makes a bounding box from top left corner and dimensions
+		 *  
+		 *  @param _x left
+		 *  @param _y top
+		 *  @param _w width
+		 *  @param _h height
+		 */
 		public BBox(float _x, float _y, float _w, float _h){
 			x = _x;
 			y = _y;
 			w = _w;
 			h = _h;
 		}
+		/** Constructor that makes a bounding box from top left corner and bottom right corner
+		 *  
+		 *  @param p top left corner
+		 *  @param p bottom right corner
+		 */
 		public BBox(PVector p, PVector q) {
 			x = p.x;
 			y = p.y;
 			w = q.x-p.x;
 			h = q.y-p.y;
 		}
+		/** Constructor that makes a bounding box from a bunch of points
+		 *  
+		 *  @param poly a bunch of points
+		 */
 		public BBox(ArrayList<PVector> poly) {
 			float xmin = Float.POSITIVE_INFINITY;
 			float ymin = Float.POSITIVE_INFINITY;
@@ -330,6 +511,11 @@ public class PEmbroiderGraphics {
 			w = xmax-xmin;
 			h = ymax-ymin;
 		}
+		/** Constructor that makes a bounding box from a bunch of bunches of points
+		 *  
+		 *  @param polys a bunch of bunches of points
+		 *  @param whatever literally pass in whatever. It is necessary because of type erasure in Java, which basically means Java cannot tell the difference between List<T> and List<List<T>> in arguments, so a difference in number of arguments is required for overloading to work
+		 */
 		public BBox(ArrayList<ArrayList<PVector>> polys, int whatever) {
 			float xmin = Float.POSITIVE_INFINITY;
 			float ymin = Float.POSITIVE_INFINITY;
@@ -349,17 +535,30 @@ public class PEmbroiderGraphics {
 			h = ymax-ymin;
 		}
 	}
-
+	/** Class for a bounding circle.
+	 * The bounding circle is not the minimal bounding circle for now. It's just some bounding circle.
+	 * It works well enough for current use cases, but we might implement minimal bounding circle in the future
+	 * 
+	 */
 	public class BCircle {
 		public float x;
 		public float y;
 		public float r;
-
+		/** Constructor that makes a bounding circle from center and radius
+		 *  
+		 *  @param _x x coordinate of center
+		 *  @param _y y coordinate of center
+		 *  @param _r radius
+		 */
 		public BCircle(float _x, float _y, float _r){
 			x = _x;
 			y = _y;
 			r = _r;
 		}
+		/** Constructor that makes a bounding circle from a bunch of points
+		 *  
+		 *  @param poly a bunch of points
+		 */
 		public BCircle(ArrayList<PVector> poly) {
 			float rmax = 0;
 			PVector c = centerpoint(poly);
@@ -370,6 +569,11 @@ public class PEmbroiderGraphics {
 			y = c.y;
 			r = rmax;
 		}
+		/** Constructor that makes a bounding circle from a bunch of bunches of points
+		 *  
+		 *  @param polys a bunch of bunches of points
+		 *  @param whatever literally pass in whatever. It is necessary because of type erasure in Java, which basically means Java cannot tell the difference between List<T> and List<List<T>> in arguments, so a difference in number of arguments is required for overloading to work
+		 */
 		public BCircle(ArrayList<ArrayList<PVector>> poly, int whatever) {
 			float rmax = 0;
 			PVector c = centerpoint(poly,0);
@@ -383,7 +587,14 @@ public class PEmbroiderGraphics {
 			r = rmax;
 		}
 	}
-
+	
+	/** Find intersection between a segment and a polygon. Intersections returned are sorted from one endpoint of the segment to the other endpoint
+	 *  
+	 *  @param p0   first endpoint of first segment
+	 *  @param p1   second endpoint of first segment
+	 *  @param poly the polygon
+	 *  @return a list of vectors holding the intersection points sorted from one endpoint to the other
+	 */
 	public ArrayList<PVector> segmentIntersectPolygon(PVector p0, PVector p1, ArrayList<PVector> poly) {
 		ArrayList<PVector> isects = new ArrayList<PVector>();
 		ArrayList<Float> iparams = new ArrayList<Float>();
@@ -412,6 +623,13 @@ public class PEmbroiderGraphics {
 		return isects;
 	}
 	
+	/** Find intersection between a segment and several polygons. Intersections returned are sorted from one endpoint of the segment to the other endpoint
+	 *  
+	 *  @param p0   first endpoint of first segment
+	 *  @param p1   second endpoint of first segment
+	 *  @param poly several polygons
+	 *  @return a list of vectors holding the intersection points sorted from one endpoint to the other
+	 */
 	public ArrayList<PVector> segmentIntersectPolygons(PVector p0, PVector p1, ArrayList<ArrayList<PVector>> polys) {
 		ArrayList<PVector> isects = new ArrayList<PVector>();
 		ArrayList<Float> iparams = new ArrayList<Float>();
@@ -440,7 +658,13 @@ public class PEmbroiderGraphics {
 		}
 		return isects;
 	}
-
+	/** Check if a point is inside a polygon.
+	 *  
+	 *  @param p the point in question
+	 *  @param poly the polygon
+	 *  @param trials try a couple times to be sure, otherwise we might encounter degenerate cases
+	 *  @return true means inside, false means outside
+	 */
 	public boolean pointInPolygon(PVector p, ArrayList<PVector> poly, int trials){
 		BCircle bcirc = new BCircle(poly);
 		int avg = 0;
@@ -457,10 +681,22 @@ public class PEmbroiderGraphics {
 		}
 		return false;
 	}
+	/** Check if a point is inside a polygon.
+	 *  Dumbed down version of pointinPolygon(3) where I pick the number of trials for you
+	 *  
+	 *  @param p the point in question
+	 *  @param poly the polygon
+	 *  @return true means inside, false means outside
+	 */
 	public boolean pointInPolygon(PVector p, ArrayList<PVector> poly) {
 		return pointInPolygon(p,poly,3);
 	}
-
+	/** Generate a random point that is inside a polygon
+	 *  
+	 *  @param poly the polygon
+	 *  @param trials number of times we try before giving up
+	 *  @return either null or a point inside the polygon. If it is null, it either means the polygon has zero or almost zero area, or that the number of trials specified is not large enough to find one
+	 */
 	public PVector randomPointInPolygon(ArrayList<PVector> poly, int trials) {
 
 		BBox bb = new BBox(poly);
@@ -478,6 +714,12 @@ public class PEmbroiderGraphics {
 
 		return null;
 	}
+	/** Generate a random point that is inside a polygon
+	 *  Dumbed down version of randomPointInPolygon(2) where I pick the number of trials for you
+	 *  
+	 *  @param poly the polygon
+	 *  @return either null or a point inside the polygon. If it is null, it either means the polygon has zero or almost zero area, or that the default number of trials is not large enough to find one
+	 */
 	public PVector randomPointInPolygon(ArrayList<PVector> poly) {
 		return randomPointInPolygon(poly,9999);
 	}
