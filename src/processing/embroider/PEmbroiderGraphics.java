@@ -724,7 +724,14 @@ public class PEmbroiderGraphics {
 		return randomPointInPolygon(poly,9999);
 	}
 
-
+	/** Add a polyline to the global array of all polylines drawn
+	 *  Applying transformation matrices and resampling
+	 *  All shape drawing routines go through this function for finalization
+	 *  
+	 *  @param poly                   a polyline
+	 *  @param color                  the color of the polyline (0xRRGGBB)
+	 *  @param resampleRandomOffset   whether to add a random offset during resample step to prevent alignment patterns
+	 */
 	public void pushPolyline(ArrayList<PVector> poly, int color, float resampleRandomizeOffset) {
 		ArrayList<PVector> poly2 = new ArrayList<PVector>();
 		for (int i = 0; i < poly.size(); i++) {
@@ -742,12 +749,20 @@ public class PEmbroiderGraphics {
 		
 		cullGroups.add(currentCullGroup);
 	}
+	/** Simplified version for pushPolyline(3) where resampleRandomizeOffset is set to false
+	 *  @param poly                   a polyline
+	 *  @param color                  the color of the polyline (0xRRGGBB)
+	 */
 	public void pushPolyline(ArrayList<PVector> poly, int color) {
 		pushPolyline(poly,color,0);
 	}
 
-	/* SHAPE IMPLEMENTATION */
+	/* ======================================== SHAPE IMPLEMENTATION ======================================== */
 
+	/** offset a polyline by certain amount (for outlining strokes, naive implementation)
+	 *  @param poly   a polyline
+	 *  @param d      offset amount, positive/negative for inward/outward
+	 */
 	public ArrayList<PVector> offsetPolyline(ArrayList<PVector> poly, float d){
 		ArrayList<PVector> poly2 = new ArrayList<PVector>();
 		for (int i = 0; i < poly.size(); i++) {
@@ -798,7 +813,9 @@ public class PEmbroiderGraphics {
 		return poly3;
 	}
 
-
+	/** Turn a self-intersecting polygon to a list of non-self-intersecting polygons
+	 *  @param poly   a polygon
+	 */
 	public ArrayList<ArrayList<PVector>> selfIntersectPolygon(ArrayList<PVector> poly){
 		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
 		if (poly.size() < 3) {
@@ -849,7 +866,10 @@ public class PEmbroiderGraphics {
 		return polys;
 	}
 
-
+	/** Check the winding orientation of polygon, clockwise or anti-clockwise
+	 *	@param poly   a polygon
+	 *  @return whether the polygon is positively oriented
+	 */
 	public boolean polygonOrientation(ArrayList<PVector> poly) {
 		//https://en.wikipedia.org/wiki/Curve_orientation
 		if (poly.size() < 3) {
@@ -904,6 +924,12 @@ public class PEmbroiderGraphics {
 		return d > 0;
 	}
 
+	/** Calculate distance between point and line
+	 *  @param p   the point in question
+	 *  @param p0  a point on the line
+	 *  @param p1  a different point on the line
+	 *  @return distance from point to line
+	 */
 	public float pointDistanceToLine(PVector p, PVector p0, PVector p1) {
 		//https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line
 		float x0 = p.x;
@@ -915,6 +941,12 @@ public class PEmbroiderGraphics {
 		return PApplet.abs((y2-y1)*x0-(x2-x1)*y0+x2*y1-y2*x1)/PApplet.sqrt(PApplet.sq(y2-y1)+PApplet.sq(x2-x1));
 	}
 	
+	/** Calculate distance between point and a segment (when projection is not on the line, the distance becomes that to one of the endpoints)
+	 *  @param p   the point in question
+	 *  @param p0  first endpoint of the segment
+	 *  @param p1  second endpoint of the segment
+	 *  @return distance from point to segment
+	 */
 	public static float pointDistanceToSegment(PVector p, PVector p0, PVector p1) {
 		// https://stackoverflow.com/a/6853926
 		float x = p.x;
@@ -949,11 +981,21 @@ public class PEmbroiderGraphics {
 		return PApplet.sqrt(dx*dx+dy*dy);
 	}
 	
-	
+	/** Inset a polygon (making it slightly smaller fitting in the original polygon)
+	 *  Inverse of offsetPolygon, alias for offsetPolygon(poly, -d);
+	 *  @param poly  the polygon
+	 *  @param d     the amount of inset
+	 *  @return a list of polygons. When the given polygon is big at both ends and small in the middle, the inset might break into multiple polygons
+	 */
 	public ArrayList<ArrayList<PVector>> insetPolygon(ArrayList<PVector> poly, float d){
 		return offsetPolygon(poly,-d);
 	}
 	
+	/** Offset a polygon (making it slightly smaller fitting in the original polygon, or slightly bigger wrapping the original polygon)
+	 *  @param poly  the polygon
+	 *  @param d     the amount of offset. Use negative value for insetting
+	 *  @return a list of polygons. When the given polygon is big at both ends and small in the middle, the inset might break into multiple polygons
+	 */
 	public ArrayList<ArrayList<PVector>> offsetPolygon(ArrayList<PVector> poly, float d){
 		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
 		if (poly.size() < 3) {
@@ -1122,6 +1164,12 @@ public class PEmbroiderGraphics {
 		return polys;
 	}
 
+	/** When the general shapes of two polygons are similar, this function finds the index offset of vertices for the first polygon so that the vertices best match those of the second polygon with one-to-one correspondence.
+	 *  The number of vertices needs to be the same for the polygons
+	 *  @param poly0 the first polygon
+	 *  @param poly1 the second polygon
+	 *  @return the optimal index offset
+	 */
 	public int rotatePolygonToMatch(ArrayList<PVector> poly0, ArrayList<PVector> poly1) {
 		// polygons must have same number of vertices!
 		// and rightly oriented!
@@ -1146,6 +1194,12 @@ public class PEmbroiderGraphics {
 		return md;
 	}
 	
+	/** Draw stroke (outline) for a polygon using the TANGENT style (using vector math)
+	 *  @param poly the polygon
+	 *  @param n    number of strokes
+	 *  @param d    spacing between the strokes
+	 *  @return      an array of polylines
+	 */
 	public ArrayList<ArrayList<PVector>> strokePolygonTangent(ArrayList<PVector> poly, int n, float d) {
 		if (!polygonOrientation(poly)) {
 			poly = new ArrayList<PVector>(poly);
@@ -1203,6 +1257,15 @@ public class PEmbroiderGraphics {
 		return polys;
 	}
 	
+	/** Draw stroke (outline) for (a) poly(gon/line)(s) using the TANGENT style (using raster algorithms)
+	 *  @param polys  a set of polyline/polygons, those inside another and have a backward winding will be considered holes
+	 *  @param n      number of strokes
+	 *  @param d      spacing between the strokes
+	 *  @param cap    stroke cap, one of the Processing stroke caps, e.g. ROUND
+	 *  @param join   stroke join, one of the Processing stroke joins, e.g. MITER
+	 *  @param close  whether the polyline is considered as closed (polygon) or open (polyline)
+	 *  @return       an array of polylines
+	 */
 	public ArrayList<ArrayList<PVector>> strokePolyTangentRaster(ArrayList<ArrayList<PVector>> polys, int n, float d, int cap, int join, boolean close) {
 		BBox bb = new BBox(polys,0);
 		float scl = 1;
@@ -1287,6 +1350,13 @@ public class PEmbroiderGraphics {
 		return polys2;
 	}
 	
+	/** Draw stroke (outline) for a poly(gon/line) using the PERPENDICULAR (a.k.a normal, as in "normal map", not "normal person") style (using vector math)
+	 *  @param poly the polygon
+	 *  @param n     weight of stroke
+	 *  @param s     spacing between the strokes
+	 *  @param close whether the polyline is considered as closed (polygon) or open (polyline)
+	 *  @return      an array of polylines
+	 */
 	public ArrayList<ArrayList<PVector>> strokePolyNormal(ArrayList<PVector> poly, float d, float s, boolean close){
 		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
 		
@@ -1445,7 +1515,11 @@ public class PEmbroiderGraphics {
 	}
 	
 	
-
+	/** draws stroke (outline) for (a) poly(gon/line)(s) using current global settings by the user.
+	 *  returns nothing, because it draws to the design directly.
+	 *  @param polys a set of polyline/polygons, those inside another and have a backward winding will be considered holes
+	 *  @param close whether the polyline is considered as closed (polygon) or open (polyline)
+	 */
 	public void _stroke(ArrayList<ArrayList<PVector>> polys, boolean close) {
 		if (STROKE_WEIGHT <= 1) {
 			if (close) {
@@ -1490,11 +1564,26 @@ public class PEmbroiderGraphics {
 		}
 	}
 	
-	
+	/** 
+	 *  hatch a polygon with CONCENTRIC (a.k.a inset) mode (using vector math).
+	 *  a simplified version of hatchInset(4) where orientation of polygon is always checked
+	 *  @param poly    the polygon
+	 *  @param d       hatch spacing
+	 *  @param maxIter maximum number of iterations to do inset. The larger the polygon and smaller the spacing, the more iterations is required
+	 *  @return        the hatching as an array of polys
+	 */
 	public ArrayList<ArrayList<PVector>> hatchInset(ArrayList<PVector> poly, float d, int maxIter){
 		return hatchInset(poly,d,maxIter,true);
 	}
 
+	/** 
+	 *  hatch a polygon with CONCENTRIC (a.k.a inset) mode (using vector math).
+	 *  @param poly              the polygon
+	 *  @param d                 hatch spacing
+	 *  @param maxIter           maximum number of iterations to do inset. The larger the polygon and smaller the spacing, the more iterations is required
+	 *  @param checkOrientation  make sure the polygon is rightly oriented, this should be on for user provided input, otherwise it might hatch outwards
+	 *  @return                  the hatching as an array of polys
+	 */
 	public ArrayList<ArrayList<PVector>> hatchInset(ArrayList<PVector> poly, float d, int maxIter, boolean checkOrientation){
 		if (!polygonOrientation(poly) && checkOrientation) {
 			poly = new ArrayList<PVector>(poly);
@@ -1522,10 +1611,25 @@ public class PEmbroiderGraphics {
 		return polys;
 	}
 
+	/** 
+	 *  hatch a polygon with SPIRAL mode (using vector math).
+	 *  a simplified version of hatchSpiral(4) where orientation of polygon is always checked
+	 *  @param poly    the polygon
+	 *  @param d       hatch spacing
+	 *  @param maxIter maximum number of iterations to do inset. The larger the polygon and smaller the spacing, the more iterations is required
+	 *  @return        the hatching as an array of polys
+	 */
 	public ArrayList<ArrayList<PVector>> hatchSpiral(ArrayList<PVector> poly, float d, int maxIter){
 		return hatchSpiral(poly,d,maxIter,true);
 	}
-
+	/** 
+	 *  hatch a polygon with SPIRAL mode (using vector math).
+	 *  @param poly    the polygon
+	 *  @param d       hatch spacing
+	 *  @param maxIter maximum number of iterations to do inset. The larger the polygon and smaller the spacing, the more iterations is required
+	 *  @param checkOrientation  make sure the polygon is rightly oriented, this should be on for user provided input, otherwise it might hatch outwards
+	 *  @return        the hatching as an array of polys
+	 */
 	public ArrayList<ArrayList<PVector>> hatchSpiral(ArrayList<PVector> poly, float d, int maxIter, boolean checkOrientation){
 
 		if (!polygonOrientation(poly) && checkOrientation) {
@@ -1598,7 +1702,16 @@ public class PEmbroiderGraphics {
 
 		return spirals;
 	}
-
+	/** 
+	 *  Hatch a polygon with PERLIN mode.
+	 *  The vector frontend to perlinField
+	 *  @param poly     the polygon
+	 *  @param d        hatch spacing
+	 *  @param len      the length of a step when walking the vector field
+	 *  @param scale    scale of the perlin noise
+	 *  @param maxIter  maximum number of iterations (i.e. seeds to begin walking from). if the shape of polygon is weird, more seeds is needed to reach all the corners
+	 *  @return         the hatching as an array of polys
+	 */
 	public ArrayList<ArrayList<PVector>> hatchPerlin(ArrayList<PVector> poly, float d, float len, float scale, int maxIter) {
 
 		BBox bb = new BBox(poly);
@@ -1626,7 +1739,16 @@ public class PEmbroiderGraphics {
 		return polys;
 
 	}
-
+	/** 
+	 *  Hatch a polygon with custom vector field
+	 *  The vector frontend to customField
+	 *  @param poly     the polygon
+	 *  @param vf       the vector field
+	 *  @param d        hatch spacing
+	 *  @param len      the length of a step when walking the vector field
+	 *  @param maxIter  maximum number of iterations (i.e. seeds to begin walking from). if the shape of polygon is weird, more seeds is needed to reach all the corners
+	 *  @return         the hatching as an array of polys
+	 */
 	public ArrayList<ArrayList<PVector>> hatchCustomField(ArrayList<PVector> poly, VectorField vf, float d, float len, int maxIter) {
 
 		BBox bb = new BBox(poly);
@@ -1654,7 +1776,13 @@ public class PEmbroiderGraphics {
 
 	}
 
-
+	/** 
+	 *  Hatch a polygon with PARALLEL mode (using vector math)
+	 *  @param poly     the polygon
+	 *  @param ang      the angle of hatch lines
+	 *  @param d        hatch spacing
+	 *  @return         the hatching as an array of polys
+	 */
 	public ArrayList<ArrayList<PVector>> hatchParallel(ArrayList<PVector> poly, float ang, float d) {
 		ArrayList<ArrayList<PVector>> hatch = new ArrayList<ArrayList<PVector>>();
 		BCircle bcirc = new BCircle(poly);
@@ -1701,6 +1829,13 @@ public class PEmbroiderGraphics {
 		return hatch;
 	}
 	
+	/** 
+	 *  Hatch a complex polygon (with holes) with PARALLEL mode (using vector math)
+	 *  @param polys    a set of polygons, those inside another will be considered holes. Holes are determined according to the even-odd rule
+	 *  @param ang      the angle of hatch lines
+	 *  @param d        hatch spacing
+	 *  @return         the hatching as an array of polys
+	 */
 	public ArrayList<ArrayList<PVector>> hatchParallelComplex(ArrayList<ArrayList<PVector>> polys, float ang, float d) {
 		ArrayList<ArrayList<PVector>> hatch = new ArrayList<ArrayList<PVector>>();
 		BCircle bcirc = new BCircle(polys,0);
@@ -1744,6 +1879,14 @@ public class PEmbroiderGraphics {
 		return hatch;
 	}
 	
+	/** 
+	 *  Hatch a polygon with the DRUNK style (not a particularly useful style, just to showcase how easy it is to add a new one).
+	 *  The vector implementation
+	 *  @param poly     the polygon
+	 *  @param rad      max size of each drunken step in each direction
+	 *  @param maxIter  maximum number of iterations to do the drunk walk
+	 *  @return         the hatching as an array of polys
+	 */
 	public ArrayList<ArrayList<PVector>> hatchDrunkWalk(ArrayList<PVector> poly, int rad, int maxIter){
 		// this function is for 1 simple polygon (no holes, no multiple polygons)
 		
@@ -1763,6 +1906,14 @@ public class PEmbroiderGraphics {
 		return hatch; // done! now go register this hatch method in hatch()
 	}
 	
+	/** 
+	 *  Hatch a polygon with the DRUNK style (not a particularly useful style, just to showcase how easy it is to add a new one).
+	 *  The raster implementation
+	 *  @param poly     the polygon
+	 *  @param rad      max size of each drunken step in each direction
+	 *  @param maxIter  maximum number of iterations to do the drunk walk
+	 *  @return         the hatching as an array of polys
+	 */
 	public ArrayList<ArrayList<PVector>> hatchDrunkWalkRaster(PImage im, int rad, int maxIter){
 		// for polygons already rendered as an image. this is usually more robust for complex polygons and is the default most of the time
 		
@@ -1798,6 +1949,15 @@ public class PEmbroiderGraphics {
 		return hatch; // done! now go register this hatch method in hatchRaster()
 	}
 	
+	/** 
+	 *  Resample a polyline to make it stitchable
+	 *  @param poly                the polyline
+	 *  @param minLen              minimum length of each segment, segment shorter than this will be downsampled
+	 *  @param maxLen              maximum length of each segment (not counting the randomization added on top, specified by randomize) 
+	 *  @param randomize           amount of randomization in stitch length to avoid alignment patterns. 0 for none
+	 *  @param randomizeOffset     amount of randomization to add to the offset of the first stitch in every polyline. 0 for none
+	 *  @return                    the resampled polyline
+	 */
 	public ArrayList<PVector> resample(ArrayList<PVector> poly, float minLen, float maxLen, float randomize, float randomizeOffset) {
 		float maxTurn = 0.2f;
 		ArrayList<PVector> poly2 = new ArrayList<PVector>();
@@ -1900,6 +2060,13 @@ public class PEmbroiderGraphics {
 		return poly2;
 	}
 
+	/** 
+	 *  Resample a polyline to make it have N vertices. Can be an upsample or a downsample.
+	 *  Each resultant segment will be the same length, +/- floating point percision errors
+	 *  @param poly   the polyline
+	 *  @param n      the desired number of vertices
+	 *  @return       the resampled polyline
+	 */
 	public ArrayList<PVector> resampleN(ArrayList<PVector> poly, int n){
 		if (poly.size() <= 0) {
 			return poly;
@@ -1955,6 +2122,13 @@ public class PEmbroiderGraphics {
 		return poly2;
 	}
 
+	/** 
+	 *  Resample a polyline to make it have N vertices, while keeping important turning points. Can be an upsample or a downsample.
+	 *  Each resultant segment have approximately same length, but compromising to the preserving of corners
+	 *  @param poly   the polyline
+	 *  @param n      the desired number of vertices
+	 *  @return       the resampled polyline
+	 */
 	public ArrayList<PVector> resampleNKeepVertices(ArrayList<PVector> poly, int n){
 		if (poly.size() <= 0) {
 			return poly;
@@ -1993,6 +2167,15 @@ public class PEmbroiderGraphics {
 		return poly2;
 	}
 	
+	/** 
+	 *  Resample a set of (parallel) polylines by intersecting them with another bunch of parallel lines and using the intersections to break them up.
+	 *  Useful for parallel hatching.
+	 *  @param polys   the polylines
+	 *  @param angle   the angle of the original polylines
+	 *  @param spacing the spacing of the original polylines
+	 *  @param len     the desired length of each segment after resampling
+	 *  @return        the resampled polylines
+	 */
 	public ArrayList<ArrayList<PVector>> resampleCrossIntersection(ArrayList<ArrayList<PVector>> polys, float angle, float spacing, float len){
 //		for (int i = 0; i < polys.size(); i++) {
 //			for (int j = 0; j < polys.get(i).size(); j++) {
@@ -2090,6 +2273,15 @@ public class PEmbroiderGraphics {
 	}
 
 
+	/** 
+	 *  Draw an ellipse using global settings.
+	 *  The unambigous backend for user-facing ellipse(), the ambigous one which can be affected by ellipseMode().
+	 *  Returns nothing because the result is directly pushed to the design.
+	 *  @param cx      the x coordinate of the center
+	 *  @param cy      the y coordinate of the center
+	 *  @param rx      the radius in the x axis
+	 *  @param ry      the radius in the y axis
+	 */
 	void _ellipse(float cx, float cy, float rx, float ry) {
 		ArrayList<PVector> poly = new ArrayList<PVector>();
 		for (int i = 0; i < CIRCLE_DETAIL; i++) {
@@ -2102,6 +2294,16 @@ public class PEmbroiderGraphics {
 		polyBuff.add(poly);
 		endShape(true);
 	}
+	
+	/** 
+	 *  Draw a rectangle using global settings.
+	 *  The unambigous backend for user-facing rect(), the ambigous one which can be affected by rectMode().
+	 *  Returns nothing because the result is directly pushed to the design.
+	 *  @param x left
+	 *  @param y top
+	 *  @param w width
+	 *  @param h height
+	 */
 	void _rect(float x, float y, float w, float h) {
 		ArrayList<PVector> poly = new ArrayList<PVector>();
 		poly.add(new PVector(x,y));
@@ -2113,8 +2315,13 @@ public class PEmbroiderGraphics {
 		endShape(true);
 	}
 
-	/* SHAPE INTERFACE */
+	/* ======================================== SHAPE INTERFACE ======================================== */
 	
+	/** 
+	 *  Hatch a polygon with global user settings (using vector math).
+	 *  Returns nothing because the result is directly pushed to the design.
+	 *  @param poly the polygon
+	 */
 	public void hatch(ArrayList<PVector> poly) {
 		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
 		if (HATCH_MODE == PARALLEL) {
@@ -2141,6 +2348,13 @@ public class PEmbroiderGraphics {
 		}
 	}
 	
+	/** 
+	 *  Hatch a raster image with global user settings.
+	 *  Returns nothing because the result is directly pushed to the design.
+	 *  @param im   a processing image, PGraphics also qualify
+	 *  @param x    x coordinate of upper left corner to start drawing
+	 *  @param y    y coordinate of upper left corner to start drawing
+	 */
 	public void hatchRaster(PImage im, float x, float y) {
 		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
 		if (HATCH_MODE == PARALLEL) {
@@ -2168,11 +2382,24 @@ public class PEmbroiderGraphics {
 			pushPolyline(polys.get(i),currentFill,1f);
 		}
 	}
+	/** 
+	 *  Hatch a raster image with global user settings.
+	 *  Returns nothing because the result is directly pushed to the design.
+	 *  Simplified version of hatchRaster(3), draws at 0,0
+	 *  @param im   a processing image, PGraphics also qualify
+	 */
 	public void hatchRaster(PImage im) {
 		hatchRaster(im,0,0);
 	}
 	
-	
+	/** 
+	 *  Compute a point on a rational quadratic bezier curve
+	 *  @param p0   first point
+	 *  @param p1   control point
+	 *  @param p2   last point
+	 *  @param w    weight of the rational bezier, higher the weight, pointier the turning
+	 *  @param t    the interpolation parameter (generally 0-1)
+	 */
 	PVector rationalQuadraticBezier(PVector p0, PVector p1, PVector p2, float w, float t) {
 		// intro: https://en.wikipedia.org/wiki/B%C3%A9zier_curve#Rational_B%C3%A9zier_curves
 		// ported from: http://okb.glitch.me/Okb.js
@@ -2183,13 +2410,33 @@ public class PEmbroiderGraphics {
 		          (PApplet.pow(1-t,2)*p0.z+2*t*(1-t)*p1.z*w+t*t*p2.z)/u
 		);
 	}
+	/** 
+	 *  Compute a point on a quadratic bezier curve
+	 *  @param p0   first point
+	 *  @param p1   control point
+	 *  @param p2   last point
+	 *  @param t    the interpolation parameter (generally 0-1)
+	 */
 	PVector quadraticBezier(PVector p0, PVector p1, PVector p2, float t) {
 		return p0.copy().mult(PApplet.pow(1-t,2)).add(p1.copy().mult(2*(1-t)*t)).add(p2.copy().mult(t*t));
 	}
+	/** 
+	 *  Compute a point on a cubic bezier curve
+	 *  @param p0   first point
+	 *  @param p1   control point
+	 *  @param p2   another control point
+	 *  @param p3   last point
+	 *  @param t    the interpolation parameter (generally 0-1)
+	 */
 	PVector cubicBezier(PVector p0, PVector p1, PVector p2, PVector p3, float t) {
 		return p0.copy().mult(PApplet.pow(1-t, 3)).add(p1.copy().mult(t*3*PApplet.pow(1-t, 2))).add(p2.copy().mult(3*(1-t)*t*t)).add(p3.copy().mult(t*t*t));
 	}
 	
+	/** 
+	 *  Compute a point on a higher-order bezier curve
+	 *  @param P    points and control points
+	 *  @param t    the interpolation parameter (generally 0-1)
+	 */
 	PVector highBezier(ArrayList<PVector> P, float t) {
 		// ported from: http://okb.glitch.me/Okb.js
 		if (P.size() == 1) {
@@ -2200,7 +2447,13 @@ public class PEmbroiderGraphics {
 			return highBezier(new ArrayList<PVector>(P.subList(0,P.size()-1)),t).lerp(highBezier(new ArrayList<PVector>(P.subList(1, P.size())),t),t);
 		}
 	}
-
+	/** 
+	 *  Draw a ellipse
+	 *  @param a   the first parameter, the meaning of which depends on ellipseMode
+	 *  @param b   the second parameter, the meaning of which depends on ellipseMode
+	 *  @param c   the third parameter, the meaning of which depends on ellipseMode
+	 *  @param d   the fourth parameter, the meaning of which depends on ellipseMode
+	 */
 	public void ellipse(float a, float b, float c, float d) {
 		if (ELLIPSE_MODE == PConstants.CORNER) {
 			_ellipse(a + c / 2, b + d / 2, c / 2, d / 2);
@@ -2213,7 +2466,13 @@ public class PEmbroiderGraphics {
 		}
 	}
 
-
+	/** 
+	 *  Draw a rectangle
+	 *  @param a   the first parameter, the meaning of which depends on rectMode
+	 *  @param b   the second parameter, the meaning of which depends on rectMode
+	 *  @param c   the third parameter, the meaning of which depends on rectMode
+	 *  @param d   the fourth parameter, the meaning of which depends on rectMode
+	 */
 	public void rect(float a, float b, float c, float d) {
 		if (ELLIPSE_MODE == PConstants.CORNER) {
 			_rect(a, b, c, d);
@@ -2226,6 +2485,13 @@ public class PEmbroiderGraphics {
 		}
 	}
 
+	/** 
+	 *  Draw a line
+	 *  @param x0  x coordinate of first endpoint
+	 *  @param y0  y coordinate of first endpoint
+	 *  @param x1  x coordinate of second endpoint
+	 *  @param y1  y coordinate of second endpoint
+	 */
 	public void line(float x0, float y0, float x1, float y1) {
 		ArrayList<PVector> poly = new ArrayList<PVector>();
 		poly.add(new PVector(x0,y0));
@@ -2235,6 +2501,17 @@ public class PEmbroiderGraphics {
 		endShape();
 	}
 
+	/** 
+	 *  Draw a quad
+	 *  @param x0  x coordinate of first vertex
+	 *  @param y0  y coordinate of first vertex
+	 *  @param x1  x coordinate of second vertex
+	 *  @param y1  y coordinate of second vertex
+	 *  @param x2  x coordinate of third vertex
+	 *  @param y2  y coordinate of third vertex
+	 *  @param x3  x coordinate of fourth vertex
+	 *  @param y3  y coordinate of fourth vertex
+	 */
 	public void quad(float x0, float y0, float x1, float y1,
 			float x2, float y2, float x3, float y3) {
 		ArrayList<PVector> poly = new ArrayList<PVector>();
@@ -2247,6 +2524,15 @@ public class PEmbroiderGraphics {
 		endShape(true);
 	}
 
+	/** 
+	 *  Draw a triangle
+	 *  @param x0  x coordinate of first vertex
+	 *  @param y0  y coordinate of first vertex
+	 *  @param x1  x coordinate of second vertex
+	 *  @param y1  y coordinate of second vertex
+	 *  @param x2  x coordinate of third vertex
+	 *  @param y2  y coordinate of third vertex
+	 */
 	public void triangle(float x0, float y0, float x1, float y1,
 			float x2, float y2) {
 		ArrayList<PVector> poly = new ArrayList<PVector>();
@@ -2259,7 +2545,9 @@ public class PEmbroiderGraphics {
 		endShape(true);
 	}
 
-
+	/** 
+	 *  Begin drawing a polygon/polyline. use vertex() to add vertices to it.
+	 */
 	public void beginShape() {
 		if (polyBuff == null) {
 			polyBuff = new ArrayList<ArrayList<PVector>> ();
@@ -2267,14 +2555,37 @@ public class PEmbroiderGraphics {
 		polyBuff.clear();
 		polyBuff.add(new ArrayList<PVector>());
 	}
+	/** 
+	 *  Add vertex to the current polygon/polyline. This must be preceded by beginShape()
+	 *  @param x   x coordinate of the vertex
+	 *  @param y   y coordinate of the vertex
+	 */
 	public void vertex(float x, float y) {
 		
 		polyBuff.get(polyBuff.size()-1).add(new PVector(x,y));
 		
 	}
+	/** 
+	 *  Add a cubic bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex()
+	 *  An alias of cubicVertex
+	 *  @param x1  x coordinate of first control point
+	 *  @param y1  y coordinate of first control point
+	 *  @param x2  x coordinate of second control point
+	 *  @param y2  y coordinate of second control point
+	 *  @param x3  x coordinate of the end point
+	 *  @param y3  y coordinate of the end point
+	 */
 	public void bezierVertex(float x1, float y1, float x2, float y2, float x3, float y3) {
 		cubicVertex(x1,y1,x2,y2,x3,y3);
 	}
+	/** 
+	 *  Add a rational quadratic bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex()
+	 *  @param x1  x coordinate of first control point
+	 *  @param y1  y coordinate of first control point
+	 *  @param x2  x coordinate of second control point
+	 *  @param y2  y coordinate of second control point
+	 *  @param w   weight of the rational bezier curve, higher the pointier
+	 */
 	public void rationalVertex(float x1, float y1, float x2, float y2, float w) {
 		PVector p0 = polyBuff.get(polyBuff.size()-1).get(polyBuff.get(polyBuff.size()-1).size()-1);
 		for (int i = 1; i < BEZIER_DETAIL; i++) {
@@ -2283,12 +2594,28 @@ public class PEmbroiderGraphics {
 			polyBuff.get(polyBuff.size()-1).add(p);
 		}
 	}
+	/** 
+	 *  Add a quadratic bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex()
+	 *  @param x1  x coordinate of first control point
+	 *  @param y1  y coordinate of first control point
+	 *  @param x2  x coordinate of second control point
+	 *  @param y2  y coordinate of second control point
+	 */
 	public void quadraticVertex(float x1, float y1, float x2, float y2) {
 		ArrayList<PVector> poly = new ArrayList<PVector>();
 		poly.add(new PVector(x1,y1));
 		poly.add(new PVector(x2,y2));
 		highBezierVertex(poly);
 	}
+	/** 
+	 *  Add a cubic bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex()
+	 *  @param x1  x coordinate of first control point
+	 *  @param y1  y coordinate of first control point
+	 *  @param x2  x coordinate of second control point
+	 *  @param y2  y coordinate of second control point
+	 *  @param x3  x coordinate of the end point
+	 *  @param y3  y coordinate of the end point
+	 */
 	public void cubicVertex(float x1, float y1, float x2, float y2, float x3, float y3) {
 		ArrayList<PVector> poly = new ArrayList<PVector>();
 		poly.add(new PVector(x1,y1));
@@ -2296,6 +2623,17 @@ public class PEmbroiderGraphics {
 		poly.add(new PVector(x3,y3));
 		highBezierVertex(poly);
 	}
+	/** 
+	 *  Add a quartic bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex()
+	 *  @param x1  x coordinate of first control point
+	 *  @param y1  y coordinate of first control point
+	 *  @param x2  x coordinate of second control point
+	 *  @param y2  y coordinate of second control point
+	 *  @param x3  x coordinate of third control point
+	 *  @param y3  y coordinate of third control point
+	 *  @param x4  x coordinate of the end point
+	 *  @param y4  y coordinate of the end point
+	 */
 	public void quarticVertex(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
 		ArrayList<PVector> poly = new ArrayList<PVector>();
 		poly.add(new PVector(x1,y1));
@@ -2304,6 +2642,19 @@ public class PEmbroiderGraphics {
 		poly.add(new PVector(x4,y4));
 		highBezierVertex(poly);
 	}
+	/** 
+	 *  Add a quintic bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex()
+	 *  @param x1  x coordinate of first control point
+	 *  @param y1  y coordinate of first control point
+	 *  @param x2  x coordinate of second control point
+	 *  @param y2  y coordinate of second control point
+	 *  @param x3  x coordinate of third control point
+	 *  @param y3  y coordinate of third control point
+	 *  @param x4  x coordinate of fourth control point
+	 *  @param y4  y coordinate of fourth control point
+	 *  @param x5  x coordinate of the end point
+	 *  @param y5  y coordinate of the end point
+	 */
 	public void quinticVertex(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float x5, float y5) {
 		ArrayList<PVector> poly = new ArrayList<PVector>();
 		poly.add(new PVector(x1,y1));
@@ -2313,7 +2664,10 @@ public class PEmbroiderGraphics {
 		poly.add(new PVector(x5,y5));
 		highBezierVertex(poly);
 	}
-
+	/** 
+	 *  Add a higher-order bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex()
+	 *  @param poly   control points and end point
+	 */
 	public void highBezierVertex(ArrayList<PVector> poly) {
 		PVector p0 = polyBuff.get(polyBuff.size()-1).get(polyBuff.get(polyBuff.size()-1).size()-1);
 		for (int i = 1; i < BEZIER_DETAIL; i++) {
@@ -2332,7 +2686,10 @@ public class PEmbroiderGraphics {
 	}
 
 	
-
+	/** 
+	 *  End drawing a polygon. at this moment the polygon will be actually drawn to the design
+	 *  @param close  whether or not to close the polyline (forming polygon)
+	 */
 	public void endShape(boolean close) {
 		if (polyBuff.size() == 0) {
 			return;
@@ -2421,62 +2778,112 @@ public class PEmbroiderGraphics {
 		currentCullGroup++;
 
 	}
+	
+	/** 
+	 *  Alias for endShape(bool) that does not close the shape  
+	 */
 	public void endShape() {
 		endShape(false);
 	}
+	/** 
+	 *  Alias for endShape(bool) that closes the shape  
+	 *  @param close   pass anything, but use CLOSE for readability 
+	 */
 	public void endShape(int close) {
 		endShape(true);
 	}
-
+	/** 
+	 *  Begin a contour within the current polygon,
+	 *  if this contour has negative winding and is inside the current polygon or another contour defined between beginShape() and endShape() that is not a hole, this will be a hole 
+	 */
 	public void beginContour() {
 		polyBuff.add(new ArrayList<PVector>());
 	}
 	
+	/** 
+	 *  Done with adding a contour
+	 */
 	public void endContour() {
 		// it's ok
 	}
-	
+	/** 
+	 *  Draw a circle, a.k.a ellipse with equal radius in each dimension
+	 *  @param x  the first parameter, meaning of which depends on ellipseMode
+	 *  @param y  the second parameter, meaning of which depends on ellipseMode
+	 *  @param r  the third parameter, meaning of which depends on ellipseMode
+	 */
 	public void circle(float x, float y, float r){
 		ellipse(x,y,r,r);
 	}
 
-	/* MATRIX WRAPPERS */
+	/*  ======================================== MATRIX WRAPPERS  ======================================== */
 
+	/** 
+	 *  Save the current state of transformation
+	 */
 	public void pushMatrix() {
 		matStack.add(new PMatrix2D());
 	}
-
+	/** 
+	 *  Restore previous state of transformatino
+	 */
 	public void popMatrix() {
 		matStack.remove(matStack.size() - 1);
 	}
-
+	/** 
+	 *  Translate subsequent drawing calls
+	 *  @param x   x offset to translate
+	 *  @param y   y offset to translate
+	 */
 	public void translate(float x, float y) {
 		matStack.get(matStack.size() - 1).translate(x, y);
 	}
-
+	/** 
+	 *  Rotate subsequent drawing calls
+	 *  @param a    angle in radians to rotate
+	 */
 	public void rotate(float a) {
 		matStack.get(matStack.size() - 1).rotate(a);
 	}
-
+	/** 
+	 *  Shear subsequent drawing calls along x-axis
+	 *  @param x  shear amount
+	 */
 	public void shearX(float x) {
 		matStack.get(matStack.size() - 1).shearX(x);
 	}
-
+	/** 
+	 *  Shear subsequent drawing calls along y-axis
+	 *  @param x  shear amount
+	 */
 	public void shearY(float x) {
 		matStack.get(matStack.size() - 1).shearY(x);
 	}
-
+	/** 
+	 *  Scale subsequent drawing calls proportionally
+	 *  @param x  multiplier on both axes
+	 */
 	public void scale(float x) {
 		matStack.get(matStack.size() - 1).scale(x);
 	}
-	
+	/** 
+	 *  Scale subsequent drawing calls disproportionally
+	 *  @param x  multiplier on x axis
+	 *  @param y  multiplier on y axis
+	 */
 	public void scale(float x, float y) {
 		matStack.get(matStack.size() - 1).scale(x,y);
 	}
 
 
-	/* VISUALIZE */
+	/* ======================================== VISUALIZE ======================================== */
 
+	/** 
+	 *  Visualize the current design on the main Processing canvas
+	 *  @param color     whether to visualize color, if false, will use random colors; if stitches argument is true, this will have no effect and black will always be used for visibility
+	 *  @param stitches  whether to visualize stitches, i.e. little dots on end of segments
+	 *  @param route     whether to visualize the path between polylines that will be taken by embroidery machine/plotter. To be able to not see a mess when enabling this option, try optimize()
+	 */
 	public void visualize(boolean color, boolean stitches, boolean route) {
 		for (int i = 0; i < polylines.size(); i++) {
 			if (color) {
@@ -2520,18 +2927,28 @@ public class PEmbroiderGraphics {
 			}
 		}
 	}
+	/** 
+	 *  Visualize the current design on the main Processing canvas,
+	 *  using default set of options
+	 */
 	public void visualize() {
 		visualize(false,true,false);
 	}
 
 
 
-	/* IO */
+	/* ======================================== IO ======================================== */
 
+	/**
+	 * Supposed to initialize something, but as we currently don't need to, this is a NOP
+	 */
 	public void beginDraw() {
-
+		// future initialization goes here
 	}
 
+	/**
+	 * Save the drawing to file
+	 */
 	public void endDraw() {
 		if (polylines.size() < 1) {
 			return;
@@ -2539,7 +2956,11 @@ public class PEmbroiderGraphics {
 		PEmbroiderWriter.write(path, polylines, colors, width, height);
 	}
 
-
+	/**
+	 * Double the number of vertices in the polyline by spliting every segment by half
+	 * @param poly the polyline
+	 * @return     the resampled polyline
+	 */
 	public ArrayList<PVector> resampleDouble(ArrayList<PVector> poly) {
 		ArrayList<PVector> poly2 = new ArrayList<PVector>();
 		if (poly.size() > 0) {
@@ -2554,6 +2975,11 @@ public class PEmbroiderGraphics {
 		}
 		return poly2;
 	}
+	/**
+	 * Half the number of vertices in the polyline by joining every two segments
+	 * @param poly the polyline
+	 * @return     the resampled polyline
+	 */
 	public ArrayList<PVector> resampleHalf(ArrayList<PVector> poly) {
 		ArrayList<PVector> poly2 = new ArrayList<PVector>();
 
@@ -2569,6 +2995,13 @@ public class PEmbroiderGraphics {
 		}
 		return poly2;
 	}
+	
+	/**
+	 * Approximately halfing the number of vertices in the polyline but preserves important turning points
+	 * @param poly     the polyline
+	 * @param maxTurn  amount of turning for a vertex to be considered important
+	 * @return         the resampled polyline
+	 */
 	public ArrayList<PVector> resampleHalfKeepCorners(ArrayList<PVector> poly, float maxTurn){
 		ArrayList<PVector> poly2 = new ArrayList<PVector>();
 		for (int i = 0; i < poly.size(); i++) {
@@ -2596,11 +3029,15 @@ public class PEmbroiderGraphics {
 		return poly2;
 	}
 
-
+	/**
+	 * Begin culling shapes. Culled shapes occlude each other
+	 */
 	public void beginCull() {
 		beginCullIndex = cullGroups.size();
 	}
-
+	/**
+	 * End culling shapes. Culled shapes occlude each other
+	 */
 	public void endCull() {
 		if (beginCullIndex >= cullGroups.size()) {
 			return;
@@ -2746,7 +3183,14 @@ public class PEmbroiderGraphics {
 
 	}
 
-
+	/**
+	 * Draw an image
+	 * @param im   a PImage, PGraphics also qualify
+	 * @param x    left
+	 * @param y    top
+	 * @param w    width
+	 * @param h    height
+	 */
 	public void image(PImage im, int x, int y, int w, int h) {
 		PGraphics im2  = app.createGraphics(w,h);
 		im2.beginDraw();
@@ -2780,6 +3224,16 @@ public class PEmbroiderGraphics {
 		}
 	}
 
+	/**
+	 * Hatch an image using perlin noise fill
+	 * @param mask         a binary image/graphics, white means on, black means off
+	 * @param d            spacing between strokes
+	 * @param perlinScale  perlin noise scale
+	 * @param deltaX       step size of the walk in vector field
+	 * @param minVertices  strokes with too few segments (those tiny ones) will be discarded
+	 * @param maxVertices  maximum number of vertices for each stroke
+	 * @param maxIter      maximum number of iterations (i.e. seeds to begin walking from). if the shape of polygon is weird, more seeds is needed to reach all the corners
+	 */
 	public ArrayList<ArrayList<PVector>> perlinField(PImage mask, float d, 
 			float perlinScale /*0.01f*/, float deltaX /*20*/, int minVertices /*2*/, int maxVertices /*100*/, int maxIter) {
 
@@ -2796,11 +3250,26 @@ public class PEmbroiderGraphics {
 		PerlinVectorField vf = new PerlinVectorField();
 		return customField(mask,vf,d,minVertices,maxVertices,maxIter);
 	}
-
+	/**
+	 * Signature for a vector field
+	 */
 	public interface VectorField{
+		/**
+		 * get the direction vector at given coordinate
+		 * @param x   x coordinate of the sample point
+		 * @param y   y coordinate of the sample point
+		 */
 		PVector get(float x, float y);
 	}
 
+	/**
+	 * Hatch an image using custom vector field fill
+	 * @param mask         a binary image/graphics, white means on, black means off
+	 * @param d            spacing between strokes
+	 * @param minVertices  strokes with too few segments (those tiny ones) will be discarded
+	 * @param maxVertices  maximum number of vertices for each stroke
+	 * @param maxIter      maximum number of iterations (i.e. seeds to begin walking from). if the shape of polygon is weird, more seeds is needed to reach all the corners
+	 */
 	public ArrayList<ArrayList<PVector>> customField(PImage mask, VectorField vf, float d, int minVertices, int maxVertices, int maxIter){
 		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
 		PGraphics pg = app.createGraphics(mask.width,mask.height);
