@@ -23,10 +23,11 @@ void setup() {
   E.clear();
   E.fill(0, 0, 0); 
   E.noStroke();
-  E.ellipseMode(CENTER); 
-  E.setStitch(2, 50, 0); 
+  E.setStitch(2, 20, 0); 
 
   E.hatchMode(PARALLEL);
+  E.PARALLEL_RESAMPLING_OFFSET_FACTOR = 0.5;
+  E.EXPERIMENTAL_PARALLEL_RESAMPLE = true;
   E.hatchAngleDeg(30);
   E.hatchSpacing(2.0);
   E.image(myImage, 0, 0);
@@ -46,8 +47,7 @@ void setup() {
   E.hatchSpacing(8.0);
   E.image(myImage, 250, 250);
 
-  // THIS IS NOW RENDERING CORRECTLY
-  
+
   E.stroke(0, 0, 0); 
   E.noFill(); 
   E.strokeWeight(5); 
