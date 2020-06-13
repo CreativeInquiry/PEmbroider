@@ -12,21 +12,12 @@ void setup() {
   noLoop(); 
 
   E = new PEmbroiderGraphics(this, 500, 500);
-  PG = createGraphics(250, 250);
 
   String outputFilePath = sketchPath("PEmbroider_bitmap_image_1.vp3");
   E.setPath(outputFilePath); 
 
   // Draw bitmap image into offscreen graphics buffer.
   PImage myImage = loadImage("broken_heart.png");
-  PG.beginDraw();
-  PG.background(0);
-  PG.image(myImage, 0, 0); 
-  // we need black on white for image() to work
-  // maybe there will be a setting later,
-  // but let's just use the convenient INVERT for now
-  PG.filter(INVERT);
-  PG.endDraw(); 
 
   E.beginDraw(); 
   E.clear();
@@ -38,22 +29,22 @@ void setup() {
   E.hatchMode(PARALLEL);
   E.hatchAngleDeg(30);
   E.hatchSpacing(2.0);
-  E.image(PG, 0, 0, PG.width, PG.height);
+  E.image(myImage, 0, 0);
 
   E.hatchMode(PEmbroiderGraphics.CROSS); 
   E.HATCH_ANGLE = radians(30);
   E.HATCH_ANGLE2 = radians(0); 
   E.HATCH_SPACING = 4;
-  E.image(PG, 250, 0, PG.width, PG.height);
+  E.image(myImage, 250, 0);
 
   E.hatchMode(CONCENTRIC); 
   E.hatchSpacing(2.0);
   E.setStitch(2,10,1.0);
-  E.image(PG, 0, 250, PG.width, PG.height);
+  E.image(myImage, 0, 250);
 
   E.hatchMode(CONCENTRIC); 
   E.hatchSpacing(8.0);
-  E.image(PG, 250, 250, PG.width, PG.height);
+  E.image(myImage, 250, 250);
 
   // THIS IS NOW RENDERING CORRECTLY
   
@@ -62,11 +53,11 @@ void setup() {
   E.strokeWeight(5); 
   E.strokeMode(PEmbroiderGraphics.PERPENDICULAR);
   E.strokeSpacing(4);
-  E.image(PG, 500, 250, PG.width, PG.height);
+  E.image(myImage, 500, 250);
 
 
   // draw the raster graphics (for reference)
-  image(PG, 500, 0);
+  image(myImage, 500, 0);
 
   //-----------------------
   // E.optimize(); // slow, but good and important

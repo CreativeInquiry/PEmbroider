@@ -78,7 +78,7 @@ public class PEmbroiderGraphics {
 	
 	public int STROKE_MODE = PERPENDICULAR;
 	public int STROKE_TANGENT_MODE = WEIGHT;
-	public int STROKE_WEIGHT = 1;
+	public float STROKE_WEIGHT = 1;
 	public float STROKE_SPACING = 4;
 	public int STROKE_JOIN = PConstants.ROUND;
 	public int STROKE_CAP = PConstants.ROUND;
@@ -197,7 +197,7 @@ public class PEmbroiderGraphics {
 	/** Change width of stroke
 	 *  @param d  the stroke weight to use
 	 */
-	public void strokeWeight(int d) {
+	public void strokeWeight(float d) {
 		STROKE_WEIGHT = d;
 	}
 	/** Change stroke join (turning point) style
@@ -1538,7 +1538,7 @@ public class PEmbroiderGraphics {
 			}
 		}else {
 			if (STROKE_MODE == TANGENT) {
-				int cnt = STROKE_WEIGHT;
+				int cnt = (int)STROKE_WEIGHT;
 				float spa = STROKE_SPACING;
 				if (STROKE_WEIGHT > 1) {
 					if (STROKE_TANGENT_MODE == WEIGHT) {
@@ -3357,7 +3357,7 @@ public class PEmbroiderGraphics {
 		PGraphics im2  = app.createGraphics(w,h);
 		im2.beginDraw();
 		im2.image(im,0,0,w,h);
-		im2.filter(PConstants.INVERT);
+//		im2.filter(PConstants.INVERT);
 		im2.filter(PConstants.THRESHOLD);
 	
 		
@@ -3388,6 +3388,10 @@ public class PEmbroiderGraphics {
 		popMatrix();
 	}
 
+	public void image(PImage im, int x, int y) {
+		image(im, x, y, im.width, im.height);
+	}
+	
 	/**
 	 * Hatch an image using perlin noise fill
 	 * @param mask         a binary image/graphics, white means on, black means off
