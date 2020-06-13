@@ -10,7 +10,7 @@ void setup() {
   size (500, 500);
   E = new PEmbroiderGraphics(this, width, height);
 
-  String outputFilePath = sketchPath("PEmbroider_svg_image.vp3");
+  String outputFilePath = sketchPath("PEmbroider_bitmap_image_2.vp3");
   E.setPath(outputFilePath); 
   E.beginDraw(); 
   E.clear();

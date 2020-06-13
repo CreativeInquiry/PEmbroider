@@ -102,5 +102,5 @@ void setup() {
   //-----------------------
   E.visualize();
   E.optimize(); // VERY SLOW, but important for file output!
-  E.endDraw(); // write out the embroidery file
+  // E.endDraw(); // write out the embroidery file
 }
