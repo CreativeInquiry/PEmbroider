@@ -3314,7 +3314,14 @@ public class PEmbroiderGraphics {
 
 		return polys;
 	}
-	
+	/**
+	 * Hatch an image using PARALLEL fill (with raster algorithms)
+	 * @param mask         a binary image/graphics, white means on, black means off
+	 * @param ang          angle of parallel lines in radians
+	 * @param d            spacing between strokes
+	 * @param step         step size, smaller the more accurate
+	 * @return             the hatching as a list of polylines
+	 */
 	public ArrayList<ArrayList<PVector>> hatchParallelRaster(PImage mask, float ang, float d, float step) {
 		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
 		
@@ -3378,7 +3385,14 @@ public class PEmbroiderGraphics {
 		}
 		return polys;
 	}
-	
+	/**
+	 * Lerp a number around 360 degrees, meaning lerp360(358,2) gives 0 instead of 180
+	 * Useful for lerping hues and angles
+	 * @param h0  the first number
+	 * @param h1  the second number
+	 * @param t   the interpolation parameter
+	 * @return    the lerped number
+	 */
     public float lerp360 (float h0,float h1,float t){
         float[][] methods = new float[][] {
           {Math.abs(h1-h0),     PApplet.map(t,0,1,h0,h1)},
@@ -3403,7 +3417,13 @@ public class PEmbroiderGraphics {
         }
         return -1; // impossible case, just to shut java up
      }
-	
+	/**
+	 * Smoothen a polyline with rational quadratic bezier (thus upsampling)
+	 * @param poly  the polyline
+	 * @param w   weight of the rational bezier, higher the pointier
+	 * @param n   number of segments for each segment on the polyline
+	 * @return    the smoothed polyline
+	 */
 	 public ArrayList<PVector> smoothen(ArrayList<PVector> poly, float w, int n) {
 		 if (poly.size()<3) {
 			 return poly;
@@ -3421,7 +3441,14 @@ public class PEmbroiderGraphics {
 		 return poly2;
 	 }
 	 
-	 
+	/**
+	 * Computes the accurate distance transform by actually mesuring distances (slow).
+	 * See PEmbroiderTrace for the fast approximation
+	 * @param polys  the polylines to consider
+	 * @param w      width of the output image
+	 * @param n      height of the output image
+	 * @return       the distance transform stored in row-major array of floats
+	 */	 
 	 public float[] perfectDistanceTransform(ArrayList<ArrayList<PVector>> polys,int w, int h) {
 		 float[] dt = new float[w*h];
 		 for (int i = 0; i < h; i++) {
@@ -3444,7 +3471,11 @@ public class PEmbroiderGraphics {
 		 return dt;
 	 }
 	 
-	 
+	 /**
+	  * Clip polylines with a mask
+	  * @param polys  the polylines to consider
+	  * @param mask   a mask, black means off, white means on
+	  */	
 	 public void clip(ArrayList<ArrayList<PVector>> polys, PImage mask) { 
 		 for (int i = 0; i < polys.size(); i++) {
 			 polys.set(i,resample(polys.get(i),2,2,0,0));
@@ -3506,6 +3537,13 @@ public class PEmbroiderGraphics {
 			polys.set(k, startStubs.get(k));
 		}
 	 }
+	 
+	 /**
+	  * Compute isolines for a grayscale image using findContours on multiple thresholds.
+	  * @param im     the input grayscale image
+	  * @param d      luminance distance between adjacent thresholds
+	  * @return       an array of isolines as polylines
+	  */	
 	public ArrayList<ArrayList<PVector>> isolines(PImage im, float d){
 		ArrayList<ArrayList<ArrayList<PVector>>> isos = PEmbroiderTrace.findIsolines(im, -1, d);
 		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
@@ -3517,7 +3555,12 @@ public class PEmbroiderGraphics {
 		}
 		return polys;
 	}
-	
+	 /**
+	  * Check if a polygon completely contains another
+	  * @param poly0  the polygon that is supposed to contain the other one
+	  * @param poly1  the polygon that is supposed to be contained by the other one
+	  * @return       true for containment, false for not
+	  */	
 	public boolean polygonContain(ArrayList<PVector> poly0, ArrayList<PVector> poly1) {
 		for (int i = 0; i < poly1.size(); i++) {
 			if (!pointInPolygon(poly1.get(i),poly0)) {
@@ -3533,7 +3576,11 @@ public class PEmbroiderGraphics {
 		}
 		return true;
 	}
-	
+	 /**
+	  * Compute area of polygon
+	  * @param poly the polygon
+	  * @return     the area
+	  */	
 	public float polygonArea(ArrayList<PVector> poly){
 		//https://www.mathopenref.com/coordpolygonarea2.html
 		int n = poly.size();
@@ -3550,7 +3597,11 @@ public class PEmbroiderGraphics {
 	
 
 
-	
+	 /**
+	  * Run TSP on polylines in the current design to optimize for connective path length
+	  * @param trials   number of trials. the more times you try, the higher chance you'll get a better result
+	  * @param maxIter  maximum number of iterations to run 2-Opt. 
+	  */
 	public void optimize(int trials,int maxIter) {
 		if (polylines.size() <= 1) {
 			return;
@@ -3567,32 +3618,62 @@ public class PEmbroiderGraphics {
 			}
 		}
 	}
+	 /**
+	  * Simplified version of optimize(2) where the trial and maxIter is picked for you
+	  */
 	public void optimize() {
 		optimize(5,999);
 	}
-
+	 /**
+	  * Change horizontal alignment of text
+	  * @param align alignment mode, one of LEFT, CETER, RIGHT
+	  */
 	public void textAlign(int align) {
 		FONT_ALIGN = align;
 	}
+	 /**
+	  * Change horizontal and vertical alignment of text
+	  * @param halign horizontal alignment mode, one of LEFT, CETER, RIGHT
+	  * @param valign vertical alignment mode, one of TOP, CENTER, BASELINE, BOTTOM
+	  */
 	public void textAlign(int halign, int valign) {
 		FONT_ALIGN = halign;
 		FONT_ALIGN_VERTICAL = valign;
 	}
-	
+	 /**
+	  * Change size of text
+	  * @param size  the desired size of text
+	  */
 	public void textSize(float size) {
 		FONT_SCALE = size;
 	}
-	
+	 /**
+	  * Change font of text.
+	  * Notice this function is overloaded with one version for PFont and one for hershey font, with identical API
+	  * This one is for the hershey font
+	  * @param font the desired hershey font
+	  */
 	public void textFont(int[] font) {
 		FONT = font;
 		TRUE_FONT = null;
 	}
+	 /**
+	  * Change font of text.
+	  * Notice this function is overloaded with one version for PFont and one for hershey font, with identical API
+	  * This one is for PFont
+	  * @param font the desired PFont
+	  */
 	public void textFont(PFont font) {
 		TRUE_FONT = font;
 		FONT = null;
 	}
 	
-
+	 /**
+	  * Draw some text
+	  * @param str  the string containing the text to be drawn
+	  * @param x    x coordinate, meaning of which depends on textAlign
+	  * @param y    y coordinate, meaning of which depends on textAlign
+	  */
 	public void text(String str, float x, float y) {
 		if (FONT != null) {
 			ArrayList<ArrayList<PVector>> polys = PEmbroiderFont.putText(FONT,str,x,y,FONT_SCALE,FONT_ALIGN);
@@ -3686,6 +3767,11 @@ public class PEmbroiderGraphics {
 		}
 		
 	}
+	 /**
+	  * Deep clone any object
+	  * @param object  some object
+	  * @reutrn        the clone
+	  */
 	 public static Object deepClone(Object object) {
 		 //https://www.quora.com/What-is-the-right-way-to-deep-copy-an-object-in-Java-How-do-you-do-it-in-your-code
 	     try {
