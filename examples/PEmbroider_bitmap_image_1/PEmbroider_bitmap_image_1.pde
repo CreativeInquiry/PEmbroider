@@ -33,33 +33,42 @@ void setup() {
   E.fill(0, 0, 0); 
   E.noStroke();
   E.ellipseMode(CENTER); 
-  E.setStitch(2, 50, 0); 
+  E.setStitch(2, 20, 0); 
 
+  // Draw a parallel-hatched heart
   E.hatchMode(PARALLEL);
-  E.hatchAngleDeg(30);
-  E.hatchSpacing(2.0);
+  E.hatchAngleDeg(10);
+  E.hatchSpacing(4.0);
+  E.setStitch(2, 20, 0.0); 
   E.image(PG, 0, 0, PG.width, PG.height);
 
+  // Draw a cross-hatched heart
   E.hatchMode(PEmbroiderGraphics.CROSS); 
-  E.HATCH_ANGLE = radians(30);
+  E.HATCH_ANGLE = radians(20);
   E.HATCH_ANGLE2 = radians(0); 
   E.HATCH_SPACING = 4;
   E.image(PG, 250, 0, PG.width, PG.height);
 
+  // Draw a densely-hatched, concentric-hatched
   E.hatchMode(CONCENTRIC); 
   E.hatchSpacing(2.0);
   E.setStitch(2,10,1.0);
   E.image(PG, 0, 250, PG.width, PG.height);
 
+  // Draw a loosely-hatched, concentric-hatched
   E.hatchMode(CONCENTRIC); 
   E.hatchSpacing(8.0);
   E.image(PG, 250, 250, PG.width, PG.height);
-
-  // THIS IS NOW RENDERING CORRECTLY
+  // E.stroke(0, 0, 0);
+  // E.noFill(); 
+  // E.strokeWeight(1); 
+  // E.image(PG, 250, 250, PG.width, PG.height);
   
+
+  // Draw the outline of a heart
   E.stroke(0, 0, 0); 
   E.noFill(); 
-  E.strokeWeight(5); 
+  E.strokeWeight(15); 
   E.strokeMode(PEmbroiderGraphics.PERPENDICULAR);
   E.strokeSpacing(4);
   E.image(PG, 500, 250, PG.width, PG.height);
@@ -69,7 +78,7 @@ void setup() {
   image(PG, 500, 0);
 
   //-----------------------
-  // E.optimize(); // slow, but good and important
+  //E.optimize(); // slow, but good and important
   E.visualize();
   // E.endDraw(); // write out the file
 }
