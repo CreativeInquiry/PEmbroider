@@ -2178,7 +2178,7 @@ public class PEmbroiderGraphics {
 	 *  @param len     the desired length of each segment after resampling
 	 *  @return        the resampled polylines
 	 */
-	public ArrayList<ArrayList<PVector>> resampleCrossIntersection(ArrayList<ArrayList<PVector>> polys, float angle, float spacing, float len, float offsetFactor /*0.5*/){
+	public ArrayList<ArrayList<PVector>> resampleCrossIntersection(ArrayList<ArrayList<PVector>> polys, float angle, float spacing, float len, float offsetFactor /*0.5*/, float randomize){
 //		for (int i = 0; i < polys.size(); i++) {
 //			for (int j = 0; j < polys.get(i).size(); j++) {
 //				PApplet.println(polys.get(i).get(j));
@@ -2263,7 +2263,11 @@ public class PEmbroiderGraphics {
 				for (int k = 0; k < iparams.size(); k++) {
 					PVector _p0 = a.copy();
 					PVector _p1 = b.copy();
-					resamped.add( _p0.mult(1-iparamsArr[k]).add(_p1.mult(iparamsArr[k])) );
+					float t0 = iparamsArr[k];
+					float t1 = iparamsArr[PApplet.min(k+1,iparams.size()-1)];
+					float tr = app.random(t0,t1);
+					float t = PApplet.lerp(t0, tr, randomize);
+					resamped.add( _p0.mult(1-t).add(_p1.mult(t)) );
 				}
 				resamped.add(b);
 			}
@@ -2274,7 +2278,7 @@ public class PEmbroiderGraphics {
 		return result;
 	}
 	
-	public  ArrayList<ArrayList<PVector>> resampleCrossIntersection2(ArrayList<ArrayList<PVector>> polys1, ArrayList<ArrayList<PVector>> polys2, float angle1, float angle2, float spacing, float len){
+	public  ArrayList<ArrayList<PVector>> resampleCrossIntersection2(ArrayList<ArrayList<PVector>> polys1, ArrayList<ArrayList<PVector>> polys2, float angle1, float angle2, float spacing, float len, float randomize){
 		PVector mid = null;
 		float dh = 0f;
 		for (int i = 0; i < polys1.size(); i++) {
@@ -2403,7 +2407,11 @@ public class PEmbroiderGraphics {
 				for (int k = 0; k < iparams.size(); k++) {
 					PVector _p0 = a.copy();
 					PVector _p1 = b.copy();
-					resamped.add( _p0.mult(1-iparamsArr[k]).add(_p1.mult(iparamsArr[k])) );
+					float t0 = iparamsArr[k];
+					float t1 = iparamsArr[PApplet.min(k+1,iparams.size()-1)];
+					float tr = app.random(t0,t1);
+					float t = PApplet.lerp(t0, tr, randomize);
+					resamped.add( _p0.mult(1-t).add(_p1.mult(t)) );
 				}
 				resamped.add(b);
 			}
@@ -2872,7 +2880,7 @@ public class PEmbroiderGraphics {
 					
 					boolean didit = false;
 					if (HATCH_MODE == PARALLEL && !NO_RESAMPLE) {
-						polys = resampleCrossIntersection(polys,HATCH_ANGLE,HATCH_SPACING,STITCH_LENGTH, PARALLEL_RESAMPLING_OFFSET_FACTOR);
+						polys = resampleCrossIntersection(polys,HATCH_ANGLE,HATCH_SPACING,STITCH_LENGTH, PARALLEL_RESAMPLING_OFFSET_FACTOR, RESAMPLE_NOISE);
 						NO_RESAMPLE = true;
 						didit = true;
 					}
@@ -2881,7 +2889,7 @@ public class PEmbroiderGraphics {
 						if (!NO_RESAMPLE) {
 							
 							ArrayList<ArrayList<PVector>> polys2 =hatchParallelComplex(polyBuff,HATCH_ANGLE2,HATCH_SPACING);
-							polys = resampleCrossIntersection2(polys,polys2,HATCH_ANGLE,HATCH_ANGLE2,HATCH_SPACING,STITCH_LENGTH);
+							polys = resampleCrossIntersection2(polys,polys2,HATCH_ANGLE,HATCH_ANGLE2,HATCH_SPACING,STITCH_LENGTH, RESAMPLE_NOISE);
 							
 							NO_RESAMPLE = true;
 							didit = true;
