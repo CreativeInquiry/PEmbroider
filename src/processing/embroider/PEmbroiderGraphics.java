@@ -2273,6 +2273,147 @@ public class PEmbroiderGraphics {
 		}
 		return result;
 	}
+	
+	public  ArrayList<ArrayList<PVector>> resampleCrossIntersection2(ArrayList<ArrayList<PVector>> polys1, ArrayList<ArrayList<PVector>> polys2, float angle1, float angle2, float spacing, float len){
+		PVector mid = null;
+		float dh = 0f;
+		for (int i = 0; i < polys1.size(); i++) {
+			for (int j = 0; j < polys2.size()-1; j++) {
+				PVector a = polys1.get(i).get(0);
+				PVector b = polys1.get(i).get(polys1.get(i).size()-1);
+				
+				PVector c = polys2.get(j).get(0);
+				PVector d = polys2.get(j).get(polys2.get(j).size()-1);
+				
+				PVector e = polys2.get(j+1).get(0);
+				PVector f = polys2.get(j+1).get(polys2.get(j).size()-1);
+				
+				PVector is0 = segmentIntersect3D(a,b,c,d);
+				PVector is1 = segmentIntersect3D(a,b,e,f);
+				if (is0 != null && is1 != null) {
+					float t = is0.x*0.5f+is1.x*0.5f;
+					dh = (is0.x-is1.x)*a.dist(b);
+					mid = a.copy().mult(1-t).add(b.copy().mult(t));
+					break;
+				}
+			}
+			if (mid != null) {
+				break;
+			}
+		}
+		polys1.addAll(polys2);
+		PApplet.println(mid);
+		if (mid == null) {
+			
+			return polys1;
+		}
+		float rmax = 0;
+		for (int i = 0; i < polys1.size(); i++) {
+			for (int j = 0; j < polys1.get(i).size(); j++) {
+				rmax = Math.max(rmax, mid.dist(polys1.get(i).get(j)));
+			}
+		}
+		for (int i = 0; i < polys2.size(); i++) {
+			for (int j = 0; j < polys2.get(i).size(); j++) {
+				rmax = Math.max(rmax, mid.dist(polys2.get(i).get(j)));
+			}
+		}
+		float ang = lerp360(angle1*180f/PConstants.PI,angle2*180f/PConstants.PI,0.5f)*PConstants.PI/180f;
+		ang += PConstants.HALF_PI;
+		
+		float bigang = (angle1-angle2+PConstants.PI*100) % PConstants.PI;
+		if (bigang < PConstants.HALF_PI) {
+			bigang = PConstants.PI - bigang;
+		}
+		float alpha = bigang/2;
+		float d = (dh/2 * PApplet.sin(alpha))*2;
+		
+		float mult = PApplet.max(1f,PApplet.floor(len/dh));
+		PApplet.println(d);
+		d*= mult;
+		
+		BCircle bcirc = new BCircle(0,0,0);
+		bcirc.x = mid.x;
+		bcirc.y = mid.y;
+		int n = PApplet.ceil(rmax/d);
+		bcirc.r = n*d;
+		
+//		n = 1;
+		float x0 = bcirc.x - bcirc.r * PApplet.cos(ang);
+		float y0 = bcirc.y - bcirc.r * PApplet.sin(ang);
+
+		float x1 = bcirc.x + bcirc.r * PApplet.cos(ang);
+		float y1 = bcirc.y + bcirc.r * PApplet.sin(ang);
+
+		ArrayList<ArrayList<PVector>> crosslines = new ArrayList<ArrayList<PVector>>();
+		
+		n*=2;
+//		n = 1;
+		for (int i = 0; i < n; i++) {
+			float t = (float)i/(float)PApplet.max(1,n);
+			float x = x0 * (1-t) + x1 * t;
+			float y = y0 * (1-t) + y1 * t;
+
+			float px = x + bcirc.r * PApplet.cos(ang-PConstants.HALF_PI);
+			float py = y + bcirc.r * PApplet.sin(ang-PConstants.HALF_PI);
+
+			float qx = x + bcirc.r * PApplet.cos(ang+PConstants.HALF_PI);
+			float qy = y + bcirc.r * PApplet.sin(ang+PConstants.HALF_PI);
+
+//			PApplet.println(x0,y0,x1,y1,px,py,qx,qy);
+			
+			ArrayList<PVector> crsl = new ArrayList<PVector>();
+			crsl.add(new PVector(px,py));
+			crsl.add(new PVector(qx,qy));
+			crosslines.add(crsl);
+		}
+//		return crosslines;
+		
+		ArrayList<ArrayList<PVector>> result = new ArrayList<ArrayList<PVector>>();
+		
+		for (int i = 0; i < polys1.size(); i++) {
+			if (polys1.get(i).size() < 2) {
+				continue;
+			}
+
+			ArrayList<PVector> resamped = new ArrayList<PVector>();
+			
+			for (int j = 0; j < polys1.get(i).size()-1; j++) {
+				
+				PVector a = polys1.get(i).get(j);
+				PVector b = polys1.get(i).get(j+1);
+				
+				resamped.add(a);
+				
+				ArrayList<Float> iparams = new ArrayList<Float>();
+				for (int k = 0; k < crosslines.size(); k++) {
+					PVector p = crosslines.get(k).get(0);
+					PVector q = crosslines.get(k).get(1);
+					PVector o = segmentIntersect3D(a,b,p,q);
+					if (o != null) {
+						iparams.add(o.x);
+					}
+				}
+				float[] iparamsArr = new float[iparams.size()];
+				for (int k = 0; k < iparams.size(); k++) {
+					iparamsArr[k] = (float)iparams.get(k);
+				}
+				iparamsArr = PApplet.sort(iparamsArr);
+				
+				for (int k = 0; k < iparams.size(); k++) {
+					PVector _p0 = a.copy();
+					PVector _p1 = b.copy();
+					resamped.add( _p0.mult(1-iparamsArr[k]).add(_p1.mult(iparamsArr[k])) );
+				}
+				resamped.add(b);
+			}
+			
+			result.add(resamped);
+			
+		}
+		
+		return result;
+	}
 
 
 	/** 
@@ -2726,7 +2867,7 @@ public class PEmbroiderGraphics {
 			}
 			if (isFill) {
 				if ((HATCH_MODE == PARALLEL || HATCH_MODE == CROSS) && (HATCH_BACKEND != FORCE_RASTER)) {
-					
+//					HATCH_MODE = CROSS;
 					ArrayList<ArrayList<PVector>> polys = hatchParallelComplex(polyBuff,HATCH_ANGLE,HATCH_SPACING);
 					
 					boolean didit = false;
@@ -2737,7 +2878,16 @@ public class PEmbroiderGraphics {
 					}
 					
 					if (HATCH_MODE == CROSS) {
-						polys.addAll(hatchParallelComplex(polyBuff,HATCH_ANGLE2,HATCH_SPACING));
+						if (!NO_RESAMPLE) {
+							
+							ArrayList<ArrayList<PVector>> polys2 =hatchParallelComplex(polyBuff,HATCH_ANGLE2,HATCH_SPACING);
+							polys = resampleCrossIntersection2(polys,polys2,HATCH_ANGLE,HATCH_ANGLE2,HATCH_SPACING,STITCH_LENGTH);
+							
+							NO_RESAMPLE = true;
+							didit = true;
+						}else {
+							polys.addAll(hatchParallelComplex(polyBuff,HATCH_ANGLE2,HATCH_SPACING));
+						}
 					}
 					for (int i = 0; i < polys.size(); i++) {
 						pushPolyline(polys.get(i),currentFill,1f);
