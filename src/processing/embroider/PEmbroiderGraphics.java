@@ -3357,7 +3357,7 @@ public class PEmbroiderGraphics {
 		PGraphics im2  = app.createGraphics(w,h);
 		im2.beginDraw();
 		im2.image(im,0,0,w,h);
-		im2.filter(PConstants.INVERT);
+//		im2.filter(PConstants.INVERT);
 		im2.filter(PConstants.THRESHOLD);
 	
 		
@@ -3388,6 +3388,10 @@ public class PEmbroiderGraphics {
 		popMatrix();
 	}
 
+	public void image(PImage im, int x, int y) {
+		image(im, x, y, im.width, im.height);
+	}
+	
 	/**
 	 * Hatch an image using perlin noise fill
 	 * @param mask         a binary image/graphics, white means on, black means off
