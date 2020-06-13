@@ -85,9 +85,9 @@ void setup() {
 
 
   //-----------------------
+  // E.optimize(); // slow, but good and important
   E.visualize();
-  E.optimize(); // slow, but good and important
-  E.endDraw(); // write out the file
+  // E.endDraw(); // write out the file
 }
 
 
