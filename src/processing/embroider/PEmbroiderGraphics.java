@@ -2190,7 +2190,7 @@ public class PEmbroiderGraphics {
 //		float d = PApplet.sqrt(base*base+spacing*spacing);
 		float d = len * PApplet.cos(PApplet.HALF_PI-relang);	
 		
-		PApplet.println("computed cross ang",relang,"spacing",d);
+//		PApplet.println("computed cross ang",relang,"spacing",d);
 		
 		float ang = angle - relang;
 		
@@ -2306,7 +2306,7 @@ public class PEmbroiderGraphics {
 			}
 		}
 		polys1.addAll(polys2);
-		PApplet.println(mid);
+//		PApplet.println(mid);
 		if (mid == null) {
 			
 			return polys1;
@@ -2333,7 +2333,7 @@ public class PEmbroiderGraphics {
 		float d = (dh/2 * PApplet.sin(alpha))*2;
 		
 		float mult = PApplet.max(1f,PApplet.floor(len/dh));
-		PApplet.println(d);
+//		PApplet.println(d);
 		d*= mult;
 		
 		BCircle bcirc = new BCircle(0,0,0);
@@ -3571,7 +3571,7 @@ public class PEmbroiderGraphics {
         		}
         	}
         	if (best) {
-        		PApplet.println(h0,h1,i);
+//        		PApplet.println(h0,h1,i);
         		return (methods[i][1]+720)%360;
         	}
         }
