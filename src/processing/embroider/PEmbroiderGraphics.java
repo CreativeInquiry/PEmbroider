@@ -101,6 +101,8 @@ public class PEmbroiderGraphics {
 	boolean randomizeOffsetEvenOdd = false;
 	float randomizeOffsetPrevious = 0.0f;
 	
+	public float PARALLEL_RESAMPLING_OFFSET_FACTOR = 0.5f;
+	
 	static String logPrefix = "[PEmbroider] ";
 	
 	/**
@@ -2176,14 +2178,14 @@ public class PEmbroiderGraphics {
 	 *  @param len     the desired length of each segment after resampling
 	 *  @return        the resampled polylines
 	 */
-	public ArrayList<ArrayList<PVector>> resampleCrossIntersection(ArrayList<ArrayList<PVector>> polys, float angle, float spacing, float len){
+	public ArrayList<ArrayList<PVector>> resampleCrossIntersection(ArrayList<ArrayList<PVector>> polys, float angle, float spacing, float len, float offsetFactor /*0.5*/){
 //		for (int i = 0; i < polys.size(); i++) {
 //			for (int j = 0; j < polys.get(i).size(); j++) {
 //				PApplet.println(polys.get(i).get(j));
 //				
 //			}
 //		}
-		float base = len/2;
+		float base = len*offsetFactor;
 		float relang = PApplet.atan2(spacing, base);
 //		float d = PApplet.sqrt(base*base+spacing*spacing);
 		float d = len * PApplet.cos(PApplet.HALF_PI-relang);	
@@ -2729,7 +2731,7 @@ public class PEmbroiderGraphics {
 					
 					boolean didit = false;
 					if (HATCH_MODE == PARALLEL && !NO_RESAMPLE) {
-						polys = resampleCrossIntersection(polys,HATCH_ANGLE,HATCH_SPACING,STITCH_LENGTH);
+						polys = resampleCrossIntersection(polys,HATCH_ANGLE,HATCH_SPACING,STITCH_LENGTH, PARALLEL_RESAMPLING_OFFSET_FACTOR);
 						NO_RESAMPLE = true;
 						didit = true;
 					}
