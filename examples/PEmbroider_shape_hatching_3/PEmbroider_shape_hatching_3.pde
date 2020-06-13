@@ -35,6 +35,11 @@ void setup() {
   E.hatchSpacing(4.0); 
   E.setStitch( 5, 25, 0);
 
+  // WARNING NOTE: The value of 1.0 for the property
+  // PARALLEL_RESAMPLING_OFFSET_FACTOR is only shown here
+  // for illustrative purposes. In real life, you probably
+  // do not want to use this value, as it can cause problems
+  // in the physical embroidery.
   E.PARALLEL_RESAMPLING_OFFSET_FACTOR = 1.0;
   E.circle(100, 100, 120);
 
