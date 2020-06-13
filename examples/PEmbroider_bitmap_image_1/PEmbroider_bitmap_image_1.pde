@@ -24,7 +24,7 @@ void setup() {
   E.fill(0, 0, 0); 
   E.noStroke();
   E.ellipseMode(CENTER); 
-  E.setStitch(2, 50, 0); 
+  E.setStitch(2, 20, 0); 
 
   E.hatchMode(PARALLEL);
   E.hatchAngleDeg(30);
