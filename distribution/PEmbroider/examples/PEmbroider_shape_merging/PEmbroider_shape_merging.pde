@@ -25,7 +25,7 @@ void setup() {
   E.visualize();
   popMatrix(); 
   E.optimize(); // slow, but good and important
-  E.endDraw(); // write out the file
+  // E.endDraw(); // write out the file
 }
 
 

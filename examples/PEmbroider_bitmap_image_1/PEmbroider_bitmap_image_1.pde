@@ -21,44 +21,48 @@ void setup() {
   PImage myImage = loadImage("broken_heart.png");
   PG.beginDraw();
   PG.background(0);
-  PG.image(myImage, 0, 0);  
+  PG.image(myImage, 0, 0); 
+  // we need black on white for image() to work
+  // maybe there will be a setting later,
+  // but let's just use the convenient INVERT for now
+  PG.filter(INVERT);
   PG.endDraw(); 
-
 
   E.beginDraw(); 
   E.clear();
   E.fill(0, 0, 0); 
   E.noStroke();
   E.ellipseMode(CENTER); 
-  E.setStitch(10, 30, 0); 
-
+  E.setStitch(2, 50, 0); 
 
   E.hatchMode(PARALLEL);
   E.hatchAngleDeg(30);
   E.hatchSpacing(2.0);
-  E.hatchRaster(PG, 0, 0);
+  E.image(PG, 0, 0, PG.width, PG.height);
 
   E.hatchMode(PEmbroiderGraphics.CROSS); 
   E.HATCH_ANGLE = radians(30);
   E.HATCH_ANGLE2 = radians(0); 
   E.HATCH_SPACING = 4;
-  E.hatchRaster(PG, 250, 0);
+  E.image(PG, 250, 0, PG.width, PG.height);
 
   E.hatchMode(CONCENTRIC); 
   E.hatchSpacing(2.0);
-  E.hatchRaster(PG, 0, 250);
+  E.setStitch(2,10,1.0);
+  E.image(PG, 0, 250, PG.width, PG.height);
 
   E.hatchMode(CONCENTRIC); 
   E.hatchSpacing(8.0);
-  E.hatchRaster(PG, 250, 250);
+  E.image(PG, 250, 250, PG.width, PG.height);
 
-  // THIS IS NOT RENDERING CORRECTLY
+  // THIS IS NOW RENDERING CORRECTLY
+  
   E.stroke(0, 0, 0); 
   E.noFill(); 
   E.strokeWeight(5); 
-  E.STROKE_MODE = PEmbroiderGraphics.TANGENT;
-  E.STROKE_SPACING = 4;
-  E.hatchRaster(PG, 500, 250);
+  E.strokeMode(PEmbroiderGraphics.PERPENDICULAR);
+  E.strokeSpacing(4);
+  E.image(PG, 500, 250, PG.width, PG.height);
 
 
   // draw the raster graphics (for reference)

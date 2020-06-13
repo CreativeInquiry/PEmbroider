@@ -42,8 +42,8 @@ public class PEmbroiderGraphics {
 	static public final int NONE      =0;
 
 	//hatch modes
-	static public final int PARALLEL  =1;
-	static public final int CROSS     =2;
+	static public final int PARALLEL  =2;
+	static public final int CROSS     =1;
 	static public final int CONCENTRIC=3;
 	static public final int SPIRAL    =4;
 	static public final int PERLIN    =5;
@@ -102,6 +102,8 @@ public class PEmbroiderGraphics {
 	float randomizeOffsetPrevious = 0.0f;
 	
 	public float PARALLEL_RESAMPLING_OFFSET_FACTOR = 0.5f;
+	
+	public boolean EXPERIMENTAL_PARALLEL_RESAMPLE = false;
 	
 	static String logPrefix = "[PEmbroider] ";
 	
@@ -2509,10 +2511,10 @@ public class PEmbroiderGraphics {
 	public void hatchRaster(PImage im, float x, float y) {
 		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
 		if (HATCH_MODE == PARALLEL) {
-			polys = hatchParallelRaster(im,HATCH_ANGLE,HATCH_SPACING,STITCH_LENGTH/4);
+			polys = hatchParallelRaster(im,HATCH_ANGLE,HATCH_SPACING,1);
 		}else if (HATCH_MODE == CROSS) {
-			polys = hatchParallelRaster(im,HATCH_ANGLE,HATCH_SPACING,STITCH_LENGTH/4);
-			polys.addAll(hatchParallelRaster(im,HATCH_ANGLE2,HATCH_SPACING,STITCH_LENGTH/4));
+			polys = hatchParallelRaster(im,HATCH_ANGLE,HATCH_SPACING,1);
+			polys.addAll(hatchParallelRaster(im,HATCH_ANGLE2,HATCH_SPACING,1));
 			
 		}else if (HATCH_MODE == CONCENTRIC) {
 			polys = isolines(im,HATCH_SPACING);
@@ -2879,14 +2881,14 @@ public class PEmbroiderGraphics {
 					ArrayList<ArrayList<PVector>> polys = hatchParallelComplex(polyBuff,HATCH_ANGLE,HATCH_SPACING);
 					
 					boolean didit = false;
-					if (HATCH_MODE == PARALLEL && !NO_RESAMPLE) {
+					if (EXPERIMENTAL_PARALLEL_RESAMPLE && HATCH_MODE == PARALLEL && !NO_RESAMPLE) {
 						polys = resampleCrossIntersection(polys,HATCH_ANGLE,HATCH_SPACING,STITCH_LENGTH, PARALLEL_RESAMPLING_OFFSET_FACTOR, RESAMPLE_NOISE);
 						NO_RESAMPLE = true;
 						didit = true;
 					}
 					
 					if (HATCH_MODE == CROSS) {
-						if (!NO_RESAMPLE) {
+						if (EXPERIMENTAL_PARALLEL_RESAMPLE && !NO_RESAMPLE) {
 							
 							ArrayList<ArrayList<PVector>> polys2 =hatchParallelComplex(polyBuff,HATCH_ANGLE2,HATCH_SPACING);
 							polys = resampleCrossIntersection2(polys,polys2,HATCH_ANGLE,HATCH_ANGLE2,HATCH_SPACING,STITCH_LENGTH, RESAMPLE_NOISE);
@@ -3372,7 +3374,8 @@ public class PEmbroiderGraphics {
 
 		}
 
-	
+		pushMatrix();
+		translate(x,y);
 		if (isStroke && FIRST_STROKE_THEN_FILL) {
 			_stroke(polys, true);
 		}
@@ -3382,6 +3385,7 @@ public class PEmbroiderGraphics {
 		if (isStroke && !FIRST_STROKE_THEN_FILL) {
 			_stroke(polys, true);
 		}
+		popMatrix();
 	}
 
 	/**
