@@ -1,6 +1,6 @@
 # PEmbroider
 
-An embroidery library for [Processing](http://processing.org). Developed at the [Frank-Ratchye STUDIO for Creative Inquiry](http://studioforcreativeinquiry.org) by Golan Levin and Lingdong Huang, spring 2020, with generous support from the [Clinic for Open Source Arts](https://www.du.edu/ahss/opensourcearts/) (COSA) at the University of Denver. 
+An embroidery library for [Processing](http://processing.org). Developed at the [Frank-Ratchye STUDIO for Creative Inquiry](http://studioforcreativeinquiry.org) by Golan Levin, Lingdong Huang, and Tatyana Mustakos, spring 2020, with generous support from the [Clinic for Open Source Arts](https://www.du.edu/ahss/opensourcearts/) (COSA) at the University of Denver. 
 
 
 ## Features
@@ -8,7 +8,7 @@ An embroidery library for [Processing](http://processing.org). Developed at the 
 PEmbroider is an embroidery Library for [Processing](http://processing.org), suitable for generating computational embroidery designs. PEmbroider has the following features:
 
 * Structured similarly to other alternative renderers for Processing.
-* Able to generate embroidery files in .DST, .PEC, and .VP3 formats, suitable for consumer embroidery machines such as the Viking Jade. 
+* Able to generate embroidery files in .DST, .PEC, .PES, and .VP3 formats, suitable for consumer embroidery machines such as the Viking Jade. 
 * Also able to generate .PDF, .SVG, .TSV, and .GCODE files for other output devices such as pen plotters, CNC routers, etc.
 * Offers a wide range of fill methods for shapes. 
 * Allows a variety of ways of composing shapes, including overlapping, cropping, and merging, using computational geometry algoritms.
