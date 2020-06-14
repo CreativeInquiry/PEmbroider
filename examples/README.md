@@ -83,7 +83,7 @@ Using raster rendering to create complex compound shapes.
 
 ## PEmbroider_bitmap_image_1
 
-Embroidering shapes in bitmap images. Shapes must be white blobs on a black background. 
+Embroidering shapes in bitmap images. Shapes must be white blobs on a black background. The hatchSpine method (stitches perpendicular to contour, in the upper right) is still experimental.
 
 ![](PEmbroider_bitmap_image_1/PEmbroider_bitmap_image_1.png)
 
