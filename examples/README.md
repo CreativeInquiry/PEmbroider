@@ -4,6 +4,8 @@
 
 ![](PEmbroider_strokes/PEmbroider_strokes.png)
 
+![](PEmbroider_lines_1/PEmbroider_lines_1.png)
+
 ![](PEmbroider_shape_culling/PEmbroider_shape_culling.png)
 
 ![](PEmbroider_shape_merging/PEmbroider_shape_merging.png)
