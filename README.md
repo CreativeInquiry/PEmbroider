@@ -16,6 +16,16 @@ PEmbroider is an embroidery Library for [Processing](http://processing.org), sui
 
 ---
 
+## Examples
+
+PEmbroider comes with a collection of [examples](examples/README.md) showing how to achieve different sorts of stitching and hatching effects with lines, shapes, typography and images.
+
+[![Examples](images/examples.png)](examples/README.md)
+
+
+
+---
+
 ## Building the Library (From Source)
 
 First, open the project in Eclipse; then:
@@ -48,4 +58,4 @@ After building the library, it can now be accessed from Processing. *Alternative
 
 In the Processing app, *Sketch* → *Import Library* → *Pembroider*
 
-Check out example usage and tests in `examples`.
+Check out example usage and tests in [Examples](examples/README.md).

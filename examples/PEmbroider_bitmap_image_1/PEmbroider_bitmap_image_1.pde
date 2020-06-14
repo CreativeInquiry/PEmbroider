@@ -30,8 +30,6 @@ void setup() {
   // Parallel hatch 
   E.setStitch(2, 20, 0); 
   E.hatchMode(PEmbroiderGraphics.PARALLEL);
-
-
   E.hatchAngleDeg(15);
   E.hatchSpacing(3.0);
   E.image(myImage, 0, 0);
@@ -58,9 +56,8 @@ void setup() {
   E.hatchSpacing(7.5);
   E.image(myImage, 250, 250);
 
-
   //-------------------
-  // Draw fat perpendicular stroke only, no fill. ??????
+  // Draw fat perpendicular stroke only, no fill. 
   E.noFill(); 
   E.stroke(0, 0, 0); 
   E.setStitch(2, 30, 1.0);
@@ -93,10 +90,10 @@ void setup() {
   // Draw the original raster image (for reference).
   image(myImage, 750, 0);
 
-  //-----------------------
-  //E.optimize(); // slow, but good and important
+  //-------------------
+  // E.optimize(); // slow, but good and important
   E.visualize();
-  E.endDraw(); // write out the file
+  // E.endDraw(); // write out the file
 }
 
 
