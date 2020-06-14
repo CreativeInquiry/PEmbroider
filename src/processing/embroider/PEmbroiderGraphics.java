@@ -107,6 +107,8 @@ public class PEmbroiderGraphics {
 	
 	static String logPrefix = "[PEmbroider] ";
 	
+	public float CULL_SPACING = 7;
+	
 	/**
 	* The constructor for PEmbroiderGraphics object.
 	*
@@ -3221,7 +3223,7 @@ public class PEmbroiderGraphics {
 
 		int last = cullGroups.get(beginCullIndex);
 		groups.add(new ArrayList<ArrayList<PVector>>());
-		groups.get(groups.size()-1).add(resampleDouble(polylines.get(beginCullIndex)));
+		groups.get(groups.size()-1).add(resampleDouble(resampleDouble(polylines.get(beginCullIndex))));
 
 		groupColors.add(new ArrayList<Integer>());
 		groupColors.get(groupColors.size()-1).add(colors.get(beginCullIndex));
@@ -3232,7 +3234,7 @@ public class PEmbroiderGraphics {
 				groups.add(new ArrayList<ArrayList<PVector>>());
 				groupColors.add(new ArrayList<Integer>());
 			}
-			groups.get(groups.size()-1).add(resampleDouble(polylines.get(i)));
+			groups.get(groups.size()-1).add(resampleDouble(resampleDouble(polylines.get(i))));
 			groupColors.get(groupColors.size()-1).add(colors.get(i));
 			last = cullGroups.get(i);
 		}
@@ -3244,7 +3246,7 @@ public class PEmbroiderGraphics {
 			channels[i].beginDraw();
 			channels[i].background(0);
 			channels[i].stroke(255);
-			channels[i].strokeWeight(5);
+			channels[i].strokeWeight(CULL_SPACING);
 			channels[i].strokeJoin(PConstants.ROUND);
 			channels[i].noFill();
 
@@ -3313,7 +3315,7 @@ public class PEmbroiderGraphics {
 			}
 
 			for (int k = groups.get(i).size()-1; k >= 0; k--) {
-				if (groups.get(i).get(k).size() < 2) {
+				if (groups.get(i).get(k).size() < 3) {
 					groups.get(i).remove(k);
 					groupColors.get(i).remove(k);
 					continue;
@@ -3341,7 +3343,7 @@ public class PEmbroiderGraphics {
 		}
 
 		for (int i = 0; i < polylines2.size(); i++) {
-			polylines2.set(i, resampleHalfKeepCorners(polylines2.get(i),PConstants.PI*0.1f));
+			polylines2.set(i, resampleHalfKeepCorners(resampleHalfKeepCorners(polylines2.get(i),PConstants.PI*0.1f),PConstants.PI*0.1f));
 		}
 
 		polylines.subList(beginCullIndex,polylines.size()).clear();
