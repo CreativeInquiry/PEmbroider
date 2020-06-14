@@ -20,6 +20,8 @@
 
 ![](PEmbroider_text_2/PEmbroider_text_2.png)
 
+![](PEmbroider_text_3/PEmbroider_text_3.png)
+
 ![](PEmbroider_interactive_demo/PEmbroider_interactive_demo.png)
 
 
