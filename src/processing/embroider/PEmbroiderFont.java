@@ -16,7 +16,14 @@ public class PEmbroiderFont {
 	}
 	public static float putChar(int[] cmap, char c, float ox, float oy, float scl, ArrayList<ArrayList<PVector>> out){
 	    int ordR = (int)'R';
-	    String entry = data(cmap[(int)c-32]);
+	    String entry;
+	    try {
+	    	entry = data(cmap[(int)c-32]);
+	    }catch(Exception e){
+	    	System.out.printf("[PEmbroiderFont] Warning: no glyph found for character %c\n",c);
+	    	c = ' ';
+	    	entry = data(cmap[(int)c-32]);
+	    }
 	    if (entry == null){
 	      return 0;
 	    }
@@ -42,7 +49,14 @@ public class PEmbroiderFont {
 		int sum = 0;
 		for (int i = 0; i < s.length(); i++) {
 			char c = s.charAt(i);
-			String entry = data(cmap[(int)c-32]);
+			String entry;
+		    try {
+		    	entry = data(cmap[(int)c-32]);
+		    }catch(Exception e){
+		    	System.out.printf("[PEmbroiderFont] Warning: no glyph found for character %c\n",c);
+		    	c = ' ';
+		    	entry = data(cmap[(int)c-32]);
+		    }
 			int[] bound = parseBound(entry);
 			sum += (bound[1]-bound[0]);
 		}
@@ -51,6 +65,7 @@ public class PEmbroiderFont {
 	public static ArrayList<ArrayList<PVector>> putText(int[] cmap, String s, float ox, float oy, float scl, int align) {
 		ArrayList<ArrayList<PVector>> out = new ArrayList<ArrayList<PVector>>();
 		if (align != PConstants.LEFT) {
+			
 			int w = estimateTextWidth(cmap,s);
 			if (align == PConstants.RIGHT) {
 				ox -= scl*(float)w;
