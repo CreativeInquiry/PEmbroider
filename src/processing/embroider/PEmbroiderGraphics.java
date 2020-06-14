@@ -1356,7 +1356,7 @@ public class PEmbroiderGraphics {
 	
 	/** Draw stroke (outline) for a poly(gon/line) using the PERPENDICULAR (a.k.a normal, as in "normal map", not "normal person") style (using vector math)
 	 *  @param poly the polygon
-	 *  @param n     weight of stroke
+	 *  @param d     weight of stroke
 	 *  @param s     spacing between the strokes
 	 *  @param close whether the polyline is considered as closed (polygon) or open (polyline)
 	 *  @return      an array of polylines
@@ -1374,7 +1374,7 @@ public class PEmbroiderGraphics {
 		pg.beginDraw();
 		pg.background(0);
 		pg.stroke(255);
-		pg.strokeWeight(s*0.8f);
+		pg.strokeWeight(s*1.0f);
 		pg.translate(-bb.x,-bb.y);
 		pg.strokeCap(PConstants.SQUARE);
 		for (int i = 0; i < poly.size()-(close?0:1); i++) {
@@ -1388,7 +1388,7 @@ public class PEmbroiderGraphics {
 			float l = p0.dist(p1);
 			int n = PApplet.ceil(l / s);
 			
-			for (int j = 0; j < n; j++) {
+			for (int j = 0; j < n+1; j++) {
 				float t = (float)j/(float)n;
 				PVector p = p0.copy().lerp(p1, t);
 				float x0 = p.x - d*PApplet.cos(a1);
@@ -1396,7 +1396,7 @@ public class PEmbroiderGraphics {
 				float x1 = p.x + d*PApplet.cos(a1);
 				float y1 = p.y + d*PApplet.sin(a1);
 				boolean lastOn = false;
-				int m = PApplet.ceil(d);
+				int m = PApplet.ceil(d)+1;
 				int mmm = PApplet.min(20,m/3);
 				
 				pg.beginShape();
@@ -1455,6 +1455,7 @@ public class PEmbroiderGraphics {
 				
 				int m = PApplet.ceil(d);
 				int mmm = PApplet.min(10,m/3);
+				mmm = 0;
 				
 				pg.beginShape();
 				for (int k = 0; k < m; k++) {
