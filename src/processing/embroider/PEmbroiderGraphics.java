@@ -2466,6 +2466,26 @@ public class PEmbroiderGraphics {
 		endShape(true);
 	}
 	
+	void _arc(float cx, float cy, float rx, float ry, float start, float stop, int mode) {
+		ArrayList<PVector> poly = new ArrayList<PVector>();
+		for (int i = 0; i < CIRCLE_DETAIL; i++) {
+			float a = start+((float)i/(float)CIRCLE_DETAIL)*(stop-start);
+			float x = cx + rx * PApplet.cos(a);
+			float y = cy + ry * PApplet.sin(a);
+			poly.add(new PVector(x,y));
+		}
+		if (mode == PConstants.CHORD && poly.size()>0) {
+			poly.add(poly.get(0));
+		}else if (mode == PConstants.PIE) {
+			poly.add(new PVector(cx,cy));
+			poly.add(poly.get(0));
+		}
+		polyBuff.clear();
+		polyBuff.add(poly);
+		endShape(false);
+	}
+	
+	
 	/** 
 	 *  Draw a rectangle using global settings.
 	 *  The unambigous backend for user-facing rect(), the ambigous one which can be affected by rectMode().
@@ -2481,6 +2501,51 @@ public class PEmbroiderGraphics {
 		poly.add(new PVector(x+w,y));
 		poly.add(new PVector(x+w,y+h));
 		poly.add(new PVector(x,y+h));
+		polyBuff.clear();
+		polyBuff.add(poly);
+		endShape(true);
+	}
+	void _roundedRect(float x, float y, float w, float h, float tl, float tr, float br, float bl) {
+		int n = 10;
+		ArrayList<PVector> poly = new ArrayList<PVector>();
+//		poly.add(new PVector(x,y+tl));
+		
+		for (int i = 0; i < n+1; i++) {
+			float a = ((float)i/(float)n)*PApplet.HALF_PI;
+			float xx = x+tl-PApplet.cos(a)*tl;
+			float yy = y+tl-PApplet.sin(a)*tl;
+			poly.add(new PVector(xx,yy));
+		}
+		
+		
+//		poly.add(new PVector(x+w-tr,y));
+		
+		for (int i = 0; i < n+1; i++) {
+			float a = ((float)i/(float)n)*PApplet.HALF_PI;
+			float xx = x+w-tr+PApplet.sin(a)*tr;
+			float yy = y+tr-PApplet.cos(a)*tr;
+			poly.add(new PVector(xx,yy));
+		}
+		
+//		poly.add(new PVector(x+w,y+h-br));
+		
+		for (int i = 0; i < n+1; i++) {
+			float a = ((float)i/(float)n)*PApplet.HALF_PI;
+			float xx = x+w-br+PApplet.cos(a)*br;
+			float yy = y+h-br+PApplet.sin(a)*br;
+			poly.add(new PVector(xx,yy));
+		}
+		
+//		poly.add(new PVector(x+bl,y+h));
+		
+		for (int i = 0; i < n+1; i++) {
+			float a = ((float)i/(float)n)*PApplet.HALF_PI;
+			float xx = x+bl-PApplet.sin(a)*bl;
+			float yy = y+h-bl+PApplet.cos(a)*bl;
+			poly.add(new PVector(xx,yy));
+		}
+		
+		
 		polyBuff.clear();
 		polyBuff.add(poly);
 		endShape(true);
@@ -2687,6 +2752,21 @@ public class PEmbroiderGraphics {
 		}
 	}
 
+	public void arc(float a, float b, float c, float d, float start, float stop, int mode) {
+		if (ELLIPSE_MODE == PConstants.CORNER) {
+			_arc(a + c / 2, b + d / 2, c / 2, d / 2, start, stop, mode);
+		} else if (ELLIPSE_MODE == PConstants.CORNERS) {
+			_arc((a + c) / 2, (b + d) / 2, (c - a) / 2, (d - b) / 2, start, stop, mode);
+		} else if (ELLIPSE_MODE == PConstants.CENTER) {
+			_arc(a, b, c / 2, d / 2, start, stop, mode);
+		} else if (ELLIPSE_MODE == PConstants.RADIUS) {
+			_arc(a, b, c, d, start, stop, mode);
+		}
+	}
+	public void arc(float a, float b, float c, float d, float start, float stop) {
+		arc(a,b,c,d,start,stop,PConstants.OPEN);
+	}
+
 	/** 
 	 *  Draw a rectangle
 	 *  @param a   the first parameter, the meaning of which depends on rectMode
@@ -2695,17 +2775,36 @@ public class PEmbroiderGraphics {
 	 *  @param d   the fourth parameter, the meaning of which depends on rectMode
 	 */
 	public void rect(float a, float b, float c, float d) {
-		if (ELLIPSE_MODE == PConstants.CORNER) {
+		if (RECT_MODE == PConstants.CORNER) {
 			_rect(a, b, c, d);
-		} else if (ELLIPSE_MODE == PConstants.CORNERS) {
+		} else if (RECT_MODE == PConstants.CORNERS) {
 			_rect(a, b, c-a, d-b);
-		} else if (ELLIPSE_MODE == PConstants.CENTER) {
+		} else if (RECT_MODE == PConstants.CENTER) {
 			_rect(a-c/2, b-d/2, c, d);
-		} else if (ELLIPSE_MODE == PConstants.RADIUS) {
+		} else if (RECT_MODE == PConstants.RADIUS) {
 			_rect(a-c, b-d, c*2, d*2);
 		}
 	}
+	public void square(float a, float b, float c) {
+		rect(a,b,c,c);
+	}
+	
+	public void rect(float a, float b, float c, float d, float r) {
+		rect(a,b,c,d,r,r,r,r);
+	}
+	public void rect(float a, float b, float c, float d, float tl, float tr, float br, float bl) {
+		if (RECT_MODE == PConstants.CORNER) {
+			_roundedRect(a, b, c, d, tl, tr, br, bl);
+		} else if (RECT_MODE == PConstants.CORNERS) {
+			_roundedRect(a, b, c-a, d-b, tl, tr, br, bl);
+		} else if (RECT_MODE == PConstants.CENTER) {
+			_roundedRect(a-c/2, b-d/2, c, d, tl, tr, br, bl);
+		} else if (RECT_MODE == PConstants.RADIUS) {
+			_roundedRect(a-c, b-d, c*2, d*2, tl, tr, br, bl);
+		}
+	}
 
+	
 	/** 
 	 *  Draw a line
 	 *  @param x0  x coordinate of first endpoint
@@ -3488,6 +3587,27 @@ public class PEmbroiderGraphics {
 
 	public void image(PImage im, int x, int y) {
 		image(im, x, y, im.width, im.height);
+	}
+	
+	public void shape(PShape sh, int x, int y, int w, int h) {
+		int pad = 10;
+		sh.disableStyle();
+		PGraphics pg = app.createGraphics(w+pad*2, h+pad*2);
+		pg.beginDraw();
+		pg.background(0);
+		pg.fill(255);
+		pg.noStroke();
+		pg.shape(sh,pad,pad,w,h);
+//		pg.filter(PConstants.INVERT);
+		pg.endDraw();
+//		app.image(pg,0,0);
+		image(pg,x-pad,y-pad);
+	}
+	
+	public void shape(PShape sh, int x, int y) {
+		int w = (int)sh.width;
+		int h = (int)sh.height;
+		shape(sh,x,y,w,h);
 	}
 	
 	/**
