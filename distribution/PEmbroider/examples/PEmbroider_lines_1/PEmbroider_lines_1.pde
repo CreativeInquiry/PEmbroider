@@ -7,7 +7,7 @@ PEmbroiderGraphics E;
 
 void setup() {
   noLoop(); 
-  size (850, 500);
+  size (800, 500);
 
   E = new PEmbroiderGraphics(this, width, height);
   String outputFilePath = sketchPath("PEmbroider_lines_1.vp3");
@@ -24,7 +24,7 @@ void setup() {
   E.strokeSpacing(2.0);
   E.setStitch(5, 15, 0.0);
   
-  E.strokeCap(SQUARE);
+  E.strokeCap(SQUARE); // NOTE: currently not working for PERPENDICULAR
   E.strokeMode(PEmbroiderGraphics.PERPENDICULAR); 
   for (int i=0; i<nLines; i++) {
     float x0 = 50; 

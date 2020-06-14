@@ -30,7 +30,7 @@ void setup() {
   E.setStitch(2, 20, 0); 
   E.hatchMode(PEmbroiderGraphics.PARALLEL);
   E.PARALLEL_RESAMPLING_OFFSET_FACTOR = 0.5; // not working yet ..?
-  E.EXPERIMENTAL_PARALLEL_RESAMPLE = true;
+  //E.EXPERIMENTAL_PARALLEL_RESAMPLE = true;
   E.hatchAngleDeg(15);
   E.hatchSpacing(3.0);
   E.image(myImage, 0, 0);
@@ -52,10 +52,6 @@ void setup() {
   E.hatchMode(PEmbroiderGraphics.CONCENTRIC); 
   E.hatchSpacing(7.5);
   E.image(myImage, 250, 250);
-  // Add outer contour as a stroke
-  E.noFill(); 
-  E.stroke(0, 0, 0); 
-  E.strokeWeight(1); 
   E.image(myImage, 250, 250);
 
   // Draw fat perpendicular stroke only, no fill. 

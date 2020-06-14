@@ -16,6 +16,7 @@ void setup() {
   E.clear();
   E.fill(0, 0, 0); 
   
+  E.CULL_SPACING = 7;
   E.hatchSpacing(6);
   E.strokeWeight(1); 
   E.stitchLength( 16.20); 
@@ -71,8 +72,8 @@ void setup() {
   E.endCull();
 
   //-----------------------
-  E.optimize(); // slow but good and important
-  E.visualize(true, true, true);
+  // E.optimize(); // slow but good and important
+  E.visualize(); //true, true, true);
   // E.endDraw(); // write out the file
 }
 

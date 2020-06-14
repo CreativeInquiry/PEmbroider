@@ -1389,7 +1389,9 @@ public class PEmbroiderGraphics {
 			
 			float l = p0.dist(p1);
 			int n = PApplet.ceil(l / s);
-			
+			if (n == 0) {
+				continue;
+			}
 			for (int j = 0; j < n+1; j++) {
 				float t = (float)j/(float)n;
 				PVector p = p0.copy().lerp(p1, t);
@@ -1397,13 +1399,14 @@ public class PEmbroiderGraphics {
 				float y0 = p.y - d*PApplet.sin(a1);
 				float x1 = p.x + d*PApplet.cos(a1);
 				float y1 = p.y + d*PApplet.sin(a1);
+
 				boolean lastOn = false;
 				int m = PApplet.ceil(d)+1;
 				int mmm = PApplet.min(20,m/3);
 				
 				pg.beginShape();
 				for (int k = 0; k < m; k++) {
-					float u = (float)k/(float)(m-1);
+					float u = (float)k/(float)PApplet.max(1,m-1);
 					float x2 = x0 * (1-u) + x1 * u;
 					float y2 = y0 * (1-u) + y1 * u;
 					if (k == m-1 && lastOn) {
@@ -3393,6 +3396,11 @@ public class PEmbroiderGraphics {
 			_stroke(polys, true);
 		}
 		if (isFill) {
+			if (!isStroke && HATCH_MODE == CONCENTRIC) {
+				for (int i = 0; i < polys.size(); i++) {
+					pushPolyline(polys.get(i),0);
+				}
+			}
 			hatchRaster(im2);
 		}
 		if (isStroke && !FIRST_STROKE_THEN_FILL) {
