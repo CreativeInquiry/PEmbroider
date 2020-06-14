@@ -28,6 +28,7 @@ public class PEmbroiderGraphics {
 	public ArrayList<ArrayList<PVector>> polylines;
 	public ArrayList<Integer> colors;
 	public ArrayList<ArrayList<PVector>> polyBuff;
+	ArrayList<PVector> curveBuff;
 	public PGraphics rasterBuff;
 	public ArrayList<Integer> cullGroups;
 
@@ -69,6 +70,10 @@ public class PEmbroiderGraphics {
 	public int RECT_MODE = PConstants.CORNER;
 	public int BEZIER_DETAIL = 40;
 	public int CIRCLE_DETAIL = 32;
+	
+	public int CATMULLROM_DETAIL = 40;
+	public float CATMULLROM_TIGHTNESS = 0.5f;
+	
 	public int HATCH_MODE = 1;
 	public float HATCH_ANGLE  =  PApplet.QUARTER_PI;
 	public float HATCH_ANGLE2 = -PApplet.QUARTER_PI;
@@ -125,6 +130,7 @@ public class PEmbroiderGraphics {
 		matStack.add(new PMatrix2D());
 		polylines = new ArrayList<ArrayList<PVector>>();
 		polyBuff = new ArrayList<ArrayList<PVector>> ();
+		curveBuff = new ArrayList<PVector> ();
 		colors = new ArrayList<Integer>();
 		cullGroups = new ArrayList<Integer>();
 	}
@@ -239,6 +245,12 @@ public class PEmbroiderGraphics {
 	 */
 	public void bezierDetail(int n) {
 		BEZIER_DETAIL = n;
+	}
+	public void curveDetail(int n) {
+		CATMULLROM_DETAIL = n;
+	}
+	public void curveTightness(float n) {
+		CATMULLROM_TIGHTNESS = n;
 	}
 	/** Change hatching pattern
 	 *  
@@ -2616,6 +2628,46 @@ public class PEmbroiderGraphics {
 			return highBezier(new ArrayList<PVector>(P.subList(0,P.size()-1)),t).lerp(highBezier(new ArrayList<PVector>(P.subList(1, P.size())),t),t);
 		}
 	}
+	public float catmullromSplineGetT(float t, PVector p0, PVector p1, float alpha){
+	    float a = PApplet.pow((p1.x-p0.x), 2.0f) + PApplet.pow((p1.y-p0.y), 2.0f);
+	    float b = PApplet.pow(a, alpha * 0.5f);
+	   
+	    return (b + t);
+	}
+	public ArrayList<PVector> catmullRomSpline(PVector p0, PVector p1, PVector p2, PVector p3, int numberOfPoints, float alpha){
+		//https://en.wikipedia.org/wiki/Centripetal_Catmull–Rom_spline
+		ArrayList<PVector> newPoints = new ArrayList<PVector>();
+
+		
+		if (p0.x == p1.x && p0.y == p1.y) {
+			p0.x += 0.001;
+		}
+		if (p1.x == p2.x && p1.y == p2.y) {
+			p1.x += 0.001;
+		}
+		if (p2.x == p3.x && p2.y == p3.y) {
+			p2.x += 0.001;
+		}
+		
+		float t0 = 0.0f;
+		float t1 = catmullromSplineGetT(t0, p0, p1,alpha);
+		float t2 = catmullromSplineGetT(t1, p1, p2,alpha);
+		float t3 = catmullromSplineGetT(t2, p2, p3,alpha);
+
+		for (float t=t1; t<t2; t+=((t2-t1)/(float)numberOfPoints))
+		{
+		    PVector A1 = p0.copy().mult((t1-t)/(t1-t0)) .add( p1.copy().mult((t-t0)/(t1-t0)) );
+		    PVector A2 = p1.copy().mult((t2-t)/(t2-t1)) .add( p2.copy().mult((t-t1)/(t2-t1)) );
+		    PVector A3 = p2.copy().mult((t3-t)/(t3-t2)) .add( p3.copy().mult((t-t2)/(t3-t2)) );
+		    
+		    PVector B1 = A1.copy().mult((t2-t)/(t2-t0)) .add( A2.copy().mult((t-t0)/(t2-t0)) );
+		    PVector B2 = A2.copy().mult((t3-t)/(t3-t1)) .add( A3.copy().mult((t-t1)/(t3-t1)) );
+		    PVector C = B1.copy().mult((t2-t)/(t2-t1)) .add( B2.copy().mult((t-t1)/(t2-t1)) );
+//		    PApplet.println(C);
+		    newPoints.add(C);
+		}
+		return newPoints;
+	}
 	/** 
 	 *  Draw a ellipse
 	 *  @param a   the first parameter, the meaning of which depends on ellipseMode
@@ -2723,6 +2775,7 @@ public class PEmbroiderGraphics {
 		}
 		polyBuff.clear();
 		polyBuff.add(new ArrayList<PVector>());
+		curveBuff.clear();
 	}
 	/** 
 	 *  Add vertex to the current polygon/polyline. This must be preceded by beginShape()
@@ -2732,6 +2785,7 @@ public class PEmbroiderGraphics {
 	public void vertex(float x, float y) {
 		
 		polyBuff.get(polyBuff.size()-1).add(new PVector(x,y));
+		curveBuff.clear();
 		
 	}
 	/** 
@@ -2746,6 +2800,7 @@ public class PEmbroiderGraphics {
 	 */
 	public void bezierVertex(float x1, float y1, float x2, float y2, float x3, float y3) {
 		cubicVertex(x1,y1,x2,y2,x3,y3);
+		curveBuff.clear();
 	}
 	/** 
 	 *  Add a rational quadratic bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex()
@@ -2762,6 +2817,7 @@ public class PEmbroiderGraphics {
 			PVector p = rationalQuadraticBezier(p0, new PVector(x1,y1), new PVector(x2,y2), w, t);
 			polyBuff.get(polyBuff.size()-1).add(p);
 		}
+		curveBuff.clear();
 	}
 	/** 
 	 *  Add a quadratic bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex()
@@ -2775,6 +2831,7 @@ public class PEmbroiderGraphics {
 		poly.add(new PVector(x1,y1));
 		poly.add(new PVector(x2,y2));
 		highBezierVertex(poly);
+		curveBuff.clear();
 	}
 	/** 
 	 *  Add a cubic bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex()
@@ -2791,6 +2848,7 @@ public class PEmbroiderGraphics {
 		poly.add(new PVector(x2,y2));
 		poly.add(new PVector(x3,y3));
 		highBezierVertex(poly);
+		curveBuff.clear();
 	}
 	/** 
 	 *  Add a quartic bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex()
@@ -2810,6 +2868,7 @@ public class PEmbroiderGraphics {
 		poly.add(new PVector(x3,y3));
 		poly.add(new PVector(x4,y4));
 		highBezierVertex(poly);
+		curveBuff.clear();
 	}
 	/** 
 	 *  Add a quintic bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex()
@@ -2832,6 +2891,7 @@ public class PEmbroiderGraphics {
 		poly.add(new PVector(x4,y4));
 		poly.add(new PVector(x5,y5));
 		highBezierVertex(poly);
+		curveBuff.clear();
 	}
 	/** 
 	 *  Add a higher-order bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex()
@@ -2852,14 +2912,31 @@ public class PEmbroiderGraphics {
 			}
 			polyBuff.get(polyBuff.size()-1).add(p);
 		}
+		curveBuff.clear();
 	}
+	
+	public void curveVertex(float x, float y) {
+		curveBuff.add(new PVector(x,y));
 
+		if (curveBuff.size() < 4) {
+			return;
+		}
+		PVector p0 = curveBuff.get(curveBuff.size()-4);
+		PVector p1 = curveBuff.get(curveBuff.size()-3);
+		PVector p2 = curveBuff.get(curveBuff.size()-2);
+		PVector p3 = curveBuff.get(curveBuff.size()-1);
+
+		ArrayList<PVector> poly = catmullRomSpline(p0,p1,p2,p3,CATMULLROM_DETAIL,CATMULLROM_TIGHTNESS);
+
+		polyBuff.get(polyBuff.size()-1).addAll(poly);
+	}
 	
 	/** 
 	 *  End drawing a polygon. at this moment the polygon will be actually drawn to the design
 	 *  @param close  whether or not to close the polyline (forming polygon)
 	 */
 	public void endShape(boolean close) {
+		curveBuff.clear();
 		if (polyBuff.size() == 0) {
 			return;
 		}
