@@ -19,6 +19,8 @@ void setup() {
   String outputFilePath = sketchPath("PEmbroider_bitmap_image_1.vp3");
   E.setPath(outputFilePath); 
 
+  E.toggleResample(false);
+
   //-------------------
   // Initial setup of PEmbroider object.
   E.beginDraw(); 
@@ -94,6 +96,7 @@ void setup() {
   // E.optimize(); // slow, but good and important
   E.visualize();
   // E.endDraw(); // write out the file
+  E.printStats();
 }
 
 

@@ -1358,7 +1358,38 @@ public class PEmbroiderGraphics {
 				}
 			}
 			
-			polys2.addAll(polys3);
+			for (int i = 0; i < polys3.size(); i++) {
+				ArrayList<PVector> pp = polys3.get(i);
+				if (k%2 == 0) {
+					ArrayList<PVector> qq = new ArrayList<PVector>();
+					for (int j = 0; j < pp.size()+1; j++) {
+						if (j != pp.size()) {
+							PVector a = pp.get((j-1+pp.size())%pp.size());
+							PVector b = pp.get(j);
+							PVector c = pp.get((j+1)%pp.size());
+							PVector u = b.copy().sub(a);
+							PVector v = c.copy().sub(b);
+							float ang = PApplet.abs(PVector.angleBetween(u, v));
+							if (ang > PConstants.PI) {
+								ang = PConstants.TWO_PI - ang;
+							}
+							if (ang > 0.6) {
+								qq.add(b);
+							}
+						}
+						
+						PVector p = pp.get(j%pp.size()).copy().mult(0.5f).add(pp.get((j+1)%pp.size()).copy().mult(0.5f));
+						qq.add(p);
+					}
+					polys2.add(qq);
+
+					
+				}else {
+					polys2.add(pp);
+				}
+			}
+				
+//			polys2.addAll(polys3);
 			
 
 //			app.tint(255,/100f);
