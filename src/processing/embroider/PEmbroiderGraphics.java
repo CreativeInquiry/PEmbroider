@@ -2469,7 +2469,7 @@ public class PEmbroiderGraphics {
 	void _arc(float cx, float cy, float rx, float ry, float start, float stop, int mode) {
 		ArrayList<PVector> poly = new ArrayList<PVector>();
 		for (int i = 0; i < CIRCLE_DETAIL; i++) {
-			float a = start+((float)i/(float)CIRCLE_DETAIL)*(stop-start);
+			float a = start+((float)i/(float)(CIRCLE_DETAIL-1))*(stop-start);
 			float x = cx + rx * PApplet.cos(a);
 			float y = cy + ry * PApplet.sin(a);
 			poly.add(new PVector(x,y));
