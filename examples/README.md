@@ -9,6 +9,7 @@
 * PEmbroider_shape_culling
 * PEmbroider_shape_merging
 * PEmbroider_bitmap_image_1
+* PEmbroider_svg_image
 * PEmbroider_text_1
 * PEmbroider_text_2
 * PEmbroider_text_3
@@ -86,6 +87,13 @@ Using raster rendering to create complex compound shapes.
 Embroidering shapes in bitmap images. Shapes must be white blobs on a black background. The hatchSpine method (stitches perpendicular to contour, in the upper right) is still experimental.
 
 ![](PEmbroider_bitmap_image_1/PEmbroider_bitmap_image_1.png)
+
+
+## PEmbroider_svg_image
+
+Embroidering shapes loaded from SVG files.
+
+![](PEmbroider_svg_image/PEmbroider_svg_image.png)
 
 
 
