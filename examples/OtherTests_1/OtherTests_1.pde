@@ -1,3 +1,4 @@
+// LANDFILL; ignore this program.
 // Simple test program for the PEmbroider library for Processing
 
 import processing.embroider.*;
@@ -26,8 +27,8 @@ void setup() {
   // test_field(); 
 
   E.visualize();
-  E.optimize(); // slow but good and important
-  E.endDraw(); // write out the file
+  //E.optimize(); // slow but good and important
+  //E.endDraw(); // write out the file
 }
 
 
