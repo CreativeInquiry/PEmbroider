@@ -2,7 +2,7 @@
 
 **PEmbroider is an open library for computational embroidery with [Processing](http://processing.org).** Developed spring 2020 at the CMU [Frank-Ratchye STUDIO for Creative Inquiry](http://studioforcreativeinquiry.org) by Golan Levin, Lingdong Huang, and Tatyana Mustakos, with generous support from the [Clinic for Open Source Arts](https://www.du.edu/ahss/opensourcearts/) (COSA) at the University of Denver. 
 
-PEmbroider includes embroidery machine file-writing code adapted from the EmbroidePy [EmbroideryIO](https://github.com/EmbroidePy/EmbroideryIO) project. Additional thanks to Chris Coleman, Huw Messie, Bryce Summers, Lea Albaugh, Dan Moore, the Processing Foundation, and the staff of the STUDIO. 
+PEmbroider includes file-writing code adapted from the EmbroidePy [EmbroideryIO](https://github.com/EmbroidePy/EmbroideryIO) project under its MIT License. Additional thanks to Chris Coleman, Huw Messie, Bryce Summers, Lea Albaugh, Dan Moore, the Processing Foundation, and the staff of the STUDIO. 
 
 ![](images/cosa-and-sfci-logos.jpg)
 
@@ -38,9 +38,9 @@ PEmbroider comes with a variety of [examples](examples/README.md) which demonstr
 
 * Be sure to have already installed [Processing v.3.5.4](http://processing.org) or higher. 
 * [Download](https://github.com/CreativeInquiry/PEmbroider/blob/master/distribution/Pembroider/download/Pembroider.zip) the precompiled PEmbroider library .ZIP directly from [here](https://github.com/CreativeInquiry/PEmbroider/blob/master/distribution/Pembroider/download/Pembroider.zip). 
-* Unzip the PEmbroider .ZIP file and install it in your Processing *Libraries* directory. More detailed instructions for doing this can be found [here](https://github.com/processing/processing/wiki/How-to-Install-a-Contributed-Library).
+* **For an automated install,** try using Processing's Contribution Manager. Navigate as follows in the Processing app: *Sketch* → *Import Library* → *PEmbroider*. This will open the Contribution Manager, where you can browse for PEmbroider.
+* **For a manual install,** Unzip the PEmbroider .ZIP file and install it in your Processing *Libraries* directory. More detailed instructions for doing this can be found [here](https://github.com/processing/processing/wiki/How-to-Install-a-Contributed-Library).
 * Restart Processing. You should now be able to open and run some of the example programs, which you can find inside the PEmbroider directory, or [here](examples/README.md).
-* To add PEmbroider to a Processing sketch, navigate as follows in the Processing app: *Sketch* → *Import Library* → *PEmbroider*.
 * See [here for instructions](https://github.com/CreativeInquiry/STUDIO-Embroidery-Machine) on using the STUDIO's Husqvarna Viking Designer Jade 35 embroidery machine.
 
 
