@@ -1,5 +1,6 @@
 # PEmbroider Examples
 
+* Hello_PEmbroider
 * PEmbroider_shapes
 * PEmbroider_strokes
 * PEmbroider_lines
@@ -16,6 +17,14 @@
 * PEmbroider_interactive_demo
 
 ---
+
+## Hello_PEmbroider
+
+A simple "Hello World!" program that renders a smily face. 
+
+[![](Hello_PEmbroider/Hello_PEmbroider.png)](Hello_PEmbroider/)
+
+
 
 ## PEmbroider_shapes
 
@@ -124,7 +133,7 @@ Built-in implmentations of [Hershey fonts](https://en.wikipedia.org/wiki/Hershey
 
 ## PEmbroider_interactive_demo
 
-Demonstration of exporting an embroidery file during live interaction.
+Demonstration of how an embroidery file can be generated and exported *during live interaction*.
 
 [![](PEmbroider_interactive_demo/PEmbroider_interactive_demo.png)](PEmbroider_interactive_demo/)
 
