@@ -64,10 +64,7 @@ void setup() {
 
  
   //-----------------------
-  // Be sure to un-comment the optimize() and endDraw() 
-  // calls when you want to actually export the file.
-
   // E.optimize(); // VERY SLOW -- can take MINUTES -- but ESSENTIAL!!!
   E.visualize();
-  // E.endDraw(); // write out the file
+  E.endDraw(); // write out the file
 }

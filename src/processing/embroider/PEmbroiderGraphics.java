@@ -4176,7 +4176,30 @@ public class PEmbroiderGraphics {
 	 
 	 
 
-	 
+	 public void printStats() {
+		 PApplet.println("total number of polylines: ",polylines.size());
+		 int nStitches = 0;
+		 float lenPoly = 0;
+		 float lenConnect = 0;
+		
+		 for (int i = 0; i < polylines.size(); i++) {
+			 nStitches += polylines.get(i).size();
+			 for (int j = 1; j < polylines.get(i).size(); j++) {
+				 lenPoly += polylines.get(i).get(j-1).dist(polylines.get(i).get(j));
+			 }
+		 }
+		 PApplet.println("total number of stitches: ",nStitches);
+
+		 for (int i = 1; i < polylines.size(); i++) {
+			 if (polylines.get(i-1).size() > 0 && polylines.get(i).size() > 0) {
+				 lenConnect += polylines.get(i-1).get(polylines.get(i-1).size()-1).dist(polylines.get(i).get(0));
+			 }
+		 }
+
+		 PApplet.println("total length of thread in main design: ",lenPoly);
+		 PApplet.println("total length of connective threads: ",lenConnect);
+		 PApplet.println("total length of thread consumed IRL: ",lenPoly+lenConnect);
+	 }
 	 
 	 
 

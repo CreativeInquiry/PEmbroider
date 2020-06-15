@@ -25,7 +25,7 @@ categories = Fabrication
 # repeating the name of your Library here. Also, avoid saying anything redundant 
 # like mentioning that it's a Library. This should start with a capitalized 
 # letter, and end with a period.
-sentence = A toolset for computational embroidery with Processing, able to generate .DST, .PES, .VP3, and other files for computer-controlled embroidery machines.
+sentence = A library for generating .DST, .PEC, .VP3, and other files for computer-controlled embroidery machines.
 
 # Additional information suitable for the Processing website. The value of
 # 'sentence' always will be prepended, so you should start by writing the
