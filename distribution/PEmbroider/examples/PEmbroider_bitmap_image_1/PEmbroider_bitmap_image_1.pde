@@ -92,6 +92,7 @@ void setup() {
   // Draw the original raster image (for reference).
   image(myImage, 750, 0);
 
+
   //-------------------
   // E.optimize(); // slow, but good and important
   E.visualize();

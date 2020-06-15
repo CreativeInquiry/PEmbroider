@@ -4232,6 +4232,33 @@ public class PEmbroiderGraphics {
 		 PApplet.println("total length of thread consumed IRL: ",lenPoly+lenConnect);
 	 }
 	 
-	 
+	 public void repeatEnd(float x) {
+		 for (int i = 0; i < polylines.size(); i++) {
+			 if (polylines.get(i).size() < 2) {
+				 continue;
+			 }
+			 PVector a = polylines.get(i).get(0).copy();
+			 float l = polylines.get(i).get(0).dist(polylines.get(i).get(1));
+			 float t = x/l;
+			 PVector b = polylines.get(i).get(0).copy().mult(1-t).add(polylines.get(i).get(1).copy().mult(t));
+
+//			 a.x += app.random(10);
+//			 b.x += app.random(10);
+			 
+			 polylines.get(i).add(0,b);
+			 polylines.get(i).add(0,a);
+			 
+			 PVector c = polylines.get(i).get(polylines.get(i).size()-1).copy();
+			 float m = polylines.get(i).get(polylines.get(i).size()-1).dist(polylines.get(i).get(polylines.get(i).size()-2));
+			 float s = x/m;
+			 PVector d = polylines.get(i).get(polylines.get(i).size()-1).copy().mult(1-s).add(polylines.get(i).get(polylines.get(i).size()-2).copy().mult(s));
+			 polylines.get(i).add(d);
+			 
+//			 c.x += app.random(10);
+//			 d.x += app.random(10);
+			 polylines.get(i).add(c);
+			 
+		 }
+	 }
 
 }
