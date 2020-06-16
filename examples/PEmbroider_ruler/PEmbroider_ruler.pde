@@ -56,6 +56,8 @@ void setup() {
   E.text("CM", x0, y0+150);
   E.text("IN", x0, y0-150);
 
+  E.repeatEnd(3);
+
   //-----------------------
   E.optimize(); // slow, but very good and very important);
   E.visualize(); 

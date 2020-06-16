@@ -1358,7 +1358,38 @@ public class PEmbroiderGraphics {
 				}
 			}
 			
-			polys2.addAll(polys3);
+			for (int i = 0; i < polys3.size(); i++) {
+				ArrayList<PVector> pp = polys3.get(i);
+				if (k%2 == 0) {
+					ArrayList<PVector> qq = new ArrayList<PVector>();
+					for (int j = 0; j < pp.size()+1; j++) {
+						if (j != pp.size()) {
+							PVector a = pp.get((j-1+pp.size())%pp.size());
+							PVector b = pp.get(j);
+							PVector c = pp.get((j+1)%pp.size());
+							PVector u = b.copy().sub(a);
+							PVector v = c.copy().sub(b);
+							float ang = PApplet.abs(PVector.angleBetween(u, v));
+							if (ang > PConstants.PI) {
+								ang = PConstants.TWO_PI - ang;
+							}
+							if (ang > 0.6) {
+								qq.add(b);
+							}
+						}
+						
+						PVector p = pp.get(j%pp.size()).copy().mult(0.5f).add(pp.get((j+1)%pp.size()).copy().mult(0.5f));
+						qq.add(p);
+					}
+					polys2.add(qq);
+
+					
+				}else {
+					polys2.add(pp);
+				}
+			}
+				
+//			polys2.addAll(polys3);
 			
 
 //			app.tint(255,/100f);
@@ -4176,8 +4207,58 @@ public class PEmbroiderGraphics {
 	 
 	 
 
+	 public void printStats() {
+		 PApplet.println("total number of polylines: ",polylines.size());
+		 int nStitches = 0;
+		 float lenPoly = 0;
+		 float lenConnect = 0;
+		
+		 for (int i = 0; i < polylines.size(); i++) {
+			 nStitches += polylines.get(i).size();
+			 for (int j = 1; j < polylines.get(i).size(); j++) {
+				 lenPoly += polylines.get(i).get(j-1).dist(polylines.get(i).get(j));
+			 }
+		 }
+		 PApplet.println("total number of stitches: ",nStitches);
+
+		 for (int i = 1; i < polylines.size(); i++) {
+			 if (polylines.get(i-1).size() > 0 && polylines.get(i).size() > 0) {
+				 lenConnect += polylines.get(i-1).get(polylines.get(i-1).size()-1).dist(polylines.get(i).get(0));
+			 }
+		 }
+
+		 PApplet.println("total length of thread in main design: ",lenPoly);
+		 PApplet.println("total length of connective threads: ",lenConnect);
+		 PApplet.println("total length of thread consumed IRL: ",lenPoly+lenConnect);
+	 }
 	 
-	 
-	 
+	 public void repeatEnd(float x) {
+		 for (int i = 0; i < polylines.size(); i++) {
+			 if (polylines.get(i).size() < 2) {
+				 continue;
+			 }
+			 PVector a = polylines.get(i).get(0).copy();
+			 float l = polylines.get(i).get(0).dist(polylines.get(i).get(1));
+			 float t = x/l;
+			 PVector b = polylines.get(i).get(0).copy().mult(1-t).add(polylines.get(i).get(1).copy().mult(t));
+
+//			 a.x += app.random(10);
+//			 b.x += app.random(10);
+			 
+			 polylines.get(i).add(0,b);
+			 polylines.get(i).add(0,a);
+			 
+			 PVector c = polylines.get(i).get(polylines.get(i).size()-1).copy();
+			 float m = polylines.get(i).get(polylines.get(i).size()-1).dist(polylines.get(i).get(polylines.get(i).size()-2));
+			 float s = x/m;
+			 PVector d = polylines.get(i).get(polylines.get(i).size()-1).copy().mult(1-s).add(polylines.get(i).get(polylines.get(i).size()-2).copy().mult(s));
+			 polylines.get(i).add(d);
+			 
+//			 c.x += app.random(10);
+//			 d.x += app.random(10);
+			 polylines.get(i).add(c);
+			 
+		 }
+	 }
 
 }
