@@ -1,19 +1,19 @@
 # PEmbroider
 
-**PEmbroider is an open library for computational embroidery with [Processing](http://processing.org).** Developed spring 2020 at the CMU [Frank-Ratchye STUDIO for Creative Inquiry](http://studioforcreativeinquiry.org) by Golan Levin, Lingdong Huang, and Tatyana Mustakos, with generous support from the [Clinic for Open Source Arts](https://www.du.edu/ahss/opensourcearts/) (COSA) at the University of Denver. If you found this code useful, please consider [making a donation](https://studioforcreativeinquiry.org/donate).
+**PEmbroider is an open library for computational embroidery with [Processing](http://processing.org).** Developed spring 2020 at the CMU [Frank-Ratchye STUDIO for Creative Inquiry](http://studioforcreativeinquiry.org) by Golan Levin, Lingdong Huang, and Tatyana Mustakos, with generous support from the [Clinic for Open Source Arts](https://www.du.edu/ahss/opensourcearts/) (COSA) at the University of Denver. If you found this project useful, please consider [making a donation](https://studioforcreativeinquiry.org/donate).
 
 ![](images/cosa-and-sfci-logos.jpg)
 
-PEmbroider includes file-writing code adapted from the EmbroidePy [EmbroideryIO](https://github.com/EmbroidePy/EmbroideryIO), project under its MIT License. Additional thanks to Chris Coleman, Huw Messie, Bryce Summers, Lea Albaugh, Dan Moore, the Processing Foundation, and the staff of the STUDIO. 
+PEmbroider includes file-writing code adapted from the EmbroidePy [EmbroideryIO](https://github.com/EmbroidePy/EmbroideryIO) project, under its MIT License. Additional thanks to Chris Coleman, Huw Messie, Bryce Summers, Lea Albaugh, Dan Moore, the Processing Foundation, and the staff of the STUDIO. 
 
-*Quick [link to download](distribution/PEmbroider/download/Pembroider.zip) the PEmbroider library:*<br/>
+Quick [link to download](distribution/PEmbroider/download/Pembroider.zip) the PEmbroider library .ZIP file:<br/>
 [![Download the PEmbroider Library for Processing](images/download_pembroider.jpg)](distribution/PEmbroider/download/Pembroider.zip)
 
 
 ---
 ## Motivation
 
-As [this comparison of embroidery software](https://en.wikipedia.org/wiki/Comparison_of_embroidery_software) shows, existing software for the creation of custom embroidery designs frequently costs thousands of dollars; is rarely cross-platform; and is almost never open-source. The free and open-source tools which do exist are either full-featured standalone GUI tools (Ink/Stitch, Embroidermodder) or large-scale libraries (EmbroidePy)—neither of which integrate easily with popular creative coding toolkits, nor easily allow for the creation of computational, generative designs. 
+As [this comparison of embroidery software](https://en.wikipedia.org/wiki/Comparison_of_embroidery_software) shows, existing software for the creation of custom embroidery designs frequently costs thousands of dollars; is rarely cross-platform; and is almost never open-source. The free and open-source tools which do exist are either full-featured standalone GUI tools (Ink/Stitch, Embroidermodder) or large-scale libraries (EmbroidePy)—neither of which integrate easily with popular "creative coding" toolkits, nor easily allow for the creation of generative and computational designs. 
 
 PEmbroider, by contrast, is a free, cross-platform, open-source, lightweight Java library for generative embroidery design. It integrates with the popular [Processing](http://processing.org) creative coding framework, providing ready access to a diverse [ecosystem](https://processing.org/reference/libraries/) of functionality including interactive motion capture, computer vision, GIS cartography, physics simulation, typography, and much more.
 
