@@ -20,9 +20,10 @@ void setup() {
   E.beginDraw(); 
   E.clear();
   E.stroke(0,0,0); 
+
   E.strokeWeight(2); 
   E.strokeMode(PEmbroiderGraphics.PERPENDICULAR);
-  
+
   E.noFill(); 
   //E.fill(0, 0, 0); 
   //E.hatchMode(PEmbroiderGraphics.CONCENTRIC); 
@@ -38,7 +39,7 @@ void setup() {
   //PEmbroiderHatchSpine.hatchSpineVF(myImage, 5);
 
   //-----------------------
-  //E.optimize(); // slow, but good and important
+  E.optimize(); // slow, but good and important
   E.visualize(true, true, true);
   E.printStats(); 
   // E.endDraw(); // write out the file

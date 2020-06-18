@@ -2630,7 +2630,7 @@ public class PEmbroiderGraphics {
 		if (HATCH_MODE == PARALLEL) {
 			polys = hatchParallelRaster(im,HATCH_ANGLE,HATCH_SPACING,1);
 			if (!NO_RESAMPLE) {
-				polys = resampleCrossIntersection(polys,HATCH_ANGLE,HATCH_SPACING,STITCH_LENGTH, PARALLEL_RESAMPLING_OFFSET_FACTOR, RESAMPLE_NOISE);
+				polys = resampleCrossIntersection(polys,HATCH_ANGLE,HATCH_SPACING,STITCH_LENGTH/getCurrentScale(HATCH_ANGLE+PApplet.HALF_PI), PARALLEL_RESAMPLING_OFFSET_FACTOR, RESAMPLE_NOISE);
 				NO_RESAMPLE = true;
 				didit = true;
 			}
@@ -3106,7 +3106,7 @@ public class PEmbroiderGraphics {
 					
 					boolean didit = false;
 					if (HATCH_MODE == PARALLEL && !NO_RESAMPLE) {
-						polys = resampleCrossIntersection(polys,HATCH_ANGLE,HATCH_SPACING,STITCH_LENGTH, PARALLEL_RESAMPLING_OFFSET_FACTOR, RESAMPLE_NOISE);
+						polys = resampleCrossIntersection(polys,HATCH_ANGLE,HATCH_SPACING,STITCH_LENGTH/getCurrentScale(HATCH_ANGLE+PApplet.HALF_PI), PARALLEL_RESAMPLING_OFFSET_FACTOR, RESAMPLE_NOISE);
 						NO_RESAMPLE = true;
 						didit = true;
 					}
@@ -3115,7 +3115,7 @@ public class PEmbroiderGraphics {
 						if (EXPERIMENTAL_CROSS_RESAMPLE && !NO_RESAMPLE) {
 							
 							ArrayList<ArrayList<PVector>> polys2 =hatchParallelComplex(polyBuff,HATCH_ANGLE2,HATCH_SPACING);
-							polys = resampleCrossIntersection2(polys,polys2,HATCH_ANGLE,HATCH_ANGLE2,HATCH_SPACING,STITCH_LENGTH, RESAMPLE_NOISE);
+							polys = resampleCrossIntersection2(polys,polys2,HATCH_ANGLE,HATCH_ANGLE2,HATCH_SPACING,STITCH_LENGTH/getCurrentScale(HATCH_ANGLE+PApplet.HALF_PI), RESAMPLE_NOISE);
 							
 							NO_RESAMPLE = true;
 							didit = true;
@@ -4261,6 +4261,18 @@ public class PEmbroiderGraphics {
 			 polylines.get(i).add(c);
 			 
 		 }
+	 }
+	 
+	 public float getCurrentScale(float ang) {
+		PVector p0 = new PVector(0,0);
+		PVector p1 = new PVector(PApplet.cos(ang),PApplet.sin(ang));
+		PVector p2 = p0.copy();
+		PVector p3 = p1.copy();
+		for (int j = 0; j < matStack.size(); j++) {
+			p2 = matStack.get(j).mult(p2, null);
+			p3 = matStack.get(j).mult(p3, null);
+		}
+		return p2.dist(p3);
 	 }
 
 }
