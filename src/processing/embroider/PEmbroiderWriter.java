@@ -184,6 +184,91 @@ public class PEmbroiderWriter {
 		}
 	}
 	
+	public static class EXP {
+
+		public static void write(String name, float[] bounds, ArrayList<PVector> stitches, ArrayList<Integer> colors) throws IOException {
+			OutputStream stream = new FileOutputStream(name+".exp");
+			double xx = 0, yy = 0;
+			for (int i = 0, ie = stitches.size(); i < ie; i++) {
+				int data = STITCH & COMMAND_MASK;
+				if (i > 0 && !colors.get(i).equals(colors.get(i-1))) {
+					stream.write((byte) 0x80);
+					stream.write((byte) 0x01);
+					stream.write((byte) 0x00);
+					stream.write((byte) 0x00);
+				}
+				float x = stitches.get(i).x;
+				float y = stitches.get(i).y;
+				int dx = (int) Math.rint(x - xx);
+				int dy = (int) Math.rint(y - yy);
+				xx += dx;
+				yy += dy;
+
+				if (Math.abs(dx) > 128 || Math.abs(dy) > 128) {
+					int steps = Math.max(Math.abs(dx/128),Math.abs(dy/128))+1;
+					float inc = 1f/(float)steps;
+					int accx = 0;
+					int accy = 0;
+					int ddx = (int)Math.rint(dx * inc);
+					int ddy = (int)Math.rint(dy * inc);
+					for (int j = 0; j < steps-1; j++) {
+						int deltaX = ddx & 0xFF;
+						int deltaY = (-ddy) & 0xFF;
+						stream.write((byte) 0x80);
+						stream.write((byte) 0x04);
+						stream.write((byte) deltaX);
+						stream.write((byte) deltaY);
+						accx += ddx;
+						accy += ddy;
+					}
+					dx -= accx;
+					dy -= accy;
+				}
+				
+				switch (data) {
+				case STITCH: {
+					int deltaX = dx & 0xFF;
+					int deltaY = (-dy) & 0xFF;
+					stream.write(deltaX);
+					stream.write(deltaY);
+					break;
+				}
+				case JUMP: {
+					int deltaX = dx & 0xFF;
+					int deltaY = (-dy) & 0xFF;
+					stream.write((byte) 0x80);
+					stream.write((byte) 0x04);
+					stream.write((byte) deltaX);
+					stream.write((byte) deltaY);
+					break;
+				}
+				case TRIM:
+					stream.write(0x80);
+					stream.write(0x80);
+					stream.write(0x07);
+					stream.write(0x00);
+					break;
+				case COLOR_CHANGE:
+					stream.write((byte) 0x80);
+					stream.write((byte) 0x01);
+					stream.write((byte) 0x00);
+					stream.write((byte) 0x00);
+					break;
+				case STOP:
+					stream.write((byte) 0x80);
+					stream.write((byte) 0x01);
+					stream.write((byte) 0x00);
+					stream.write((byte) 0x00);
+					break;
+				case END:
+					break;
+				}
+			}
+			stream.close();
+		}
+
+	}
+	
 
 	public static class VP3 {
 		public static void write(String name, float[] bounds, ArrayList<PVector> stitches, ArrayList<Integer> colors) throws IOException {
@@ -1354,6 +1439,8 @@ public class PEmbroiderWriter {
 							int ddx = (int)Math.rint(dx * inc);
 							int ddy = (int)Math.rint(dy * inc);
 							for (int j = 0; j < steps-1; j++) {
+								writeInt8(0x80);
+								writeInt8(0x02);
 								writeInt8(ddx);
 								writeInt8(-ddy);
 								accx += ddx;
@@ -1563,6 +1650,8 @@ public class PEmbroiderWriter {
 		try {
 			if (tokens[1].equalsIgnoreCase("DST")) {
 				DST.write(tokens[0], bounds, stitches, flatColors);
+			}else if (tokens[1].equalsIgnoreCase("EXP")) {
+				EXP.write(tokens[0], bounds, stitches, flatColors);
 			}else if (tokens[1].equalsIgnoreCase("VP3")) {
 				VP3.write(tokens[0], bounds, stitches, flatColors);
 			}else if (tokens[1].equalsIgnoreCase("PEC")) {
