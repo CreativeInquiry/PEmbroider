@@ -1550,12 +1550,13 @@ public class PEmbroiderGraphics {
 		
 		
 		pg.endDraw();
+		float ml = PApplet.min(2,d-1);
 		for (int i = polys.size()-1; i >= 0; i--) {
 			if (polys.get(i).size() < 2) {
 				polys.remove(i);
 				continue;
 			}
-			if (polys.get(i).get(0).dist(polys.get(i).get(polys.get(i).size()-1))<2) {
+			if (polys.get(i).get(0).dist(polys.get(i).get(polys.get(i).size()-1))<ml) {
 				polys.remove(i);
 				continue;
 			}
@@ -4020,15 +4021,16 @@ public class PEmbroiderGraphics {
 	  * @param maxIter  maximum number of iterations to run 2-Opt. 
 	  */
 	public void optimize(int trials,int maxIter) {
-		if (polylines.size() <= 1) {
+		if (polylines.size() <= 2) {
 			return;
 		}
 		int idx0 = 0;
 		for (int i = 1; i <= polylines.size(); i++) {
 			if (i == polylines.size() || !colors.get(i).equals(colors.get(i-1))){
 				ArrayList<ArrayList<PVector>> p = new ArrayList<ArrayList<PVector>>(polylines.subList(idx0,i));
+				PApplet.println(p.size());
 				p = PEmbroiderTSP.solve(p,trials,maxIter);
-				
+				PApplet.println(p.size());
 				polylines.subList(idx0,i).clear();
 				polylines.addAll(idx0,p);
 				idx0 = i;

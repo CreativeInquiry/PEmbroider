@@ -20,7 +20,7 @@ void setup() {
   E.beginDraw(); 
   E.clear();
   E.stroke(0,0,0); 
-  E.strokeWeight(25); 
+  E.strokeWeight(2); 
   E.strokeMode(PEmbroiderGraphics.PERPENDICULAR);
   
   E.noFill(); 
@@ -30,6 +30,8 @@ void setup() {
 
   E.setStitch(10, 20, 0);
   E.image(myImage, 0, 0); 
+  
+  //E.line(10,10,20,20);
   
   
   //PEmbroiderHatchSpine.setGraphics(E);
