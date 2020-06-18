@@ -20,8 +20,8 @@ void setup() {
   E.beginDraw(); 
   E.clear();
   E.stroke(0,0,0); 
-  E.strokeWeight(25); 
-  E.strokeMode(PEmbroiderGraphics.PERPENDICULAR);
+  E.strokeWeight(1); 
+  E.strokeMode(PEmbroiderGraphics.TANGENT);
   
   E.noFill(); 
   //E.fill(0, 0, 0); 
