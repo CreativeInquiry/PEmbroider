@@ -9,6 +9,8 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Stack;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import processing.core.PVector;
 
@@ -181,6 +183,8 @@ public class PEmbroiderWriter {
 			stream.close();
 		}
 	}
+	
+
 	public static class VP3 {
 		public static void write(String name, float[] bounds, ArrayList<PVector> stitches, ArrayList<Integer> colors) throws IOException {
 
@@ -1077,6 +1081,333 @@ public class PEmbroiderWriter {
 	}
 	
 	
+	
+	
+
+
+	public static class JEF {
+	    public static final int HOOP_110X110 = 0;
+	    public static final int HOOP_50X50 = 1;
+	    public static final int HOOP_140X200 = 2;
+	    public static final int HOOP_126X110 = 3;
+	    public static final int HOOP_200X200 = 4;
+	    
+
+	    private static int get_jef_hoop_size(int width, int height) {
+	        if (width < 500 && height < 500) {
+	            return HOOP_50X50;
+	        }
+	        if (width < 1260 && height < 1100) {
+	            return HOOP_126X110;
+	        }
+	        if (width < 1400 && height < 2000) {
+	            return HOOP_140X200;
+	        }
+	        if (width < 2000 && height < 2000) {
+	            return HOOP_200X200;
+	        }
+	        return HOOP_110X110;
+	    }
+	    
+	    
+	    public static int get_thread_color(int i) {
+	    	if (i == 0){return 0   <<16  |  0     <<8  | 0            ;}       
+	    	if (i == 1){return 0   <<16  |  0     <<8  | 0            ;}       
+	    	if (i == 2){return 255 <<16  |    255 <<8  |     255            ;} 
+	    	if (i == 3){return 255 <<16  |    255 <<8  |     23            ;}  
+	    	if (i == 4){return 250 <<16  |    160 <<8  |     96            ;}  
+	    	if (i == 5){return 92  <<16  |   118  <<8  |    73            ;}   
+	    	if (i == 6){return 64  <<16  |   192  <<8  |    48            ;}   
+	    	if (i == 7){return 101 <<16  |    194 <<8  |     200            ;} 
+	    	if (i == 8){return 172 <<16  |    128 <<8  |     190            ;} 
+	    	if (i == 9){return 245 <<16  |    188 <<8  |     203            ;} 
+	    	if (i ==10){return 255 <<16  |    0   <<8  |   0            ;}     
+	    	if (i ==11){return 192 <<16  |    128 <<8  |     0            ;}   
+	    	if (i ==12){return 0   <<16  |  0     <<8  | 240            ;}     
+	    	if (i ==13){return 228 <<16  |    195 <<8  |     93            ;}  
+	    	if (i ==14){return 165 <<16  |    42  <<8  |    42            ;}   
+	    	if (i ==15){return 213 <<16  |    176 <<8  |     212            ;} 
+	    	if (i ==16){return 252 <<16  |    242 <<8  |     148            ;} 
+	    	if (i ==17){return 240 <<16  |    208 <<8  |     192            ;} 
+	    	if (i ==18){return 255 <<16  |    192 <<8  |     0            ;}   
+	    	if (i ==19){return 201 <<16  |    164 <<8  |     128            ;} 
+	    	if (i ==20){return 155 <<16  |    61  <<8  |    75            ;}   
+	    	if (i ==21){return 160 <<16  |    184 <<8  |     204            ;} 
+	    	if (i ==22){return 127 <<16  |    194 <<8  |     28            ;}  
+	    	if (i ==23){return 185 <<16  |    185 <<8  |     185            ;} 
+	    	if (i ==24){return 160 <<16  |    160 <<8  |     160            ;} 
+	    	if (i ==25){return 152 <<16  |    214 <<8  |     189            ;} 
+	    	if (i ==26){return 184 <<16  |    240 <<8  |     240            ;} 
+	    	if (i ==27){return 54  <<16  |   139  <<8  |    160            ;}  
+	    	if (i ==28){return 79  <<16  |   131  <<8  |    171            ;}  
+	    	if (i ==29){return 56  <<16  |   106  <<8  |    145            ;}  
+	    	if (i ==30){return 0   <<16  |  32    <<8  |  107            ;}    
+	    	if (i ==31){return 229 <<16  |    197 <<8  |     202            ;} 
+	    	if (i ==32){return 249 <<16  |    103 <<8  |     107            ;} 
+	    	if (i ==33){return 227 <<16  |    49  <<8  |    31            ;}   
+	    	if (i ==34){return 226 <<16  |    161 <<8  |     136            ;} 
+	    	if (i ==35){return 181 <<16  |    148 <<8  |     116            ;} 
+	    	if (i ==36){return 228 <<16  |    207 <<8  |     153            ;} 
+	    	if (i ==37){return 225 <<16  |    203 <<8  |     0            ;}   
+	    	if (i ==38){return 225 <<16  |    173 <<8  |     212            ;} 
+	    	if (i ==39){return 195 <<16  |    0   <<8  |   126            ;}   
+	    	if (i ==40){return 128 <<16  |    0   <<8  |   75            ;}    
+	    	if (i ==41){return 160 <<16  |    96  <<8  |    176            ;}  
+	    	if (i ==42){return 192 <<16  |    64  <<8  |    32            ;}   
+	    	if (i ==43){return 202 <<16  |    224 <<8  |     192            ;} 
+	    	if (i ==44){return 137 <<16  |    152 <<8  |     86            ;}  
+	    	if (i ==45){return 0   <<16  |  170   <<8  |   0            ;}     
+	    	if (i ==46){return 33  <<16  |   138  <<8  |    33            ;}   
+	    	if (i ==47){return 93  <<16  |   174  <<8  |    148            ;}  
+	    	if (i ==48){return 76  <<16  |   191  <<8  |    143            ;}  
+	    	if (i ==49){return 0   <<16  |  119   <<8  |   114            ;}   
+	    	if (i ==50){return 112 <<16  |    112 <<8  |     112            ;} 
+	    	if (i ==51){return 242 <<16  |    255 <<8  |     255            ;} 
+	    	if (i ==52){return 177 <<16  |    88  <<8  |    24            ;}   
+	    	if (i ==53){return 203 <<16  |    138 <<8  |     7            ;}   
+	    	if (i ==54){return 247 <<16  |    146 <<8  |     123            ;} 
+	    	if (i ==55){return 152 <<16  |    105 <<8  |     45            ;}  
+	    	if (i ==56){return 162 <<16  |    113 <<8  |     72            ;}  
+	    	if (i ==57){return 123 <<16  |    85  <<8  |    74            ;}   
+	    	if (i ==58){return 79  <<16  |   57   <<8  |   70            ;}    
+	    	if (i ==59){return 82  <<16  |   58   <<8  |   151            ;}   
+	    	if (i ==60){return 0   <<16  |  0     <<8  | 160            ;}     
+	    	if (i ==61){return 0   <<16  |  150   <<8  |   222            ;}   
+	    	if (i ==62){return 178 <<16  |    221 <<8  |     83            ;}  
+	    	if (i ==63){return 250 <<16  |    143 <<8  |     187            ;} 
+	    	if (i ==64){return 222 <<16  |    100 <<8  |     158            ;} 
+	    	if (i ==65){return 181 <<16  |    80  <<8  |    102            ;}  
+	    	if (i ==66){return 94  <<16  |   87   <<8  |   71            ;}    
+	    	if (i ==67){return 76  <<16  |   136  <<8  |    31            ;}   
+	    	if (i ==68){return 228 <<16  |    220 <<8  |     121            ;} 
+	    	if (i ==69){return 203 <<16  |    138 <<8  |     26            ;}  
+	    	if (i ==70){return 198 <<16  |    170 <<8  |     66            ;}  
+	    	if (i ==71){return 236 <<16  |    176 <<8  |     44            ;}  
+	    	if (i ==72){return 248 <<16  |    128 <<8  |     64            ;}  
+	    	if (i ==73){return 255 <<16  |    229 <<8  |     5            ;}   
+	    	if (i ==74){return 250 <<16  |    122 <<8  |     122            ;} 
+	    	if (i ==75){return 107 <<16  |    224 <<8  |     0            ;}   
+	    	if (i ==76){return 56  <<16  |   108  <<8  |    174            ;}  
+	    	if (i ==77){return 208 <<16  |    186 <<8  |     176            ;} 
+	    	if (i ==78){return 227 <<16  |    190 <<8  |     129            ;} 
+	    	return 0;
+	    }
+		
+	    public static int find_thread_nearest_index(int c) {
+	    	int r0 = (c >> 16) & 255;
+	    	int g0 = (c >> 8) & 255;
+	    	int b0 = c & 255;
+	    	float md = 195076;
+	    	int mi = 0;
+	    	for (int i = 0; i < 78; i++) {
+	    		int cc = get_thread_color(i);
+		    	int r = (cc >> 16) & 255;
+		    	int g = (cc >> 8) & 255;
+		    	int b = cc & 255;
+		    	float d = (r-r0)*(r-r0)+(b-b0)*(b-b0)+(g-g0)*(g-g0);
+		    	if (d < md) {
+		    		md = d;
+		    		mi = i;
+		    	}
+	    	}
+	    	return mi;
+	    }
+	    
+	    public static void write(String name, float[] bounds, ArrayList<PVector> stitches, ArrayList<Integer> colors) throws IOException {
+
+			class _BinWriter{
+
+				OutputStream stream;
+
+
+				_BinWriter() throws IOException{
+					stream = new FileOutputStream(name+".jef");
+				}
+
+				public void writeInt8(int value) throws IOException {
+					stream.write(value);
+				};
+
+			    public void writeInt32LE(int value) throws IOException {
+
+			        stream.write(value & 0xFF);
+			        stream.write((value >> 8) & 0xFF);
+			        stream.write((value >> 16) & 0xFF);
+			        stream.write((value >> 24) & 0xFF);
+			    }
+
+			    public void write(byte[] bytes) throws IOException {
+			        stream.write(bytes);
+			    }
+
+			    private void write_hoop_edge_distance(int x_hoop_edge, int y_hoop_edge) throws IOException {
+			    	if (Math.min(x_hoop_edge, y_hoop_edge) >= 0) {
+			    		writeInt32LE(x_hoop_edge);
+			    		writeInt32LE(y_hoop_edge);
+			    		writeInt32LE(x_hoop_edge);
+			    		writeInt32LE(y_hoop_edge);
+			    	} else {
+			    		writeInt32LE(-1);
+			    		writeInt32LE(-1);
+			    		writeInt32LE(-1);
+			    		writeInt32LE(-1);
+			    	}
+			    }
+				public void write_file() throws IOException {
+					boolean trims = true;
+
+					Date date = new Date();
+					String date_string = new SimpleDateFormat("yyyyMMddHHmmss").format(date);
+
+					int color_count = 1;
+					for (int i = 1; i < colors.size(); i++) {
+						if (!colors.get(i).equals(colors.get(i-1))) {
+							color_count ++;
+						}
+					}
+
+					int offsets = 0x74 + (color_count * 8);
+					writeInt32LE(offsets);
+					writeInt32LE(0x14);
+					write(date_string.getBytes());
+					writeInt8(0x00);
+					writeInt8(0x00);
+					writeInt32LE(color_count);
+
+					int command_count = 1; // 1 command for END;
+					for (int i = 0, ie = stitches.size(); i < ie; i++) {
+						if (i > 0 && !colors.get(i).equals(colors.get(i-1))) {
+							command_count += 2;
+						}else {
+							command_count ++;
+						}
+					}
+					writeInt32LE(command_count);
+
+					int design_width = (int) (bounds[2] - bounds[0]);
+					int design_height = (int) (bounds[3] - bounds[1]);
+
+					writeInt32LE(get_jef_hoop_size(design_width, design_height));
+
+					int half_width = (int) Math.rint(design_width / 2.0);
+					int half_height = (int) Math.rint(design_height / 2.0);
+					/* Distance from center of Hoop */
+					writeInt32LE(half_width); // left
+					writeInt32LE(half_height); // top
+					writeInt32LE(half_width); // right
+					writeInt32LE(half_height); // bottom
+
+					/* Distance from default 110 x 110 Hoop */
+					int x_hoop_edge = 550 - half_width;
+					int y_hoop_edge = 550 - half_height;
+					write_hoop_edge_distance(x_hoop_edge, y_hoop_edge);
+
+					/* Distance from default 50 x 50 Hoop */
+					x_hoop_edge = 250 - half_width;
+					y_hoop_edge = 250 - half_height;
+					write_hoop_edge_distance(x_hoop_edge, y_hoop_edge);
+
+					/* Distance from default 140 x 200 Hoop */
+					x_hoop_edge = 700 - half_width;
+					y_hoop_edge = 1000 - half_height;
+					write_hoop_edge_distance(x_hoop_edge, y_hoop_edge);
+
+					/* Distance from custom hoop, but this should be accepted.*/
+					x_hoop_edge = 700 - half_width;
+					y_hoop_edge = 1000 - half_height;
+					write_hoop_edge_distance(x_hoop_edge, y_hoop_edge);
+
+					ArrayList<Integer> threadSet = new ArrayList<Integer>();
+					for (int i = 0; i < colors.size(); i++) {
+						if (i == 0 || !colors.get(i).equals(colors.get(i-1))) {
+							threadSet.add(colors.get(i));
+						}
+					}
+
+					for (int i = 0; i < threadSet.size(); i++) {
+						int thread_index = find_thread_nearest_index(threadSet.get(i));
+						writeInt32LE(thread_index);
+					}
+					for (int i = 0; i < color_count; i++) {
+						writeInt32LE(0x0D);
+					}
+
+					double xx = 0, yy = 0;
+					for (int i = 0, ie = stitches.size(); i < ie; i++) {
+						int data = STITCH & COMMAND_MASK;
+						if (i > 0 && !colors.get(i).equals(colors.get(i-1))) {
+							data = COLOR_CHANGE & COMMAND_MASK;
+						}
+						float x = stitches.get(i).x;
+						float y = stitches.get(i).y;
+						int dx = (int) Math.rint(x - xx);
+						int dy = (int) Math.rint(y - yy);
+						
+						xx += dx;
+						yy += dy;
+						
+						if (Math.abs(dx) > 128 || Math.abs(dy) > 128) {
+							int steps = Math.max(Math.abs(dx/128),Math.abs(dy/128))+1;
+							float inc = 1f/(float)steps;
+							int accx = 0;
+							int accy = 0;
+							int ddx = (int)Math.rint(dx * inc);
+							int ddy = (int)Math.rint(dy * inc);
+							for (int j = 0; j < steps-1; j++) {
+								writeInt8(ddx);
+								writeInt8(-ddy);
+								accx += ddx;
+								accy += ddy;
+							}
+							dx -= accx;
+							dy -= accy;
+						}
+						switch (data) {
+						case STITCH:
+							writeInt8(dx);
+							writeInt8(-dy);
+							continue;
+						case STOP:
+						case COLOR_CHANGE:
+							writeInt8(0x80);
+							writeInt8(0x01);
+							writeInt8(dx);
+							writeInt8(-dy);
+							continue;
+						case JUMP:
+							writeInt8(0x80);
+							writeInt8(0x02);
+							writeInt8(dx);
+							writeInt8(-dy);
+							continue;
+						case TRIM:
+							if (trims) {
+								writeInt8(0x80);
+								writeInt8(0x02);
+								writeInt8(0);
+								writeInt8(0);
+							}
+							continue;
+						case END:
+							break;
+						}
+						break;
+					}
+					writeInt8(0x80);
+					writeInt8(0x10);
+					stream.close();
+				}
+
+			};_BinWriter bin = new _BinWriter();
+
+
+			bin.write_file();
+
+
+		}
+
+	}
+	
 
 	public static class SVG {
 		public static String svgString(float[] bounds, ArrayList<PVector> stitches, ArrayList<Integer> colors) {
@@ -1238,6 +1569,8 @@ public class PEmbroiderWriter {
 				PEC.write(tokens[0], bounds, stitches, flatColors);
 			}else if (tokens[1].equalsIgnoreCase("PES")) {
 				PES.write(tokens[0], bounds, stitches, flatColors);
+			}else if (tokens[1].equalsIgnoreCase("JEF")) {
+				JEF.write(tokens[0], bounds, stitches, flatColors);
 			}else if (tokens[1].equalsIgnoreCase("SVG")) {
 				SVG.write(tokens[0], bounds, stitches, flatColors);
 			}else if (tokens[1].equalsIgnoreCase("PDF")) {
