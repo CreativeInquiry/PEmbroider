@@ -10,7 +10,7 @@ void setup() {
   size (600,600);
   
   E = new PEmbroiderGraphics(this, width, height);
-  String outputFilePath = sketchPath("PEmbroider_bitmap_image_2.exp");
+  String outputFilePath = sketchPath("PEmbroider_bitmap_image_2.xxx");
   E.setPath(outputFilePath); 
 
   // The image should consist of white shapes on a black background. 
@@ -19,9 +19,9 @@ void setup() {
 
   E.beginDraw(); 
   E.clear();
-  E.stroke(255,0,0); 
+  E.stroke(0,0,0); 
 
-  E.strokeWeight(5); 
+  E.strokeWeight(10); 
   E.strokeMode(PEmbroiderGraphics.PERPENDICULAR);
 
   E.noFill(); 
@@ -40,7 +40,7 @@ void setup() {
 
 E.printStats();
   //-----------------------
-  E.optimize(); // slow, but good and important
+  //E.optimize(); // slow, but good and important
   E.visualize(true, true, true);
   E.printStats(); 
    E.endDraw(); // write out the file

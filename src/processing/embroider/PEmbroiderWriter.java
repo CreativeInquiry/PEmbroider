@@ -1,5 +1,7 @@
-// Adapted from:
+// All embroidery writers are adapted from:
 // https://github.com/EmbroidePy/EmbroideryIO/blob/master/core/src/main/java/org/embroideryio/embroideryio/
+// non-embroidery formats by Lingdong
+
 package processing.embroider;
 import java.awt.Color;
 import java.io.ByteArrayOutputStream;
@@ -880,6 +882,240 @@ public class PEmbroiderWriter {
 	    }
 
 	}
+	
+	
+	public static class XXX {
+		
+		public static void write(String name, float[] bounds, ArrayList<PVector> stitches, ArrayList<Integer> colors) throws IOException {
+
+			class _BinWriter{
+
+				int position = 0;
+				OutputStream stream;
+				OutputStream original;
+				Stack<ByteArrayOutputStream> streamStack;
+					
+				_BinWriter() throws IOException{
+					stream = new FileOutputStream(name+".xxx");
+					original = stream;
+					streamStack = new Stack<>();
+				}
+
+			    public void writeInt8(int value) throws IOException {
+			        position += 1;
+			        stream.write(value);
+			    }
+
+			    public void writeInt32LE(int value) throws IOException {
+			        position += 4;
+			        stream.write(value & 0xFF);
+			        stream.write((value >> 8) & 0xFF);
+			        stream.write((value >> 16) & 0xFF);
+			        stream.write((value >> 24) & 0xFF);
+			    }
+			    public void writeInt16LE(int value) throws IOException {
+			        position += 2;
+			        stream.write(value & 0xFF);
+			        stream.write((value >> 8) & 0xFF);
+			    }
+				public void space_holder(int skip) {
+					position += skip;
+					ByteArrayOutputStream push = new ByteArrayOutputStream();
+					if (streamStack == null) {
+						streamStack = new Stack<>();
+					}
+					streamStack.push(push);
+					
+				}
+			    private ByteArrayOutputStream pop() {
+			        ByteArrayOutputStream pop = streamStack.pop();
+			        if (streamStack.isEmpty()) {
+			            stream = original;
+			        } else {
+			            stream = streamStack.peek();
+			        }
+			        return pop;
+			    }
+			    public void writeSpaceHolder32LE(int value) throws IOException {
+			        ByteArrayOutputStream baos = pop();
+			        stream.write(value & 0xFF);
+			        stream.write((value >> 8) & 0xFF);
+			        stream.write((value >> 16) & 0xFF);
+			        stream.write((value >> 24) & 0xFF);
+			        stream.write(baos.toByteArray());
+			    }
+			    public int tell() {
+			        return position;
+			    }
+			    public void write_xxx_header() throws IOException {
+			        for (int i = 0, ie = 0x17; i < ie; i++) {
+			            writeInt8(0x00);
+			        }
+					int color_count = 1;
+					for (int i = 1; i < colors.size(); i++) {
+						if (!colors.get(i).equals(colors.get(i-1))) {
+							color_count ++;
+						}
+					}
+					int command_count = stitches.size();
+
+			        writeInt32LE(command_count); //end is not a command.
+			        for (int i = 0, ie = 0x0C; i < ie; i++) {
+			            writeInt8(0x00);
+			        }
+			        writeInt32LE(color_count);
+			        writeInt16LE(0x0000);
+
+			        double width = (bounds[2] - bounds[0]);
+			        double height = (bounds[3] - bounds[1]);
+
+			        writeInt16LE((int) width);
+			        writeInt16LE((int) height);
+
+			        int last = stitches.size() - 1;
+
+			        writeInt16LE((int) stitches.get(last).x); // correct
+			        writeInt16LE((int) stitches.get(last).y); // correct
+			        
+			        writeInt16LE((int) -bounds[0]);
+			        writeInt16LE((int) bounds[3]); 
+
+			        for (int i = 0, ie = 0x42; i < ie; i++) {
+			            writeInt8(0x00);
+			        }
+			        writeInt16LE(0x0000); //unknown
+			        writeInt16LE(0x0000); //unknown
+			        for (int i = 0, ie = 0x73; i < ie; i++) {
+			            writeInt8(0x00);
+			        }
+			        writeInt16LE(0x20); //unknown
+			        for (int i = 0, ie = 0x08; i < ie; i++) {
+			            writeInt8(0x00);
+			        }
+			    }
+			    
+			    public void write_xxx_stitches() throws IOException {
+			        double xx = 0, yy = 0;
+			        for (int i = 0, ie = stitches.size(); i < ie; i++) {
+			            int data = STITCH & COMMAND_MASK;
+						if (i > 0 && !colors.get(i).equals(colors.get(i-1))) {
+							data = TRIM & COMMAND_MASK;
+						}
+			            float x = stitches.get(i).x;
+			            float y = stitches.get(i).y;
+			            int dx = (int) Math.rint(x - xx);
+			            int dy = (int) Math.rint(y - yy);
+			            xx += dx;
+			            yy += dy;
+			            
+			            if (Math.abs(dx) > 120 || Math.abs(dy) > 120) {
+							int steps = Math.max(Math.abs(dx/120),Math.abs(dy/120))+1;
+							float inc = 1f/(float)steps;
+							int accx = 0;
+							int accy = 0;
+							int ddx = (int)Math.rint(dx * inc);
+							int ddy = (int)Math.rint(dy * inc);
+							for (int j = 0; j < steps-1; j++) {
+			                    writeInt8(0x7F);
+			                    writeInt8(0x01);
+								writeInt8(ddx);
+								writeInt8(-ddy);
+								accx += ddx;
+								accy += ddy;
+							}
+							dx -= accx;
+							dy -= accy;
+						}
+			            switch (data) {
+			                case STOP:
+			                case COLOR_CHANGE:
+			                    writeInt8(0x7F);
+			                    writeInt8(0x08);
+			                    writeInt8(dx);
+			                    writeInt8(-dy);
+			                    continue;
+			                case END:
+			                    break;
+			                case TRIM:
+			                    writeInt8(0x7F);
+			                    writeInt8(0x03);
+			                    writeInt8(dx);
+			                    writeInt8(-dy);
+			                    continue;
+			                case JUMP: {
+			                    writeInt8(0x7F);
+			                    writeInt8(0x01);
+			                    writeInt8(dx);
+			                    writeInt8(-dy);
+			                    continue;
+			                }
+			                case STITCH:
+			                    if ((-124 < dx) && (dx < 124)
+			                            && (-124 < dy) && (dy < 124)) {
+			                        writeInt8(dx);
+			                        writeInt8(-dy);
+			                    } else {
+			                        writeInt8(0x7D);
+			                        writeInt16LE(dx);
+			                        writeInt16LE(-dy);
+			                    }
+			                    continue;
+			            }
+			            break;
+			        }
+			    }
+			    
+			    public void write_xxx_colors() throws IOException {
+			        writeInt8(0x00);
+			        writeInt8(0x00);
+			        int current_color = 0;
+					ArrayList<Integer> threadlist = new ArrayList<Integer>();
+					for (int i = 0; i < colors.size(); i++) {
+						if (i == 0 || !colors.get(i).equals(colors.get(i-1))) {
+							threadlist.add(colors.get(i));
+						}
+					}
+			        for (int i = 0; i < threadlist.size(); i++) {
+			            writeInt8(0x00);
+			            writeInt8((threadlist.get(i)>>16)&255);
+			            writeInt8((threadlist.get(i)>>8)&255);
+			            writeInt8(threadlist.get(i)&255);
+			            current_color += 1;
+			        }
+			        for (int i = 0, ie = 21 - current_color; i < ie; i++) {
+			            writeInt32LE(0x00000000);
+			        }
+			        writeInt32LE(0xffffff00);
+			        writeInt8(0x00);
+			        writeInt8(0x01);
+			    }
+			    
+				public void write_file() throws IOException {
+			        write_xxx_header();
+			        
+			        space_holder(4); //place_holder_for_end_of_stitches
+
+			        write_xxx_stitches();
+			        
+			        writeSpaceHolder32LE(tell());
+			        writeInt8(0x7F);
+			        writeInt8(0x7F);
+			        writeInt8(0x02);
+			        writeInt8(0x14);
+			        write_xxx_colors();
+			        stream.close();
+						
+				}
+
+			};_BinWriter bin = new _BinWriter();
+
+
+			bin.write_file();
+		}
+		
+		
+	}
+	
 
 	public static class PEC {
 	    static final int MASK_07_BIT = 0b01111111;
@@ -1660,6 +1896,8 @@ public class PEmbroiderWriter {
 				PES.write(tokens[0], bounds, stitches, flatColors);
 			}else if (tokens[1].equalsIgnoreCase("JEF")) {
 				JEF.write(tokens[0], bounds, stitches, flatColors);
+			}else if (tokens[1].equalsIgnoreCase("XXX")) {
+				XXX.write(tokens[0], bounds, stitches, flatColors);
 			}else if (tokens[1].equalsIgnoreCase("SVG")) {
 				SVG.write(tokens[0], bounds, stitches, flatColors);
 			}else if (tokens[1].equalsIgnoreCase("PDF")) {
