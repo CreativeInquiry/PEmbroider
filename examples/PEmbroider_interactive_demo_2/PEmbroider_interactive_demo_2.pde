@@ -24,7 +24,8 @@ void draw() {
   E.noFill(); 
 
   E.stroke(0, 0, 0); 
-  E.strokeWeight(1); 
+  E.strokeWeight(10); 
+  E.strokeMode(PEmbroiderGraphics.PERPENDICULAR);
   E.setStitch(10, 40, 0);
 
   // Add latest mouse point to curent mark

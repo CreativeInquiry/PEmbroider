@@ -1,5 +1,5 @@
 // Test program for the PEmbroider library for Processing:
-// An animation 
+// Embroidering the frames of an animation. 
 
 import processing.embroider.*;
 PEmbroiderGraphics E;
@@ -15,6 +15,11 @@ void setup() {
 
   // Load the frames of the animated GIF to embroider. 
   // Should consist of white shapes on a black background. 
+  // We have pre-separated into individual images using ezgif.com.
+  // An alternative would be to load a single animated GIF, using
+  // a library like https://extrapixel.github.io/gif-animation/.
+  // We didn't do that here, in order to avoid external dependencies.
+  //
   frames = new PImage[nFrames];
   for (int i=0; i<nFrames; i++) {
     String imageFilename = "muybridge_horse_" + nf(i, 2) + ".png";

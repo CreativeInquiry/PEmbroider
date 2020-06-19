@@ -2027,6 +2027,7 @@ public class PEmbroiderGraphics {
 		}
 
 		float clen = 0;
+//		PApplet.println(minLen);
 		for (int i = 0; i < poly.size()-1; i++) {
 
 			PVector p0 = poly.get(i);
@@ -3074,6 +3075,9 @@ public class PEmbroiderGraphics {
 	public void endShape(boolean close) {
 		curveBuff.clear();
 		if (polyBuff.size() == 0) {
+			return;
+		}
+		if (polyBuff.size() == 1 && polyBuff.get(0).size() == 0) {
 			return;
 		}
 		if (polyBuff.size() == 1 && (HATCH_BACKEND == FORCE_VECTOR || HATCH_MODE == SPIRAL)) {
