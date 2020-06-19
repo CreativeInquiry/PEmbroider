@@ -206,7 +206,7 @@ public class PEmbroiderGraphics {
 	 *  @param d  the stroke weight to use
 	 */
 	public void strokeWeight(float d) {
-		STROKE_WEIGHT = d;
+		STROKE_WEIGHT = Math.max(d,1);
 	}
 	/** Change stroke join (turning point) style
 	 *  @param j  Same as Processing strokejoin, this can be ROUND, MITER, BEVEL etc.
@@ -244,13 +244,13 @@ public class PEmbroiderGraphics {
 	 *  @param n higher this number, smoother the bezier
 	 */
 	public void bezierDetail(int n) {
-		BEZIER_DETAIL = n;
+		BEZIER_DETAIL = Math.max(1, n);
 	}
 	public void curveDetail(int n) {
-		CATMULLROM_DETAIL = n;
+		CATMULLROM_DETAIL = Math.max(1,n);
 	}
 	public void curveTightness(float n) {
-		CATMULLROM_TIGHTNESS = n;
+		CATMULLROM_TIGHTNESS = Math.max(0, n);
 	}
 	/** Change hatching pattern
 	 *  
@@ -320,7 +320,7 @@ public class PEmbroiderGraphics {
 	 *  @see       strokeSpacing
 	 */
 	public void hatchSpacing(float d) {
-		HATCH_SPACING = d;
+		HATCH_SPACING = Math.max(0.1f,d);
 	}
 	/** Changes the spacing between stroke lines: a.k.a sparsity or anti-density
 	 *  
@@ -328,14 +328,14 @@ public class PEmbroiderGraphics {
 	 *  @see       hatchSpacing
 	 */
 	public void strokeSpacing(float d) {
-		STROKE_SPACING = d;
+		STROKE_SPACING = Math.max(0.1f,d);
 	}
 	/** Changes the scaling for perlin noise hatching
 	 *  
 	 *  @param s   the scale
 	 */
 	public void hatchScale(float s) {
-		HATCH_SCALE = s;
+		HATCH_SCALE = Math.max(0.000001f,s);;
 	}
 	/** Switches the algorithms used to compute the drawing
 	 *  
@@ -358,7 +358,7 @@ public class PEmbroiderGraphics {
 	 *  @see setStitch
 	 */
 	public void stitchLength(float x) {
-		STITCH_LENGTH = x;
+		STITCH_LENGTH = Math.max(0.1f,x);
 	}
 	/** Set the minimum stitch length. Drawings with higher precision than this will be resampled down to have at least this stitch length
 	 *  
@@ -367,7 +367,7 @@ public class PEmbroiderGraphics {
 	 *  @see setStitch
 	 */
 	public void minStitchLength(float x) {
-		MIN_STITCH_LENGTH = x;
+		MIN_STITCH_LENGTH = Math.max(0f,x);
 	}
 	/** Set stitch properties
 	 *  
@@ -376,9 +376,9 @@ public class PEmbroiderGraphics {
 	 *  @param rn  resample noise -- to avoid alignment patterns; must be inside range (0-1) inclusive
 	 */
 	public void setStitch(float msl, float sl, float rn) {
-		MIN_STITCH_LENGTH = msl;
-		STITCH_LENGTH = sl;
-		RESAMPLE_NOISE = rn;
+		MIN_STITCH_LENGTH = Math.max(0f,msl);
+		STITCH_LENGTH = Math.max(0.1f,sl);
+		RESAMPLE_NOISE = Math.max(0.0f,Math.min(1f,rn));
 	}
 	/** Set render order: render strokes over fill, or other way around?
 	 *  
@@ -3420,6 +3420,10 @@ public class PEmbroiderGraphics {
 	 */
 	public void beginCull() {
 		beginCullIndex = cullGroups.size();
+	}
+	public void beginCull(float sp) {
+		beginCullIndex = cullGroups.size();
+		CULL_SPACING = sp;
 	}
 	/**
 	 * End culling shapes. Culled shapes occlude each other
