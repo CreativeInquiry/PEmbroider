@@ -104,6 +104,7 @@ public class PEmbroiderGraphics {
 	public int FONT_ALIGN_VERTICAL = PConstants.BASELINE;
 	
 	public float CONCENTRIC_ANTIALIGN = 0.6f;
+	public float RESAMPLE_MAXTURN = 0.2f;
 	
 	boolean randomizeOffsetEvenOdd = false;
 	float randomizeOffsetPrevious = 0.0f;
@@ -2018,7 +2019,7 @@ public class PEmbroiderGraphics {
 	 *  @return                    the resampled polyline
 	 */
 	public ArrayList<PVector> resample(ArrayList<PVector> poly, float minLen, float maxLen, float randomize, float randomizeOffset) {
-		float maxTurn = 0.2f;
+		float maxTurn = RESAMPLE_MAXTURN;
 		ArrayList<PVector> poly2 = new ArrayList<PVector>();
 		if (poly.size() > 0) {
 			poly2.add(poly.get(0));

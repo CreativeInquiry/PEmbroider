@@ -18,13 +18,14 @@ void setup() {
 
 //===================================================
 void draw() {
+  E.RESAMPLE_MAXTURN = 0.8f;
   background(200); 
   E.beginDraw(); 
   E.clear();
   E.noFill(); 
 
   E.stroke(0, 0, 0); 
-  E.strokeWeight(10); 
+  E.strokeWeight(1); 
   E.strokeMode(PEmbroiderGraphics.PERPENDICULAR);
   E.setStitch(10, 40, 0);
 
