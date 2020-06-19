@@ -28,7 +28,7 @@ void setup() {
 
 
   // Create and initialize the PEmbroiderGraphics object, E
-  E = new PEmbroiderGraphics(this, 500, 500);
+  E = new PEmbroiderGraphics(this, width, height);
   String outputFilePath = sketchPath("PEmbroider_bitmap_animation.vp3");
   E.setPath(outputFilePath);
   E.beginDraw(); 
@@ -36,10 +36,12 @@ void setup() {
 
   // Embroider each of the frames of the animation 
 
+E.beginCull();
   E.setStitch(5, 40, 0);
   E.stroke(0, 0, 0);
   E.strokeWeight(1); 
-  E.noFill(); 
+  //E.noFill(); 
+  E.fill(0);
   int pw = frames[0].width;
   int ph = frames[0].height;
   for (int i=0; i<nFrames; i++) {
@@ -65,6 +67,7 @@ void setup() {
     int py = (i/4) * (ph+25) + 25;
     E.image(frames[i%nFrames], px, py, pw, ph);
   }
+  E.endCull();
 
 
   //-------------------
