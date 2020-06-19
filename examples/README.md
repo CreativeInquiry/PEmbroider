@@ -10,6 +10,8 @@
 * PEmbroider_shape_culling
 * PEmbroider_shape_merging
 * PEmbroider_bitmap_image_1
+* PEmbroider_bitmap_image_2
+* PEmbroider_bitmap_animation
 * PEmbroider_svg_image
 * PEmbroider_text_1
 * PEmbroider_text_2
@@ -96,6 +98,22 @@ Using raster rendering to create complex compound shapes.
 Embroidering shapes in bitmap images. Shapes must be white blobs on a black background. The hatchSpine method (stitches perpendicular to contour, in the upper right) is still experimental.
 
 [![](PEmbroider_bitmap_image_1/PEmbroider_bitmap_image_1.png)](PEmbroider_bitmap_image_1/)
+
+
+
+## PEmbroider_bitmap_image_2
+
+The Processing logo. Combining stroke and fill in a filled shape taken from a bitmap image. Stroke-over-fill or fill-over-stroke.
+
+[![](PEmbroider_bitmap_image_2/PEmbroider_bitmap_image_2.png)](PEmbroider_bitmap_image_2/)
+
+
+
+## PEmbroider_bitmap_animation
+
+Frames of the classic Muybridge horse, rendered as embroidered graphics. 
+
+[![](PEmbroider_bitmap_animation/PEmbroider_bitmap_animation.png)](PEmbroider_bitmap_animation/)
 
 
 
