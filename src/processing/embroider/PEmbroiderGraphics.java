@@ -103,6 +103,8 @@ public class PEmbroiderGraphics {
 	public int FONT_ALIGN = PConstants.LEFT;
 	public int FONT_ALIGN_VERTICAL = PConstants.BASELINE;
 	
+	public float CONCENTRIC_ANTIALIGN = 0.6f;
+	
 	boolean randomizeOffsetEvenOdd = false;
 	float randomizeOffsetPrevious = 0.0f;
 	
@@ -399,6 +401,7 @@ public class PEmbroiderGraphics {
 		NO_RESAMPLE = !b;
 	}
 	
+
 	/* ======================================== MATH ======================================== */
 	
 	/** Compute the determinant of a 3x3 matrix as 3 row vectors.
@@ -1358,39 +1361,41 @@ public class PEmbroiderGraphics {
 				}
 			}
 			
-			for (int i = 0; i < polys3.size(); i++) {
-				ArrayList<PVector> pp = polys3.get(i);
-				if (k%2 == 0) {
-					ArrayList<PVector> qq = new ArrayList<PVector>();
-					for (int j = 0; j < pp.size()+1; j++) {
-						if (j != pp.size()) {
-							PVector a = pp.get((j-1+pp.size())%pp.size());
-							PVector b = pp.get(j);
-							PVector c = pp.get((j+1)%pp.size());
-							PVector u = b.copy().sub(a);
-							PVector v = c.copy().sub(b);
-							float ang = PApplet.abs(PVector.angleBetween(u, v));
-							if (ang > PConstants.PI) {
-								ang = PConstants.TWO_PI - ang;
-							}
-							if (ang > 0.6) {
-								qq.add(b);
-							}
-						}
-						
-						PVector p = pp.get(j%pp.size()).copy().mult(0.5f).add(pp.get((j+1)%pp.size()).copy().mult(0.5f));
-						qq.add(p);
-					}
-					polys2.add(qq);
-
-					
-				}else {
-					polys2.add(pp);
-				}
-			}
-				
-//			polys2.addAll(polys3);
 			
+			if (CONCENTRIC_ANTIALIGN > 0) {
+				for (int i = 0; i < polys3.size(); i++) {
+					ArrayList<PVector> pp = polys3.get(i);
+					if (k%2 == 0) {
+						ArrayList<PVector> qq = new ArrayList<PVector>();
+						for (int j = 0; j < pp.size()+1; j++) {
+							if (j != pp.size()) {
+								PVector a = pp.get((j-1+pp.size())%pp.size());
+								PVector b = pp.get(j);
+								PVector c = pp.get((j+1)%pp.size());
+								PVector u = b.copy().sub(a);
+								PVector v = c.copy().sub(b);
+								float ang = PApplet.abs(PVector.angleBetween(u, v));
+								if (ang > PConstants.PI) {
+									ang = PConstants.TWO_PI - ang;
+								}
+								if (ang > CONCENTRIC_ANTIALIGN) {
+									qq.add(b);
+								}
+							}
+							
+							PVector p = pp.get(j%pp.size()).copy().mult(0.5f).add(pp.get((j+1)%pp.size()).copy().mult(0.5f));
+							qq.add(p);
+						}
+						polys2.add(qq);
+	
+						
+					}else {
+						polys2.add(pp);
+					}
+				}
+			}else {
+				polys2.addAll(polys3);
+			}
 
 //			app.tint(255,/100f);
 //			app.image(pg,bb.x,bb.y);
@@ -3972,7 +3977,44 @@ public class PEmbroiderGraphics {
 		for (int i = 0; i < isos.size(); i++) {
 			for (int j = 0; j < isos.get(i).size(); j++) {
 //				polys.add(resampleHalfKeepCorners(resampleHalf(isos.get(i).get(j)),0.1f));
-				polys.add(isos.get(i).get(j));
+				
+				
+				if (CONCENTRIC_ANTIALIGN > 0) {
+		
+					ArrayList<PVector> pp = isos.get(i).get(j);
+					if (i%2 == 0) {
+						ArrayList<PVector> qq = new ArrayList<PVector>();
+						for (int k = 0; k < pp.size()+1; k++) {
+							if (k != pp.size()) {
+								PVector a = pp.get((k-1+pp.size())%pp.size());
+								PVector b = pp.get(k);
+								PVector c = pp.get((k+1)%pp.size());
+								PVector u = b.copy().sub(a);
+								PVector v = c.copy().sub(b);
+								float ang = PApplet.abs(PVector.angleBetween(u, v));
+								if (ang > PConstants.PI) {
+									ang = PConstants.TWO_PI - ang;
+								}
+								if (ang > CONCENTRIC_ANTIALIGN) {
+									qq.add(b);
+								}
+							}
+							
+							PVector p = pp.get(k%pp.size()).copy().mult(0.5f).add(pp.get((k+1)%pp.size()).copy().mult(0.5f));
+							qq.add(p);
+						}
+						polys.add(qq);
+
+						
+					}else {
+						polys.add(pp);
+					}
+				
+				}else {
+					polys.add(isos.get(i).get(j));
+				}
+				
+							
 			}
 		}
 		return polys;
