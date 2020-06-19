@@ -10,11 +10,15 @@
 * PEmbroider_shape_culling
 * PEmbroider_shape_merging
 * PEmbroider_bitmap_image_1
+* PEmbroider_bitmap_image_2
+* PEmbroider_bitmap_animation
 * PEmbroider_svg_image
 * PEmbroider_text_1
 * PEmbroider_text_2
 * PEmbroider_text_3
-* PEmbroider_interactive_demo
+* PEmbroider_interactive_demo_1
+* PEmbroider_interactive_demo_2
+
 
 ---
 
@@ -99,6 +103,22 @@ Embroidering shapes in bitmap images. Shapes must be white blobs on a black back
 
 
 
+## PEmbroider_bitmap_image_2
+
+The Processing logo. Combining stroke and fill in a filled shape taken from a bitmap image. Stroke-over-fill or fill-over-stroke.
+
+[![](PEmbroider_bitmap_image_2/PEmbroider_bitmap_image_2.png)](PEmbroider_bitmap_image_2/)
+
+
+
+## PEmbroider_bitmap_animation
+
+Frames of the classic Muybridge horse, rendered as embroidered graphics. 
+
+[![](PEmbroider_bitmap_animation/PEmbroider_bitmap_animation.png)](PEmbroider_bitmap_animation/)
+
+
+
 ## PEmbroider_svg_image
 
 Embroidering shapes loaded from SVG files.
@@ -131,9 +151,16 @@ Built-in implmentations of [Hershey fonts](https://en.wikipedia.org/wiki/Hershey
 
 
 
-## PEmbroider_interactive_demo
+## PEmbroider_interactive_demo_1
 
 Demonstration of how an embroidery file can be generated and exported *during live interaction*.
 
-[![](PEmbroider_interactive_demo/PEmbroider_interactive_demo.png)](PEmbroider_interactive_demo/)
+[![](PEmbroider_interactive_demo_1/PEmbroider_interactive_demo_1.png)](PEmbroider_interactive_demo_1/)
+
+
+## PEmbroider_interactive_demo_2
+
+Multi-stroke doodle recorder.
+
+[![](PEmbroider_interactive_demo_2/PEmbroider_interactive_demo_2.png)](PEmbroider_interactive_demo_2/)
 

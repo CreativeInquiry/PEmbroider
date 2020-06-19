@@ -43,7 +43,7 @@ void setup() {
   E.optimize();   // slow, but good and important
   E.visualize();  // 
   E.printStats(); //
-  E.endDraw();    // write out the file
+  // E.endDraw();    // write out the file
 }
 
 
