@@ -13,6 +13,15 @@ public class PEmbroiderHatchSpine{
 	 public static void setGraphics(PEmbroiderGraphics _G) {
 		 G = _G;
 	 }
+	 public static void hatchSpine(PImage mask) {
+		 hatchSpine(mask,G.HATCH_SPACING);
+	 }
+	 public static void hatchSpineSmooth(PImage mask) {
+		 hatchSpineSmooth(mask,G.HATCH_SPACING);
+	 }
+	 public static void hatchSpineVF(PImage mask) {
+		 hatchSpineVF(mask,G.HATCH_SPACING);
+	 }
 	 public static void hatchSpine(PImage mask, float d) {
 		 int w = mask.width;
 		 int h = mask.height;
