@@ -16,7 +16,9 @@
 * PEmbroider_text_1
 * PEmbroider_text_2
 * PEmbroider_text_3
-* PEmbroider_interactive_demo
+* PEmbroider_interactive_demo_1
+* PEmbroider_interactive_demo_2
+
 
 ---
 
@@ -149,9 +151,16 @@ Built-in implmentations of [Hershey fonts](https://en.wikipedia.org/wiki/Hershey
 
 
 
-## PEmbroider_interactive_demo
+## PEmbroider_interactive_demo_1
 
 Demonstration of how an embroidery file can be generated and exported *during live interaction*.
 
-[![](PEmbroider_interactive_demo/PEmbroider_interactive_demo.png)](PEmbroider_interactive_demo/)
+[![](PEmbroider_interactive_demo_1/PEmbroider_interactive_demo_1.png)](PEmbroider_interactive_demo_1/)
+
+
+## PEmbroider_interactive_demo_2
+
+Multi-stroke doodle recorder.
+
+[![](PEmbroider_interactive_demo_2/PEmbroider_interactive_demo_2.png)](PEmbroider_interactive_demo_2/)
 
