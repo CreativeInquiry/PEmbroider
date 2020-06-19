@@ -24,7 +24,7 @@ PEmbroider, by contrast, is a free, cross-platform, open-source, lightweight Jav
 PEmbroider is a embroidery library for the Java flavor of the [Processing](http://processing.org) creative coding environment, suitable for generating embroidery designs computationally. PEmbroider has the following features:
 
 * PEmbroider is structured similarly to other alternative renderers for Processing, providing basic drawing functions (lines, shapes, typography, etc.) that have drop-in compatibility with Processing code. 
-* PEmbroider is able to generate embroidery files in .DST, .PEC, .PES, and .VP3 formats, suitable for consumer CNC embroidery machines such as the Husqvarna Viking series. PEmbroider is also able to generate .PDF, .SVG, .TSV, and .GCODE files for other output devices such as AxiDraw pen plotters, CNC routers, etc.
+* PEmbroider is able to generate embroidery files in .DST, .EXP, .JEF, .PEC, .PES, .VP3, and .XXX file formats, suitable for consumer CNC embroidery machines such as those made by Brother or Husqvarna-Viking. PEmbroider is also able to generate .PDF, .SVG, .TSV, and .GCODE files for other output devices such as AxiDraw pen plotters, CNC routers, etc.
 * PEmbroider is able to generate embroidery designs from vector (.SVG) and black-and-white bitmap files (.PNG, .GIF). 
 * PEmbroider allows a variety of ways of composing shapes (including overlapping, cropping, and merging) using various computer vision and computational geometry algorithms.
 * PEmbroider offers a wide range of embroidery hatching (fill) methods.
