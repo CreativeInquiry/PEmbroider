@@ -1884,7 +1884,7 @@ public class PEmbroiderWriter {
 		System.out.println(logPrefix+"BASENAME :"+tokens[0]);
 		System.out.println(logPrefix+"EXTENSION:"+tokens[1]);
 		try {
-			if (tokens[1].equalsIgnoreCase("DST")) {
+			if       (tokens[1].equalsIgnoreCase("DST")) {
 				DST.write(tokens[0], bounds, stitches, flatColors);
 			}else if (tokens[1].equalsIgnoreCase("EXP")) {
 				EXP.write(tokens[0], bounds, stitches, flatColors);
@@ -1907,7 +1907,7 @@ public class PEmbroiderWriter {
 			}else if (tokens[1].equalsIgnoreCase("GCODE")) {
 				GCODE.write(tokens[0], bounds, stitches, flatColors);	
 			}else {
-				System.out.println(logPrefix+"Unsupported format. Try vp3, dst, pec, pes, svg, pdf, tsv or gcode.");
+				System.out.println(logPrefix+"Unsupported format. Try dst, exp, pdf, pec, pes, svg, tsv, vp3, xxx, or gcode.");
 				throw new IOException("Unimplemented");
 			}
 			System.out.println(logPrefix+"Written!");
