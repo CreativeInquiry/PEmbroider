@@ -20,12 +20,12 @@ void setup() {
   float theta = radians(20.0);
   float initialLength = 150; 
   
-  /*E.*/pushMatrix();
-  /*E.*/translate(width*0.5, height*0.9);
-  /*E.*/line(0, 0, 0, -initialLength);
-  /*E.*/translate(0, -initialLength);
+  E.pushMatrix();
+  E.translate(width*0.5, height*0.9);
+  E.line(0, 0, 0, -initialLength);
+  E.translate(0, -initialLength);
   branch(initialLength, theta);
-  /*E.*/popMatrix();
+  E.popMatrix();
 
   //-----------------------
   E.optimize(); // slow, but very good and very important
@@ -48,19 +48,19 @@ void branch (float h, float theta) {
   float minBranchLength = 40; 
   if (h > minBranchLength) {
 
-    /*E.*/pushMatrix();       // Save the current state of transformation 
-    /*E.*/rotate(theta);      // Rotate by theta
-    /*E.*/line(0, 0, 0, -h);  // Draw the branch
-    /*E.*/translate(0, -h);   // Move to the end of the branch
+    E.pushMatrix();       // Save the current state of transformation 
+    E.rotate(theta);      // Rotate by theta
+    E.line(0, 0, 0, -h);  // Draw the branch
+    E.translate(0, -h);   // Move to the end of the branch
     branch(h, theta);     // Call myself to draw two new branches
-    /*E.*/popMatrix();        // Pop to restore the previous matrix state.
+    E.popMatrix();        // Pop to restore the previous matrix state.
 
     // Repeat the same thing, only branch off to the "left" this time.
-    /*E.*/pushMatrix();
-    /*E.*/rotate(-theta);
-    /*E.*/line(0, 0, 0, -h);
-    /*E.*/translate(0, -h);
+    E.pushMatrix();
+    E.rotate(-theta);
+    E.line(0, 0, 0, -h);
+    E.translate(0, -h);
     branch(h, theta);
-    /*E.*/popMatrix();
+    E.popMatrix();
   }
 }

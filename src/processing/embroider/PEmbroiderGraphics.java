@@ -758,7 +758,7 @@ public class PEmbroiderGraphics {
 		ArrayList<PVector> poly2 = new ArrayList<PVector>();
 		for (int i = 0; i < poly.size(); i++) {
 			poly2.add(poly.get(i).copy());
-			for (int j = 0; j < matStack.size(); j++) {
+			for (int j = matStack.size()-1; j>= 0; j--) {
 				poly2.set(i, matStack.get(j).mult(poly2.get(i), null));
 			}
 		}
