@@ -15,8 +15,8 @@ Quick [link to download](distribution/PEmbroider/download/Pembroider.zip) the PE
 * [Motivation](#motivation)
 * [Features](#features)
 * [Examples](#examples)
-* [Getting Started with PEmbroider in Processing]()
-* [How to Build PEmbroider From Source]()
+* [Getting Started with PEmbroider in Processing](#getting-started-with-pembroider-in-processing)
+* [How to Build PEmbroider From Source](#how-to-build-pembroider-from-source)
 * [FAQ](#faq)
 
 
