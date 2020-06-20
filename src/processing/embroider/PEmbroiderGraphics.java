@@ -74,7 +74,7 @@ public class PEmbroiderGraphics {
 	public int CATMULLROM_DETAIL = 40;
 	public float CATMULLROM_TIGHTNESS = 0.5f;
 	
-	public int HATCH_MODE = 1;
+	public int HATCH_MODE = PARALLEL;
 	public float HATCH_ANGLE  =  PApplet.QUARTER_PI;
 	public float HATCH_ANGLE2 = -PApplet.QUARTER_PI;
 	public float HATCH_SPACING = 4;
@@ -136,6 +136,9 @@ public class PEmbroiderGraphics {
 		curveBuff = new ArrayList<PVector> ();
 		colors = new ArrayList<Integer>();
 		cullGroups = new ArrayList<Integer>();
+	}
+	public PEmbroiderGraphics(PApplet _app) {
+		this(_app,_app.width,_app.height);
 	}
 
 	/**
@@ -1702,7 +1705,7 @@ public class PEmbroiderGraphics {
 			l += poly.get(i).dist(poly.get(i+1));
 		}
 
-		int n = 2*((int)Math.ceil((float)l / (float)STITCH_LENGTH));
+		int n = 100*((int)Math.ceil((float)l / (float)STITCH_LENGTH));
 
 		ArrayList<ArrayList<PVector>> polys = insetPolygon(poly,d);
 		ArrayList<ArrayList<PVector>> polys2 = new ArrayList<ArrayList<PVector>>();
@@ -4094,6 +4097,42 @@ public class PEmbroiderGraphics {
 	public void optimize() {
 		optimize(5,999);
 	}
+	
+	int optBlockIdx0;
+	int optBlockTrials;
+	int optBlockMaxIter;
+	public void beginOptimize(int trials,int maxIter) {
+		optBlockIdx0 = polylines.size();
+		optBlockTrials = trials;
+		optBlockMaxIter = maxIter;
+	}
+	public void beginOptimize() {
+		beginOptimize(5,999);
+	}
+	public void endOptimize() {
+		if (polylines.size()-optBlockIdx0 <= 2) {
+			return;
+		}
+//		ArrayList<ArrayList<PVector>> p = new ArrayList<ArrayList<PVector>>(polylines.subList(optBlockIdx0,polylines.size()));
+//		PApplet.println(p.size());
+//		p = PEmbroiderTSP.solve(p,optBlockTrials,optBlockMaxIter);
+//		PApplet.println(p.size());
+//		polylines.subList(optBlockIdx0,polylines.size()).clear();
+//		polylines.addAll(optBlockIdx0,p);
+		int idx0 = optBlockIdx0;
+		for (int i = optBlockIdx0+1; i <= polylines.size(); i++) {
+			if (i == polylines.size() || !colors.get(i).equals(colors.get(i-1))){
+				ArrayList<ArrayList<PVector>> p = new ArrayList<ArrayList<PVector>>(polylines.subList(idx0,i));
+				PApplet.println(p.size());
+				p = PEmbroiderTSP.solve(p,optBlockTrials,optBlockMaxIter);
+				PApplet.println(p.size());
+				polylines.subList(idx0,i).clear();
+				polylines.addAll(idx0,p);
+				idx0 = i;
+			}
+		}
+	}
+
 	 /**
 	  * Change horizontal alignment of text
 	  * @param align alignment mode, one of LEFT, CETER, RIGHT
@@ -4312,6 +4351,31 @@ public class PEmbroiderGraphics {
 			 polylines.get(i).add(c);
 			 
 		 }
+	 }
+	 
+	 public void beginRawStitches() {
+		 if (polyBuff == null) {
+			 polyBuff = new ArrayList<ArrayList<PVector>> ();
+		 }
+		 polyBuff.clear();
+		 polyBuff.add(new ArrayList<PVector>());
+	 }
+	 public void rawStitch(float x, float y) {
+		 polyBuff.get(0).add(new PVector(x,y));
+	 }
+	 public void endRawStitches() {
+		 if (polyBuff.get(0).size() < 2) {
+			 return;
+		 }
+		 ArrayList<PVector> poly2 = new ArrayList<PVector>();
+		 for (int i = 0; i < polyBuff.get(0).size(); i++) {
+			 poly2.add(polyBuff.get(0).get(i).copy());
+			 for (int j = matStack.size()-1; j>= 0; j--) {
+				 poly2.set(i, matStack.get(j).mult(poly2.get(i), null));
+			 }
+		 }
+		 colors.add(currentStroke);
+		 polylines.add(poly2);
 	 }
 	 
 	 public float getCurrentScale(float ang) {
