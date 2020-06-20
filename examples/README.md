@@ -158,9 +158,12 @@ Demonstration of how an embroidery file can be generated and exported *during li
 [![](PEmbroider_interactive_demo_1/PEmbroider_interactive_demo_1.png)](PEmbroider_interactive_demo_1/)
 
 
+
 ## PEmbroider_interactive_demo_2
 
 Multi-stroke doodle recorder.
 
-[![](PEmbroider_interactive_demo_2/PEmbroider_interactive_demo_2.png)](PEmbroider_interactive_demo_2/)
+[![](PEmbroider_interactive_demo_2/documentation/PEmbroider_interactive_demo_2a.png)](PEmbroider_interactive_demo_2/)
+
+[![](PEmbroider_interactive_demo_2/documentation/PEmbroider_interactive_demo_2a_photo.png)](PEmbroider_interactive_demo_2/)
 
