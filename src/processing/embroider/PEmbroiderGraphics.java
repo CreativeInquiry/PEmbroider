@@ -3813,6 +3813,7 @@ public class PEmbroiderGraphics {
 			_stroke(polys, true);
 		}
 		popMatrix();
+		currentCullGroup++;
 	}
 
 	public void image(PImage im, int x, int y) {
