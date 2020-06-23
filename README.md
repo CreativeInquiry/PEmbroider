@@ -4,9 +4,9 @@
 
 ![](images/cosa-and-sfci-logos.jpg)
 
-PEmbroider includes file-writing code adapted from the EmbroidePy [EmbroideryIO](https://github.com/EmbroidePy/EmbroideryIO) project, under its MIT License. Additional thanks to Chris Coleman, Huw Messie, Bryce Summers, Lea Albaugh, Dan Moore, the Processing Foundation, and the staff of the STUDIO. 
+PEmbroider includes file-writing code adapted from the EmbroidePy [EmbroideryIO](https://github.com/EmbroidePy/EmbroideryIO) project, under its MIT License. Additional thanks to Chris Coleman, Huw Messie, Bryce Summers, Lea Albaugh, Dan Moore, the Processing Foundation, and the staff of the STUDIO. PEmbroider is free, open-source software released under an [MIT License](license.txt).
 
-Quick [link to download](distribution/PEmbroider/download/Pembroider.zip) the PEmbroider library .ZIP file:<br/>
+*Here's a quick [link to download](distribution/PEmbroider/download/Pembroider.zip)<br />the PEmbroider library .ZIP file:*<br/>
 [![Download the PEmbroider Library for Processing](images/download_pembroider.jpg)](distribution/PEmbroider/download/Pembroider.zip)
 
 ---
@@ -102,4 +102,5 @@ If there are any issues, download a fresh copy of this repository, and try caref
 * **Which embroidery machine do you recommend?** We cannot recommend which hardware is best for you. However, [this review website](https://bestreviews.com/best-embroidery-machines) has good things to say about the Janome Memory Craft 9850 ($1800, takes .JEF) and the Brother PE800 ($900, takes .PES and .DST). We developed our code using the Viking Jade 35 ($1000) and are pleased. The majority of our beta-testers have different kinds of Brother machines.
 * **Why can't PEmbroider read pre-existing embroidery design files?** This is a purposeful limitation of the project's scope. Philosophically, PEmbroider is intended to do one thing well: to allow you to generate new embroidery designs, with code. There is already plenty of software that allows you to load other people's designs. If you would like to manipulate pre-existing embroidery files computationally, we recommend the [EmbroidePy](https://github.com/EmbroidePy/) project.
 * **How can I learn to code in Processing?** There's great documentation at the main [Processing website](http://processing.org), or you can check out Dan Shiffman's amazing [Coding Train](https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw) tutorials on YouTube. 
+* **How can I learn to do machine embroidery?** Here are YouTube tutorials for the [Viking Jade 35](https://www.youtube.com/watch?v=h_uhV8DiyXI), the [Brother PE800](https://www.youtube.com/watch?v=DfpJXuBeEPM), and the [Brother SE600](https://www.youtube.com/watch?v=N0yPILKhHVc).
  
