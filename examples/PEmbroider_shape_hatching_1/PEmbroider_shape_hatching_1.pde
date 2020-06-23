@@ -20,9 +20,10 @@ void setup() {
   E.beginDraw(); 
   E.clear();
   E.fill(0, 0, 0); 
-  E.noStroke(); 
+  E.stroke(0,0,0);
+  E.strokeWeight(1); 
   E.setStitch(10, 25, 0); 
-
+  
 
   //-----------------------
   E.hatchMode(PARALLEL);
@@ -53,7 +54,6 @@ void setup() {
   E.hatchMode(CONCENTRIC);
   E.hatchSpacing(8);
   E.rect (475, 275, 150, 150);
-  stroke(0,0,0);
 
   //-----------------------
   E.hatchMode(SPIRAL);
