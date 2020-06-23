@@ -1,6 +1,6 @@
 # PEmbroider
 
-**PEmbroider is an open library for computational embroidery with [Processing](http://processing.org).** PEmbroider was developed spring 2020 at the CMU [Frank-Ratchye STUDIO for Creative Inquiry](http://studioforcreativeinquiry.org) by Golan Levin, Lingdong Huang, and Tatyana Mustakos, with generous support from the [Clinic for Open Source Arts](https://www.du.edu/ahss/opensourcearts/) (COSA) at the University of Denver. If you found this project useful, please consider [making a donation](https://studioforcreativeinquiry.org/donate).
+**PEmbroider is an open library for computational embroidery with [Processing](http://processing.org).** PEmbroider was developed spring 2020 at the CMU [Frank-Ratchye STUDIO for Creative Inquiry](http://studioforcreativeinquiry.org) by Golan Levin, Lingdong Huang, and Tatyana Mustakos, with generous support from the [Clinic for Open Source Arts](https://www.du.edu/ahss/opensourcearts/) (COSA) at the University of Denver. For questions, please contact [Golan Levin](https://twitter.com/golan). If you found this project useful, please consider [making a donation](https://studioforcreativeinquiry.org/donate).
 
 ![](images/cosa-and-sfci-logos.jpg)
 
@@ -68,6 +68,8 @@ PEmbroider comes with a variety of [examples](examples/README.md) which demonstr
 * PEmbroider provides the `visualize()` function to view the planned stitches. You can also preview and validate your embroidery files with software such as [this online viewer](https://htmtopdf.herokuapp.com/embroidery/), Husqvarna/Viking [PREMIER+ 2](http://www.husqvarnaviking.com/en-US/Support/Complimentary-Software), or Brother [PE-Design](http://www.brother.com/common/hsm/ped10/ped10trial.html).
 * See [here for instructions](https://github.com/CreativeInquiry/STUDIO-Embroidery-Machine) on using the STUDIO's Husqvarna Viking Designer Jade 35 embroidery machine.
 
+![Loading the PEmbroider library in Processing](images/library_in_processing.jpg)
+
 
 ---
 ## How to Build PEmbroider From Source
@@ -97,8 +99,7 @@ If there are any issues, download a fresh copy of this repository, and try caref
 ## FAQ
 
 * **Which output file formats are supported?** .DST, .EXP, .JEF, .PEC, .PES, .VP3, and .XXX, as well as .PDF, .SVG, .TSV, and .GCODE.
-* **Which embroidery machine do you recommend?** We cannot recommend which hardware is best for you. However, [this review website](https://bestreviews.com/best-embroidery-machines) has good things to say about the Janome Memory Craft 9850 ($1800, takes .JEF) and the Brother PE800 ($900, takes .PES and .DST). We developed our code using the Viking Jade 35 ($1000) and are pleased. The majority of our beta-testers have Brother machines.
+* **Which embroidery machine do you recommend?** We cannot recommend which hardware is best for you. However, [this review website](https://bestreviews.com/best-embroidery-machines) has good things to say about the Janome Memory Craft 9850 ($1800, takes .JEF) and the Brother PE800 ($900, takes .PES and .DST). We developed our code using the Viking Jade 35 ($1000) and are pleased. The majority of our beta-testers have different kinds of Brother machines.
 * **Why can't PEmbroider read pre-existing embroidery design files?** This is a purposeful limitation of the project's scope. Philosophically, PEmbroider is intended to do one thing well: to allow you to generate new embroidery designs, with code. There is already plenty of software that allows you to load other people's designs. If you would like to manipulate pre-existing embroidery files computationally, we recommend the [EmbroidePy](https://github.com/EmbroidePy/) project.
 * **How can I learn to code in Processing?** There's great documentation at the main [Processing website](http://processing.org), or you can check out Dan Shiffman's amazing [Coding Train](https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw) tutorials on YouTube. 
  
-
