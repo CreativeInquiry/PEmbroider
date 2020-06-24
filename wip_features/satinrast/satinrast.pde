@@ -138,6 +138,63 @@ boolean floodfill(Im prev, Im src, Im dst, Pt p0, int[] areaOut){
   return t;
 }
 
+boolean floodfillQ(Im prev, Im src, Im dst, Pt p0, int[] areaOut){
+  boolean t = false;
+  if (prev.get(p0) == -1){
+    t = true;
+  }
+  if (src.get(p0) != 1){
+    return t;
+  }
+  if (dst.get(p0) == 1){
+    return t;
+  }
+  ArrayList<Pt> Q = new ArrayList<Pt>();
+  Q.add(new Pt(p0));
+  while (Q.size()>0){
+    if (areaOut != null){
+      areaOut[0]++;
+    }
+      
+    Pt n = Q.get(0);
+    Q.remove(0);
+    Pt l = new Pt(n.x-1,n.y);
+    Pt r = new Pt(n.x+1,n.y);
+    Pt u = new Pt(n.x,n.y-1);
+    Pt d = new Pt(n.x,n.y+1);
+    if (src.get(l)==1){
+      dst.set(l,1);
+      src.set(l,0);
+      Q.add(l);
+
+    }
+    if (src.get(r)==1){
+      dst.set(r,1);
+      src.set(r,0);
+      Q.add(r);
+    }
+    if (src.get(u)==1){
+      dst.set(u,1);
+      src.set(u,0);
+      Q.add(u);
+    }
+    if (src.get(d)==1){
+      dst.set(d,1);
+      src.set(d,0);
+      Q.add(d);
+    }
+    if (prev.get(l) == -1 || 
+        prev.get(r) == -1 || 
+        prev.get(u) == -1 || 
+        prev.get(d) == -1 ){
+      t = true;
+    }
+  }
+  
+  return t;
+}
+
+
 int findArea(Im im){
   int a = 0;
   for (int i = 0; i < im.data.length; i++){
@@ -181,7 +238,7 @@ ArrayList<Pt> satinStitches(Im prevIm, Im im, Pt p0, int d){
           Im old = new Im(im);
 
           int[] area = {0};
-          boolean touch = floodfill(prevIm,im,mask,q0,area);
+          boolean touch = floodfillQ(prevIm,im,mask,q0,area);
           int at = findArea(im);
           //println(touch,area[0],at);
           if (touch || area[0] > at){
@@ -219,7 +276,7 @@ ArrayList<Pt> satinStitches(Im prevIm, Im im, Pt p0, int d){
         if (aboveOn >= 0){
           Pt q0 = new Pt(aboveOn,p.y-d);
           Im mask = new Im(im.w,im.h);
-          floodfill(prevIm,im,mask,q0,null);
+          floodfillQ(prevIm,im,mask,q0,null);
           
           if (d > 0){
             q0 = hiPt(mask);
@@ -244,7 +301,7 @@ ArrayList<Pt> satinStitches(Im prevIm, Im im, Pt p0, int d){
           q0.x--;
         }
         Im mask = new Im(im.w,im.h);
-        floodfill(prevIm,im,mask,q0,null);
+        floodfillQ(prevIm,im,mask,q0,null);
         
         if (d > 0){
           q0 = loPt(mask);
@@ -256,6 +313,10 @@ ArrayList<Pt> satinStitches(Im prevIm, Im im, Pt p0, int d){
         }
         p.x = belowOn;
         p.y += d;
+        
+        while (im.isOn(p)){
+          p.x -= 1;
+        }
         
         belowOn = -1;
         aboveOn = -1;
@@ -269,7 +330,7 @@ ArrayList<Pt> satinStitches(Im prevIm, Im im, Pt p0, int d){
           q0.x--;
         }
         Im mask = new Im(im.w,im.h);
-        floodfill(prevIm,im,mask,q0,null);
+        floodfillQ(prevIm,im,mask,q0,null);
         
         if (d > 0){
           q0 = hiPt(mask);
@@ -415,7 +476,7 @@ void draw(){
   makeRaster();
   stitches = satinStitches(cpyImg,srcImg,hiPt(srcImg),1);
   
-  background(100);
+  background(128);
   noStroke();
   fill(255);
   
@@ -431,7 +492,7 @@ void draw(){
   stroke(255,64,0);
   beginShape();
   //for (int i = 0; i < stitches.size(); i++){
-  for (int i = 0; i < min((frame*5),stitches.size()); i++){
+  for (int i = 0; i < min((frame*50*reso),stitches.size()); i++){
     float x = stitches.get(i).x/reso+1/reso/2;
     float y = stitches.get(i).y/reso+1/reso/2;
     rect(x-1,y-1,3,3);
@@ -440,7 +501,7 @@ void draw(){
   endShape();
   
   fill(0);
-  text("LEFT/RIGHT rotate, UP/DOWN sample, SPACE restart anim, ENTER finish anim\n"
+  text("LEFT/RIGHT rotate, UP/DOWN sample, SPACE restart anim, ENTER finish anim, TAB fast forward\n"
     +"Current rotation: "+nf(rot,1,2)+" rad",5,20);
   frame ++;
 }
@@ -457,9 +518,11 @@ void keyPressed(){
   }else if (keyCode == ENTER){
     frame = 99999;
   }else if (keyCode == UP){
-    reso = min(0.25,reso*2);
+    reso = min(1,reso*2);
   }else if (keyCode == DOWN){
     reso = max(0.03124,reso/2);
+  }else if (keyCode == TAB){
+    frame += 200;
   }
 
 }
