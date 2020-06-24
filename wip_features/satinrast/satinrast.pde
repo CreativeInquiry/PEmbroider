@@ -13,6 +13,11 @@ ArrayList<Pt> stitches;
 float reso = 0.125;
 Im srcImg;
 Im cpyImg;
+
+boolean hasHole = false;
+
+int mouseFunc = 0;
+String[] mouseFuncDesc = {"NONE","HOLE","ISLAND"};
   
 class Pt{
   int x;
@@ -190,9 +195,78 @@ boolean floodfillQ(Im prev, Im src, Im dst, Pt p0, int[] areaOut){
       t = true;
     }
   }
-  
   return t;
 }
+
+
+boolean floodBridgeHoleAt(Im src, Im cache, Pt p0){
+  
+  Im dst = new Im(src.w,src.h);
+  ArrayList<Pt> Q = new ArrayList<Pt>();
+  ArrayList<Pt> P = new ArrayList<Pt>();
+  Q.add(new Pt(p0));
+  dst.set(p0,1);
+  Pt leftmost = new Pt(p0);
+  while (Q.size()>0){
+
+    Pt n = Q.get(0);
+    Q.remove(0);
+    P.add(new Pt(n));
+    //if (n.x < leftmost.x){
+    //  leftmost.x = n.x;
+    //  leftmost.y = n.y;
+    //}
+    if (n.x <= 0 || n.x >= src.w-1 || n.y <= 0 || n.y >= src.h-1){
+      for (int i = 0; i < P.size(); i++){
+         cache.set(P.get(i),1);
+      }
+      return false;
+    }
+    if (cache.get(n) == 1){
+      for (int i = 0; i < P.size(); i++){
+         cache.set(P.get(i),1);
+      }
+      return false;
+    }
+    Pt l = new Pt(n.x-1,n.y);
+    Pt r = new Pt(n.x+1,n.y);
+    Pt u = new Pt(n.x,n.y-1);
+    Pt d = new Pt(n.x,n.y+1);
+    if (dst.get(l)==0 && src.get(l)==0){
+      dst.set(l,1);
+      Q.add(l);
+    }
+    if (dst.get(r)==0 && src.get(r)==0){
+      dst.set(r,1);
+      Q.add(r);
+    }
+    if (dst.get(u)==0 && src.get(u)==0){
+      dst.set(u,1);
+      Q.add(u);
+    }
+    if (dst.get(d)==0 && src.get(d)==0){
+      dst.set(d,1);
+      Q.add(d);
+    }
+  }
+  for (int i = 0; i < src.w; i++){
+    leftmost.x --;
+    if (leftmost.x < 0 || 
+     cache.get(leftmost) == 1 || 
+     cache.get(leftmost.x+1,leftmost.y-1) == 1 ||
+     cache.get(leftmost.x+1,leftmost.y+1) == 1 
+     ){
+      break;
+    }
+    cache.set(leftmost,1);
+    src.set(leftmost,0);
+  }
+  for (int i = 0; i < P.size(); i++){
+    cache.set(P.get(i),1);
+  }
+  return true;
+}
+
 
 
 int findArea(Im im){
@@ -414,7 +488,7 @@ void rotateAndFit(float[][] poly, float ang, float w, float h){
   
 }
  
-void remove1pxHoles(Im im){
+void remove1pxHolesAndIslands(Im im){
   for (int i = 0; i < im.h; i++){
     for (int j = 0; j < im.w; j++){
       if (im.get(j,i) == 0){
@@ -425,10 +499,37 @@ void remove1pxHoles(Im im){
         ){
           im.set(j,i,1);
         }
+      }else{
+        if (im.get(j-1,i) == 0
+          &&im.get(j+1,i) == 0
+          &&im.get(j,i-1) == 0
+          &&im.get(j,i+1) == 0
+        ){
+          im.set(j,i,0);
+        }
       }
     }
   }
-  
+}
+
+void bridgeHoles(Im im){
+  Im cache = new Im(im.w,im.h);
+  for (int i = 0; i < im.h; i++){
+    boolean seenOn = false;
+    for (int j = 0; j < im.w; j++){
+      Pt p = new Pt(j,i);
+      if (im.get(p) == 1){
+        seenOn = true;
+      }else{
+        if (!seenOn){
+          cache.set(p,1);
+        }else{
+          floodBridgeHoleAt(im,cache,p);
+        }
+      }
+    }
+  }
+  //cache.toPImage().save("?.png");
 }
 
 void makeRaster(){
@@ -446,14 +547,46 @@ void makeRaster(){
     pg.vertex(px, py);
   }
   pg.endShape();
+
+  if (mouseFunc == 1){
+    pg.fill(0);
+    pg.circle(mouseX,mouseY,100);
+  }else if (mouseFunc == 2){
+    pg.fill(255);
+    pg.circle(mouseX,mouseY,100);
+  }
   pg.endDraw();
   
   srcImg = new Im(pg);
-  remove1pxHoles(srcImg);
+  remove1pxHolesAndIslands(srcImg);
   
+  if (hasHole){
+    bridgeHoles(srcImg);
+  }
   cpyImg = new Im(srcImg);
 }
  
+ 
+ 
+ArrayList<Pt> satinStitchesMultiple(Im im){
+  Im cpy = new Im(im);
+  Im src = new Im(im);
+  ArrayList<Pt> pts = satinStitches(cpy,src,hiPt(im),1);
+  for (int i = 0; i < pts.size(); i++){
+    cpy.set(pts.get(i),0);
+  }
+  boolean redo = false;
+  for (int i = 0; i < cpy.data.length; i++){
+    if (cpy.data[i] > 0){
+      redo = true;
+      break;
+    }
+  }
+  if (redo){
+    pts.addAll(satinStitchesMultiple(cpy));
+  }
+  return pts;
+}
  
 void setup(){
   size(800,800);
@@ -462,7 +595,7 @@ void setup(){
     shapeCoordsData[i][0] = (shapeCoordsData[i][0]-400)*0.9+400;
     shapeCoordsData[i][1] = (shapeCoordsData[i][1]-400)*0.9+400;
   }
-  
+  //stitches = new ArrayList<Pt>();
   //rotateAndFit(shapeCoordsData,6.25f,width,height);
   
   //makeRaster();
@@ -474,7 +607,9 @@ float rot = 0;
 void draw(){
 
   makeRaster();
-  stitches = satinStitches(cpyImg,srcImg,hiPt(srcImg),1);
+  //stitches = satinStitches(cpyImg,srcImg,hiPt(srcImg),1);
+  stitches = satinStitchesMultiple(srcImg);
+  
   
   background(128);
   noStroke();
@@ -501,8 +636,9 @@ void draw(){
   endShape();
   
   fill(0);
-  text("LEFT/RIGHT rotate, UP/DOWN sample, SPACE restart anim, ENTER finish anim, TAB fast forward\n"
-    +"Current rotation: "+nf(rot,1,2)+" rad",5,20);
+  text("LEFT/RIGHT rotate, UP/DOWN sample, SPACE restart anim, ENTER finish anim, TAB fast forward, BACKSPACE mouse function\n"
+    +"Current rotation: "+nf(rot,1,2)+" rad\n"
+    +"Current mouse function: "+mouseFuncDesc[mouseFunc],5,20);
   frame ++;
 }
 
@@ -523,6 +659,9 @@ void keyPressed(){
     reso = max(0.03124,reso/2);
   }else if (keyCode == TAB){
     frame += 200;
+  }else if (key == BACKSPACE){
+    mouseFunc = (mouseFunc + 1)%mouseFuncDesc.length;
+    hasHole = mouseFunc != 0;
   }
 
 }
