@@ -3781,7 +3781,7 @@ public class PEmbroiderGraphics {
 		im2.image(im,0,0,w,h);
 //		im2.filter(PConstants.INVERT);
 		im2.filter(PConstants.THRESHOLD);
-	
+		im2.endDraw();
 		
 		ArrayList<ArrayList<PVector>> polys = PEmbroiderTrace.findContours(im2);
 
@@ -3820,6 +3820,14 @@ public class PEmbroiderGraphics {
 		image(im, x, y, im.width, im.height);
 	}
 	
+	public void image(PEmbroiderBSA im, int x, int y, int w, int h) {
+		im.endOps();
+		image(im.get(),x,y,w,h);
+	}
+	public void image(PEmbroiderBSA im, int x, int y) {
+		im.endOps();
+		image(im.get(),x,y);
+	}
 	public void shape(PShape sh, int x, int y, int w, int h) {
 		int pad = 10;
 		sh.disableStyle();
