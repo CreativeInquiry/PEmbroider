@@ -4514,8 +4514,17 @@ public class PEmbroiderGraphics {
 		 PApplet.println("total length of thread consumed IRL: ",lenPoly+lenConnect);
 	 }
 	 
-	 public void repeatEnd(float x) {
-		 for (int i = 0; i < polylines.size(); i++) {
+	 
+	 int repeatEndStartIndex = 0;
+	 float repeatEndX = 2;
+	 public void beginRepeatEnd(float x) {
+		 repeatEndX = 2;
+		 repeatEndStartIndex = polylines.size();
+	 }
+	 
+	 public void endRepeatEnd() {
+		 float x = repeatEndX;
+		 for (int i = repeatEndStartIndex; i < polylines.size(); i++) {
 			 if (polylines.get(i).size() < 2) {
 				 continue;
 			 }
