@@ -3804,7 +3804,7 @@ public class PEmbroiderGraphics {
 		if (isFill) {
 			if (!isStroke && HATCH_MODE == CONCENTRIC) {
 				for (int i = 0; i < polys.size(); i++) {
-					pushPolyline(polys.get(i),0);
+					pushPolyline(polys.get(i),currentFill);
 				}
 			}
 			hatchRaster(im2);
@@ -4369,7 +4369,7 @@ public class PEmbroiderGraphics {
 		if (FONT != null) {
 			ArrayList<ArrayList<PVector>> polys = PEmbroiderFont.putText(FONT,str,x,y,FONT_SCALE,FONT_ALIGN);
 			for (int i = 0; i < polys.size(); i++) {
-				pushPolyline(polys.get(i),0);
+				pushPolyline(polys.get(i),currentFill);
 			}
 		}else if (TRUE_FONT != null) {
 			PGraphics pg0 = app.createGraphics(1, 1);
