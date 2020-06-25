@@ -3533,7 +3533,20 @@ public class PEmbroiderGraphics {
 		if (polylines.size() < 1) {
 			return;
 		}
+		checkOutOfBound();
 		PEmbroiderWriter.write(path, polylines, colors, width, height);
+	}
+	public boolean checkOutOfBound() {
+		for (int i = 0; i < polylines.size(); i++) {
+			for (int j = 0; j < polylines.get(i).size(); j++) {
+				PVector p = polylines.get(i).get(j);
+				if (p.x<0 || p.x > width || p.y < 0 || p.y > height) {
+					PApplet.println(logPrefix+"Warning: some stitch(es) are out of bound! (",p.x,p.y,")");
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	/**
