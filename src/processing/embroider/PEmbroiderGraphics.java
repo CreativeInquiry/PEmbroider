@@ -49,7 +49,8 @@ public class PEmbroiderGraphics {
 	static public final int SPIRAL    =4;
 	static public final int PERLIN    =5;
 	static public final int VECFIELD  =6;
-	static public final int DRUNK     =7;
+	static public final int SATIN     =7;
+	static public final int DRUNK     =8;
 	
 	//stroke modes
 	static public final int PERPENDICULAR = 10;
@@ -138,6 +139,7 @@ public class PEmbroiderGraphics {
 		curveBuff = new ArrayList<PVector> ();
 		colors = new ArrayList<Integer>();
 		cullGroups = new ArrayList<Integer>();
+		PEmbroiderHatchSatin.setGraphics(this);
 	}
 	public PEmbroiderGraphics(PApplet _app) {
 		this(_app,_app.width,_app.height);
@@ -2837,6 +2839,8 @@ public class PEmbroiderGraphics {
 			polys = perlinField(im, HATCH_SPACING, 0.01f*HATCH_SCALE, STITCH_LENGTH, 3, 100, 9999);
 		}else if (HATCH_MODE == VECFIELD) {
 			polys = customField(im,HATCH_VECFIELD,HATCH_SPACING,3,100,9999);
+		}else if (HATCH_MODE == SATIN) {
+			polys = PEmbroiderHatchSatin.hatchSatinRaster(im,HATCH_SPACING);
 		}else if (HATCH_MODE == DRUNK) {
 			polys = hatchDrunkWalkRaster(im,10,999);
 		}
@@ -3265,7 +3269,7 @@ public class PEmbroiderGraphics {
 		if (polyBuff.size() == 1 && polyBuff.get(0).size() == 0) {
 			return;
 		}
-		if (polyBuff.size() == 1 && (HATCH_BACKEND == FORCE_VECTOR || HATCH_MODE == SPIRAL)) {
+		if (polyBuff.size() == 1 && (HATCH_BACKEND == FORCE_VECTOR || HATCH_MODE == SPIRAL) && HATCH_MODE != SATIN) {
 			if (isStroke && FIRST_STROKE_THEN_FILL) {
 				_stroke(polyBuff,close);
 			}
@@ -3464,7 +3468,8 @@ public class PEmbroiderGraphics {
 	 *  @param stitches  whether to visualize stitches, i.e. little dots on end of segments
 	 *  @param route     whether to visualize the path between polylines that will be taken by embroidery machine/plotter. To be able to not see a mess when enabling this option, try optimize()
 	 */
-	public void visualize(boolean color, boolean stitches, boolean route) {
+	public void visualize(boolean color, boolean stitches, boolean route, int nStitches) {
+		int n = 0;
 		for (int i = 0; i < polylines.size(); i++) {
 			if (color) {
 				app.stroke(app.red(colors.get(i)),app.green(colors.get(i)),app.blue(colors.get(i)));	
@@ -3479,8 +3484,16 @@ public class PEmbroiderGraphics {
 
 				app.strokeWeight(1);
 				app.line(p0.x,p0.y,p1.x,p1.y);
+				n++;
+				if (n >= nStitches) {
+					break;
+				}
+			}
+			if (n >= nStitches) {
+				break;
 			}
 		}
+		n = 0;
 		for (int i = 0; i < polylines.size(); i++) {
 			if (route) {
 				if (i != 0 && polylines.get(i-1).size() > 0 && polylines.get(i).size() > 0) {
@@ -3502,7 +3515,14 @@ public class PEmbroiderGraphics {
 					}
 					app.fill(255,0,255);
 					app.rect(p1.x-1,p1.y-1,2,2);
-	
+					n++;
+					if (n>=nStitches) {
+						break;
+					}
+					
+				}
+				if (n >= nStitches) {
+					break;
 				}
 			}
 		}
@@ -3513,6 +3533,9 @@ public class PEmbroiderGraphics {
 	 */
 	public void visualize() {
 		visualize(false,true,false);
+	}
+	public void visualize(boolean color, boolean stitches, boolean route) {
+		visualize(color,stitches,route,Integer.MAX_VALUE);
 	}
 
 
