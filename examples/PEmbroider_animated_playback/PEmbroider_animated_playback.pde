@@ -31,12 +31,11 @@ void setup() {
   E.fill(0, 0, 0); 
   E.hatchSpacing(6.0);
   E.setStitch(10, 40, 0); 
-  E.hatchAngleDeg(90); 
+  E.hatchAngleDeg(45); 
   E.CONCENTRIC_ANTIALIGN = 0;
 
   // Choose one of these hatch modes
-  E.hatchMode(PEmbroiderGraphics.SPIRAL);  // ?!?!?!?
-  // E.hatchMode(PEmbroiderGraphics.SATIN);  
+  E.hatchMode(PEmbroiderGraphics.SATIN);  
   // E.hatchMode(PEmbroiderGraphics.PARALLEL);
   // E.hatchMode(PEmbroiderGraphics.CONCENTRIC);
 
@@ -50,7 +49,7 @@ void setup() {
   E.endShape(CLOSE);
   
   // Optimize the embroidery path.
-  // Can be slow, but very important.
+  // This can be slow, but very important.
   E.optimize(); 
 }
 
@@ -61,7 +60,7 @@ void draw() {
   renderShapeToScreen();
 
   E.visualize(false, true, true, stitchPlaybackCount);
-  stitchPlaybackCount+=25;
+  stitchPlaybackCount += 10;
 }
 
 //-----------------------------------------------------
