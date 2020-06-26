@@ -239,12 +239,12 @@ public class PEmbroiderHatchSatin {
 				Q.add(d);
 			}
 		}
-		for (int i = 0; i < src.w; i++){
-			leftmost.x --;
-			if (leftmost.x < 0 || 
+		for (int i = 0; i < src.h; i++){
+			leftmost.y --;
+			if (leftmost.y < 0 || 
 					cache.get(leftmost) == 1 || 
-					cache.get(leftmost.x+1,leftmost.y-1) == 1 ||
-					cache.get(leftmost.x+1,leftmost.y+1) == 1 
+					cache.get(leftmost.x-1,leftmost.y+1) == 1 ||
+					cache.get(leftmost.x-1,leftmost.y+1) == 1 
 					){
 				break;
 			}
@@ -613,7 +613,7 @@ public class PEmbroiderHatchSatin {
 		pg.image(im,0,0);
 		pg.endDraw();
 //		G.app.image(pg,0,0);
-//		pg.save("/Users/studio/Downloads/hsar.png");
+		pg.save("/Users/studio/Downloads/hsar.png");
 		
 		float costh = PApplet.cos(-ang);
 		float sinth = PApplet.sin(-ang);

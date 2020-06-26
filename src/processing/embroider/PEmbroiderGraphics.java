@@ -840,7 +840,7 @@ public class PEmbroiderGraphics {
 	    }
 	  }
 //	  PApplet.println(centroidPoint, orientation);
-	  return (orientation+PConstants.HALF_PI+PConstants.TWO_PI)%PConstants.TWO_PI-PConstants.PI;
+	  return (orientation+PConstants.HALF_PI);//+PConstants.TWO_PI)%PConstants.TWO_PI;
 	}
 
 	//---------------------------------
