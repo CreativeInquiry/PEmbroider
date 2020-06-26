@@ -4,7 +4,7 @@
 //-----------------------------------------------------
 import processing.embroider.*;
 PEmbroiderGraphics E;
-int stitchPlaybackCount; 
+int stitchPlaybackCount = 0; 
 
 float shapeCoords[][] = {
   {579, 51}, {712, 59}, {716, 182}, {744, 300}, {748, 345}, 
@@ -17,29 +17,28 @@ float shapeCoords[][] = {
 
 //-----------------------------------------------------
 void setup() {
-  size (800, 800);
-  stitchPlaybackCount = 0; 
+  size (800, 800); 
 
   // Set up a new PEmbroiderGraphics object. 
   // In this demo, we just watch the stitch planning, 
   // so we don't bother setting up file output. 
   E = new PEmbroiderGraphics(this, width, height);
   E.beginDraw(); 
-  
-  // Initialize embroidery settings
-  E.noStroke(); 
-  E.fill(0, 0, 0); 
+
+  // Initialize PEmbroider settings.
   E.hatchSpacing(6.0);
   E.setStitch(10, 40, 0); 
   E.hatchAngleDeg(45); 
   E.CONCENTRIC_ANTIALIGN = 0;
 
-  // Choose one of these hatch modes
+  // Choose one of these hatch modes by un-commenting it!
   E.hatchMode(PEmbroiderGraphics.SATIN);  
   // E.hatchMode(PEmbroiderGraphics.PARALLEL);
   // E.hatchMode(PEmbroiderGraphics.CONCENTRIC);
 
-  // Add a complex shape to the scene
+  // Add an interesting polygon to the scene. 
+  E.noStroke(); 
+  E.fill(0, 0, 0); 
   E.beginShape();
   for (int i=0; i<shapeCoords.length; i++) {
     float px = shapeCoords[i][0];
@@ -47,12 +46,11 @@ void setup() {
     E.vertex(px, py);
   }
   E.endShape(CLOSE);
-  
-  // Optimize the embroidery path.
-  // This can be slow, but very important.
-  E.optimize(); 
-}
 
+  // Optimize the embroidery path.
+  // This can be slow, but it's very important.
+  E.optimize();
+}
 
 //-----------------------------------------------------
 void draw() {
@@ -60,14 +58,12 @@ void draw() {
   renderShapeToScreen();
 
   E.visualize(false, true, true, stitchPlaybackCount);
-  stitchPlaybackCount += 10;
+  stitchPlaybackCount += 5;
 }
 
 //-----------------------------------------------------
 void keyPressed() {
-  if (key == ' ') {
-    stitchPlaybackCount = 0;
-  }
+  if (key == ' ') stitchPlaybackCount = 0;
 }
 
 //-----------------------------------------------------
