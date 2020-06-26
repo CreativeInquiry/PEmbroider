@@ -6,7 +6,7 @@ PEmbroiderGraphics E;
 
 void setup() {
   noLoop(); 
-  size (800, 550);
+  size (1050, 550);
   PFont myFont = createFont("Helvetica-Bold", 400);
 
   E = new PEmbroiderGraphics(this, width, height);
@@ -30,17 +30,26 @@ void setup() {
   E.strokeWeight(18);
   E.text("a", 150, 250);
 
+  E.setRenderOrder(PEmbroiderGraphics.STROKE_OVER_FILL);
   E.strokeMode(PEmbroiderGraphics.TANGENT);
   E.hatchMode(PEmbroiderGraphics.PARALLEL);
   E.stroke(0); 
-  E.fill(0); 
+  E.fill(255); 
   E.strokeWeight(18);
   E.text("a", 400, 250);
+  
+  E.setRenderOrder(PEmbroiderGraphics.FILL_OVER_STROKE);
+  E.strokeMode(PEmbroiderGraphics.TANGENT);
+  E.hatchMode(PEmbroiderGraphics.PARALLEL);
+  E.stroke(0); 
+  E.fill(255); 
+  E.strokeWeight(18);
+  E.text("a", 650, 250);
 
   E.hatchMode(PEmbroiderGraphics.PARALLEL);
-  E.fill(0); 
+  E.fill(255); 
   E.noStroke();
-  E.text("a", 650, 250);
+  E.text("a", 900, 250);
 
 
   //-----------------------
@@ -50,21 +59,31 @@ void setup() {
   E.strokeWeight(18);
   E.text("a", 150, 500);
 
+  E.setRenderOrder(PEmbroiderGraphics.STROKE_OVER_FILL);
   E.strokeMode(PEmbroiderGraphics.PERPENDICULAR);
   E.hatchMode(PEmbroiderGraphics.PARALLEL);
   E.stroke(0); 
-  E.fill(0); 
+  E.fill(255); 
   E.strokeWeight(18);
   E.text("a", 400, 500);
+  
+  E.setRenderOrder(PEmbroiderGraphics.FILL_OVER_STROKE);
+  E.strokeMode(PEmbroiderGraphics.PERPENDICULAR);
+  E.hatchMode(PEmbroiderGraphics.PARALLEL);
+  E.stroke(0); 
+  E.fill(255); 
+  E.strokeWeight(18);
+  E.text("a", 650, 500);
 
   E.hatchMode(PEmbroiderGraphics.CONCENTRIC);
-  E.fill(0); 
+  E.fill(255); 
   E.noStroke();
-  E.text("a", 650, 500);
+  E.text("a", 900, 500);
 
  
   //-----------------------
-  // E.optimize(); // VERY SLOW -- can take MINUTES -- but ESSENTIAL!!!
+  //E.optimize(); // VERY SLOW -- can take MINUTES -- but ESSENTIAL!!!
   E.visualize();
-  E.endDraw(); // write out the file
+  //E.endDraw(); // write out the file
+  //save("PEmbroider_text_1.png");
 }
