@@ -74,4 +74,5 @@ void draw() {
   // E.optimize(); // slow, but very good and important
   E.visualize();
   // E.endDraw(); // write out the file
+  // save("Pembroider_lines_2.png");  //saves a png of design from canvas
 }

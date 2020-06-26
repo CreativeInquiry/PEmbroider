@@ -11,7 +11,7 @@ PEmbroiderGraphics E;
 
 void setup() {
   noLoop(); 
-  size (500, 500);
+  size (700, 700);
   E = new PEmbroiderGraphics(this, width, height);
 
   String outputFilePath = sketchPath("PEmbroider_shape_hatching_2.vp3");
@@ -27,17 +27,17 @@ void setup() {
   E.HATCH_MODE = PEmbroiderGraphics.PERLIN;
   E.HATCH_SPACING = 4;
   E.HATCH_SCALE = 1.0;
-  E.rect( 50, 50, 100, 100);
+  E.rect( 25, 25, 200, 200);
 
   E.HATCH_MODE = PEmbroiderGraphics.PERLIN;
   E.HATCH_SPACING = 8;
   E.HATCH_SCALE = 1.0;
-  E.rect(200, 50, 100, 100);
+  E.rect(250, 25, 200, 200);
 
   E.HATCH_MODE = PEmbroiderGraphics.PERLIN;
   E.HATCH_SPACING = 4;
   E.HATCH_SCALE = 4.5;
-  E.rect(350, 50, 100, 100);
+  E.rect(475, 25, 200, 200);
 
 
   //-----------------------
@@ -48,13 +48,19 @@ void setup() {
   E.HATCH_ANGLE = radians(90);
   E.HATCH_ANGLE2 = radians(0); 
   E.HATCH_SPACING = 4;
-  E.circle(50, 200, 100);
+  E.circle(25, 250, 200);
 
   E.HATCH_MODE = PEmbroiderGraphics.CROSS;
   E.HATCH_ANGLE = radians(90); 
   E.HATCH_ANGLE2 = radians(75); 
   E.HATCH_SPACING = 8;
-  E.circle(200, 200, 100);
+  E.circle(250, 250, 200);
+  
+  E.HATCH_MODE = PEmbroiderGraphics.PERLIN;
+  E.HATCH_ANGLE = radians(90); 
+  E.HATCH_ANGLE2 = radians(75); 
+  E.HATCH_SPACING = 8;
+  E.circle(475, 250, 200);
 
 
   /*
@@ -81,13 +87,14 @@ void setup() {
   E.HATCH_MODE = PEmbroiderGraphics.VECFIELD;
   E.HATCH_VECFIELD = mvf;
   E.HATCH_SPACING = 4;
-  E.ellipse ( 50, 350, 400, 100);
+  E.ellipse ( 25, 475, 650, 200);
 
 
   //-----------------------
-  // E.optimize(); // slow, but good and important
+  //E.optimize(); // slow, but good and important
   E.visualize();
-  // E.endDraw(); // write out the file
+  //E.endDraw(); // write out the file
+  //save("PEmbroider_shape_hatching_2.png");
 }
 
 

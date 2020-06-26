@@ -515,8 +515,8 @@ public class PEmbroiderHatchSatin {
 	}
 
 	public static ArrayList<ArrayList<PVector>> hatchSatinRaster(PImage im, float d){
-		PGraphics pg = G.app.createGraphics((int)PApplet.ceil(im.width/d), (int)PApplet.ceil(im.height/d));
-		float sx = (float)im.width/(float)pg.width;
+		PGraphics pg = G.app.createGraphics((int)PApplet.ceil(im.width), (int)PApplet.ceil(im.height/d));
+		float sx = 1;
 		float sy = (float)im.height/(float)pg.height;
 		pg.beginDraw();
 		pg.image(im,0,0,pg.width,pg.height);
@@ -537,5 +537,6 @@ public class PEmbroiderHatchSatin {
 		}
 		return ret;
 	}
+
 
 }
