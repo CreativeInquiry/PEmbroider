@@ -6,7 +6,7 @@ PEmbroiderGraphics E;
 
 void setup() {
   noLoop(); 
-  size (730, 370);
+  size (1250, 575);
   
   E = new PEmbroiderGraphics(this, width, height);
   String outputFilePath = sketchPath("PEmbroider_shape_culling.vp3");
@@ -17,42 +17,42 @@ void setup() {
   E.fill(0, 0, 0); 
   
   E.CULL_SPACING = 7;
-  E.hatchSpacing(6);
+  E.hatchSpacing(4);
   E.strokeWeight(1); 
-  E.stitchLength( 16.20); 
+  E.setStitch(5,20,0); 
  
   //-----------------------
   // Two overlapping circles, with PARALLEL hatch
   E.hatchMode(PEmbroiderGraphics.PARALLEL); 
   E.hatchAngleDeg(45); 
-  E.circle( 50, 50, 120);
+  E.circle( 25, 25, 250);
   E.hatchAngleDeg(90); 
-  E.circle(100, 50, 120);
+  E.circle(150, 25, 250);
 
   // One circle culling another, with PARALLEL hatch
   E.hatchMode(PEmbroiderGraphics.PARALLEL);
   E.beginCull();
   E.hatchAngleDeg(45); 
-  E.circle( 50, 200, 120);
+  E.circle( 25, 300, 250);
   E.hatchAngleDeg(90); 
-  E.circle(110, 200, 120);
+  E.circle(150, 300, 250);
   E.endCull();
 
   //-----------------------
   // Two overlapping circles, with CONCENTRIC hatch
   E.hatchMode(PEmbroiderGraphics.CONCENTRIC);
   E.hatchAngleDeg(45); 
-  E.circle(270, 50, 120);
+  E.circle(425, 25, 250);
   E.hatchAngleDeg(90); 
-  E.circle(330, 50, 120);
+  E.circle(550, 25, 250);
 
   // One circle culling another, with CONCENTRIC hatch
   E.hatchMode(PEmbroiderGraphics.CONCENTRIC);
   E.beginCull();
   E.hatchAngleDeg(45); 
-  E.circle(270, 200, 120);
+  E.circle(425, 300, 250);
   E.hatchAngleDeg(90); 
-  E.circle(330, 200, 120);
+  E.circle(550, 300, 250);
   E.endCull();
   
   //-----------------------
@@ -60,21 +60,22 @@ void setup() {
   E.hatchAngle(radians(90));
   
   E.hatchMode(PEmbroiderGraphics.CONCENTRIC);
-  E.circle(500, 50, 120);
+  E.circle(825, 25, 250);
   E.HATCH_MODE = PEmbroiderGraphics.PARALLEL;
-  E.circle(560, 50, 120);
+  E.circle(975, 25, 250);
   
   E.beginCull();
   E.hatchMode(PEmbroiderGraphics.CONCENTRIC);
-  E.circle(500, 200, 120);
+  E.circle(825, 300, 250);
   E.HATCH_MODE = PEmbroiderGraphics.PARALLEL;
-  E.circle(560, 200, 120);
+  E.circle(975, 300, 250);
   E.endCull();
 
   //-----------------------
   // E.optimize(); // slow but good and important
   E.visualize(); //true, true, true);
   // E.endDraw(); // write out the file
+  //save("PEmbroider_shape_culling.png");
 }
 
 
