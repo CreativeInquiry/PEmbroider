@@ -16,14 +16,14 @@ void setup() {
   E.beginDraw(); 
   E.clear();
 
-  E.hatchMode(PEmbroiderGraphics.PARALLEL);
-  E.strokeMode(PEmbroiderGraphics.PERPENDICULAR);
-  E.hatchSpacing(4);
+  E.strokeMode(PEmbroiderGraphics.TANGENT);
+  E.noFill();
+  E.hatchSpacing(1.5);
   E.strokeSpacing(4);
-  E.stitchLength(15); 
+  E.stitchLength(30); 
 
   E.textFont(myFont);
-  E.fill(0);
+  E.stroke(0);
   E.strokeWeight(10);
   E.textSize(200);
 
@@ -68,7 +68,8 @@ void setup() {
   text("RIGHT", 300, 620);
 
   //-----------------------
+  //E.optimize(); // slow, but very good and important
   E.visualize();
-  // E.optimize(); // slow, but very good and important
-  // E.endDraw(); // write out the file
+  //E.endDraw(); // write out the file
+  //save("PEmbroider_text_2.png"); //saves a png of design from canvas
 }
