@@ -28,7 +28,7 @@ void setup() {
   // Initialize PEmbroider settings.
   E.hatchSpacing(6.0);
   E.setStitch(10, 40, 0); 
-  E.hatchAngleDeg(0); 
+  E.hatchAngleDeg(-70); 
   E.CONCENTRIC_ANTIALIGN = 0;
 
   // Choose one of these hatch modes by un-commenting it!
@@ -56,9 +56,9 @@ void setup() {
 void draw() {
   background(200); 
   renderShapeToScreen();
-
+  
   E.visualize(false, true, true, stitchPlaybackCount);
-  stitchPlaybackCount += 5;
+  stitchPlaybackCount += 20;
 }
 
 //-----------------------------------------------------

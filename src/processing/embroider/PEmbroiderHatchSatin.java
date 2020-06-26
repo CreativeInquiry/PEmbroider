@@ -471,6 +471,39 @@ public class PEmbroiderHatchSatin {
 			}
 		}
 	}
+	static void removeNpxHolesAndIslands(Im im, int n){
+		for (int i = 0; i < im.h; i++){
+			for (int j = 0; j < im.w; j++){
+				int x = j;
+				if (im.get(x-1,i) == 1) {
+					while (im.get(x,i) == 0 && im.get(x,i-1)==1 && im.get(x,i+1)==1){
+						x++;
+						if ( im.get(x+1,i) == 1) {
+							break;
+						}
+					}
+					if (x < j+n) {
+						for (int k = j; k < x; k++) {
+							im.set(k,i,1);
+						}
+					}
+				}else {
+					while (im.get(x,i) == 1 && im.get(x,i-1)==0 && im.get(x,i+1)==0){
+						x++;
+						if ( im.get(x+1,i) == 0) {
+							break;
+						}
+					}
+					if (x < j+n) {
+						for (int k = j; k < x; k++) {
+							im.set(k,i,0);
+						}
+					}
+				}
+			}
+		}
+	}
+
 
 	static void bridgeHoles(Im im){
 		Im cache = new Im(im.w,im.h);
@@ -523,9 +556,11 @@ public class PEmbroiderHatchSatin {
 		pg.endDraw();
 		
 		Im srcImg = new Im(pg);
-		remove1pxHolesAndIslands(srcImg);
+//		remove1pxHolesAndIslands(srcImg);
+		removeNpxHolesAndIslands(srcImg,3);
 		bridgeHoles(srcImg);
-//		G.app.image(srcImg.toPImage(),0,0);
+		G.app.image(srcImg.toPImage(),0,0);
+		srcImg.toPImage().save("/Users/studio/Downloads/hsar.png");
 		ArrayList<ArrayList<Pt>> pts = satinStitchesMultiple(srcImg);
 		ArrayList<ArrayList<PVector>> ret = new ArrayList<ArrayList<PVector>>();
 		for (int i = 0; i < pts.size(); i++) {
@@ -578,6 +613,7 @@ public class PEmbroiderHatchSatin {
 		pg.image(im,0,0);
 		pg.endDraw();
 //		G.app.image(pg,0,0);
+//		pg.save("/Users/studio/Downloads/hsar.png");
 		
 		float costh = PApplet.cos(-ang);
 		float sinth = PApplet.sin(-ang);
