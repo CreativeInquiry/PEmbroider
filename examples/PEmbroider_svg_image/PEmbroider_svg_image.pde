@@ -8,7 +8,7 @@ PEmbroiderGraphics E;
 PShape mySvgImage;
 
 void setup() {
-  size(1000, 350); 
+  size(1200, 450); 
   noLoop(); 
   
   E = new PEmbroiderGraphics(this, width, height);
@@ -23,26 +23,27 @@ void setup() {
   E.setStitch(5, 15, 0); 
   
   E.hatchMode(PERLIN);
-  E.shape(mySvgImage,50,50,250,250);
+  E.shape(mySvgImage,50,50,350,350);
   
   E.hatchMode(PARALLEL);
-  E.shape(mySvgImage,350,200);
+  E.shape(mySvgImage,425,200,150,150);
   
   E.hatchMode(CROSS);
-  E.shape(mySvgImage,500,200);
+  E.shape(mySvgImage,600,200,150,150);
   
   E.hatchMode(CONCENTRIC);
-  E.shape(mySvgImage,650,200);
+  E.shape(mySvgImage,775,200,150,150);
   
   E.noFill();
   E.strokeWeight(10);
   E.strokeMode(PERPENDICULAR);
-  E.shape(mySvgImage,800,200);
+  E.shape(mySvgImage,950,200,150,150);
 
   //-----------------------
-  // E.optimize(); // slow, but good and very important
+  //E.optimize(); // slow, but good and very important
   E.visualize();
-  // E.endDraw(); // write out the file
+  //E.endDraw(); // write out the file
+  //save("PEmbroider_svg_image.png"); //saves a png of design from canvas
 }
 
 
