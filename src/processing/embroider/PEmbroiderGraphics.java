@@ -40,6 +40,7 @@ public class PEmbroiderGraphics {
 
 	public int beginCullIndex = 0;
 
+	static public final float AUTO    =Float.NaN;
 	static public final int NONE      =0;
 
 	//hatch modes
@@ -82,6 +83,8 @@ public class PEmbroiderGraphics {
 	public float HATCH_SPACING = 4;
 	public float HATCH_SCALE = 1;
 	public int HATCH_BACKEND = ADAPTIVE;
+	
+	public boolean AUTO_HATCH_ANGLE = false;
 	
 	public int STROKE_MODE = PERPENDICULAR;
 	public int STROKE_TANGENT_MODE = WEIGHT;
@@ -292,6 +295,11 @@ public class PEmbroiderGraphics {
 	 *  @see   hatchAngles
 	 */
 	public void hatchAngle(float ang) {
+		if (Float.isNaN(ang)) {
+			AUTO_HATCH_ANGLE = true;
+			return;
+		}
+		AUTO_HATCH_ANGLE = false;
 		HATCH_ANGLE = ang;
 	}
 	/** Change angles of parallel and cross hatching lines
@@ -302,6 +310,11 @@ public class PEmbroiderGraphics {
 	 *  @see   hatchAnglesDeg
 	 */
 	public void hatchAngles(float ang1, float ang2) {
+		if (Float.isNaN(ang1) || Float.isNaN(ang2)) {
+			AUTO_HATCH_ANGLE = true;
+			return;
+		}
+		AUTO_HATCH_ANGLE = false;
 		HATCH_ANGLE  = ang1;
 		HATCH_ANGLE2 = ang2;
 	}
@@ -312,6 +325,11 @@ public class PEmbroiderGraphics {
 	 *  @see   hatchAnglesDeg
 	 */
 	public void hatchAngleDeg(float ang) {
+		if (Float.isNaN(ang)) {
+			AUTO_HATCH_ANGLE = true;
+			return;
+		}
+		AUTO_HATCH_ANGLE = false;
 		hatchAngle(PApplet.radians(ang));
 	}
 	/** Change angles of parallel and cross hatching lines
@@ -322,6 +340,11 @@ public class PEmbroiderGraphics {
 	 *  @see   hatchAngleDeg
 	 */
 	public void hatchAnglesDeg(float ang1, float ang2) {
+		if (Float.isNaN(ang1) || Float.isNaN(ang2)) {
+			AUTO_HATCH_ANGLE = true;
+			return;
+		}
+		AUTO_HATCH_ANGLE = false;
 		hatchAngles(PApplet.radians(ang1),PApplet.radians(ang2));
 	}
 	
@@ -761,6 +784,132 @@ public class PEmbroiderGraphics {
 		return randomPointInPolygon(poly,9999);
 	}
 
+	
+	//---------------------------------
+	// Calculate the orientation angle of the shape
+	// by Golan
+	float calcPolygonTilt (ArrayList<PVector> poly) {
+		
+	  // lingdong's hack agianst NaN's
+	  ArrayList<PVector> pts = new ArrayList<PVector>();
+	  for (int i = 0; i < poly.size(); i++) {
+		  pts.add(poly.get(i).copy().add(new PVector(app.random(-0.5f,0.5f),app.random(-0.5f,0.5f))));
+	  }
+	  // end lingdong's hack
+	  
+	  PVector centroidPoint = centerpoint(pts);
+	  float orientation  = 0.0f; // The angle of the shape's orientation, in radians
+
+	  if (pts != null) {
+	    int nPoints = pts.size();
+	    if (nPoints > 2) {
+
+	      // arguments: an array of points, the array's width & height, and the location of the center of mass (com).
+	      // this function calculates the elements of a point set's tensor matrix,
+	      // calls the function calcEigenvector() to get the best eigenvector of this matrix
+	      // and returns this eigenVector as a pair of doubles
+
+	      // first we look at all the pixels, determine which ones contribute mass (the black ones),
+	      // and accumulate the sums for the tensor matrix
+	      float dX, dY; 
+	      float XXsum, YYsum, XYsum;
+	      XXsum = 0; 
+	      YYsum = 0; 
+	      XYsum = 0; 
+
+	      for (int j=0; j<nPoints; j++) {
+	        PVector pt = (PVector) pts.get(j);
+	        dX = pt.x - centroidPoint.x;
+	        dY = pt.y - centroidPoint.y;
+	        XXsum += dX * dX;
+	        YYsum += dY * dY;
+	        XYsum += dX * dY;
+	      }
+
+	      // here's the tensor matrix. 
+	      // watch out for memory leaks. 
+	      float matrix2x2[][] = new float[2][2];
+	      matrix2x2[0][0] =  YYsum;
+	      matrix2x2[0][1] = -XYsum;
+	      matrix2x2[1][0] = -XYsum;
+	      matrix2x2[1][1] =  XXsum;
+//	      PApplet.println(matrix2x2[0][0],matrix2x2[0][1],matrix2x2[1][0],matrix2x2[1][1]);
+	      // get the orientation of the bounding box
+	      float[] response = calcEigenvector ( matrix2x2 );
+	      orientation  = response[0];
+	    }
+	  }
+//	  PApplet.println(centroidPoint, orientation);
+	  return (orientation+PConstants.HALF_PI+PConstants.TWO_PI)%PConstants.TWO_PI-PConstants.PI;
+	}
+
+	//---------------------------------
+	// Internal function; don't worry about it
+	// by Golan
+	float[] calcEigenvector ( float[][] matrix ) {
+
+	  //this function takes a 2x2 matrix, and returns a pair of angles which are the eigenvectors
+	  float A = matrix[0][0]; 
+	  float B = matrix[0][1];
+	  float C = matrix[1][0];
+	  float D = matrix[1][1];
+
+	  float multiPartData[] = new float[2]; // watch out for memory leaks. 
+
+	  // because we assume a 2x2 matrix,
+	  // we can solve explicitly for the eigenValues using the Quadratic formula.
+	  // the eigenvalues are the roots of the equation  det( lambda * I  - T) = 0
+	  float a, b, c, root1, root2;
+	  a = 1.0f;
+	  b = (0.0f - A) - D;
+	  c = (A * D) - (B * C);
+	  float Q = (b * b) - (4.0f * a * c);
+	  if (Q >= 0) {
+	    root1 = ((0.0f - b) + PApplet.sqrt ( Q)) / (2.0f * a);
+	    root2 = ((0.0f - b) - PApplet.sqrt ( Q)) / (2.0f * a);
+
+	    // assume x1 and x2 are the elements of the eigenvector.  Then, because Ax1 + Bx2 = lambda * x1, 
+	    // we know that x2 = x1 * (lambda - A) / B.
+	    float factor2 = ( PApplet.min (root1, root2) - A) / B;
+
+	    // we arbitrarily set x1 = 1.0 and compute the magnitude of the eigenVector with respect to this assumption
+	    float magnitude2 = PApplet.sqrt (1.0f + factor2*factor2);
+
+	    // we now find the exact components of the eigenVector by scaling by 1/magnitude
+	    if ((magnitude2 == 0) || (Float.isNaN(magnitude2))) {
+	      multiPartData[0] = 0;
+	      multiPartData[1] = 0;
+	    } else {
+	      float orientedBoxOrientation = PApplet.atan2 ( (1.0f / magnitude2), (factor2 / magnitude2));
+	      float orientedBoxEigenvalue  = PApplet.log (1.0f+root2); // orientedness
+	      multiPartData[0] = orientedBoxOrientation;
+	      multiPartData[1] = orientedBoxEigenvalue;
+	    }
+	  } else {
+	    multiPartData[0] = 0;
+	    multiPartData[1] = 0;
+	  }
+
+	  return multiPartData;
+	}
+
+	float calcPolygonTiltRaster(PImage im) {
+		ArrayList<ArrayList<PVector>> polys = PEmbroiderTrace.findContours(im);
+		float ma = -1;
+		int mi = -1;
+		for (int i = 0; i < polys.size(); i++) {
+			BBox bb = new BBox(polys.get(i));
+			float ar = bb.w*bb.h;
+			if (ar > ma) {
+				ma = ar;
+				mi = i;
+			}
+		}
+		return calcPolygonTilt(polys.get(mi));
+	}
+	
+	
+	
 	/** Add a polyline to the global array of all polylines drawn
 	 *  Applying transformation matrices and resampling
 	 *  All shape drawing routines go through this function for finalization
@@ -2785,11 +2934,17 @@ public class PEmbroiderGraphics {
 	 */
 	public void hatch(ArrayList<PVector> poly) {
 		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
+		float hatch_angle = HATCH_ANGLE;
+		float hatch_angle2 = HATCH_ANGLE2;
+		if (AUTO_HATCH_ANGLE) {
+			hatch_angle = calcPolygonTilt(poly);
+			hatch_angle2 = hatch_angle+PConstants.HALF_PI;
+		}
 		if (HATCH_MODE == PARALLEL) {
-			polys = hatchParallel(poly,HATCH_ANGLE,HATCH_SPACING);
+			polys = hatchParallel(poly,hatch_angle,HATCH_SPACING);
 		}else if (HATCH_MODE == CROSS) {
-			polys = hatchParallel(poly,HATCH_ANGLE, HATCH_SPACING);
-			polys.addAll(hatchParallel(poly,HATCH_ANGLE2,HATCH_SPACING));
+			polys = hatchParallel(poly,hatch_angle, HATCH_SPACING);
+			polys.addAll(hatchParallel(poly,hatch_angle2,HATCH_SPACING));
 		}else if (HATCH_MODE == CONCENTRIC) {
 			polys = hatchInset(poly,HATCH_SPACING,9999);
 			for (int i = 0; i < polys.size(); i++) {
@@ -2819,17 +2974,24 @@ public class PEmbroiderGraphics {
 	public void hatchRaster(PImage im, float x, float y) {
 		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
 		
+		float hatch_angle = HATCH_ANGLE;
+		float hatch_angle2 = HATCH_ANGLE2;
+		if (AUTO_HATCH_ANGLE) {
+			hatch_angle = calcPolygonTiltRaster(im);
+			hatch_angle2 = hatch_angle+PConstants.HALF_PI;
+		}
+		
 		boolean didit = false;
 		if (HATCH_MODE == PARALLEL) {
-			polys = hatchParallelRaster(im,HATCH_ANGLE,HATCH_SPACING,1);
+			polys = hatchParallelRaster(im,hatch_angle,HATCH_SPACING,1);
 			if (!NO_RESAMPLE) {
-				polys = resampleCrossIntersection(polys,HATCH_ANGLE,HATCH_SPACING,STITCH_LENGTH/getCurrentScale(HATCH_ANGLE+PApplet.HALF_PI), PARALLEL_RESAMPLING_OFFSET_FACTOR, RESAMPLE_NOISE);
+				polys = resampleCrossIntersection(polys,hatch_angle,HATCH_SPACING,STITCH_LENGTH/getCurrentScale(hatch_angle+PApplet.HALF_PI), PARALLEL_RESAMPLING_OFFSET_FACTOR, RESAMPLE_NOISE);
 				NO_RESAMPLE = true;
 				didit = true;
 			}
 		}else if (HATCH_MODE == CROSS) {
-			polys = hatchParallelRaster(im,HATCH_ANGLE,HATCH_SPACING,1);
-			polys.addAll(hatchParallelRaster(im,HATCH_ANGLE2,HATCH_SPACING,1));
+			polys = hatchParallelRaster(im,hatch_angle,HATCH_SPACING,1);
+			polys.addAll(hatchParallelRaster(im,hatch_angle2,HATCH_SPACING,1));
 			
 		}else if (HATCH_MODE == CONCENTRIC) {
 			polys = isolines(im,HATCH_SPACING);
@@ -2840,7 +3002,7 @@ public class PEmbroiderGraphics {
 		}else if (HATCH_MODE == VECFIELD) {
 			polys = customField(im,HATCH_VECFIELD,HATCH_SPACING,3,100,9999);
 		}else if (HATCH_MODE == SATIN) {
-			polys = PEmbroiderHatchSatin.hatchSatinAngledRaster(im,HATCH_ANGLE,HATCH_SPACING);
+			polys = PEmbroiderHatchSatin.hatchSatinAngledRaster(im,hatch_angle,HATCH_SPACING);
 		}else if (HATCH_MODE == DRUNK) {
 			polys = hatchDrunkWalkRaster(im,10,999);
 		}
@@ -3300,11 +3462,18 @@ public class PEmbroiderGraphics {
 			if (isFill) {
 				if ((HATCH_MODE == PARALLEL || HATCH_MODE == CROSS) && (HATCH_BACKEND != FORCE_RASTER)) {
 //					HATCH_MODE = CROSS;
-					ArrayList<ArrayList<PVector>> polys = hatchParallelComplex(polyBuff,HATCH_ANGLE,HATCH_SPACING);
+					float hatch_angle = HATCH_ANGLE;
+					float hatch_angle2 = HATCH_ANGLE2;
+					if (AUTO_HATCH_ANGLE) {
+						hatch_angle = calcPolygonTilt(polyBuff.get(0));
+						hatch_angle2 = hatch_angle+PConstants.HALF_PI;
+					}
+					
+					ArrayList<ArrayList<PVector>> polys = hatchParallelComplex(polyBuff,hatch_angle,HATCH_SPACING);
 					
 					boolean didit = false;
 					if (HATCH_MODE == PARALLEL && !NO_RESAMPLE) {
-						polys = resampleCrossIntersection(polys,HATCH_ANGLE,HATCH_SPACING,STITCH_LENGTH/getCurrentScale(HATCH_ANGLE+PApplet.HALF_PI), PARALLEL_RESAMPLING_OFFSET_FACTOR, RESAMPLE_NOISE);
+						polys = resampleCrossIntersection(polys,hatch_angle,HATCH_SPACING,STITCH_LENGTH/getCurrentScale(hatch_angle+PApplet.HALF_PI), PARALLEL_RESAMPLING_OFFSET_FACTOR, RESAMPLE_NOISE);
 						NO_RESAMPLE = true;
 						didit = true;
 					}
@@ -3312,13 +3481,13 @@ public class PEmbroiderGraphics {
 					if (HATCH_MODE == CROSS) {
 						if (EXPERIMENTAL_CROSS_RESAMPLE && !NO_RESAMPLE) {
 							
-							ArrayList<ArrayList<PVector>> polys2 =hatchParallelComplex(polyBuff,HATCH_ANGLE2,HATCH_SPACING);
-							polys = resampleCrossIntersection2(polys,polys2,HATCH_ANGLE,HATCH_ANGLE2,HATCH_SPACING,STITCH_LENGTH/getCurrentScale(HATCH_ANGLE+PApplet.HALF_PI), RESAMPLE_NOISE);
+							ArrayList<ArrayList<PVector>> polys2 =hatchParallelComplex(polyBuff,hatch_angle2,HATCH_SPACING);
+							polys = resampleCrossIntersection2(polys,polys2,hatch_angle,hatch_angle2,HATCH_SPACING,STITCH_LENGTH/getCurrentScale(hatch_angle+PApplet.HALF_PI), RESAMPLE_NOISE);
 							
 							NO_RESAMPLE = true;
 							didit = true;
 						}else {
-							polys.addAll(hatchParallelComplex(polyBuff,HATCH_ANGLE2,HATCH_SPACING));
+							polys.addAll(hatchParallelComplex(polyBuff,hatch_angle2,HATCH_SPACING));
 						}
 					}
 					for (int i = 0; i < polys.size(); i++) {
