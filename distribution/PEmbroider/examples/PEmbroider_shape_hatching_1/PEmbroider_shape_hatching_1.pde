@@ -15,64 +15,66 @@ void setup() {
   size (700, 700);
   E = new PEmbroiderGraphics(this, width, height);
 
-  String outputFilePath = sketchPath("PEmbroider_shape_hatching_1.pes");
+  String outputFilePath = sketchPath("PEmbroider_shape_hatching_1.vp3");
   E.setPath(outputFilePath); 
   E.beginDraw(); 
   E.clear();
-  E.fill(0, 0, 0); 
-  E.stroke(0,0,0);
   E.strokeWeight(1); 
-  E.setStitch(10, 25, 0); 
+  E.fill(0, 0, 0); 
+  E.noStroke(); 
+  E.setStitch(3,40,0);
   
-
   //-----------------------
   E.hatchMode(PARALLEL);
   E.hatchAngleDeg(45);
-  E.hatchSpacing(3);
-  E.circle( 75, 75, 150);
+  E.hatchSpacing(4);
+  E.circle( 25, 25, 200);
 
   E.hatchMode(PARALLEL);
   E.hatchAngle(radians(90));
-  E.hatchSpacing(3);
-  E.circle(275, 75, 150);
+  E.hatchSpacing(4);
+  E.circle(250, 25, 200);
 
   E.hatchMode(PARALLEL);
   E.hatchAngle(radians(90));
   E.hatchSpacing(8);
-  E.circle(475, 75, 150);
+  E.circle(475, 25, 200);
 
 
   //-----------------------
   E.hatchMode(CONCENTRIC);
   E.hatchSpacing(3);
-  E.circle( 75, 275, 150);
+  E.circle( 25, 250, 200);
+  
+  E.hatchMode(CONCENTRIC);
+  E.hatchSpacing(4);
+  E.rect(250, 250, 200, 200);
 
   E.hatchMode(CONCENTRIC);
-  E.hatchSpacing(3);
-  E.rect(275, 275, 150, 150);
-
-  E.hatchMode(CONCENTRIC);
   E.hatchSpacing(8);
-  E.rect (475, 275, 150, 150);
-
-  //-----------------------
-  E.hatchMode(SPIRAL);
-  E.hatchSpacing(3);
-  E.circle( 75, 475, 150);
-
-  E.hatchMode(SPIRAL);
-  E.hatchSpacing(8);
-  E.circle(275, 475, 150);
-
-  E.hatchMode(SPIRAL);
-  E.hatchSpacing(8);
-  E.rect(475, 475, 150, 150);
+  E.rect (475, 250, 200, 200);
 
 
   //-----------------------
-  // E.optimize(); // slow but good and important
+  //Not effective close together
+  E.hatchMode(SPIRAL);
+  E.hatchSpacing(15);
+  E.circle( 25, 475, 200);
+
+  E.hatchMode(SPIRAL);
+  E.hatchSpacing(8);
+  E.circle(250,475, 200);
+
+  E.hatchMode(SPIRAL);
+  E.hatchSpacing(8);
+  E.rect(475, 475, 200, 200);
+
+
+  //-----------------------
+  //E.optimize(); // slow but good and important
   E.visualize();
-  // E.endDraw(); // write out the file
+  //E.endDraw(); // write out the file
+  //save("PEmbroider_shape_hatching_1.png");
 }
 
 

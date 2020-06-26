@@ -6,7 +6,7 @@ PEmbroiderGraphics E;
 
 void setup() {
   noLoop(); 
-  size (800, 800);
+  size (800, 400);
 
   E = new PEmbroiderGraphics(this, width, height);
   String outputFilePath = sketchPath("PEmbroider_ruler.vp3");
@@ -17,6 +17,9 @@ void setup() {
   E.noFill();
   E.strokeWeight(1); 
   E.setStitch(10, 25, 0); 
+  
+  
+  E.beginRepeatEnd(2);
 
 
   float mm = 10; 
@@ -25,7 +28,7 @@ void setup() {
   float w = nMm*mm; 
   float x0 = 1*cm; 
   float x1 = x0 + w;
-  float y0 = 4*cm;
+  float y0 = 2*cm;
 
   // Centimeter ruler:
   E.line(x0, y0, x1, y0); 
@@ -56,10 +59,11 @@ void setup() {
   E.text("CM", x0, y0+150);
   E.text("IN", x0, y0-150);
 
-  E.repeatEnd(3);
+  E.endRepeatEnd();
 
   //-----------------------
-  E.optimize(); // slow, but very good and very important);
-  E.visualize(); 
+  //E.optimize(); // slow, but very good and very important);
+  //E.visualize(); 
   E.endDraw(); // write out the file
+  //save("PEmbroider_ruler.png");
 }
