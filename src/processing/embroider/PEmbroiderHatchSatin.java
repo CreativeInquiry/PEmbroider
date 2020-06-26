@@ -559,8 +559,8 @@ public class PEmbroiderHatchSatin {
 //		remove1pxHolesAndIslands(srcImg);
 		removeNpxHolesAndIslands(srcImg,3);
 		bridgeHoles(srcImg);
-		G.app.image(srcImg.toPImage(),0,0);
-		srcImg.toPImage().save("/Users/studio/Downloads/hsar.png");
+//		G.app.image(srcImg.toPImage(),0,0);
+//		srcImg.toPImage().save("/Users/studio/Downloads/hsar.png");
 		ArrayList<ArrayList<Pt>> pts = satinStitchesMultiple(srcImg);
 		ArrayList<ArrayList<PVector>> ret = new ArrayList<ArrayList<PVector>>();
 		for (int i = 0; i < pts.size(); i++) {
