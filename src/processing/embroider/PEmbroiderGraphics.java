@@ -3856,11 +3856,11 @@ public class PEmbroiderGraphics {
 		image(im, x, y, im.width, im.height);
 	}
 	
-	public void image(PEmbroiderBSA im, int x, int y, int w, int h) {
+	public void image(PEmbroiderBooleanShapeGraphics im, int x, int y, int w, int h) {
 		im.endOps();
 		image(im.get(),x,y,w,h);
 	}
-	public void image(PEmbroiderBSA im, int x, int y) {
+	public void image(PEmbroiderBooleanShapeGraphics im, int x, int y) {
 		im.endOps();
 		image(im.get(),x,y);
 	}
