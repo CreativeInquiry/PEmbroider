@@ -28,12 +28,12 @@ void setup() {
   // Initialize PEmbroider settings.
   E.hatchSpacing(6.0);
   E.setStitch(10, 40, 0); 
-  E.hatchAngleDeg(45); 
+  E.hatchAngleDeg(0); 
   E.CONCENTRIC_ANTIALIGN = 0;
 
   // Choose one of these hatch modes by un-commenting it!
   E.hatchMode(PEmbroiderGraphics.SATIN);  
-  // E.hatchMode(PEmbroiderGraphics.PARALLEL);
+   //E.hatchMode(PEmbroiderGraphics.PARALLEL);
   // E.hatchMode(PEmbroiderGraphics.CONCENTRIC);
 
   // Add an interesting polygon to the scene. 

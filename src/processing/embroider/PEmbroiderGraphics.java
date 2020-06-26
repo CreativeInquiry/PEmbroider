@@ -2840,7 +2840,7 @@ public class PEmbroiderGraphics {
 		}else if (HATCH_MODE == VECFIELD) {
 			polys = customField(im,HATCH_VECFIELD,HATCH_SPACING,3,100,9999);
 		}else if (HATCH_MODE == SATIN) {
-			polys = PEmbroiderHatchSatin.hatchSatinRaster(im,HATCH_SPACING);
+			polys = PEmbroiderHatchSatin.hatchSatinAngledRaster(im,HATCH_ANGLE,HATCH_SPACING);
 		}else if (HATCH_MODE == DRUNK) {
 			polys = hatchDrunkWalkRaster(im,10,999);
 		}

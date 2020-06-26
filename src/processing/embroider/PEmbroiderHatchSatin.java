@@ -515,8 +515,8 @@ public class PEmbroiderHatchSatin {
 	}
 
 	public static ArrayList<ArrayList<PVector>> hatchSatinRaster(PImage im, float d){
-		PGraphics pg = G.app.createGraphics((int)PApplet.ceil(im.width), (int)PApplet.ceil(im.height/d));
-		float sx = 1;
+		PGraphics pg = G.app.createGraphics((int)PApplet.ceil(im.width/2f), (int)PApplet.ceil(im.height/d));
+		float sx = (float)im.width/(float)pg.width;
 		float sy = (float)im.height/(float)pg.height;
 		pg.beginDraw();
 		pg.image(im,0,0,pg.width,pg.height);
@@ -537,6 +537,60 @@ public class PEmbroiderHatchSatin {
 		}
 		return ret;
 	}
-
+	public static ArrayList<ArrayList<PVector>> hatchSatinAngledRaster(PImage im, float ang, float d){
+		if (PApplet.abs(ang) == 0.00001f) {
+			hatchSatinRaster(im,d);
+		}
+		im.loadPixels();
+		int xmin = 0;
+		int xmax = im.width;
+		int ymin = 0;
+		int ymax = im.height;
+		for (int i = 0; i < im.height; i++){
+			for (int j = 0; j < im.width; j++){
+				if ((im.pixels[i*im.width+j]&255) > 128){
+					xmin = PApplet.min(j,xmin);
+					ymin = PApplet.min(i,ymin);
+					xmax = PApplet.max(j,xmax);
+					ymax = PApplet.max(i,ymax);
+				}
+			}
+		}
+		int rw = xmax-xmin;
+		int rh = ymax-ymin;
+		
+		float a0 = PApplet.atan2(rh,rw);
+		
+		float diag = (float)Math.hypot(rw/2, rh/2);
+		float hh = PApplet.max(PApplet.abs(PApplet.sin(ang-a0)),PApplet.abs(PApplet.sin(ang+a0)))*diag;
+		float ww = PApplet.max(PApplet.abs(PApplet.cos(ang-a0)),PApplet.abs(PApplet.cos(ang+a0)))*diag;
+		
+		int w = (int)PApplet.ceil(ww*2)+4;
+		int h = (int)PApplet.ceil(hh*2)+4;
+		int px = (w-im.width)/2;
+		int py = (h-im.height)/2;
+		PGraphics pg = G.app.createGraphics(w, h);
+		pg.beginDraw();
+		pg.background(0);
+		pg.translate(w/2, h/2);
+		pg.rotate(ang);
+		pg.translate(-im.width/2, -im.height/2);
+		pg.image(im,0,0);
+		pg.endDraw();
+//		G.app.image(pg,0,0);
+		
+		float costh = PApplet.cos(-ang);
+		float sinth = PApplet.sin(-ang);
+		ArrayList<ArrayList<PVector>> pts = hatchSatinRaster(pg,d);
+		for (int i = 0; i < pts.size(); i++) {
+			for (int j = 0; j < pts.get(i).size(); j++) {
+				float dx = pts.get(i).get(j).x-w/2;
+				float dy = pts.get(i).get(j).y-h/2;
+		        pts.get(i).get(j).x = -px+w/2 + (dx * costh - dy * sinth);
+		        pts.get(i).get(j).y = -py+h/2 + (dx * sinth + dy * costh);
+			}
+		}
+		return pts;
+	}
 
 }
