@@ -20,7 +20,7 @@ void setup() {
   size (800, 800);
 
   E = new PEmbroiderGraphics(this, width, height);
-  String outputFilePath = sketchPath("PEmbroider_satin_hatching.vp3");
+  String outputFilePath = sketchPath("PEmbroider_satin_hatching_1.vp3");
   E.setPath(outputFilePath); 
 
   E.beginDraw(); 
