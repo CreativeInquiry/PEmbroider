@@ -74,7 +74,7 @@ public class PEmbroiderGraphics {
 	static public final int CLOCKWISE  = 51;
 	static public final int COUNTERCLOCKWISE = 52;
 	
-	public int ELLIPSE_MODE = PConstants.CORNER;
+	public int ELLIPSE_MODE = PConstants.CENTER;
 	public int RECT_MODE = PConstants.CORNER;
 	public int BEZIER_DETAIL = 40;
 	public int CIRCLE_DETAIL = 32;

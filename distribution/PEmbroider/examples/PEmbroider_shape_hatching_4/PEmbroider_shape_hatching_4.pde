@@ -1,17 +1,23 @@
 // Test program for the PEmbroider library for Processing:
-// Basic shapes
+// SATIN hatching
 
 import processing.embroider.*;
 PEmbroiderGraphics E;
 
 
 void setup() {
-  noLoop(); 
+  //noLoop(); 
   size (900, 600);
 
   E = new PEmbroiderGraphics(this, width, height);
   String outputFilePath = sketchPath("PEmbroider_shape_hatching_4.vp3");
-  E.setPath(outputFilePath); 
+  E.setPath(outputFilePath);
+  
+}
+
+void draw(){
+  background(200); 
+  
   E.beginDraw(); 
   E.clear();
 
@@ -19,10 +25,11 @@ void setup() {
   E.fill(0, 0, 0); 
 
   E.hatchSpacing(6);
-  E.hatchAngleDeg(40); //PEmbroiderGraphics.AUTO);
+  E.PARALLEL_RESAMPLING_OFFSET_FACTOR = 0.5;
+  E.hatchAngleDeg(mouseX/10.0);
   E.hatchMode(PEmbroiderGraphics.SATIN);
   E.setStitch(10, 50, 0); 
-  E.PARALLEL_RESAMPLING_OFFSET_FACTOR = 0.33;
+
 
   E.beginShape();
   E.vertex(100, 100); 
@@ -30,10 +37,9 @@ void setup() {
   E.vertex(250, 170);
   E.vertex(300, 250);
   E.vertex(330, 290); 
-  E.vertex(280, 290);
+  E.vertex(270, 295);
   E.vertex(150, 180); 
   E.endShape(CLOSE);
-
 
   //-----------------------
   // Shapes can mix straight and curved sides
@@ -44,6 +50,7 @@ void setup() {
   E.vertex(560, 430);
   E.vertex(360, 430);
   E.endShape(CLOSE);
+
 
   //-----------------------
   // Shapes can be "compound" and include holes, 
@@ -65,9 +72,8 @@ void setup() {
   E.endShape(CLOSE);
 
 
+
   //-----------------------
   //E.optimize(); // slow, but very good and very important
   E.visualize();
-  //E.endDraw(); // write out the file
-  //save("PEmbroider_shapes.png");
 }
