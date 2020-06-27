@@ -1,23 +1,23 @@
 // Test program for the PEmbroider library for Processing:
-// SATIN hatching
+// SATIN hatching, interactive demo
 
 import processing.embroider.*;
 PEmbroiderGraphics E;
 
-
+//-----------------------------------------------------
 void setup() {
-  //noLoop(); 
+  // noLoop(); 
   size (900, 600);
 
   E = new PEmbroiderGraphics(this, width, height);
-  String outputFilePath = sketchPath("PEmbroider_shape_hatching_4.vp3");
+  String outputFilePath = sketchPath("PEmbroider_satin_hatching_2.vp3");
   E.setPath(outputFilePath);
-  
 }
 
-void draw(){
+//-----------------------------------------------------
+void draw() {
   background(200); 
-  
+
   E.beginDraw(); 
   E.clear();
 
@@ -44,11 +44,11 @@ void draw(){
   //-----------------------
   // Shapes can mix straight and curved sides
   E.beginShape();
-  E.vertex(365, 475);
-  E.quadraticVertex(530, 430, 450, 500);
-  E.quadraticVertex(400, 530, 560, 575);
-  E.vertex(560, 430);
-  E.vertex(360, 430);
+  E.vertex(365, 175);
+  E.quadraticVertex(530, 130, 450, 200);
+  E.quadraticVertex(400, 230, 560, 275);
+  E.vertex(560, 130);
+  E.vertex(360, 130);
   E.endShape(CLOSE);
 
 
@@ -56,24 +56,28 @@ void draw(){
   // Shapes can be "compound" and include holes, 
   // i.e. have multiple contours
   E.beginShape();
-  E.vertex(600, 460);
-  E.vertex(850, 430);
-  E.vertex(800, 575);
-  E.vertex(620, 575);
+  E.vertex(600, 160);
+  E.vertex(850, 130);
+  E.vertex(800, 275);
+  E.vertex(620, 275);
 
   E.beginContour();
-  E.vertex(650, 520);
-  E.vertex(710, 520);
-  E.vertex(735, 505);
-  E.vertex(690, 475);
-  E.vertex(643, 475);
+  E.vertex(650, 220);
+  E.vertex(710, 220);
+  E.vertex(735, 205);
+  E.vertex(690, 175);
+  E.vertex(643, 175);
   E.endContour();
 
   E.endShape(CLOSE);
 
-
-
   //-----------------------
-  //E.optimize(); // slow, but very good and very important
-  E.visualize();
+  E.optimize(); // slow, but very good and very important
+  E.visualize(true, true, true);
+}
+
+void keyPressed() {
+  if ((key == 's') || (key == 'S')) {
+    E.endDraw();
+  }
 }
