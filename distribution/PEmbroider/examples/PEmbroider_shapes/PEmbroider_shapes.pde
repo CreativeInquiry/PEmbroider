@@ -19,9 +19,9 @@ void setup() {
   E.fill(0, 0, 0); 
   E.noStroke(); 
 
-  E.hatchSpacing(2);
+  E.hatchSpacing(5);
   E.hatchAngleDeg(50);
-  E.hatchMode(PEmbroiderGraphics.SPIRAL);
+  E.hatchMode(PEmbroiderGraphics.SATIN);
   E.setStitch(2, 50, 0); 
   E.PARALLEL_RESAMPLING_OFFSET_FACTOR = 0.33;
 

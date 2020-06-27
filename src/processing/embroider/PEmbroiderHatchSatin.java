@@ -613,7 +613,7 @@ public class PEmbroiderHatchSatin {
 		pg.image(im,0,0);
 		pg.endDraw();
 //		G.app.image(pg,0,0);
-		pg.save("/Users/studio/Downloads/hsar.png");
+//		pg.save("/Users/studio/Downloads/hsar.png");
 		
 		float costh = PApplet.cos(-ang);
 		float sinth = PApplet.sin(-ang);
