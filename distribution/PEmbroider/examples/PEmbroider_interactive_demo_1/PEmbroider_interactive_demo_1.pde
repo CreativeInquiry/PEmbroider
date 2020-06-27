@@ -15,29 +15,27 @@ void setup() {
 //--------------------------------------------
 void draw() {
   background(200);
+  randomSeed(5);
 
   E.beginDraw(); 
   E.clear();
-
-  E.HATCH_MODE = PEmbroiderGraphics.PARALLEL;
-  E.HATCH_SPACING = max(2.5, mouseX/20.0);
-  E.HATCH_ANGLE = millis()/15000.0; 
-  E.HATCH_ANGLE2 = frameCount*0.001;
+  E.hatchMode(PEmbroiderGraphics.PARALLEL); 
+  E.hatchSpacing( max(2.5, mouseX/20.0)); 
+  E.hatchAngle (millis()/15000.0); 
+  
+  E.noStroke(); 
   E.fill(0, 0, 255);
   E.rect(50, 50, 150, 150);
-
+  
   float dx = mouseX - width/2;
   float dy = mouseY - height/2;
-  E.HATCH_ANGLE = HALF_PI + atan2(dy, dx); 
-  E.HATCH_SPACING = 8;
-  randomSeed(5);
-  E.circle(width/2-120, height/2-120, 240);
+  E.hatchAngle( HALF_PI + atan2(dy, dx)); 
+  E.hatchSpacing(8);
+  E.ellipseMode(CENTER); 
+  E.circle(width/2, height/2, 240);
 
-  E.HATCH_MODE = PEmbroiderGraphics.CROSS;
-  E.noStroke();
-  E.ellipse(300, 50, 150, 100);
-  
-  E.text("Space bar to save!", 90, 400);
+  fill(0,0,0);
+  text("Press space bar to save!", 20, 40);
 
   if (!mousePressed) {
     // Very important function, produces optimized paths!

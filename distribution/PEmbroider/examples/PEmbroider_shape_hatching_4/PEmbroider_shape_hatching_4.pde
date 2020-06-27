@@ -1,6 +1,9 @@
 // Test program for the PEmbroider library for Processing:
 // SATIN hatching
 
+// NOT READY FOR DOCUMENTATION YET!
+// --gl
+
 import processing.embroider.*;
 PEmbroiderGraphics E;
 
