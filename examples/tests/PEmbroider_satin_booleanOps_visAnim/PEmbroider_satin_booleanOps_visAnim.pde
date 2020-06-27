@@ -1,5 +1,8 @@
 import processing.embroider.*;
 
+// THIS EXAMPLE IS NOT READY FOR DOCUMENTATION
+// -GL
+
 PEmbroiderGraphics E;
 
 void setup(){
