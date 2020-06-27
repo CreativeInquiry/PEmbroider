@@ -19,9 +19,9 @@ void setup() {
   E.fill(0, 0, 0); 
   E.noStroke(); 
 
-  E.hatchSpacing(1.5);
+  E.hatchSpacing(5);
   E.hatchAngleDeg(50);
-  E.hatchMode(PEmbroiderGraphics.PARALLEL);
+  E.hatchMode(PEmbroiderGraphics.SATIN);
   E.setStitch(2, 50, 0); 
   E.PARALLEL_RESAMPLING_OFFSET_FACTOR = 0.33;
 
@@ -72,11 +72,16 @@ void setup() {
   E.vertex(620, 575);
   
   E.beginContour();
-  E.vertex(643, 475);
-  E.vertex(690, 475);
-  E.vertex(735, 505);
-  E.vertex(710, 520);
   E.vertex(650, 520);
+  E.vertex(710, 520);
+  E.vertex(735, 505);
+  E.vertex(690, 475);
+  
+  E.vertex(643, 475);
+  
+  
+  
+  
   E.endContour();
   
   E.endShape(CLOSE);

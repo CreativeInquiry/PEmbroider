@@ -69,6 +69,11 @@ public class PEmbroiderGraphics {
 	static public final int STROKE_OVER_FILL = 41;
 	static public final int FILL_OVER_STROKE = 42;
 	
+	static public final int CW  = 51;
+	static public final int CCW = 52;
+	static public final int CLOCKWISE  = 51;
+	static public final int COUNTERCLOCKWISE = 52;
+	
 	public int ELLIPSE_MODE = PConstants.CORNER;
 	public int RECT_MODE = PConstants.CORNER;
 	public int BEZIER_DETAIL = 40;
@@ -83,6 +88,7 @@ public class PEmbroiderGraphics {
 	public float HATCH_SPACING = 4;
 	public float HATCH_SCALE = 1;
 	public int HATCH_BACKEND = ADAPTIVE;
+	public int HATCH_SPIRAL_DIRECTION = CW;
 	
 	public boolean AUTO_HATCH_ANGLE = false;
 	
@@ -438,6 +444,10 @@ public class PEmbroiderGraphics {
 	 */
 	public void toggleResample(boolean b) {
 		NO_RESAMPLE = !b;
+	}
+	
+	public void setSpiralDirection(int mode) {
+		HATCH_SPIRAL_DIRECTION = mode;
 	}
 	
 
@@ -2014,8 +2024,8 @@ public class PEmbroiderGraphics {
 	 *  @param maxIter maximum number of iterations to do inset. The larger the polygon and smaller the spacing, the more iterations is required
 	 *  @return        the hatching as an array of polys
 	 */
-	public ArrayList<ArrayList<PVector>> hatchSpiral(ArrayList<PVector> poly, float d, int maxIter){
-		return hatchSpiral(poly,d,maxIter,true);
+	public ArrayList<ArrayList<PVector>> hatchSpiral(ArrayList<PVector> poly, float d, int maxIter, boolean reverse){
+		return hatchSpiral(poly,d,maxIter,true,reverse);
 	}
 	/** 
 	 *  hatch a polygon with SPIRAL mode (using vector math).
@@ -2025,7 +2035,7 @@ public class PEmbroiderGraphics {
 	 *  @param checkOrientation  make sure the polygon is rightly oriented, this should be on for user provided input, otherwise it might hatch outwards
 	 *  @return        the hatching as an array of polys
 	 */
-	public ArrayList<ArrayList<PVector>> hatchSpiral(ArrayList<PVector> poly, float d, int maxIter, boolean checkOrientation){
+	public ArrayList<ArrayList<PVector>> hatchSpiral(ArrayList<PVector> poly, float d, int maxIter, boolean checkOrientation, boolean reverse){
 
 		if (!polygonOrientation(poly) && checkOrientation) {
 			poly = new ArrayList<PVector>(poly);
@@ -2062,7 +2072,12 @@ public class PEmbroiderGraphics {
 			}
 			polys2.get(i).add(polys2.get(i).get(0));
 			polys2.set(i,resampleN(polys2.get(i),n));
+			if (reverse) {
+				Collections.reverse(polys2.get(i));
+			}
 		}
+		ArrayList<ArrayList<PVector>> spirals = new ArrayList<ArrayList<PVector>>();
+//		spirals.addAll(polys2);
 		ArrayList<PVector> spiral = new ArrayList<PVector>();
 		for (int i = 0; i < polys2.size(); i++) {
 			for (int j = 0; j < n; j++) {
@@ -2072,7 +2087,7 @@ public class PEmbroiderGraphics {
 				if (i == polys2.size()-1) {
 					if (polys.size() >= 1 && polys2.size() >= 1 && i > 0) {
 						PVector a = p0.copy().sub(polys2.get(i-1).get(Math.max(j-1,0)));
-						PVector b = p0.copy().sub(polys2.get(i-1).get(Math.max(j-0,0)));
+						PVector b = p0.copy().sub(polys2.get(i-1).get(Math.max(j-1,0)));
 						PVector c = a.mult(0.5f).add(b.mult(0.5f));
 						p1 = p0.copy().add(c);
 					}else {
@@ -2086,7 +2101,7 @@ public class PEmbroiderGraphics {
 			}
 		}
 
-		ArrayList<ArrayList<PVector>> spirals = new ArrayList<ArrayList<PVector>>();
+		
 		if (spiral.size() >= 2) {
 			spirals.add(spiral);
 		}
@@ -2951,7 +2966,7 @@ public class PEmbroiderGraphics {
 				polys.get(i).add(polys.get(i).get(0));
 			}
 		}else if (HATCH_MODE == SPIRAL) {
-			polys = hatchSpiral(poly,HATCH_SPACING,9999);
+			polys = hatchSpiral(poly,HATCH_SPACING,9999,HATCH_SPIRAL_DIRECTION == CCW);
 		}else if (HATCH_MODE == PERLIN) {
 			polys = hatchPerlin(poly,HATCH_SPACING,STITCH_LENGTH,HATCH_SCALE,9999);
 		}else if (HATCH_MODE == VECFIELD) {
