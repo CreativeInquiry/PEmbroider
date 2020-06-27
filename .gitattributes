@@ -1,1 +1,12 @@
 distribution/PEmbroider/reference/* linguist-documentation
+distribution/PEmbroider/reference/*/* linguist-documentation
+distribution/PEmbroider/reference/*/*/* linguist-documentation
+*.html linguist-documentation
+*/*.html linguist-documentation
+*/*/*.html linguist-documentation
+*/*/*/*.html linguist-documentation
+*/*/*/*/*.html linguist-documentation
+*.css linguist-documentation
+*/*.css linguist-documentation
+*/*/*.css linguist-documentation
+*/*/*/*.css linguist-documentation
