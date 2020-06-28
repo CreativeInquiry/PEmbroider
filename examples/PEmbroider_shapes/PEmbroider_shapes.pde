@@ -6,12 +6,14 @@ PEmbroiderGraphics E;
 
 
 void setup() {
-  noLoop(); 
+  //noLoop(); 
   size (900, 600);
 
   E = new PEmbroiderGraphics(this, width, height);
   String outputFilePath = sketchPath("PEmbroider_shapes.vp3");
   E.setPath(outputFilePath); 
+
+  E.ellipseMode(CORNER);
 
   E.beginDraw(); 
   E.clear();
@@ -89,7 +91,15 @@ void setup() {
 
   //-----------------------
   //E.optimize(); // slow, but very good and very important
-  E.visualize();
+  //E.visualize();
   //E.endDraw(); // write out the file
   //save("PEmbroider_shapes.png");
+}
+
+void draw(){
+  background(200);
+  if (mousePressed){
+    E.eraser(mouseX,mouseY,20);
+  }
+  E.visualize();
 }

@@ -23,7 +23,7 @@ void setup() {
   E.strokeSpacing(3);
   E.stitchLength(20); 
 
-  E.beginOptimize(10,5,999);
+  E.beginOptimize(1,1,100);
 
   //-----------------------
   E.strokeMode(PEmbroiderGraphics.TANGENT);

@@ -74,6 +74,13 @@ public class PEmbroiderGraphics {
 	static public final int CLOCKWISE  = 51;
 	static public final int COUNTERCLOCKWISE = 52;
 	
+	static public final int ASK = 61;
+	static public final int CROP = 62;
+	static public final int IGNORE = 63;
+	static public final int ABORT = 64;
+	static public final int WARN = 100;
+
+	
 	public int ELLIPSE_MODE = PConstants.CENTER;
 	public int RECT_MODE = PConstants.CORNER;
 	public int BEZIER_DETAIL = 40;
@@ -117,6 +124,8 @@ public class PEmbroiderGraphics {
 	
 	public float CONCENTRIC_ANTIALIGN = 0.6f;
 	public float RESAMPLE_MAXTURN = 0.2f;
+	
+	public int OUT_OF_BOUNDS_HANDLER = ASK;
 	
 	boolean randomizeOffsetEvenOdd = false;
 	float randomizeOffsetPrevious = 0.0f;
@@ -450,7 +459,10 @@ public class PEmbroiderGraphics {
 		HATCH_SPIRAL_DIRECTION = mode;
 	}
 	
-
+	public void setOutOfBoundsHandler(int mode) {
+		OUT_OF_BOUNDS_HANDLER = mode;
+	}
+	
 	/* ======================================== MATH ======================================== */
 	
 	/** Compute the determinant of a 3x3 matrix as 3 row vectors.
@@ -3740,21 +3752,10 @@ public class PEmbroiderGraphics {
 		if (polylines.size() < 1) {
 			return;
 		}
-		checkOutOfBound();
+		checkOutOfBounds();
 		PEmbroiderWriter.write(path, polylines, colors, width, height);
 	}
-	public boolean checkOutOfBound() {
-		for (int i = 0; i < polylines.size(); i++) {
-			for (int j = 0; j < polylines.get(i).size(); j++) {
-				PVector p = polylines.get(i).get(j);
-				if (p.x<0 || p.x > width || p.y < 0 || p.y > height) {
-					PApplet.println(logPrefix+"Warning: some stitch(es) are out of bound! (",p.x,p.y,")");
-					return false;
-				}
-			}
-		}
-		return true;
-	}
+
 
 	/**
 	 * Double the number of vertices in the polyline by spliting every segment by half
@@ -5024,8 +5025,127 @@ public class PEmbroiderGraphics {
 		pg.rect(0,0,0,0);
 		 
 	}
-	 void pause() {
-		 try {Thread.sleep(Integer.MAX_VALUE);}catch(Exception e) {}
-	 }
+	void pause() {
+		try {Thread.sleep(Integer.MAX_VALUE);}catch(Exception e) {}
+	}
+	
+	public void removePolylinesVertex(int i, int j) {
+		if (j <= 1 || j >= polylines.get(i).size()-2) {
+			if (j == 1) {
+				polylines.get(i).remove(0);
+				polylines.get(i).remove(0);
+			}else if (j == polylines.get(i).size()-2) {
+				polylines.get(i).remove(polylines.get(i).size()-1);
+				polylines.get(i).remove(polylines.get(i).size()-1);
+			}else {
+				polylines.get(i).remove(j);
+			}
+			return;
+		}
+		if (beginCullIndex > i) {
+			beginCullIndex ++;
+		}
+		if (optBlockIdx0 > i) {
+			optBlockIdx0 ++;
+		}
+		if (repeatEndStartIndex > i) {
+			repeatEndStartIndex ++;
+		}
+		polylines.get(i).remove(j);
+		ArrayList<PVector> p = new ArrayList<PVector>();
+		for (int k = polylines.get(i).size()-1; k >=j; k--) {
+			p.add(0,polylines.get(i).get(k));
+			polylines.get(i).remove(k);
+		}
+		polylines.add(i+1,p);
+		colors.add(i+1,colors.get(i)+0);
+		cullGroups.add(i+1,cullGroups.get(i)+0);
+	}
+	 
+	public void eraser(float x, float y, float d) {
+		boolean ok = true;
+		boolean brk = false;
+		for (int i = 0; i < polylines.size(); i++) {
+			for (int j = 0; j < polylines.get(i).size(); j++) {
+				if (polylines.get(i).get(j).dist(new PVector(x,y))<=d) {
+					removePolylinesVertex(i,j);
+					ok = false;
+					brk = true;
+					break;
+				}
+			}
+			if (brk) {
+				break;
+			}
+		}
+		if (!ok) {
+			eraser(x,y,d);
+		}
+	}
+	
+	public boolean checkOutOfBounds() {
+		return checkOutOfBounds(OUT_OF_BOUNDS_HANDLER);
+	}
+	public boolean checkOutOfBounds(int handler) {
+		
+		ArrayList<PVector> ps = new ArrayList<PVector>();
+		for (int i = 0; i < polylines.size(); i++) {
+			for (int j = 0; j < polylines.get(i).size(); j++) {
+				PVector p = polylines.get(i).get(j);
+				if (p.x<0 || p.x > width || p.y < 0 || p.y > height) {
+					ps.add(p.copy());
+				}
+			}
+		}
+		if (ps.size() == 0) {
+			return true;
+		}
+
+		if (handler >= WARN) {
+			PApplet.print(logPrefix+"Warning: some stitches are out of bounds:");
+			for (int i = 0; i < ps.size(); i++) {
+				PVector p = ps.get(i);
+				PApplet.print(" ("+p.x+", "+p.y+")");
+			}
+			PApplet.print("\n");
+			handler -= WARN;
+			if (handler == CROP) {
+				PApplet.println(logPrefix+"Cropping...");
+			}else if (handler == IGNORE) {
+				PApplet.println(logPrefix+"Ignoring...");
+			}else if (handler == ASK) {
+				PApplet.println(logPrefix+"Asking...");
+			}else if (handler == ABORT) {
+				PApplet.println(logPrefix+"Aborting...");
+			}
+		}
+		if (handler == ABORT) {
+//			throwNPE();
+//			throw new RuntimeException();
+			app.exit();
+		}else if (handler == IGNORE) {
+			return false;
+		}else if (handler == CROP) {
+			for (int i = 0; i < ps.size(); i++) {
+				eraser(ps.get(i).x,ps.get(i).y,1);
+			}
+		}else if (handler == ASK) {
+			Object[] options = {"Abort", "Crop", "Ignore" };
+			int op = javax.swing.JOptionPane.showOptionDialog(null, "Some stitches are out of bounds! Please select an option:\n(use setOutOfBoundsHandler to silence this popup)", "Out of Bounds Warning",
+					javax.swing.JOptionPane.DEFAULT_OPTION, javax.swing.JOptionPane.WARNING_MESSAGE,
+					null, options, options[0]);
+			if (op == 0) {
+				handler = ABORT;
+			}else if (op == 1) {
+				handler = CROP;
+			}else if (op == 2) {
+				handler = IGNORE;
+			}
+			checkOutOfBounds(handler);
+		}
+		return false;
+	}
+	 
+	 
 
 }
