@@ -4511,24 +4511,38 @@ public class PEmbroiderGraphics {
 	int optBlockIdx0;
 	int optBlockTrials;
 	int optBlockMaxIter;
-	public void beginOptimize(int trials,int maxIter) {
+	int optColor;
+	public void beginOptimize(int reorderColor, int trials,int maxIter) {
 		optBlockIdx0 = polylines.size();
 		optBlockTrials = trials;
 		optBlockMaxIter = maxIter;
+		optColor = reorderColor;
 	}
 	public void beginOptimize() {
-		beginOptimize(5,999);
+		beginOptimize(0,5,999);
 	}
 	public void endOptimize() {
 		if (polylines.size()-optBlockIdx0 <= 2) {
 			return;
 		}
-//		ArrayList<ArrayList<PVector>> p = new ArrayList<ArrayList<PVector>>(polylines.subList(optBlockIdx0,polylines.size()));
-//		PApplet.println(p.size());
-//		p = PEmbroiderTSP.solve(p,optBlockTrials,optBlockMaxIter);
-//		PApplet.println(p.size());
-//		polylines.subList(optBlockIdx0,polylines.size()).clear();
-//		polylines.addAll(optBlockIdx0,p);
+		if (optColor > 0) {
+			ArrayList<ArrayList<PVector>> p = new ArrayList<ArrayList<PVector>>(polylines.subList(optBlockIdx0, polylines.size()));
+			ArrayList<Integer> c = new ArrayList<Integer>(colors.subList(optBlockIdx0, colors.size()));
+
+			ArrayList<Integer> indices = reorderColorMonteCarlo(p,c,8,optColor);
+			PApplet.println(1);
+
+			ArrayList<ArrayList<PVector>> p2 = new ArrayList<ArrayList<PVector>>();
+			ArrayList<Integer> c2 = new ArrayList<Integer>();
+			for (int i = 0; i < indices.size(); i++) {
+				p2.add(p.get(indices.get(i)));
+				c2.add(c.get(indices.get(i)));
+			}
+			polylines.subList(optBlockIdx0,polylines.size()).clear();
+			polylines.addAll(optBlockIdx0,p2);
+			colors.subList(optBlockIdx0,colors.size()).clear();
+			colors.addAll(optBlockIdx0,c2);
+		}
 		int idx0 = optBlockIdx0;
 		for (int i = optBlockIdx0+1; i <= polylines.size(); i++) {
 			if (i == polylines.size() || !colors.get(i).equals(colors.get(i-1))){
@@ -4815,6 +4829,203 @@ public class PEmbroiderGraphics {
 			p3 = matStack.get(j).mult(p3, null);
 		}
 		return p2.dist(p3);
+	 }
+	 
+	 ArrayList<Integer> reorderColorMonteCarlo(ArrayList<ArrayList<PVector>> polys, ArrayList<Integer> cols, float d, float wait) {
+		 ArrayList<Integer> ret = new ArrayList<Integer>();
+		 
+		 class ColorOpt{
+			 Solution standard;
+			 int w;
+			 int h;
+			 
+			 class Layer{
+				 int id;
+				 int col;
+				 ArrayList<Integer> indices;
+				 boolean[] data;
+			 }
+	
+			 class Solution{
+				 Layer[] layers;
+				 int[] render;
+				 int score = Integer.MAX_VALUE;
+				 void renderSolution() {
+					 render = new int[layers[0].data.length];
+					 for (int i = 0; i < layers.length; i++){
+						 for (int j = 0; j < layers[i].data.length; j++){
+							 if (layers[i].data[j]){
+								 render[j] = layers[i].col;
+							 }
+						 }
+					 }
+				 }
+				 PGraphics drawRender(){
+					 PGraphics pg = app.createGraphics(w,h);
+					 pg.beginDraw();
+					 pg.loadPixels();
+					 for (int i = 0; i < render.length; i++){
+						 pg.pixels[i] = render[i];
+					 }
+					 pg.endDraw();
+					 return pg;
+				 }
+				 
+				 boolean equalsSolution(Solution sol) {
+					 if (render == null){
+						 renderSolution();
+					 }
+					 if (sol.render == null){
+						 sol.renderSolution();
+					 }
+//					 drawRender().save("/Users/studio/Downloads/rcmcA.png");
+//					 sol.drawRender().save("/Users/studio/Downloads/rcmcB.png");
+					 for (int i = 0; i < render.length; i++){
+						 if (render[i] != sol.render[i]){
+							 return false;
+//							 PApplet.println(i,render[i],sol.render[i]);
+						 }
+					 }
+					 return true;
+				 }
+				 int countColorChange() {
+					  int cc = 0;
+					  for (int i = 1; i < layers.length; i++){
+					    if (layers[i].col != layers[i-1].col){
+					      cc++;
+					    }
+					  }
+					  return cc;
+				 }
+			 }
+			 
+			 
+			 Layer[] shuffleLayers(Layer[] layers){
+				 Layer[] a = new Layer[layers.length];
+				 for (int i = 0; i < layers.length; i++){
+					 a[i] = layers[i];
+				 }
+				 for (int i = a.length - 1; i > 0; i--) {
+					 int j = (int)PApplet.floor(app.random((i + 1)));
+					 Layer x = a[i];
+					 a[i] = a[j];
+					 a[j] = x;
+				 }
+				 return a;
+			 }
+			 void scoreSolution(Solution sol){
+				 if (!sol.equalsSolution(standard)){
+					 sol.score = Integer.MAX_VALUE;
+					 return;
+				 }
+				 sol.score = sol.countColorChange();
+			 }
+			 Solution newSolution(){
+				 Solution sol = new Solution();
+				 sol.layers = shuffleLayers(standard.layers);
+				 while (sol.countColorChange() >= standard.score){
+					 sol.layers = shuffleLayers(standard.layers);
+				 }
+				 scoreSolution(sol);
+				 return sol;
+			 }
+			 
+			 void main() {
+				 w = (int)PApplet.ceil(width/d);
+				 h = (int)PApplet.ceil(height/d);
+				 standard = new Solution();
+				 ArrayList<Solution> solutions = new ArrayList<Solution>();
+				 
+				 ArrayList<PGraphics> pgs = new ArrayList<PGraphics>();
+				 ArrayList<ArrayList<Integer>> indices = new ArrayList<ArrayList<Integer>>();
+				 for (int i = 0; i < polys.size(); i++) {
+					 if (i == 0 || (!cols.get(i).equals(colors.get(i-1)))) {
+						 PGraphics pg = app.createGraphics(w,h);
+						 pg.beginDraw();
+						 pg.background(0);
+						 pg.endDraw();
+						 pgs.add(pg);
+						 indices.add(new ArrayList<Integer>());
+					 }
+					 PGraphics pg = pgs.get(pgs.size()-1);
+					 pg.beginDraw();
+					 pg.noFill();
+					 pg.strokeWeight(1);
+					 pg.stroke(255);
+					 pg.beginShape();
+					 for (int j = 0; j < polys.get(i).size(); j++) {
+						 pg.vertex(polys.get(i).get(j).x/d,polys.get(i).get(j).y/d);
+					 }
+					 pg.endShape();
+					 pg.endDraw();
+					 indices.get(indices.size()-1).add(i);
+				 }
+				 standard.layers = new Layer[pgs.size()];
+				 for (int i = 0; i < pgs.size(); i++) {
+					Layer l = new Layer();
+					l.id = i+1;
+					PGraphics pg = pgs.get(i);
+				    pg.beginDraw();
+					pg.loadPixels();
+				    l.data = new boolean[pg.pixels.length];
+				    for (int j = 0; j < pg.pixels.length; j++){
+				      l.data[j] = (pg.pixels[j]&255)>128;
+				      
+				    }
+				    pg.endDraw();
+				    pg.save("/Users/studio/Downloads/rcmc-"+i+".png");
+				    l.col = cols.get(indices.get(i).get(0));
+				    l.indices = indices.get(i);
+				    standard.layers[i] = l;
+				 }
+				 scoreSolution(standard);
+				 
+				 solutions.add(standard);
+				 PApplet.println(logPrefix+" Original color change: "+standard.score+", optimizing...");
+				 
+				 long startTime = System.currentTimeMillis();
+				 for (int i = 0; i < Integer.MAX_VALUE; i++) {
+					 Solution sol = newSolution();
+					 if (sol.score < solutions.get(solutions.size()-1).score){
+						 PApplet.println(logPrefix+" Color opt trial # "+i+", improved color changes to: "+sol.score);
+						 solutions.add(sol);
+					 }
+					 if (i % 100 == 0) {
+						 long duration = System.currentTimeMillis()- startTime;
+						 float secs = duration/1000;
+						 if (secs > wait) {
+							 
+							 break;
+						 }
+					 }
+				 }
+				 Solution best = solutions.get(solutions.size()-1);
+				 PApplet.println(logPrefix+" Color opt timed out, best solution: "+best.score+" color changes");
+
+				 for (int i = 0; i < best.layers.length; i++) {
+					 for (int j = 0; j < best.layers[i].indices.size(); j++) {
+						 ret.add(best.layers[i].indices.get(j));
+					 }
+				 }
+			}
+
+		 }
+		 ColorOpt co = new ColorOpt();
+		 co.main();
+		 return ret;
+
+			
+	 }
+	 void throwNPE() {// hack to throw null pointer exception
+		PGraphics pg = null;
+		if (app.random(1)>999) {// silence eclipse warning
+			pg = app.createGraphics(0,0);
+		}
+		pg.rect(0,0,0,0);
+		 
+	}
+	 void pause() {
+		 try {Thread.sleep(Integer.MAX_VALUE);}catch(Exception e) {}
 	 }
 
 }

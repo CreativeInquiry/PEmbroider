@@ -12,7 +12,7 @@ void setup() {
 
   // Create the PEmbroider object
   E = new PEmbroiderGraphics(this, width, height);
-  E.setPath (sketchPath("Hello_PEmbroider.vp3")); 
+  E.setPath (sketchPath("Hello_etebigger_3widfacespace3_text3.vp3")); 
 
   // Start rendering to the PEmbroiderer
   E.beginDraw(); 

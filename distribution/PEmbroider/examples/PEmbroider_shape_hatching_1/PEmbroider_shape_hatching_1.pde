@@ -22,53 +22,52 @@ void setup() {
   E.strokeWeight(1); 
   E.fill(0, 0, 0); 
   E.noStroke(); 
-  E.rectMode(CENTER);
-  E.setStitch(3, 40, 0);
-
+  E.setStitch(3,40,0);
+  
   //-----------------------
   E.hatchMode(PARALLEL);
   E.hatchAngleDeg(45);
   E.hatchSpacing(4);
-  E.circle(125, 125, 200);
+  E.circle( 25, 25, 200);
 
   E.hatchMode(PARALLEL);
   E.hatchAngle(radians(90));
   E.hatchSpacing(4);
-  E.circle(350, 125, 200);
+  E.circle(250, 25, 200);
 
   E.hatchMode(PARALLEL);
   E.hatchAngle(radians(90));
   E.hatchSpacing(8);
-  E.circle(575, 125, 200);
+  E.circle(475, 25, 200);
 
 
   //-----------------------
   E.hatchMode(CONCENTRIC);
   E.hatchSpacing(3);
-  E.circle(125, 350, 200);
-
+  E.circle( 25, 250, 200);
+  
   E.hatchMode(CONCENTRIC);
   E.hatchSpacing(4);
-  E.rect(350, 350, 200, 200);
+  E.rect(250, 250, 200, 200);
 
   E.hatchMode(CONCENTRIC);
   E.hatchSpacing(8);
-  E.rect (575, 350, 200, 200);
+  E.rect (475, 250, 200, 200);
 
 
   //-----------------------
-  // Not effective close together
+  //Not effective close together
   E.hatchMode(SPIRAL);
   E.hatchSpacing(15);
-  E.circle(125, 575, 200);
+  E.circle( 25, 475, 200);
 
   E.hatchMode(SPIRAL);
   E.hatchSpacing(8);
-  E.circle(350, 575, 200);
+  E.circle(250,475, 200);
 
   E.hatchMode(SPIRAL);
   E.hatchSpacing(8);
-  E.rect(575, 575, 200, 200);
+  E.rect(475, 475, 200, 200);
 
 
   //-----------------------

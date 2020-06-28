@@ -1,4 +1,6 @@
-// Recursive tree with leaves, using the PEmbroider library
+// Recursive tree with leaves, using the PEmbroider library.
+// THIS IS NOT READY FOR DOCUMENTATION YET -- GL
+
 import processing.embroider.*;
 PEmbroiderGraphics E;
 

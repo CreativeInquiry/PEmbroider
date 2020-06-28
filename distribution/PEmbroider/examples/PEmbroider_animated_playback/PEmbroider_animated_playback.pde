@@ -19,16 +19,17 @@ float shapeCoords[][] = {
 void setup() {
   size (800, 800); 
 
+  // In this demo, we just animate the stitch planning, 
+  // so we haven't bothered setting up file output. 
+  //
   // Set up a new PEmbroiderGraphics object. 
-  // In this demo, we just watch the stitch planning, 
-  // so we don't bother setting up file output. 
   E = new PEmbroiderGraphics(this, width, height);
   E.beginDraw(); 
 
   // Initialize PEmbroider settings.
   E.hatchSpacing(6.0);
   E.setStitch(10, 40, 0); 
-  E.hatchAngleDeg(30); 
+  E.hatchAngleDeg(-70); 
   E.CONCENTRIC_ANTIALIGN = 0;
 
   // Choose one of these hatch modes by un-commenting it!

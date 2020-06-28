@@ -5,7 +5,7 @@ import processing.embroider.*;
 PEmbroiderGraphics E;
 
 void setup() {
-  noLoop(); 
+  //noLoop(); 
   size (1050, 550);
   PFont myFont = createFont("Helvetica-Bold", 400);
 
@@ -22,6 +22,8 @@ void setup() {
   E.hatchSpacing(3);
   E.strokeSpacing(3);
   E.stitchLength(20); 
+
+  E.beginOptimize(10,5,999);
 
   //-----------------------
   E.strokeMode(PEmbroiderGraphics.TANGENT);
@@ -80,10 +82,15 @@ void setup() {
   E.noStroke();
   E.text("a", 900, 500);
 
- 
+  E.endOptimize();
   //-----------------------
   //E.optimize(); // VERY SLOW -- can take MINUTES -- but ESSENTIAL!!!
-  E.visualize();
+  //E.visualize();
   //E.endDraw(); // write out the file
   //save("PEmbroider_text_1.png");
+}
+
+void draw(){
+  background(128);
+  E.visualize(true,false,false,frameCount*10);
 }
