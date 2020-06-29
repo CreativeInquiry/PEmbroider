@@ -366,8 +366,8 @@ void drawLayersGui(){
         lay.strokeColor = color(col.getRed(),col.getGreen(),col.getBlue());
         
       }
-      String shit = javax.swing.JOptionPane.showInputDialog(null,"Enter stroke weight",""+lay.strokeWeight,javax.swing.JOptionPane.OK_OPTION);
-      if (shit != null){
+      String shit = javax.swing.JOptionPane.showInputDialog("Enter stroke weight",""+lay.strokeWeight);
+      if (shit != null && shit.length()>0){
         float n = Float.parseFloat(shit);
   
         lay.strokeWeight=n;
