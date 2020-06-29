@@ -1,5 +1,5 @@
 // Test program for the PEmbroider library for Processing:
-// Animated playback (previewing) of stitches.
+// Demonstrates animated playback (previewing) of stitches.
 
 //-----------------------------------------------------
 import processing.embroider.*;
@@ -29,12 +29,14 @@ void setup() {
   // Initialize PEmbroider settings.
   E.hatchSpacing(6.0);
   E.setStitch(10, 40, 0); 
-  E.hatchAngleDeg(-70); 
   E.CONCENTRIC_ANTIALIGN = 0;
+
+  // It's fun to change this angle in SATIN mode. 
+  E.hatchAngleDeg(-70); 
 
   // Choose one of these hatch modes by un-commenting it!
   E.hatchMode(PEmbroiderGraphics.SATIN);  
-   //E.hatchMode(PEmbroiderGraphics.PARALLEL);
+  // E.hatchMode(PEmbroiderGraphics.PARALLEL);
   // E.hatchMode(PEmbroiderGraphics.CONCENTRIC);
 
   // Add an interesting polygon to the scene. 
@@ -57,9 +59,19 @@ void setup() {
 void draw() {
   background(200); 
   renderShapeToScreen();
-  
+
   E.visualize(false, true, true, stitchPlaybackCount);
-  stitchPlaybackCount += 20;
+
+  int hurryUp = 25; 
+  stitchPlaybackCount += hurryUp;
+  if (stitchPlaybackCount > E.getNumStitches()){
+    println("Finished!"); 
+    noLoop(); 
+  } else {
+    //// If you'd like to save out frames to make a GIF, 
+    //// uncomment the following line of code: 
+    // saveFrame("output/myDesign_####.png");
+  }
 }
 
 //-----------------------------------------------------
