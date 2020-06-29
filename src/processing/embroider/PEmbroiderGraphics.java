@@ -138,6 +138,8 @@ public class PEmbroiderGraphics {
 	
 	public float CULL_SPACING = 7;
 	
+	public PEmbroiderBooleanShapeGraphics composite;
+	
 	/**
 	* The constructor for PEmbroiderGraphics object.
 	*
@@ -158,6 +160,7 @@ public class PEmbroiderGraphics {
 		colors = new ArrayList<Integer>();
 		cullGroups = new ArrayList<Integer>();
 		PEmbroiderHatchSatin.setGraphics(this);
+		
 	}
 	public PEmbroiderGraphics(PApplet _app) {
 		this(_app,_app.width,_app.height);
@@ -5146,6 +5149,19 @@ public class PEmbroiderGraphics {
 		return false;
 	}
 	 
+	public void beginComposite() {
+		if (composite == null) {
+			composite = new PEmbroiderBooleanShapeGraphics(width,height);
+		}
+		composite.background(0);
+		composite.operator(PEmbroiderBooleanShapeGraphics.OR);
+	}
+	public void endComposite() {
+		composite.filter(PConstants.THRESHOLD);
+		composite.endDraw();
+		image(composite,0,0);
+		composite = null;
+	}
 	 
 
 }

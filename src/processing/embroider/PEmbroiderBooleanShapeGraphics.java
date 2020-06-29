@@ -39,7 +39,30 @@ public class PEmbroiderBooleanShapeGraphics extends processing.awt.PGraphicsJava
 			blendMode(processing.core.PConstants.ADD);
 		}
 	}
-	
+	public void union() {
+		operator(UNION);
+	}
+	public void or() {
+		operator(OR);
+	}
+	public void xor() {
+		operator(XOR);
+	}
+	public void and() {
+		operator(AND);
+	}
+	public void subtract() {
+		operator(SUBTRACT);
+	}
+	public void difference() {
+		operator(DIFFERENCE);
+	}
+	public void intersection() {
+		operator(INTERSECTION);
+	}
+	public void symmetricDifference() {
+		operator(SYMMETRIC_DIFFERENCE);
+	}
 	
 	public void beginOps() {
 		

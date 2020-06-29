@@ -25,26 +25,28 @@ void setup() {
   E.setStitch(3,40,0);
   
   //-----------------------
+  //Shapes filled with PARALLEL hatch mode
   E.hatchMode(PARALLEL);
   E.hatchAngleDeg(45);
   E.hatchSpacing(4);
-  E.circle( 25, 25, 200);
+  E.circle( 125, 125, 200);
 
   E.hatchMode(PARALLEL);
   E.hatchAngle(radians(90));
   E.hatchSpacing(4);
-  E.circle(250, 25, 200);
+  E.circle(350, 125, 200);
 
   E.hatchMode(PARALLEL);
   E.hatchAngle(radians(90));
   E.hatchSpacing(8);
-  E.circle(475, 25, 200);
+  E.circle(575, 125, 200);
 
 
   //-----------------------
+  //Shapes filled with CONCENTRIC hatch mode
   E.hatchMode(CONCENTRIC);
   E.hatchSpacing(3);
-  E.circle( 25, 250, 200);
+  E.circle( 125, 350, 200);
   
   E.hatchMode(CONCENTRIC);
   E.hatchSpacing(4);
@@ -56,14 +58,31 @@ void setup() {
 
 
   //-----------------------
-  //Not effective close together
+  //shapes filled with SPIRAL hatch mode
+  
+  //for SPIRAL 
+  
   E.hatchMode(SPIRAL);
   E.hatchSpacing(15);
-  E.circle( 25, 475, 200);
+  E.circle( 125, 575, 200);
 
   E.hatchMode(SPIRAL);
   E.hatchSpacing(8);
-  E.circle(250,475, 200);
+  E.circle(350,575, 200);
+
+  E.hatchMode(SPIRAL);
+  E.hatchSpacing(8);
+  E.rect(475, 475, 200, 200);
+  
+  //-----------------------
+  //shapes filled with SATIN hatch mode
+  E.hatchMode(SPIRAL);
+  E.hatchSpacing(15);
+  E.circle( 125, 575, 200);
+
+  E.hatchMode(SPIRAL);
+  E.hatchSpacing(8);
+  E.circle(350,575, 200);
 
   E.hatchMode(SPIRAL);
   E.hatchSpacing(8);
