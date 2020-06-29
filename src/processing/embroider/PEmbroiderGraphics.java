@@ -865,7 +865,7 @@ public class PEmbroiderGraphics {
 	    }
 	  }
 //	  PApplet.println(centroidPoint, orientation);
-	  return (orientation+PConstants.HALF_PI);//+PConstants.TWO_PI)%PConstants.TWO_PI;
+	  return (orientation);//+PConstants.TWO_PI)%PConstants.TWO_PI;
 	}
 
 	//---------------------------------

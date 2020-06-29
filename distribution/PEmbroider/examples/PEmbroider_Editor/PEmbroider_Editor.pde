@@ -282,16 +282,25 @@ void drawToolsGui(){
   textSize(14);
   text("SAVE",PX/2,H-PX+PX/2-2);
   if (!mouseOnCanvas() && mousePressed && 0 <= mouseX && mouseX <= PX && H-PX <= mouseY && mouseY <= H){
-    javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
-    fileChooser.setDialogTitle("Save embroidery file");   
-    //fileChooser.setCurrentDirectory(new File(sketchPath()));
     
-    int userSelection = fileChooser.showSaveDialog(null);
-     
-    if (userSelection == javax.swing.JFileChooser.APPROVE_OPTION) {
-        File fileToSave = fileChooser.getSelectedFile();
-        System.out.println("Save as file: " + fileToSave.getAbsolutePath());
-        writeOut(fileToSave.getAbsolutePath());
+    /* commented out file dialog because Swing's file chooser appears to be occassionally broken and hangs the app forever :(
+     */
+    //javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
+    //fileChooser.setDialogTitle("Save embroidery file");   
+    ////fileChooser.setCurrentDirectory(new File(sketchPath()));
+    //int userSelection = fileChooser.showSaveDialog(null);
+    //if (userSelection == javax.swing.JFileChooser.APPROVE_OPTION) {
+    //    File fileToSave = fileChooser.getSelectedFile();
+    //    System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+    //    writeOut(fileToSave.getAbsolutePath());
+    //}
+    
+    /* plain old input box */
+    String path = (String)javax.swing.JOptionPane.showInputDialog(null,"Path is relative to the sketch folder, use / for starting absolute paths","Save Embroidery File",javax.swing.JOptionPane.QUESTION_MESSAGE,null,null,"untitled.vp3");
+    if (path != null && path.length()>0){
+        javax.swing.JOptionPane.showMessageDialog(null, "Optimizing stroke order and saving file, this might take a while...");
+        writeOut(sketchPath(path));
+        javax.swing.JOptionPane.showMessageDialog(null, "Embroidery file saved!");
     }
     mousePressed = false;
   }
@@ -330,9 +339,9 @@ void drawLayersGui(){
       if (col != null){
         lay.hatchColor = color(col.getRed(),col.getGreen(),col.getBlue());
       }
-      String shit = javax.swing.JOptionPane.showInputDialog("Enter hatch spacing",lay.hatchSpacing);
-      if (shit != null){
-        float n = Float.parseFloat(shit);
+      String rawInp = javax.swing.JOptionPane.showInputDialog("Enter hatch spacing",lay.hatchSpacing);
+      if (rawInp != null){
+        float n = Float.parseFloat(rawInp);
         lay.hatchSpacing=n;
         
         Object[] options = {"Parallel","Concentric"};
@@ -366,9 +375,9 @@ void drawLayersGui(){
         lay.strokeColor = color(col.getRed(),col.getGreen(),col.getBlue());
         
       }
-      String shit = javax.swing.JOptionPane.showInputDialog("Enter stroke weight",""+lay.strokeWeight);
-      if (shit != null && shit.length()>0){
-        float n = Float.parseFloat(shit);
+      String rawInp = javax.swing.JOptionPane.showInputDialog("Enter stroke weight",""+lay.strokeWeight);
+      if (rawInp != null && rawInp.length()>0){
+        float n = Float.parseFloat(rawInp);
   
         lay.strokeWeight=n;
         
@@ -633,9 +642,9 @@ void mousePressed(MouseEvent evt){
       }
     }else if (tool == TOOL_TEXT){
       String txt = javax.swing.JOptionPane.showInputDialog("Enter Text");
-      String shit = javax.swing.JOptionPane.showInputDialog("Enter Text Size",128);
-      if (txt != null && shit != null){
-        float siz = Float.parseFloat(shit);
+      String rawInp = javax.swing.JOptionPane.showInputDialog("Enter Text Size",128);
+      if (txt != null && rawInp != null){
+        float siz = Float.parseFloat(rawInp);
         Layer lay = layers.get(currentLayer);
         Element elt = new Element(TXT);
         elt.paramS0 = txt;
