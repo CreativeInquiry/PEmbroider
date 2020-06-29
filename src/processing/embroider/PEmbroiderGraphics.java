@@ -2962,6 +2962,10 @@ public class PEmbroiderGraphics {
 	 *  Returns nothing because the result is directly pushed to the design.
 	 *  @param poly the polygon
 	 */
+	float calcAxisAngleForParallel(float ang) {
+		return PConstants.HALF_PI-ang;
+	}
+	
 	public void hatch(ArrayList<PVector> poly) {
 		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
 		float hatch_angle = HATCH_ANGLE;
@@ -2970,6 +2974,8 @@ public class PEmbroiderGraphics {
 			hatch_angle = calcPolygonTilt(poly);
 			hatch_angle2 = hatch_angle+PConstants.HALF_PI;
 		}
+		hatch_angle = calcAxisAngleForParallel(hatch_angle);
+		hatch_angle2 = calcAxisAngleForParallel(hatch_angle2);
 		if (HATCH_MODE == PARALLEL) {
 			polys = hatchParallel(poly,hatch_angle,HATCH_SPACING);
 		}else if (HATCH_MODE == CROSS) {
@@ -3010,7 +3016,10 @@ public class PEmbroiderGraphics {
 			hatch_angle = calcPolygonTiltRaster(im);
 			hatch_angle2 = hatch_angle+PConstants.HALF_PI;
 		}
-		
+		if (HATCH_MODE != SATIN) {
+			hatch_angle = calcAxisAngleForParallel(hatch_angle);
+			hatch_angle2 = calcAxisAngleForParallel(hatch_angle2);
+		}
 		boolean didit = false;
 		if (HATCH_MODE == PARALLEL) {
 			polys = hatchParallelRaster(im,hatch_angle,HATCH_SPACING,1);
@@ -3498,6 +3507,8 @@ public class PEmbroiderGraphics {
 						hatch_angle = calcPolygonTilt(polyBuff.get(0));
 						hatch_angle2 = hatch_angle+PConstants.HALF_PI;
 					}
+					hatch_angle = calcAxisAngleForParallel(hatch_angle);
+					hatch_angle2 = calcAxisAngleForParallel(hatch_angle2);
 					
 					ArrayList<ArrayList<PVector>> polys = hatchParallelComplex(polyBuff,hatch_angle,HATCH_SPACING);
 					
@@ -4682,10 +4693,10 @@ public class PEmbroiderGraphics {
 				if ((HATCH_MODE == PARALLEL || HATCH_MODE == CROSS) && (HATCH_BACKEND != FORCE_RASTER)) {
 					
 					ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
-					polys = hatchParallelComplex(conts,HATCH_ANGLE,HATCH_SPACING);
+					polys = hatchParallelComplex(conts,calcAxisAngleForParallel(HATCH_ANGLE),HATCH_SPACING);
 					
 					if (HATCH_MODE == CROSS) {
-						polys.addAll(hatchParallelComplex(conts,HATCH_ANGLE2,HATCH_SPACING));
+						polys.addAll(hatchParallelComplex(conts,calcAxisAngleForParallel(HATCH_ANGLE2),HATCH_SPACING));
 					}
 					
 					for (int i = 0; i < polys.size(); i++) {
