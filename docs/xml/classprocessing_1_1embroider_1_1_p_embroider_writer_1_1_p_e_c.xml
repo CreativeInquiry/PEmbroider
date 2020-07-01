@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c" kind="class" language="Java" prot="public">
+    <compoundname>processing::embroider::PEmbroiderWriter::PEC</compoundname>
+      <sectiondef kind="package-static-attrib">
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c_1ad071962327cd6bef19cb55ac0a2a33f5" prot="package" static="yes" mutable="no">
+        <type>final int</type>
+        <definition>final int processing.embroider.PEmbroiderWriter.PEC.MASK_07_BIT</definition>
+        <argsstring></argsstring>
+        <name>MASK_07_BIT</name>
+        <initializer>= 0b01111111</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1121" column="22" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c_1a2077dbada2fa8b166f56c6c8b5321124" prot="package" static="yes" mutable="no">
+        <type>final int</type>
+        <definition>final int processing.embroider.PEmbroiderWriter.PEC.JUMP_CODE</definition>
+        <argsstring></argsstring>
+        <name>JUMP_CODE</name>
+        <initializer>= 0b00010000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1122" column="22" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c_1aa5ff77c2a833fe4bfcfa5a1f9c6e142a" prot="package" static="yes" mutable="no">
+        <type>final int</type>
+        <definition>final int processing.embroider.PEmbroiderWriter.PEC.TRIM_CODE</definition>
+        <argsstring></argsstring>
+        <name>TRIM_CODE</name>
+        <initializer>= 0b00100000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1123" column="22" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c_1a34712856addceb9341ec6eeae1e9f3e1" prot="package" static="yes" mutable="no">
+        <type>final int</type>
+        <definition>final int processing.embroider.PEmbroiderWriter.PEC.FLAG_LONG</definition>
+        <argsstring></argsstring>
+        <name>FLAG_LONG</name>
+        <initializer>= 0b10000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1124" column="22" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c_1a5ff335d70e692237ecb82822961678ec" prot="package" static="yes" mutable="no">
+        <type>final int</type>
+        <definition>final int processing.embroider.PEmbroiderWriter.PEC.PEC_ICON_WIDTH</definition>
+        <argsstring></argsstring>
+        <name>PEC_ICON_WIDTH</name>
+        <initializer>= 48</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1126" column="22" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c_1ad1b8ce9fb02566740ee2ca7f786164ae" prot="package" static="yes" mutable="no">
+        <type>final int</type>
+        <definition>final int processing.embroider.PEmbroiderWriter.PEC.PEC_ICON_HEIGHT</definition>
+        <argsstring></argsstring>
+        <name>PEC_ICON_HEIGHT</name>
+        <initializer>= 38</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1127" column="22" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1127" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c_1a6d69be51deacb03a1a2d7f8aa0f96c5f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void processing.embroider.PEmbroiderWriter.PEC.write</definition>
+        <argsstring>(String name, float[] bounds, ArrayList&lt; PVector &gt; stitches, ArrayList&lt; Integer &gt; colors)</argsstring>
+        <name>write</name>
+        <param>
+          <type>String</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>float[]</type>
+          <declname>bounds</declname>
+        </param>
+        <param>
+          <type>ArrayList&lt; PVector &gt;</type>
+          <declname>stitches</declname>
+        </param>
+        <param>
+          <type>ArrayList&lt; Integer &gt;</type>
+          <declname>colors</declname>
+        </param>
+        <exceptions> throws IOException </exceptions>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1129" column="24" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1129" bodyend="1395"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1120" column="15" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1120" bodyend="1402"/>
+    <listofallmembers>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c_1a34712856addceb9341ec6eeae1e9f3e1" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::PEC</scope><name>FLAG_LONG</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c_1a2077dbada2fa8b166f56c6c8b5321124" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::PEC</scope><name>JUMP_CODE</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c_1ad071962327cd6bef19cb55ac0a2a33f5" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::PEC</scope><name>MASK_07_BIT</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c_1ad1b8ce9fb02566740ee2ca7f786164ae" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::PEC</scope><name>PEC_ICON_HEIGHT</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c_1a5ff335d70e692237ecb82822961678ec" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::PEC</scope><name>PEC_ICON_WIDTH</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c_1aa5ff77c2a833fe4bfcfa5a1f9c6e142a" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::PEC</scope><name>TRIM_CODE</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c_1a6d69be51deacb03a1a2d7f8aa0f96c5f" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::PEC</scope><name>write</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,442 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classprocessing_1_1embroider_1_1_p_embroider_trace" kind="class" language="Java" prot="public">
+    <compoundname>processing::embroider::PEmbroiderTrace</compoundname>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1_1_distance_transform" prot="public">processing::embroider::PEmbroiderTrace::DistanceTransform</innerclass>
+      <sectiondef kind="package-static-attrib">
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1a5228e20869f91e492d386fa3abfb3a8d" prot="package" static="yes" mutable="no">
+        <type>String</type>
+        <definition>String processing.embroider.PEmbroiderTrace.logPrefix</definition>
+        <argsstring></argsstring>
+        <name>logPrefix</name>
+        <initializer>= &quot;[PEmbroider Trace] &quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="10" column="15" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1a706971ccc0cb31059fc1433611d60d0b" prot="package" static="yes" mutable="no">
+        <type>final int</type>
+        <definition>final int processing.embroider.PEmbroiderTrace.N_PIXEL_NEIGHBOR</definition>
+        <argsstring></argsstring>
+        <name>N_PIXEL_NEIGHBOR</name>
+        <initializer>= 8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="178" column="18" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1a18250ecfe6fb528d13e643f99f8c0ee8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ArrayList&lt; ArrayList&lt; PVector &gt; &gt;</type>
+        <definition>static ArrayList&lt;ArrayList&lt;PVector&gt; &gt; processing.embroider.PEmbroiderTrace.findContours_naive</definition>
+        <argsstring>(boolean[] im, int w, int h)</argsstring>
+        <name>findContours_naive</name>
+        <param>
+          <type>boolean[]</type>
+          <declname>im</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>h</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="91" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="91" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1ab08ec11a588077744c022c61274ef0f0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ArrayList&lt; ArrayList&lt; PVector &gt; &gt;</type>
+        <definition>static ArrayList&lt;ArrayList&lt;PVector&gt; &gt; processing.embroider.PEmbroiderTrace.findContours</definition>
+        <argsstring>(int[] F, int w, int h)</argsstring>
+        <name>findContours</name>
+        <param>
+          <type>int[]</type>
+          <declname>F</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>h</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="233" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="233" bodyend="315"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1a18a11e7163dda5400f5403b0839587f4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ArrayList&lt; ArrayList&lt; PVector &gt; &gt;</type>
+        <definition>static ArrayList&lt;ArrayList&lt;PVector&gt; &gt; processing.embroider.PEmbroiderTrace.findContours_naive</definition>
+        <argsstring>(PImage im)</argsstring>
+        <name>findContours_naive</name>
+        <param>
+          <type>PImage</type>
+          <declname>im</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="318" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="318" bodyend="325"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1a6893a48f07e86ac8e46b7226f6db1d40" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ArrayList&lt; ArrayList&lt; PVector &gt; &gt;</type>
+        <definition>static ArrayList&lt;ArrayList&lt;PVector&gt; &gt; processing.embroider.PEmbroiderTrace.findContours</definition>
+        <argsstring>(PImage im)</argsstring>
+        <name>findContours</name>
+        <param>
+          <type>PImage</type>
+          <declname>im</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="326" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="326" bodyend="334"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1a1dc0aa33af53d61bcecc427a883bcffd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ArrayList&lt; PVector &gt;</type>
+        <definition>static ArrayList&lt;PVector&gt; processing.embroider.PEmbroiderTrace.approxPolyDP</definition>
+        <argsstring>(ArrayList&lt; PVector &gt; polyline, float epsilon)</argsstring>
+        <name>approxPolyDP</name>
+        <param>
+          <type>ArrayList&lt; PVector &gt;</type>
+          <declname>polyline</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>epsilon</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="336" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="336" bodyend="363"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1aeab898020189709e9c1b325bc4e71c26" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ArrayList&lt; ArrayList&lt; ArrayList&lt; PVector &gt; &gt; &gt;</type>
+        <definition>static ArrayList&lt;ArrayList&lt;ArrayList&lt;PVector&gt; &gt; &gt; processing.embroider.PEmbroiderTrace.findIsolines</definition>
+        <argsstring>(PImage im, int n, float d)</argsstring>
+        <name>findIsolines</name>
+        <param>
+          <type>PImage</type>
+          <declname>im</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="365" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="365" bodyend="407"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1a3f627afd4607426eb1c53686f3567fa6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void processing.embroider.PEmbroiderTrace.thinning</definition>
+        <argsstring>(boolean[] im, int w, int h)</argsstring>
+        <name>thinning</name>
+        <param>
+          <type>boolean[]</type>
+          <declname>im</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>h</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="412" column="22" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="412" bodyend="426"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1aa0f313ff0e531a9992d69e60f7a234cf" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>boolean[]</type>
+        <definition>static boolean [] processing.embroider.PEmbroiderTrace.dilate5</definition>
+        <argsstring>(boolean[] im, int w, int h)</argsstring>
+        <name>dilate5</name>
+        <param>
+          <type>boolean[]</type>
+          <declname>im</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>h</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="459" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="459" bodyend="473"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1a5f7afe628e437a4a329fbbd90b67a72c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float[]</type>
+        <definition>static float [] processing.embroider.PEmbroiderTrace.blur5</definition>
+        <argsstring>(float[] im, int w, int h)</argsstring>
+        <name>blur5</name>
+        <param>
+          <type>float[]</type>
+          <declname>im</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>h</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="474" column="23" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="474" bodyend="487"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1a052d81297882f0c3181ee264e457221b" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int[]</type>
+        <definition>static int [] processing.embroider.PEmbroiderTrace.neighborIDToIndex</definition>
+        <argsstring>(int i, int j, int id)</argsstring>
+        <name>neighborIDToIndex</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="182" column="12" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="182" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1aee57d0ca22a94144f1f2bac426d823bf" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int processing.embroider.PEmbroiderTrace.neighborIndexToID</definition>
+        <argsstring>(int i0, int j0, int i, int j)</argsstring>
+        <name>neighborIndexToID</name>
+        <param>
+          <type>int</type>
+          <declname>i0</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j0</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="193" column="12" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="193" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1a7fa7b830d6ad99b92071e2b700b00487" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int[]</type>
+        <definition>static int [] processing.embroider.PEmbroiderTrace.ccwNon0</definition>
+        <argsstring>(int[] F, int w, int h, int i0, int j0, int i, int j, int offset)</argsstring>
+        <name>ccwNon0</name>
+        <param>
+          <type>int[]</type>
+          <declname>F</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>h</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i0</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j0</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>offset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="208" column="12" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="208" bodyend="218"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1a1ad5d6ec911b6a3cf107726ac07e2844" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int[]</type>
+        <definition>static int [] processing.embroider.PEmbroiderTrace.cwNon0</definition>
+        <argsstring>(int[] F, int w, int h, int i0, int j0, int i, int j, int offset)</argsstring>
+        <name>cwNon0</name>
+        <param>
+          <type>int[]</type>
+          <declname>F</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>h</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i0</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j0</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>offset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="221" column="12" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="221" bodyend="231"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1a313300cd05053330e5e50e88234a8bf3" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void processing.embroider.PEmbroiderTrace.thinningIteration</definition>
+        <argsstring>(boolean[] im, int w, int h, int iter)</argsstring>
+        <name>thinningIteration</name>
+        <param>
+          <type>boolean[]</type>
+          <declname>im</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>h</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>iter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="428" column="15" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="428" bodyend="457"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="8" column="7" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="8" bodyend="488"/>
+    <listofallmembers>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a1dc0aa33af53d61bcecc427a883bcffd" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>approxPolyDP</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a5f7afe628e437a4a329fbbd90b67a72c" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>blur5</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a7fa7b830d6ad99b92071e2b700b00487" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>ccwNon0</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a1ad5d6ec911b6a3cf107726ac07e2844" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>cwNon0</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1aa0f313ff0e531a9992d69e60f7a234cf" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>dilate5</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1ab08ec11a588077744c022c61274ef0f0" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>findContours</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a6893a48f07e86ac8e46b7226f6db1d40" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>findContours</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a18250ecfe6fb528d13e643f99f8c0ee8" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>findContours_naive</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a18a11e7163dda5400f5403b0839587f4" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>findContours_naive</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1aeab898020189709e9c1b325bc4e71c26" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>findIsolines</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a5228e20869f91e492d386fa3abfb3a8d" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>logPrefix</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a706971ccc0cb31059fc1433611d60d0b" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>N_PIXEL_NEIGHBOR</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a052d81297882f0c3181ee264e457221b" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>neighborIDToIndex</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1aee57d0ca22a94144f1f2bac426d823bf" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>neighborIndexToID</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a3f627afd4607426eb1c53686f3567fa6" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>thinning</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a313300cd05053330e5e50e88234a8bf3" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>thinningIteration</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

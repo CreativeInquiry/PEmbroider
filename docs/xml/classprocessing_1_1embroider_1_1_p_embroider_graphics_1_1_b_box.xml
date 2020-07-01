@@ -1,0 +1,250 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_box" kind="class" language="Java" prot="public">
+    <compoundname>processing::embroider::PEmbroiderGraphics::BBox</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_box_1afceefcd02d2f41900e0e3d039a214754" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float processing.embroider.PEmbroiderGraphics.BBox.x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="570" column="14" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" bodystart="570" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_box_1a3ee50417fcdefe9d99bce853008c380b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float processing.embroider.PEmbroiderGraphics.BBox.y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="571" column="14" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" bodystart="571" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_box_1afea69b0a1a995f6cc0ca665ed470c062" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float processing.embroider.PEmbroiderGraphics.BBox.w</definition>
+        <argsstring></argsstring>
+        <name>w</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="572" column="14" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" bodystart="572" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_box_1a85058b255ef44df823d201efe7678f2a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float processing.embroider.PEmbroiderGraphics.BBox.h</definition>
+        <argsstring></argsstring>
+        <name>h</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="573" column="14" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" bodystart="573" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_box_1a67ea9f8c6227cd9a6f448659fa3782fc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>processing.embroider.PEmbroiderGraphics.BBox.BBox</definition>
+        <argsstring>(float _x, float _y, float _w, float _h)</argsstring>
+        <name>BBox</name>
+        <param>
+          <type>float</type>
+          <declname>_x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>_y</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>_w</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>_h</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Constructor that makes a bounding box from top left corner and dimensions</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>left </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>top </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_w</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>width </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_h</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>height </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="581" column="8" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" bodystart="581" bodyend="586"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_box_1a0868c3618d90062e5f49a8b76955944d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>processing.embroider.PEmbroiderGraphics.BBox.BBox</definition>
+        <argsstring>(PVector p, PVector q)</argsstring>
+        <name>BBox</name>
+        <param>
+          <type>PVector</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>PVector</type>
+          <declname>q</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Constructor that makes a bounding box from top left corner and bottom right corner</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>top left corner </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>bottom right corner </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="592" column="8" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" bodystart="592" bodyend="597"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_box_1a521f069cc8bf28161262936f342adb35" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>processing.embroider.PEmbroiderGraphics.BBox.BBox</definition>
+        <argsstring>(ArrayList&lt; PVector &gt; poly)</argsstring>
+        <name>BBox</name>
+        <param>
+          <type>ArrayList&lt; PVector &gt;</type>
+          <declname>poly</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Constructor that makes a bounding box from a bunch of points</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>poly</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a bunch of points </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="602" column="8" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" bodystart="602" bodyend="618"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_box_1ac2b881a2a63a8b9cd1990fe26b9c27a5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>processing.embroider.PEmbroiderGraphics.BBox.BBox</definition>
+        <argsstring>(ArrayList&lt; ArrayList&lt; PVector &gt;&gt; polys, int whatever)</argsstring>
+        <name>BBox</name>
+        <param>
+          <type>ArrayList&lt; ArrayList&lt; PVector &gt;&gt;</type>
+          <declname>polys</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>whatever</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Constructor that makes a bounding box from a bunch of bunches of points</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>polys</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a bunch of bunches of points </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>whatever</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>literally pass in whatever. It is necessary because of type erasure in Java, which basically means Java cannot tell the difference between List&lt;T&gt; and List&lt;List&lt;T&gt;&gt; in arguments, so a difference in number of arguments is required for overloading to work </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="624" column="8" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" bodystart="624" bodyend="641"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Class for a bounding box </para>
+    </detaileddescription>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="569" column="7" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" bodystart="569" bodyend="642"/>
+    <listofallmembers>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_box_1a67ea9f8c6227cd9a6f448659fa3782fc" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderGraphics::BBox</scope><name>BBox</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_box_1a0868c3618d90062e5f49a8b76955944d" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderGraphics::BBox</scope><name>BBox</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_box_1a521f069cc8bf28161262936f342adb35" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderGraphics::BBox</scope><name>BBox</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_box_1ac2b881a2a63a8b9cd1990fe26b9c27a5" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderGraphics::BBox</scope><name>BBox</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_box_1a85058b255ef44df823d201efe7678f2a" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderGraphics::BBox</scope><name>h</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_box_1afea69b0a1a995f6cc0ca665ed470c062" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderGraphics::BBox</scope><name>w</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_box_1afceefcd02d2f41900e0e3d039a214754" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderGraphics::BBox</scope><name>x</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_box_1a3ee50417fcdefe9d99bce853008c380b" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderGraphics::BBox</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

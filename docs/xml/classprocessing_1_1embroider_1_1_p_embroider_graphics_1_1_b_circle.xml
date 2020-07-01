@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_circle" kind="class" language="Java" prot="public">
+    <compoundname>processing::embroider::PEmbroiderGraphics::BCircle</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_circle_1a25e81f89e98c476cb938e5fc2032c868" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float processing.embroider.PEmbroiderGraphics.BCircle.x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="649" column="14" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" bodystart="649" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_circle_1a359d4c2c66311e9cf08840823dc6ce1e" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float processing.embroider.PEmbroiderGraphics.BCircle.y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="650" column="14" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" bodystart="650" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_circle_1a6350d39cbcc736b0c763dda5858af090" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float processing.embroider.PEmbroiderGraphics.BCircle.r</definition>
+        <argsstring></argsstring>
+        <name>r</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="651" column="14" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" bodystart="651" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_circle_1a46ba5f5f0814c88b403a3556ddaf9263" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>processing.embroider.PEmbroiderGraphics.BCircle.BCircle</definition>
+        <argsstring>(float _x, float _y, float _r)</argsstring>
+        <name>BCircle</name>
+        <param>
+          <type>float</type>
+          <declname>_x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>_y</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>_r</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Constructor that makes a bounding circle from center and radius</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>x coordinate of center </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>y coordinate of center </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>radius </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="658" column="8" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" bodystart="658" bodyend="662"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_circle_1a4a3fec587e19d584cbe78348a952c9c5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>processing.embroider.PEmbroiderGraphics.BCircle.BCircle</definition>
+        <argsstring>(ArrayList&lt; PVector &gt; poly)</argsstring>
+        <name>BCircle</name>
+        <param>
+          <type>ArrayList&lt; PVector &gt;</type>
+          <declname>poly</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Constructor that makes a bounding circle from a bunch of points</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>poly</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a bunch of points </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="667" column="8" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" bodystart="667" bodyend="676"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_circle_1ab04e40b094d468071014becfae1fd3f2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>processing.embroider.PEmbroiderGraphics.BCircle.BCircle</definition>
+        <argsstring>(ArrayList&lt; ArrayList&lt; PVector &gt;&gt; poly, int whatever)</argsstring>
+        <name>BCircle</name>
+        <param>
+          <type>ArrayList&lt; ArrayList&lt; PVector &gt;&gt;</type>
+          <declname>poly</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>whatever</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Constructor that makes a bounding circle from a bunch of bunches of points</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>polys</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a bunch of bunches of points </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>whatever</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>literally pass in whatever. It is necessary because of type erasure in Java, which basically means Java cannot tell the difference between List&lt;T&gt; and List&lt;List&lt;T&gt;&gt; in arguments, so a difference in number of arguments is required for overloading to work </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="682" column="8" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" bodystart="682" bodyend="693"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Class for a bounding circle. The bounding circle is not the minimal bounding circle for now. It&apos;s just some bounding circle. It works well enough for current use cases, but we might implement minimal bounding circle in the future </para>
+    </detaileddescription>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="648" column="7" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" bodystart="648" bodyend="694"/>
+    <listofallmembers>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_circle_1a46ba5f5f0814c88b403a3556ddaf9263" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderGraphics::BCircle</scope><name>BCircle</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_circle_1a4a3fec587e19d584cbe78348a952c9c5" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderGraphics::BCircle</scope><name>BCircle</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_circle_1ab04e40b094d468071014becfae1fd3f2" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderGraphics::BCircle</scope><name>BCircle</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_circle_1a6350d39cbcc736b0c763dda5858af090" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderGraphics::BCircle</scope><name>r</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_circle_1a25e81f89e98c476cb938e5fc2032c868" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderGraphics::BCircle</scope><name>x</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_b_circle_1a359d4c2c66311e9cf08840823dc6ce1e" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderGraphics::BCircle</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

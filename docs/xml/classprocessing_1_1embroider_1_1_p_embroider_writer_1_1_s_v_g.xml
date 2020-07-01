@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_s_v_g" kind="class" language="Java" prot="public">
+    <compoundname>processing::embroider::PEmbroiderWriter::SVG</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_s_v_g_1a1900360a52f3b4f2e151e187f55f3a53" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>String</type>
+        <definition>static String processing.embroider.PEmbroiderWriter.SVG.svgString</definition>
+        <argsstring>(float[] bounds, ArrayList&lt; PVector &gt; stitches, ArrayList&lt; Integer &gt; colors)</argsstring>
+        <name>svgString</name>
+        <param>
+          <type>float[]</type>
+          <declname>bounds</declname>
+        </param>
+        <param>
+          <type>ArrayList&lt; PVector &gt;</type>
+          <declname>stitches</declname>
+        </param>
+        <param>
+          <type>ArrayList&lt; Integer &gt;</type>
+          <declname>colors</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1736" column="22" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1736" bodyend="1760"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_s_v_g_1a0ea8761eaa0f72e6814804ca044fc6e3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void processing.embroider.PEmbroiderWriter.SVG.write</definition>
+        <argsstring>(String name, float[] bounds, ArrayList&lt; PVector &gt; stitches, ArrayList&lt; Integer &gt; colors)</argsstring>
+        <name>write</name>
+        <param>
+          <type>String</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>float[]</type>
+          <declname>bounds</declname>
+        </param>
+        <param>
+          <type>ArrayList&lt; PVector &gt;</type>
+          <declname>stitches</declname>
+        </param>
+        <param>
+          <type>ArrayList&lt; Integer &gt;</type>
+          <declname>colors</declname>
+        </param>
+        <exceptions> throws IOException</exceptions>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1761" column="20" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1761" bodyend="1768"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1735" column="15" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1735" bodyend="1769"/>
+    <listofallmembers>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_s_v_g_1a1900360a52f3b4f2e151e187f55f3a53" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::SVG</scope><name>svgString</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_s_v_g_1a0ea8761eaa0f72e6814804ca044fc6e3" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::SVG</scope><name>write</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

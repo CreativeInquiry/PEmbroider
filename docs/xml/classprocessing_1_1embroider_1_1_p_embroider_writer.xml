@@ -1,0 +1,274 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classprocessing_1_1embroider_1_1_p_embroider_writer" kind="class" language="Java" prot="public">
+    <compoundname>processing::embroider::PEmbroiderWriter</compoundname>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_d_s_t" prot="public">processing::embroider::PEmbroiderWriter::DST</innerclass>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_e_x_p" prot="public">processing::embroider::PEmbroiderWriter::EXP</innerclass>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_g_c_o_d_e" prot="public">processing::embroider::PEmbroiderWriter::GCODE</innerclass>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_j_e_f" prot="public">processing::embroider::PEmbroiderWriter::JEF</innerclass>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_d_f" prot="public">processing::embroider::PEmbroiderWriter::PDF</innerclass>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c" prot="public">processing::embroider::PEmbroiderWriter::PEC</innerclass>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_s" prot="public">processing::embroider::PEmbroiderWriter::PES</innerclass>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_s_v_g" prot="public">processing::embroider::PEmbroiderWriter::SVG</innerclass>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_t_s_v" prot="public">processing::embroider::PEmbroiderWriter::TSV</innerclass>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_v_p3" prot="public">processing::embroider::PEmbroiderWriter::VP3</innerclass>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_x_x_x" prot="public">processing::embroider::PEmbroiderWriter::XXX</innerclass>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1a3358b4f9ce309f998504070fd69c4b49" prot="public" static="yes" mutable="no">
+        <type>final int</type>
+        <definition>final int processing.embroider.PEmbroiderWriter.NO_COMMAND</definition>
+        <argsstring></argsstring>
+        <name>NO_COMMAND</name>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="21" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1ac0ab20a384a55e29184f0b5f53a151fb" prot="public" static="yes" mutable="no">
+        <type>final int</type>
+        <definition>final int processing.embroider.PEmbroiderWriter.STITCH</definition>
+        <argsstring></argsstring>
+        <name>STITCH</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="22" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1ac3ded3d75d74dd5dd2940877fccb706c" prot="public" static="yes" mutable="no">
+        <type>final int</type>
+        <definition>final int processing.embroider.PEmbroiderWriter.JUMP</definition>
+        <argsstring></argsstring>
+        <name>JUMP</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="23" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1aab04f67b3f8607e2886ebd774e729b15" prot="public" static="yes" mutable="no">
+        <type>final int</type>
+        <definition>final int processing.embroider.PEmbroiderWriter.TRIM</definition>
+        <argsstring></argsstring>
+        <name>TRIM</name>
+        <initializer>= 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="24" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1a9d3e3ed51b7ca51a1be5240ded857daf" prot="public" static="yes" mutable="no">
+        <type>final int</type>
+        <definition>final int processing.embroider.PEmbroiderWriter.STOP</definition>
+        <argsstring></argsstring>
+        <name>STOP</name>
+        <initializer>= 3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="25" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1a368a75ea20b3ab97ec0e87859a3ae7f4" prot="public" static="yes" mutable="no">
+        <type>final int</type>
+        <definition>final int processing.embroider.PEmbroiderWriter.END</definition>
+        <argsstring></argsstring>
+        <name>END</name>
+        <initializer>= 4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="26" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1ad63c60a5b65e1c73e4d5245155a193fd" prot="public" static="yes" mutable="no">
+        <type>final int</type>
+        <definition>final int processing.embroider.PEmbroiderWriter.COLOR_CHANGE</definition>
+        <argsstring></argsstring>
+        <name>COLOR_CHANGE</name>
+        <initializer>= 5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="27" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1af6ea884d8bdcae3eb42a7fa9026dd95c" prot="public" static="yes" mutable="no">
+        <type>final int</type>
+        <definition>final int processing.embroider.PEmbroiderWriter.NEEDLE_SET</definition>
+        <argsstring></argsstring>
+        <name>NEEDLE_SET</name>
+        <initializer>= 9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="28" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1a636d2152e1edf8a17e64be2b045f4e1e" prot="public" static="yes" mutable="no">
+        <type>final int</type>
+        <definition>final int processing.embroider.PEmbroiderWriter.SEQUIN_MODE</definition>
+        <argsstring></argsstring>
+        <name>SEQUIN_MODE</name>
+        <initializer>= 6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="29" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1a79d4004de6e3c82a8c3f23920c403901" prot="public" static="yes" mutable="no">
+        <type>final int</type>
+        <definition>final int processing.embroider.PEmbroiderWriter.SEQUIN_EJECT</definition>
+        <argsstring></argsstring>
+        <name>SEQUIN_EJECT</name>
+        <initializer>= 7</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="30" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1ac51402fd58b6cd32d367cc189ada5b46" prot="public" static="yes" mutable="no">
+        <type>final int</type>
+        <definition>final int processing.embroider.PEmbroiderWriter.SLOW</definition>
+        <argsstring></argsstring>
+        <name>SLOW</name>
+        <initializer>= 0xB</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="31" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1aed85e2614ef6c7f5fe545a883a8276bd" prot="public" static="yes" mutable="no">
+        <type>final int</type>
+        <definition>final int processing.embroider.PEmbroiderWriter.FAST</definition>
+        <argsstring></argsstring>
+        <name>FAST</name>
+        <initializer>= 0xC</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="32" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1aba5e157896da7c5ada5e3ea84737c1e7" prot="public" static="yes" mutable="no">
+        <type>final int</type>
+        <definition>final int processing.embroider.PEmbroiderWriter.COMMAND_MASK</definition>
+        <argsstring></argsstring>
+        <name>COMMAND_MASK</name>
+        <initializer>= 0xFF</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="34" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-static-attrib">
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1ac8cba44ec594c25b54fe05c746313a82" prot="package" static="yes" mutable="no">
+        <type>String</type>
+        <definition>String processing.embroider.PEmbroiderWriter.logPrefix</definition>
+        <argsstring></argsstring>
+        <name>logPrefix</name>
+        <initializer>= &quot;[PEmbroider Writer] &quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="36" column="15" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1a54665be43a1ba3233f94149f6eba558c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void processing.embroider.PEmbroiderWriter.write</definition>
+        <argsstring>(String filename, ArrayList&lt; ArrayList&lt; PVector &gt;&gt; polylines, ArrayList&lt; Integer &gt; colors, int width, int height)</argsstring>
+        <name>write</name>
+        <param>
+          <type>String</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>ArrayList&lt; ArrayList&lt; PVector &gt;&gt;</type>
+          <declname>polylines</declname>
+        </param>
+        <param>
+          <type>ArrayList&lt; Integer &gt;</type>
+          <declname>colors</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1871" column="20" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1871" bodyend="1917"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="19" column="7" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="19" bodyend="1919"/>
+    <listofallmembers>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1ad63c60a5b65e1c73e4d5245155a193fd" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>COLOR_CHANGE</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1aba5e157896da7c5ada5e3ea84737c1e7" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>COMMAND_MASK</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a368a75ea20b3ab97ec0e87859a3ae7f4" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>END</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1aed85e2614ef6c7f5fe545a883a8276bd" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>FAST</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1ac3ded3d75d74dd5dd2940877fccb706c" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>JUMP</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1ac8cba44ec594c25b54fe05c746313a82" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>logPrefix</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1af6ea884d8bdcae3eb42a7fa9026dd95c" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>NEEDLE_SET</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a3358b4f9ce309f998504070fd69c4b49" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>NO_COMMAND</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a79d4004de6e3c82a8c3f23920c403901" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>SEQUIN_EJECT</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a636d2152e1edf8a17e64be2b045f4e1e" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>SEQUIN_MODE</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1ac51402fd58b6cd32d367cc189ada5b46" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>SLOW</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1ac0ab20a384a55e29184f0b5f53a151fb" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>STITCH</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a9d3e3ed51b7ca51a1be5240ded857daf" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>STOP</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1aab04f67b3f8607e2886ebd774e729b15" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>TRIM</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a54665be43a1ba3233f94149f6eba558c" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>write</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

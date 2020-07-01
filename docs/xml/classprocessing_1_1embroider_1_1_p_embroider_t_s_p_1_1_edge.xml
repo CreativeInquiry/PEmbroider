@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1_1_edge" kind="class" language="Java" prot="public">
+    <compoundname>processing::embroider::PEmbroiderTSP::Edge</compoundname>
+      <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1_1_edge_1a82ee8dbf8365a30b8b6c22fd86c4df7f" prot="package" static="no" mutable="no">
+        <type>int</type>
+        <definition>int processing.embroider.PEmbroiderTSP.Edge.i0</definition>
+        <argsstring></argsstring>
+        <name>i0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" line="15" column="5" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1_1_edge_1a31ec1ee8aecd1be4f80a931af4a9b536" prot="package" static="no" mutable="no">
+        <type>int</type>
+        <definition>int processing.embroider.PEmbroiderTSP.Edge.i1</definition>
+        <argsstring></argsstring>
+        <name>i1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" line="16" column="5" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1_1_edge_1a983d3b2b557c6214d193f15d7a1e35a9" prot="package" static="no" mutable="no">
+        <type>boolean</type>
+        <definition>boolean processing.embroider.PEmbroiderTSP.Edge.r0</definition>
+        <argsstring></argsstring>
+        <name>r0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" line="17" column="9" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1_1_edge_1a28c01eb270de1942db074e7859d62a07" prot="package" static="no" mutable="no">
+        <type>boolean</type>
+        <definition>boolean processing.embroider.PEmbroiderTSP.Edge.r1</definition>
+        <argsstring></argsstring>
+        <name>r1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" line="18" column="9" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1_1_edge_1aae0358593c952a1f828458f4d754675c" prot="package" static="no" mutable="no">
+        <type>float</type>
+        <definition>float processing.embroider.PEmbroiderTSP.Edge.d</definition>
+        <argsstring></argsstring>
+        <name>d</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" line="19" column="7" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1_1_edge_1a376a0f98b59b9f257dc8cf65e3e492bc" prot="package" static="no" mutable="no">
+        <type>PVector</type>
+        <definition>PVector processing.embroider.PEmbroiderTSP.Edge.p0</definition>
+        <argsstring></argsstring>
+        <name>p0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" line="20" column="9" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1_1_edge_1a41ed55428eff07a72338b51fdf6bd3ff" prot="package" static="no" mutable="no">
+        <type>PVector</type>
+        <definition>PVector processing.embroider.PEmbroiderTSP.Edge.p1</definition>
+        <argsstring></argsstring>
+        <name>p1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" line="21" column="9" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>PVector</label>
+      </node>
+      <node id="1">
+        <label>processing.embroider.PEmbroiderTSP.Edge</label>
+        <childnode refid="2" relation="usage">
+          <edgelabel>p0</edgelabel>
+          <edgelabel>p1</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" line="14" column="15" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" bodystart="14" bodyend="22"/>
+    <listofallmembers>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1_1_edge_1aae0358593c952a1f828458f4d754675c" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderTSP::Edge</scope><name>d</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1_1_edge_1a82ee8dbf8365a30b8b6c22fd86c4df7f" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderTSP::Edge</scope><name>i0</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1_1_edge_1a31ec1ee8aecd1be4f80a931af4a9b536" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderTSP::Edge</scope><name>i1</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1_1_edge_1a376a0f98b59b9f257dc8cf65e3e492bc" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderTSP::Edge</scope><name>p0</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1_1_edge_1a41ed55428eff07a72338b51fdf6bd3ff" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderTSP::Edge</scope><name>p1</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1_1_edge_1a983d3b2b557c6214d193f15d7a1e35a9" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderTSP::Edge</scope><name>r0</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1_1_edge_1a28c01eb270de1942db074e7859d62a07" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderTSP::Edge</scope><name>r1</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

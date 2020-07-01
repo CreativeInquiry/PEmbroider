@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classprocessing_1_1embroider_1_1_p_embroider_t_s_p" kind="class" language="Java" prot="public">
+    <compoundname>processing::embroider::PEmbroiderTSP</compoundname>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1_1_edge" prot="public">processing::embroider::PEmbroiderTSP::Edge</innerclass>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1af61ee8c4dbea5a6dbc0abae60980db7d" prot="public" static="yes" mutable="no">
+        <type>final String</type>
+        <definition>final String processing.embroider.PEmbroiderTSP.logPrefix</definition>
+        <argsstring></argsstring>
+        <name>logPrefix</name>
+        <initializer>= &quot;[PEmbroider Optimize] &quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" line="11" column="28" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1acc84746e1c9abb201845da8833a5f815" prot="public" static="yes" mutable="no">
+        <type>boolean</type>
+        <definition>boolean processing.embroider.PEmbroiderTSP.silent</definition>
+        <argsstring></argsstring>
+        <name>silent</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" line="12" column="23" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1a3dfb9a24d5282f30317349b9f32e8e1c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Edge</type>
+        <definition>static Edge processing.embroider.PEmbroiderTSP.reverseEdge</definition>
+        <argsstring>(Edge e1)</argsstring>
+        <name>reverseEdge</name>
+        <param>
+          <type>Edge</type>
+          <declname>e1</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" line="23" column="20" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" bodystart="23" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1afea346a2501eca9c32fb5d0757ec70ae" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void processing.embroider.PEmbroiderTSP.reverseEdges</definition>
+        <argsstring>(List&lt; Edge &gt; edges)</argsstring>
+        <name>reverseEdges</name>
+        <param>
+          <type>List&lt; Edge &gt;</type>
+          <declname>edges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" line="34" column="20" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" bodystart="34" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1a2c4c2898bf691a21f7ba47ac51305575" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ArrayList&lt; Edge &gt;</type>
+        <definition>static ArrayList&lt;Edge&gt; processing.embroider.PEmbroiderTSP.NN</definition>
+        <argsstring>(ArrayList&lt; ArrayList&lt; PVector &gt;&gt; polylines, int i0)</argsstring>
+        <name>NN</name>
+        <param>
+          <type>ArrayList&lt; ArrayList&lt; PVector &gt;&gt;</type>
+          <declname>polylines</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i0</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" line="46" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" bodystart="46" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1abe0d7ace00efb45e5fbedf88fd7e46fc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void processing.embroider.PEmbroiderTSP.opt2</definition>
+        <argsstring>(ArrayList&lt; Edge &gt; edges, int maxIter)</argsstring>
+        <name>opt2</name>
+        <param>
+          <type>ArrayList&lt; Edge &gt;</type>
+          <declname>edges</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>maxIter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" line="108" column="20" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" bodystart="108" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1a78161835c940f6fce1c9c4a3bca9028d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>static float processing.embroider.PEmbroiderTSP.sumLength</definition>
+        <argsstring>(ArrayList&lt; Edge &gt; edges)</argsstring>
+        <name>sumLength</name>
+        <param>
+          <type>ArrayList&lt; Edge &gt;</type>
+          <declname>edges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" line="156" column="21" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" bodystart="156" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1ac28fa13ed216589581ba812a3de49b0c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>static float processing.embroider.PEmbroiderTSP.sumLengthPolylines</definition>
+        <argsstring>(ArrayList&lt; ArrayList&lt; PVector &gt;&gt; polylines)</argsstring>
+        <name>sumLengthPolylines</name>
+        <param>
+          <type>ArrayList&lt; ArrayList&lt; PVector &gt;&gt;</type>
+          <declname>polylines</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" line="164" column="21" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" bodystart="164" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1a85d7c782ad118b11a06c8db42a149444" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ArrayList&lt; ArrayList&lt; PVector &gt; &gt;</type>
+        <definition>static ArrayList&lt;ArrayList&lt;PVector&gt; &gt; processing.embroider.PEmbroiderTSP.solve</definition>
+        <argsstring>(ArrayList&lt; ArrayList&lt; PVector &gt;&gt; polylines)</argsstring>
+        <name>solve</name>
+        <param>
+          <type>ArrayList&lt; ArrayList&lt; PVector &gt;&gt;</type>
+          <declname>polylines</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" line="175" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" bodystart="175" bodyend="177"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1a8786a986c43fb2bf9ec2c81d7ed24fbf" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ArrayList&lt; ArrayList&lt; PVector &gt; &gt;</type>
+        <definition>static ArrayList&lt;ArrayList&lt;PVector&gt; &gt; processing.embroider.PEmbroiderTSP.solve</definition>
+        <argsstring>(ArrayList&lt; ArrayList&lt; PVector &gt;&gt; polylines, int trials, int maxIter)</argsstring>
+        <name>solve</name>
+        <param>
+          <type>ArrayList&lt; ArrayList&lt; PVector &gt;&gt;</type>
+          <declname>polylines</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>trials</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>maxIter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" line="179" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" bodystart="179" bodyend="297"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1a6ba31d0cb5314a8fc84f987c023b5b0a" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void processing.embroider.PEmbroiderTSP.log</definition>
+        <argsstring>(String x)</argsstring>
+        <name>log</name>
+        <param>
+          <type>String</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" line="40" column="21" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" bodystart="40" bodyend="44"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" line="10" column="7" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTSP.java" bodystart="10" bodyend="299"/>
+    <listofallmembers>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1a6ba31d0cb5314a8fc84f987c023b5b0a" prot="private" virt="non-virtual"><scope>processing::embroider::PEmbroiderTSP</scope><name>log</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1af61ee8c4dbea5a6dbc0abae60980db7d" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTSP</scope><name>logPrefix</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1a2c4c2898bf691a21f7ba47ac51305575" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTSP</scope><name>NN</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1abe0d7ace00efb45e5fbedf88fd7e46fc" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTSP</scope><name>opt2</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1a3dfb9a24d5282f30317349b9f32e8e1c" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTSP</scope><name>reverseEdge</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1afea346a2501eca9c32fb5d0757ec70ae" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTSP</scope><name>reverseEdges</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1acc84746e1c9abb201845da8833a5f815" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTSP</scope><name>silent</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1a85d7c782ad118b11a06c8db42a149444" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTSP</scope><name>solve</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1a8786a986c43fb2bf9ec2c81d7ed24fbf" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTSP</scope><name>solve</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1a78161835c940f6fce1c9c4a3bca9028d" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTSP</scope><name>sumLength</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1ac28fa13ed216589581ba812a3de49b0c" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTSP</scope><name>sumLengthPolylines</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

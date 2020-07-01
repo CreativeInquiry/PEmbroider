@@ -1,0 +1,259 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im" kind="class" language="Java" prot="package">
+    <compoundname>processing::embroider::PEmbroiderHatchSatin::Im</compoundname>
+      <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1af77b6be7b2d0b70e6a3c4c38609eab25" prot="package" static="no" mutable="no">
+        <type>int[]</type>
+        <definition>int [] processing.embroider.PEmbroiderHatchSatin.Im.data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="29" column="5" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1a4450975b13cc597c865c4fae1a74c635" prot="package" static="no" mutable="no">
+        <type>int</type>
+        <definition>int processing.embroider.PEmbroiderHatchSatin.Im.w</definition>
+        <argsstring></argsstring>
+        <name>w</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="30" column="5" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1ae0cf3aa0f3ad5e4f8e4ed502edeff36e" prot="package" static="no" mutable="no">
+        <type>int</type>
+        <definition>int processing.embroider.PEmbroiderHatchSatin.Im.h</definition>
+        <argsstring></argsstring>
+        <name>h</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="31" column="5" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1af5f83d12f1287ffb77138dd9b2dd1479" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>processing.embroider.PEmbroiderHatchSatin.Im.Im</definition>
+        <argsstring>(int _w, int _h)</argsstring>
+        <name>Im</name>
+        <param>
+          <type>int</type>
+          <declname>_w</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>_h</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="32" column="1" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="32" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1a1eaa74c5e91d408fcc4d62e3bdba9f99" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>processing.embroider.PEmbroiderHatchSatin.Im.Im</definition>
+        <argsstring>(PImage im)</argsstring>
+        <name>Im</name>
+        <param>
+          <type>PImage</type>
+          <declname>im</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="37" column="1" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="37" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1a6c7f05aa33cf454ac3fe62fab04f47c2" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>processing.embroider.PEmbroiderHatchSatin.Im.Im</definition>
+        <argsstring>(Im im)</argsstring>
+        <name>Im</name>
+        <param>
+          <type>Im</type>
+          <declname>im</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="46" column="1" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="46" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1acddb7c6dd2ebcf88ef49011f12553e23" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int processing.embroider.PEmbroiderHatchSatin.Im.get</definition>
+        <argsstring>(int x, int y)</argsstring>
+        <name>get</name>
+        <param>
+          <type>int</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="54" column="5" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="54" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1a179dc70742a2657670014cf6d91f6cd3" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int processing.embroider.PEmbroiderHatchSatin.Im.get</definition>
+        <argsstring>(Pt p)</argsstring>
+        <name>get</name>
+        <param>
+          <type>Pt</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="60" column="5" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="60" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1acc30e61a0426ba44f1316cdcfabe9594" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>boolean</type>
+        <definition>boolean processing.embroider.PEmbroiderHatchSatin.Im.isOn</definition>
+        <argsstring>(int x, int y)</argsstring>
+        <name>isOn</name>
+        <param>
+          <type>int</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="63" column="9" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="63" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1af228bac275156fcf64572561de7f3026" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>boolean</type>
+        <definition>boolean processing.embroider.PEmbroiderHatchSatin.Im.isOn</definition>
+        <argsstring>(Pt p)</argsstring>
+        <name>isOn</name>
+        <param>
+          <type>Pt</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="66" column="9" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="66" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1a41cbdf2f034f5e5aaa2866e7c397a2a3" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void processing.embroider.PEmbroiderHatchSatin.Im.set</definition>
+        <argsstring>(int x, int y, int v)</argsstring>
+        <name>set</name>
+        <param>
+          <type>int</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="69" column="6" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="69" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1a444fe8dd2eed405d7d7b85547a9cc618" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void processing.embroider.PEmbroiderHatchSatin.Im.set</definition>
+        <argsstring>(Pt p, int v)</argsstring>
+        <name>set</name>
+        <param>
+          <type>Pt</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="72" column="6" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="72" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1a8e7eb94656480cbc200d9d3da6e5e7a7" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>PImage</type>
+        <definition>PImage processing.embroider.PEmbroiderHatchSatin.Im.toPImage</definition>
+        <argsstring>()</argsstring>
+        <name>toPImage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="75" column="8" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="75" bodyend="84"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="28" column="8" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="28" bodyend="86"/>
+    <listofallmembers>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1af77b6be7b2d0b70e6a3c4c38609eab25" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin::Im</scope><name>data</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1acddb7c6dd2ebcf88ef49011f12553e23" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin::Im</scope><name>get</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1a179dc70742a2657670014cf6d91f6cd3" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin::Im</scope><name>get</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1ae0cf3aa0f3ad5e4f8e4ed502edeff36e" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin::Im</scope><name>h</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1af5f83d12f1287ffb77138dd9b2dd1479" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin::Im</scope><name>Im</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1a1eaa74c5e91d408fcc4d62e3bdba9f99" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin::Im</scope><name>Im</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1a6c7f05aa33cf454ac3fe62fab04f47c2" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin::Im</scope><name>Im</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1acc30e61a0426ba44f1316cdcfabe9594" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin::Im</scope><name>isOn</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1af228bac275156fcf64572561de7f3026" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin::Im</scope><name>isOn</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1a41cbdf2f034f5e5aaa2866e7c397a2a3" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin::Im</scope><name>set</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1a444fe8dd2eed405d7d7b85547a9cc618" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin::Im</scope><name>set</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1a8e7eb94656480cbc200d9d3da6e5e7a7" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin::Im</scope><name>toPImage</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1a4450975b13cc597c865c4fae1a74c635" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin::Im</scope><name>w</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="dir_0a512cdfab597aff87e92947a97cc98a" kind="dir">
+    <compoundname>/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing</compoundname>
+    <innerdir refid="dir_9edd8f7ea30d0d00781a89fca766d453">/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/"/>
+  </compounddef>
+</doxygen>

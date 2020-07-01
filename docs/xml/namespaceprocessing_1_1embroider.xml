@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespaceprocessing_1_1embroider" kind="namespace" language="Java">
+    <compoundname>processing::embroider</compoundname>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_boolean_shape_graphics" prot="public">processing::embroider::PEmbroiderBooleanShapeGraphics</innerclass>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_font" prot="public">processing::embroider::PEmbroiderFont</innerclass>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_graphics" prot="public">processing::embroider::PEmbroiderGraphics</innerclass>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin" prot="public">processing::embroider::PEmbroiderHatchSatin</innerclass>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_spine" prot="public">processing::embroider::PEmbroiderHatchSpine</innerclass>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_trace" prot="public">processing::embroider::PEmbroiderTrace</innerclass>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p" prot="public">processing::embroider::PEmbroiderTSP</innerclass>
+    <innerclass refid="classprocessing_1_1embroider_1_1_p_embroider_writer" prot="public">processing::embroider::PEmbroiderWriter</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderBooleanShapeGraphics.java" line="1" column="15"/>
+  </compounddef>
+</doxygen>
