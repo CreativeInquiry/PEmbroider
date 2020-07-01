@@ -81,6 +81,11 @@ public class PEmbroiderGraphics {
 	static public final int WARN = 100;
 
 	
+	static public final int CENTER = 3;
+	static public final int INSIDE = -1;
+	static public final int OUTSIDE = 1;
+	
+	
 	public int ELLIPSE_MODE = PConstants.CENTER;
 	public int RECT_MODE = PConstants.CORNER;
 	public int BEZIER_DETAIL = 40;
@@ -106,6 +111,8 @@ public class PEmbroiderGraphics {
 	public float STROKE_ANGLE = 0;
 	public int STROKE_JOIN = PConstants.ROUND;
 	public int STROKE_CAP = PConstants.ROUND;
+	
+	public float STROKE_LOCATION = 0.0f;
 	
 	public boolean FIRST_STROKE_THEN_FILL = false;
 	public boolean NO_RESAMPLE = false;
@@ -306,6 +313,19 @@ public class PEmbroiderGraphics {
 		STROKE_MODE = mode;
 		STROKE_TANGENT_MODE = tanMode;
 	}
+	
+	public void strokeLocation(float x) {
+		STROKE_LOCATION = PApplet.min(PApplet.max(-1,x),1);
+	}
+	
+	public void strokeLocation(int mode) {
+		if (mode == CENTER) {
+			strokeLocation(0.0f);
+		}else {
+			strokeLocation((float)mode);
+		}
+	}
+	
 	/** Change angle of parallel hatch lines
 	 *  
 	 *  @param ang     the angle from +x in radians
@@ -1374,6 +1394,92 @@ public class PEmbroiderGraphics {
 //		    	app.image(pg,bb.x,bb.y);
 		return polys;
 	}
+	public ArrayList<ArrayList<PVector>> insetPolygonsRaster(ArrayList<ArrayList<PVector>> polys, float d) {
+		if (polys.size()==0) {
+			return new ArrayList<ArrayList<PVector>>();
+		}
+		BBox bb = new BBox(polys,0);
+		
+		PGraphics pg = app.createGraphics((int)PApplet.ceil(bb.w),(int)PApplet.ceil(bb.h));
+		pg.beginDraw();
+		pg.background(0);
+		pg.fill(255);
+		pg.stroke(0);
+		pg.strokeWeight(d*2);
+		pg.translate(-bb.x,-bb.y);
+		pg.beginShape();
+		for (int i = 0; i < polys.get(0).size(); i++) {
+			pg.vertex(polys.get(0).get(i).x,polys.get(0).get(i).y);
+		}
+		for (int j = 1; j < polys.size(); j++) {
+			pg.beginContour();
+			for (int i = 0; i < polys.get(j).size(); i++) {
+				pg.vertex(polys.get(j).get(i).x,polys.get(j).get(i).y);
+			}
+			pg.endContour();
+		}
+		pg.endShape(PConstants.CLOSE);
+		pg.endDraw();
+
+		ArrayList<ArrayList<PVector>> polys2 = PEmbroiderTrace.findContours(pg);
+		
+		for (int i = polys2.size()-1; i >= 0; i--) {
+			if (polys2.get(i).size() < 2) {
+				polys2.remove(i);
+				continue;
+			}
+			for (int j = 0; j < polys2.get(i).size(); j++) {
+				polys2.get(i).get(j).add(new PVector(bb.x,bb.y));
+			}
+			polys2.set(i, PEmbroiderTrace.approxPolyDP(polys2.get(i), 1));
+		}
+		return polys2;
+	}
+	
+	public ArrayList<ArrayList<PVector>> outsetPolygonsRaster(ArrayList<ArrayList<PVector>> polys, float d) {
+		if (polys.size()==0) {
+			return new ArrayList<ArrayList<PVector>>();
+		}
+		BBox bb = new BBox(polys,0);
+		bb.x -= d*2;
+		bb.y -= d*2;
+		bb.w += d*4;
+		bb.h += d*4;
+		PGraphics pg = app.createGraphics((int)PApplet.ceil(bb.w),(int)PApplet.ceil(bb.h));
+		pg.beginDraw();
+		pg.background(0);
+		pg.fill(255);
+		pg.stroke(255);
+		pg.strokeWeight(d*2);
+		pg.translate(-bb.x,-bb.y);
+		pg.beginShape();
+		for (int i = 0; i < polys.get(0).size(); i++) {
+			pg.vertex(polys.get(0).get(i).x,polys.get(0).get(i).y);
+		}
+		for (int j = 1; j < polys.size(); j++) {
+			pg.beginContour();
+			for (int i = 0; i < polys.get(j).size(); i++) {
+				pg.vertex(polys.get(j).get(i).x,polys.get(j).get(i).y);
+			}
+			pg.endContour();
+		}
+		pg.endShape(PConstants.CLOSE);
+		pg.endDraw();
+		ArrayList<ArrayList<PVector>> polys2 = PEmbroiderTrace.findContours(pg);
+		
+		for (int i = polys2.size()-1; i >= 0; i--) {
+			if (polys2.get(i).size() < 2) {
+				polys2.remove(i);
+				continue;
+			}
+			for (int j = 0; j < polys2.get(i).size(); j++) {
+				polys2.get(i).get(j).add(new PVector(bb.x,bb.y));
+			}
+			polys2.set(i, PEmbroiderTrace.approxPolyDP(polys2.get(i), 1));
+		}
+		return polys2;
+	}
+
 
 	/** When the general shapes of two polygons are similar, this function finds the index offset of vertices for the first polygon so that the vertices best match those of the second polygon with one-to-one correspondence.
 	 *  The number of vertices needs to be the same for the polygons
@@ -1934,6 +2040,7 @@ public class PEmbroiderGraphics {
 	 *  @param close whether the polyline is considered as closed (polygon) or open (polyline)
 	 */
 	public void _stroke(ArrayList<ArrayList<PVector>> polys, boolean close) {
+
 		if (STROKE_WEIGHT <= 1) {
 			if (close) {
 				for (int i = 0; i < polys.size(); i++) {
@@ -1946,6 +2053,14 @@ public class PEmbroiderGraphics {
 				pushPolyline(polys.get(i),currentStroke);
 			}
 		}else {
+			if (PApplet.abs(STROKE_LOCATION) > Float.MIN_VALUE && close) {
+				float d = STROKE_WEIGHT/2*STROKE_LOCATION;
+				if (d > 0) {
+					polys = outsetPolygonsRaster(polys,d);
+				}else {
+					polys = insetPolygonsRaster(polys,PApplet.abs(d));
+				}
+			}
 			if (STROKE_MODE == TANGENT) {
 				int cnt = (int)STROKE_WEIGHT;
 				float spa = STROKE_SPACING;
