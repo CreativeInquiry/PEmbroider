@@ -19,31 +19,40 @@ void setup() {
 
   E.beginDraw(); 
   E.clear();
-
-  // Stroke properties
-  E.stroke(255, 255, 0); // yellow stroke
-  E.strokeWeight(30); 
-  E.strokeMode(PEmbroiderGraphics.PERPENDICULAR);
-  E.setRenderOrder(PEmbroiderGraphics.FILL_OVER_STROKE);
-  E.strokeSpacing(3.0); 
-
-  // Fill properties
-  E.fill(0, 0, 255); // blue fill
+  
+  
+  //Using the  Cull  feature to make lines and strokes not overlap
+  E.beginCull();
+  
+  E.noStroke();
+  //fill properties
+  E.fill(0, 0, 255); // light blue fill
   E.hatchMode(PEmbroiderGraphics.CONCENTRIC); 
   E.hatchSpacing(4.0); 
-
-  E.setStitch(10, 20, 0);
   E.image(myImage, 0, 0); 
+  
+  E.noFill();
+  //stroke properties
+  E.strokeWeight(30); 
+  E.strokeMode(PEmbroiderGraphics.PERPENDICULAR);
+  E.strokeSpacing(3.0); 
+  E.stroke(0, 0, 255); // blue stroke
+  E.image(myImage, 0, 0); 
+  
+  E.endCull();
+
+
 
   // Alternative rendering style:
   // PEmbroiderHatchSpine.setGraphics(E);
   // PEmbroiderHatchSpine.hatchSpineVF(myImage, 5);
 
   //-----------------------
-  E.optimize();   // slow, but good and important
+  //E.optimize();   // slow, but good and important
   E.visualize();  // 
-  E.printStats(); //
+  //E.printStats(); //
   // E.endDraw();    // write out the file
+  //save("PEmbroider_bitmap_image_2.png");
 }
 
 
