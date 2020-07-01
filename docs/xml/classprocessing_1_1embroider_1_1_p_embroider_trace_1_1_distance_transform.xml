@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classprocessing_1_1embroider_1_1_p_embroider_trace_1_1_distance_transform" kind="class" language="Java" prot="public">
+    <compoundname>processing::embroider::PEmbroiderTrace::DistanceTransform</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1_1_distance_transform_1a0e15b35ae94acb8319e534e1c1fcc0c7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>static float processing.embroider.PEmbroiderTrace.DistanceTransform.EDT_f</definition>
+        <argsstring>(float x, float i, float g_i)</argsstring>
+        <name>EDT_f</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>g_i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="18" column="21" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="18" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1_1_distance_transform_1a297792abd4110a31e2fdd61a41141b25" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>static float processing.embroider.PEmbroiderTrace.DistanceTransform.EDT_Sep</definition>
+        <argsstring>(float i, float u, float g_i, float g_u)</argsstring>
+        <name>EDT_Sep</name>
+        <param>
+          <type>float</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>u</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>g_i</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>g_u</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="21" column="21" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="21" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1_1_distance_transform_1a7469cce9596b4b426214e8916d142dc5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float[]</type>
+        <definition>static float [] processing.embroider.PEmbroiderTrace.DistanceTransform.getDistTransform</definition>
+        <argsstring>(boolean[] booleanImage, int m, int n)</argsstring>
+        <name>getDistTransform</name>
+        <param>
+          <type>boolean[]</type>
+          <declname>booleanImage</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="25" column="21" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="25" bodyend="88"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="13" column="15" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="13" bodyend="89"/>
+    <listofallmembers>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1_1_distance_transform_1a0e15b35ae94acb8319e534e1c1fcc0c7" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace::DistanceTransform</scope><name>EDT_f</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1_1_distance_transform_1a297792abd4110a31e2fdd61a41141b25" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace::DistanceTransform</scope><name>EDT_Sep</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1_1_distance_transform_1a7469cce9596b4b426214e8916d142dc5" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace::DistanceTransform</scope><name>getDistTransform</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

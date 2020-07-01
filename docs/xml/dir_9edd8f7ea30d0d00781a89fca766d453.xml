@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="dir_9edd8f7ea30d0d00781a89fca766d453" kind="dir">
+    <compoundname>/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider</compoundname>
+    <innerfile refid="_p_embroider_boolean_shape_graphics_8java">PEmbroiderBooleanShapeGraphics.java</innerfile>
+    <innerfile refid="_p_embroider_font_8java">PEmbroiderFont.java</innerfile>
+    <innerfile refid="_p_embroider_graphics_8java">PEmbroiderGraphics.java</innerfile>
+    <innerfile refid="_p_embroider_hatch_satin_8java">PEmbroiderHatchSatin.java</innerfile>
+    <innerfile refid="_p_embroider_hatch_spine_8java">PEmbroiderHatchSpine.java</innerfile>
+    <innerfile refid="_p_embroider_trace_8java">PEmbroiderTrace.java</innerfile>
+    <innerfile refid="_p_embroider_t_s_p_8java">PEmbroiderTSP.java</innerfile>
+    <innerfile refid="_p_embroider_writer_8java">PEmbroiderWriter.java</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/"/>
+  </compounddef>
+</doxygen>

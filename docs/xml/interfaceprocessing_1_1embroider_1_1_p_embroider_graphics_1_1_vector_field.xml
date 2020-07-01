@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="interfaceprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_vector_field" kind="interface" language="Java" prot="public">
+    <compoundname>processing::embroider::PEmbroiderGraphics::VectorField</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="interfaceprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_vector_field_1ad35639ef02c22af35870c6f353a7485e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PVector</type>
+        <definition>PVector processing.embroider.PEmbroiderGraphics.VectorField.get</definition>
+        <argsstring>(float x, float y)</argsstring>
+        <name>get</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>get the direction vector at given coordinate <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>x coordinate of the sample point </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>y coordinate of the sample point </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="4237" column="9"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Signature for a vector field </para>
+    </detaileddescription>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="4231" column="18" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" bodystart="4231" bodyend="4238"/>
+    <listofallmembers>
+      <member refid="interfaceprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_vector_field_1ad35639ef02c22af35870c6f353a7485e" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderGraphics::VectorField</scope><name>get</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
