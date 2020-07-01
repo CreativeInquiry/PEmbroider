@@ -1,9 +1,14 @@
-
+import re
 import xml.etree.cElementTree as ET
+import os
 
 print("# PEmbroider API Reference\n")
+s = open("../docs/xml/classprocessing_1_1embroider_1_1_p_embroider_graphics.xml",'r').read()
+open('tmp','w').write(re.sub(r'</?ref.*?>','',s))
 
-tree = ET.ElementTree(file="../docs/xml/classprocessing_1_1embroider_1_1_p_embroider_graphics.xml")
+tree = ET.ElementTree(file="tmp")
+os.system('rm tmp')
+
 sections = tree.iter("sectiondef")
 for sec in sections:
 	if "func" not in sec.attrib['kind']:

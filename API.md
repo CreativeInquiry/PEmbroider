@@ -2,7 +2,7 @@
 
 ### `PEmbroiderGraphics(PApplet _app, int w, int h)`
 ```
-The constructor for 
+The constructor for PEmbroiderGraphics object.
 ```
 |parameter|description|
 |---|---|
@@ -54,6 +54,8 @@ Change fill color
 |`b`|```blue color 0-255 ```|
 
 
+**return** `stroke `
+
 
 
 -----------------
@@ -96,6 +98,8 @@ Change stroke color
 |`g`|```green color 0-255 ```|
 |`b`|```blue color 0-255 ```|
 
+
+**return** `fill `
 
 
 
@@ -152,6 +156,8 @@ Change stroke join (turning point) style
 |`j`|```Same as Processing strokejoin, this can be ROUND, MITER, BEVEL etc. ```|
 
 
+**return** `strokeCap `
+
 
 
 -----------------
@@ -175,12 +181,14 @@ Change stroke cap (end point) style
 
 ### `void ellipseMode(int mode)`
 ```
-Modifies the location from which ellipses are drawn by changing the way in which parameters given to 
+Modifies the location from which ellipses are drawn by changing the way in which parameters given to ellipse() are intepreted. also governs circle()
 ```
 |parameter|description|
 |---|---|
 |`j`|```Same as Processing ellipseMode, this can be RADIUS, CENTER, CORNER, CORNERS etc. ```|
 
+
+**return** `rectMode `
 
 
 
@@ -189,12 +197,14 @@ Modifies the location from which ellipses are drawn by changing the way in which
 
 ### `void rectMode(int mode)`
 ```
-Modifies the location from which rectangles are drawn by changing the way in which parameters given to 
+Modifies the location from which rectangles are drawn by changing the way in which parameters given to rect() are intepreted.
 ```
 |parameter|description|
 |---|---|
 |`j`|```Same as Processing rectMode, this can be RADIUS, CENTER, CORNER, CORNERS etc. ```|
 
+
+**return** `ellipseMode `
 
 
 
@@ -267,6 +277,10 @@ Change angle of parallel hatch lines
 |`ang`|```the angle from +x in radians ```|
 
 
+**return** `hatchAngleDeg `
+
+**return** `hatchAngles `
+
 
 
 -----------------
@@ -282,6 +296,10 @@ Change angles of parallel and cross hatching lines
 |`ang2`|```the angle from +x in radians (for second direction of cross hatching) ```|
 
 
+**return** `hatchAngle `
+
+**return** `hatchAnglesDeg `
+
 
 
 -----------------
@@ -295,6 +313,10 @@ Change angle of parallel hatch lines
 |---|---|
 |`ang`|```the angle from +x in degrees ```|
 
+
+**return** `hatchAngle `
+
+**return** `hatchAnglesDeg `
 
 
 
@@ -311,6 +333,10 @@ Change angles of parallel and cross hatching lines
 |`ang2`|```the angle from +x in degrees (for second direction of cross hatching) ```|
 
 
+**return** `hatchAngles `
+
+**return** `hatchAngleDeg `
+
 
 
 -----------------
@@ -325,6 +351,8 @@ Changes the spacing between hatching lines: a.k.a sparsity or anti-density
 |`d`|```the spacing in pixels ```|
 
 
+**return** `strokeSpacing `
+
 
 
 -----------------
@@ -338,6 +366,8 @@ Changes the spacing between stroke lines: a.k.a sparsity or anti-density
 |---|---|
 |`d`|```the spacing in pixels ```|
 
+
+**return** `hatchSpacing `
 
 
 
@@ -397,6 +427,8 @@ Set the desirable stitch length. Stitches will try their best to be around this 
 
 **return** `minSitchLength `
 
+**return** `setStitch `
+
 
 
 -----------------
@@ -412,6 +444,8 @@ Set the minimum stitch length. Drawings with higher precision than this will be 
 
 
 **return** `stichLength `
+
+**return** `setStitch `
 
 
 
@@ -1199,7 +1233,7 @@ Draw a triangle
 
 ### `void beginShape()`
 ```
-Begin drawing a polygon/polyline. use 
+Begin drawing a polygon/polyline. use vertex() to add vertices to it. 
 ```
 |parameter|description|
 |---|---|
@@ -1212,7 +1246,7 @@ Begin drawing a polygon/polyline. use
 
 ### `void vertex(float x, float y)`
 ```
-Add vertex to the current polygon/polyline. This must be preceded by 
+Add vertex to the current polygon/polyline. This must be preceded by beginShape() 
 ```
 |parameter|description|
 |---|---|
@@ -1227,7 +1261,7 @@ Add vertex to the current polygon/polyline. This must be preceded by
 
 ### `void bezierVertex(float x1, float y1, float x2, float y2, float x3, float y3)`
 ```
-Add a cubic bezier vertex to the current polygon/polyline. This must be preceded by 
+Add a cubic bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex() An alias of cubicVertex 
 ```
 |parameter|description|
 |---|---|
@@ -1246,7 +1280,7 @@ Add a cubic bezier vertex to the current polygon/polyline. This must be preceded
 
 ### `void rationalVertex(float x1, float y1, float x2, float y2, float w)`
 ```
-Add a rational quadratic bezier vertex to the current polygon/polyline. This must be preceded by 
+Add a rational quadratic bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex() 
 ```
 |parameter|description|
 |---|---|
@@ -1264,7 +1298,7 @@ Add a rational quadratic bezier vertex to the current polygon/polyline. This mus
 
 ### `void quadraticVertex(float x1, float y1, float x2, float y2)`
 ```
-Add a quadratic bezier vertex to the current polygon/polyline. This must be preceded by 
+Add a quadratic bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex() 
 ```
 |parameter|description|
 |---|---|
@@ -1281,7 +1315,7 @@ Add a quadratic bezier vertex to the current polygon/polyline. This must be prec
 
 ### `void cubicVertex(float x1, float y1, float x2, float y2, float x3, float y3)`
 ```
-Add a cubic bezier vertex to the current polygon/polyline. This must be preceded by 
+Add a cubic bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex() 
 ```
 |parameter|description|
 |---|---|
@@ -1300,7 +1334,7 @@ Add a cubic bezier vertex to the current polygon/polyline. This must be preceded
 
 ### `void quarticVertex(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4)`
 ```
-Add a quartic bezier vertex to the current polygon/polyline. This must be preceded by 
+Add a quartic bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex() 
 ```
 |parameter|description|
 |---|---|
@@ -1321,7 +1355,7 @@ Add a quartic bezier vertex to the current polygon/polyline. This must be preced
 
 ### `void quinticVertex(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float x5, float y5)`
 ```
-Add a quintic bezier vertex to the current polygon/polyline. This must be preceded by 
+Add a quintic bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex() 
 ```
 |parameter|description|
 |---|---|
@@ -1344,7 +1378,7 @@ Add a quintic bezier vertex to the current polygon/polyline. This must be preced
 
 ### `void highBezierVertex(ArrayList< PVector > poly)`
 ```
-Add a higher-order bezier vertex to the current polygon/polyline. This must be preceded by 
+Add a higher-order bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex() 
 ```
 |parameter|description|
 |---|---|
@@ -1399,7 +1433,7 @@ Alias for endShape(bool) that closes the shape
 
 ### `void beginContour()`
 ```
-Begin a contour within the current polygon, if this contour has negative winding and is inside the current polygon or another contour defined between 
+Begin a contour within the current polygon, if this contour has negative winding and is inside the current polygon or another contour defined between beginShape() and endShape() that is not a hole, this will be a hole 
 ```
 |parameter|description|
 |---|---|
@@ -1559,7 +1593,7 @@ Visualize the current design on the main Processing canvas
 |---|---|
 |`color`|```whether to visualize color, if false, will use random colors; if stitches argument is true, this will have no effect and black will always be used for visibility ```|
 |`stitches`|```whether to visualize stitches, i.e. little dots on end of segments ```|
-|`route`|```whether to visualize the path between polylines that will be taken by embroidery machine/plotter. To be able to not see a mess when enabling this option, try ```|
+|`route`|```whether to visualize the path between polylines that will be taken by embroidery machine/plotter. To be able to not see a mess when enabling this option, try optimize() ```|
 
 
 
@@ -1794,7 +1828,7 @@ Smoothen a polyline with rational quadratic bezier (thus upsampling)
 
 ### `float [] perfectDistanceTransform(ArrayList< ArrayList< PVector >> polys, int w, int h)`
 ```
-Computes the accurate distance transform by actually mesuring distances (slow). See 
+Computes the accurate distance transform by actually mesuring distances (slow). See PEmbroiderTrace for the fast approximation 
 ```
 |parameter|description|
 |---|---|
@@ -2061,7 +2095,7 @@ Deep clone any object
 
 ### `void _ellipse(float cx, float cy, float rx, float ry)`
 ```
-Draw an ellipse using global settings. The unambigous backend for user-facing 
+Draw an ellipse using global settings. The unambigous backend for user-facing ellipse(), the ambigous one which can be affected by ellipseMode(). Returns nothing because the result is directly pushed to the design. 
 ```
 |parameter|description|
 |---|---|
@@ -2078,7 +2112,7 @@ Draw an ellipse using global settings. The unambigous backend for user-facing
 
 ### `void _rect(float x, float y, float w, float h)`
 ```
-Draw a rectangle using global settings. The unambigous backend for user-facing 
+Draw a rectangle using global settings. The unambigous backend for user-facing rect(), the ambigous one which can be affected by rectMode(). Returns nothing because the result is directly pushed to the design. 
 ```
 |parameter|description|
 |---|---|
