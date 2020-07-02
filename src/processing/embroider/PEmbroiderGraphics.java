@@ -141,7 +141,7 @@ public class PEmbroiderGraphics {
 	
 	public boolean EXPERIMENTAL_CROSS_RESAMPLE = false;
 	
-	public boolean SATIN_NO_ZIGZAG = true;
+	public boolean SATIN_NO_ZIGZAG = false;
 	
 	static String logPrefix = "[PEmbroider] ";
 	

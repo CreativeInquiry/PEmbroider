@@ -40,17 +40,17 @@ void setup() {
   E.image(myImage, 0, 0); 
   
   E.endCull();
+  
 
 
-
-  // Alternative rendering style:
-  // PEmbroiderHatchSpine.setGraphics(E);
-  // PEmbroiderHatchSpine.hatchSpineVF(myImage, 5);
+  // Uncomment for the Alternative "Spine" rendering style:
+  //PEmbroiderHatchSpine.setGraphics(E);
+  //PEmbroiderHatchSpine.hatchSpineVF(myImage, 5);
 
   //-----------------------
   //E.optimize();   // slow, but good and important
   E.visualize();  // 
-  //E.printStats(); //
+  E.printStats(); //
   // E.endDraw();    // write out the file
   //save("PEmbroider_bitmap_image_2.png");
 }
