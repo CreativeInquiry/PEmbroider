@@ -38,7 +38,7 @@ public class PEmbroiderGraphics {
 	public int currentStroke = 0xFF000000;
 	public int currentCullGroup = 0;
 
-	public int beginCullIndex = 0;
+	public int 	beginCullIndex = 0;
 
 	static public final float AUTO    =Float.NaN;
 	static public final int NONE      =0;
@@ -3156,7 +3156,11 @@ public class PEmbroiderGraphics {
 		}else if (HATCH_MODE == VECFIELD) {
 			polys = customField(im,HATCH_VECFIELD,HATCH_SPACING,3,100,9999);
 		}else if (HATCH_MODE == SATIN) {
-			polys = PEmbroiderHatchSatin.hatchSatinAngledRaster(im,hatch_angle,HATCH_SPACING);
+			if (!NO_RESAMPLE) {
+				didit = true;
+				NO_RESAMPLE = true;
+			}
+			polys = PEmbroiderHatchSatin.hatchSatinAngledRaster(im,hatch_angle,HATCH_SPACING,PApplet.max(1,(int)PApplet.ceil(STITCH_LENGTH/2)));
 		}else if (HATCH_MODE == DRUNK) {
 			polys = hatchDrunkWalkRaster(im,10,999);
 		}
