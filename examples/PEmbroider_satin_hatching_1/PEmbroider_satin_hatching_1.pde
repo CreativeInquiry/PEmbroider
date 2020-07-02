@@ -28,7 +28,7 @@ void setup() {
 
   E.noStroke(); 
   E.fill(0, 0, 0); 
-  E.hatchSpacing(5.0);
+  E.hatchSpacing(3.5);
   E.hatchAngleDeg(45);
   E.hatchMode(PEmbroiderGraphics.SATIN);
   E.setStitch(10, 50, 0); 
@@ -42,7 +42,8 @@ void setup() {
   E.endShape(CLOSE);
   
 
-  E.optimize(); // slow, but very good and very important
+  //E.optimize(); // slow, but very good and very important
   E.visualize(true, true, true);
   //E.endDraw(); // write out the file
+  //save("Pembroider_satin_hatching_1.png");
 }
