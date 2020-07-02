@@ -40,8 +40,8 @@ E.beginCull();
   E.setStitch(5, 40, 0);
   E.stroke(0, 0, 0);
   E.strokeWeight(1); 
-  //E.noFill(); 
-  E.fill(0);
+  E.noFill(); 
+  //E.fill(0);
   int pw = frames[0].width;
   int ph = frames[0].height;
   for (int i=0; i<nFrames; i++) {
@@ -74,7 +74,8 @@ E.beginCull();
   // E.optimize(); // slow, but good and important
   E.visualize();
   // E.endDraw(); // write out the file
-  E.printStats();
+  //E.printStats();
+  //save("PEmbroider_bitmap_animation.png");
 
 }
 

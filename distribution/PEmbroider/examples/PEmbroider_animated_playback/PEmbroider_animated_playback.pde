@@ -62,8 +62,7 @@ void draw() {
 
   E.visualize(false, true, true, stitchPlaybackCount);
 
-  int hurryUp = 25; 
-  stitchPlaybackCount += hurryUp;
+
   if (stitchPlaybackCount > E.getNumStitches()){
     println("Finished!"); 
     noLoop(); 
@@ -72,6 +71,8 @@ void draw() {
     //// uncomment the following line of code: 
     // saveFrame("output/myDesign_####.png");
   }
+  int hurryUp = 25; 
+  stitchPlaybackCount += hurryUp;
 }
 
 //-----------------------------------------------------
