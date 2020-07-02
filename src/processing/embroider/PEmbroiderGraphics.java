@@ -141,6 +141,8 @@ public class PEmbroiderGraphics {
 	
 	public boolean EXPERIMENTAL_CROSS_RESAMPLE = false;
 	
+	public boolean SATIN_NO_ZIGZAG = true;
+	
 	static String logPrefix = "[PEmbroider] ";
 	
 	public float CULL_SPACING = 7;
@@ -4660,11 +4662,13 @@ public class PEmbroiderGraphics {
 			return;
 		}
 		if (optColor > 0) {
+			
 			ArrayList<ArrayList<PVector>> p = new ArrayList<ArrayList<PVector>>(polylines.subList(optBlockIdx0, polylines.size()));
 			ArrayList<Integer> c = new ArrayList<Integer>(colors.subList(optBlockIdx0, colors.size()));
 
+//			PApplet.println("!!!",optBlockIdx0,polylines.size(),p.size(),c.size());
 			ArrayList<Integer> indices = reorderColorMonteCarlo(p,c,8,optColor);
-			PApplet.println(1);
+
 
 			ArrayList<ArrayList<PVector>> p2 = new ArrayList<ArrayList<PVector>>();
 			ArrayList<Integer> c2 = new ArrayList<Integer>();
@@ -4682,7 +4686,9 @@ public class PEmbroiderGraphics {
 			if (i == polylines.size() || !colors.get(i).equals(colors.get(i-1))){
 				ArrayList<ArrayList<PVector>> p = new ArrayList<ArrayList<PVector>>(polylines.subList(idx0,i));
 				PApplet.println(p.size());
-				p = PEmbroiderTSP.solve(p,optBlockTrials,optBlockMaxIter);
+				if (p.size() > 2) {
+					p = PEmbroiderTSP.solve(p,optBlockTrials,optBlockMaxIter);
+				}
 				PApplet.println(p.size());
 				polylines.subList(idx0,i).clear();
 				polylines.addAll(idx0,p);
@@ -4985,14 +4991,18 @@ public class PEmbroiderGraphics {
 				 int[] render;
 				 int score = Integer.MAX_VALUE;
 				 void renderSolution() {
+
 					 render = new int[layers[0].data.length];
 					 for (int i = 0; i < layers.length; i++){
 						 for (int j = 0; j < layers[i].data.length; j++){
 							 if (layers[i].data[j]){
+								 
 								 render[j] = layers[i].col;
+
 							 }
 						 }
 					 }
+//					 drawRender().save("/Users/studio/Downloads/rcmc-"+hashCode()+".png");
 				 }
 				 PGraphics drawRender(){
 					 PGraphics pg = app.createGraphics(w,h);
@@ -5001,6 +5011,7 @@ public class PEmbroiderGraphics {
 					 for (int i = 0; i < render.length; i++){
 						 pg.pixels[i] = render[i];
 					 }
+					 pg.updatePixels();
 					 pg.endDraw();
 					 return pg;
 				 }
@@ -5057,10 +5068,14 @@ public class PEmbroiderGraphics {
 			 Solution newSolution(){
 				 Solution sol = new Solution();
 				 sol.layers = shuffleLayers(standard.layers);
+				 
+//				 PApplet.println(polys.size(), sol.layers.length,sol.countColorChange(),standard.layers.length,standard.countColorChange(),standard.score);
+//				 throwNPE();
 				 while (sol.countColorChange() >= standard.score){
 					 sol.layers = shuffleLayers(standard.layers);
 				 }
 				 scoreSolution(sol);
+				 
 				 return sol;
 			 }
 			 
@@ -5073,7 +5088,7 @@ public class PEmbroiderGraphics {
 				 ArrayList<PGraphics> pgs = new ArrayList<PGraphics>();
 				 ArrayList<ArrayList<Integer>> indices = new ArrayList<ArrayList<Integer>>();
 				 for (int i = 0; i < polys.size(); i++) {
-					 if (i == 0 || (!cols.get(i).equals(colors.get(i-1)))) {
+					 if (i == 0 || (!cols.get(i).equals(cols.get(i-1)))) {
 						 PGraphics pg = app.createGraphics(w,h);
 						 pg.beginDraw();
 						 pg.background(0);
@@ -5107,12 +5122,14 @@ public class PEmbroiderGraphics {
 				      
 				    }
 				    pg.endDraw();
-				    pg.save("/Users/studio/Downloads/rcmc-"+i+".png");
+//				    pg.save("/Users/studio/Downloads/rcmc-"+i+".png");
 				    l.col = cols.get(indices.get(i).get(0));
 				    l.indices = indices.get(i);
 				    standard.layers[i] = l;
 				 }
 				 scoreSolution(standard);
+
+				 standard.drawRender().save("/Users/studio/Downloads/rcmc-"+hashCode()+".png");
 				 
 				 solutions.add(standard);
 				 PApplet.println(logPrefix+" Original color change: "+standard.score+", optimizing...");
