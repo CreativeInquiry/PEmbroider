@@ -106,7 +106,7 @@ ${line}
 		<antcall target="generate.source" />
 		<antcall target="compile" />
 	  	<antcall target="generate.jar"><param name="folder" value="library"/></antcall>
-	  	<antcall target="generate.javadoc" />
+	  	<!--<antcall target="generate.javadoc" />-->
 		<antcall target="generate.libprops" />
 		<antcall target="copyToSketchbook"><param name="folder" value="libraries"/></antcall>
 		<antcall target="generate.distribution" />
@@ -207,27 +207,6 @@ ${line}
 	</target>
 	
 	
-	
-	<target name="generate.javadoc" if="is.normal">
-	  	<!-- create the java reference of the Library -->
-		<javadoc bottom="Processing Library ${project.name} by ${author.name}. ${library.copyright}" 
-				classpath="${classpath.local.location}/core.jar;{project.bin}" 
-				destdir="${project.tmp}/${project.name}/reference" 
-				verbose="false" 
-				stylesheetfile="resources/stylesheet.css" 
-				doctitle="Javadocs: ${project.name}" 
-				public="true" version="false" 
-				windowtitle="Javadocs: ${project.name}">
- 			
- 			<link href="${javadoc.java.href}" />
-			<link href="${javadoc.processing.href}" />
-			<!--taglet name="ExampleTaglet" path="resources/code" /-->
- 			<fileset dir="${project.tmp}/${project.name}/src" defaultexcludes="yes">
-			<!-- add packages to be added to reference. -->
-				<include name="**/*"/>
-			</fileset>
-	 	</javadoc>
-	</target>
 	
 	
 	<target name="generate.web" if="is.normal">

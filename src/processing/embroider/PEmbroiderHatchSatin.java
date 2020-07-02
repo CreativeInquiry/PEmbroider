@@ -650,7 +650,10 @@ public class PEmbroiderHatchSatin {
 //
 				for (int j = pts.get(i-1).x-1; j > pts.get(i).x; j--) {
 					if ((j+hn)%n == 0) {
-						float t = (float)(j-pts.get(i).x)/(float)(pts.get(i-1).x-pts.get(i).x);
+						float t = 0.5f;
+						if (!G.SATIN_NO_ZIGZAG) {
+							t = (float)(j-pts.get(i).x)/(float)(pts.get(i-1).x-pts.get(i).x);
+						}
 						float y = (float)pts.get(i).y * (1-t) + (float)pts.get(i-1).y * t;
 						ret.get(ret.size()-1).add(new PVector(j,y));
 					}
@@ -661,7 +664,7 @@ public class PEmbroiderHatchSatin {
 					ret.get(ret.size()-1).add(new PVector(pts.get(i).x, pts.get(i).y));
 				}
 			}else if (PApplet.abs(pts.get(i).y - pts.get(i-1).y) > 8 || PApplet.abs(pts.get(i).x - pts.get(i-1).x) > 8){
-				ret.add(new ArrayList<PVector>());
+//				ret.add(new ArrayList<PVector>());
 				ret.get(ret.size()-1).add(new PVector(pts.get(i).x, pts.get(i).y));
 			}else {
 				ret.get(ret.size()-1).add(new PVector(pts.get(i).x, pts.get(i).y));

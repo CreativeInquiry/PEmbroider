@@ -30,7 +30,7 @@ void setup() {
   E.hatchSpacing(6.0);
   E.setStitch(10, 40, 0); 
   E.CONCENTRIC_ANTIALIGN = 0;
-
+  E.SATIN_NO_ZIGZAG = true;
   // It's fun to change this angle in SATIN mode. 
   E.hatchAngleDeg(-70); 
 
