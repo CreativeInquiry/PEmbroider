@@ -67,10 +67,10 @@ void setup() {
 
 
   //-----------------------
-  E.optimize(); // slow but good and important
+  //E.optimize(); // slow but good and important
   E.visualize();
-  E.endDraw(); // write out the file
-  save("PEmbroider_shape_hatching_5.png");
+  //E.endDraw(); // write out the file
+  //save("PEmbroider_shape_hatching_4.png");
 }
 
 
