@@ -664,7 +664,7 @@ public class PEmbroiderHatchSatin {
 					ret.get(ret.size()-1).add(new PVector(pts.get(i).x, pts.get(i).y));
 				}
 			}else if (PApplet.abs(pts.get(i).y - pts.get(i-1).y) > 8 || PApplet.abs(pts.get(i).x - pts.get(i-1).x) > 8){
-				ret.add(new ArrayList<PVector>());
+//				ret.add(new ArrayList<PVector>());
 				ret.get(ret.size()-1).add(new PVector(pts.get(i).x, pts.get(i).y));
 			}else {
 				ret.get(ret.size()-1).add(new PVector(pts.get(i).x, pts.get(i).y));
