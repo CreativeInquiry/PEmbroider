@@ -85,6 +85,10 @@ public class PEmbroiderGraphics {
 	static public final int INSIDE = -1;
 	static public final int OUTSIDE = 1;
 	
+	static public final int ZIGZAG = 71;
+	static public final int SIGSAG = 72;
+	static public final int BOUSTROPHEDON = 73;
+	
 	
 	public int ELLIPSE_MODE = PConstants.CENTER;
 	public int RECT_MODE = PConstants.CORNER;
@@ -141,11 +145,14 @@ public class PEmbroiderGraphics {
 	
 	public boolean EXPERIMENTAL_CROSS_RESAMPLE = false;
 	
-	public boolean SATIN_NO_ZIGZAG = false;
+	
+	public float CULL_SPACING = 7;
+	
+	public int SATIN_MODE = ZIGZAG;
 	
 	static String logPrefix = "[PEmbroider] ";
 	
-	public float CULL_SPACING = 7;
+	
 	
 	public PEmbroiderBooleanShapeGraphics composite;
 	
@@ -486,6 +493,10 @@ public class PEmbroiderGraphics {
 	
 	public void setOutOfBoundsHandler(int mode) {
 		OUT_OF_BOUNDS_HANDLER = mode;
+	}
+	
+	public void satinMode(int mode) {
+		SATIN_MODE = mode;
 	}
 	
 	/* ======================================== MATH ======================================== */

@@ -446,6 +446,179 @@ public class PEmbroiderHatchSatin {
 		}
 		return pts;
 	}
+	
+
+	static ArrayList<Pt> boustrophedonStitches(Im prevIm, Im im, Pt p0, int d){
+		//im.toPImage().save(random(1)+".png");
+
+		ArrayList<Pt> pts = new ArrayList<Pt>();
+		ArrayList<Pt> walk = new ArrayList<Pt>();
+		pts.add(new Pt(p0));
+		im.set(p0,-1);
+
+		Pt p = new Pt(p0);
+		int belowOn = -1;
+		int belowOff = -1;
+		int aboveOn = -1;
+
+		int lineStart = p.x;
+
+		boolean invBranch = false;
+		int dx = 1;
+
+		for (int i = 0; i < Integer.MAX_VALUE; i++){
+
+			if (im.get(p.x,p.y) != 0){
+				if (im.isOn(p.x,p.y+d)){
+					if (belowOn < 0){
+						belowOn = p.x;
+						//fill(0,255,64);
+						//rect(p.x/reso,p.y/reso,1/reso,1/reso);
+						//save("???.png"); 
+					}else if (belowOff >= 0 && !invBranch){
+						Pt q0 = new Pt(belowOn,p.y+d);
+						Im mask = new Im(im.w,im.h);
+
+						Im old = new Im(im);
+
+						int[] area = {0};
+						boolean touch = floodfillQ(prevIm,im,mask,q0,area);
+						int at = findArea(im);
+						//println(touch,area[0],at,touch || area[0] > at,q0);
+						if (touch || area[0] > at){
+							invBranch = true;
+							im = old;
+						}else{
+
+							if (d > 0){
+								q0 = loPt(mask);
+							}else{
+								q0 = hiPt(mask);
+							}
+							if (q0!=null){
+								pts.addAll(boustrophedonStitches(im,mask,q0,-d));
+							}
+							//pts.addAll(satinStitches(im,new Pt(p),abs(d)));
+							//break;
+
+							belowOn = -1;
+							belowOff = -1;
+
+						}
+					}
+				}else{
+					if (belowOn >= 0 && belowOff < 0){
+						belowOff = p.x;
+					}
+				}
+
+				if (im.isOn(p.x,p.y-d)){
+					if (aboveOn < 0){
+						aboveOn = p.x;
+					}
+				}else{
+					if (aboveOn >= 0){
+						Pt q0 = new Pt(aboveOn,p.y-d);
+						Im mask = new Im(im.w,im.h);
+						floodfillQ(prevIm,im,mask,q0,null);
+
+						if (d > 0){
+							q0 = hiPt(mask);
+						}else{
+							q0 = loPt(mask);
+						}
+						if (q0 != null){
+							pts.addAll(boustrophedonStitches(im,mask,q0,d));
+						}
+						aboveOn = -1;
+					}
+				}
+			}
+
+
+			p.x += dx;
+			if (!im.isOn(p)){
+				int lineEnd = p.x;
+				if (invBranch){
+					Pt q0 = new Pt(p.x,p.y+d);
+					while(!im.isOn(q0)){
+						q0.x-=dx;
+					}
+					Im mask = new Im(im.w,im.h);
+					floodfillQ(prevIm,im,mask,q0,null);
+
+					if (d > 0){
+						q0 = loPt(mask);
+					}else{
+						q0 = hiPt(mask);
+					}
+					if (q0 != null){
+						pts.addAll(boustrophedonStitches(im,mask,q0,-d));
+					}
+					p.x = belowOn;
+					//p.y += d;
+
+					while (im.isOn(p)){
+						p.x -= 1;
+					}
+
+					belowOn = -1;
+					aboveOn = -1;
+					belowOff = -1;
+					invBranch = false;
+
+					continue;
+				}else if (aboveOn >= 0){
+					Pt q0 = new Pt(p.x,p.y-d);
+					while(!im.isOn(q0)){
+						q0.x-=dx;
+					}
+					Im mask = new Im(im.w,im.h);
+					floodfillQ(prevIm,im,mask,q0,null);
+
+					if (d > 0){
+						q0 = hiPt(mask);
+					}else{
+						q0 = loPt(mask);
+					}
+					if (q0 != null){
+						pts.addAll(boustrophedonStitches(im,mask,q0,d));
+					}
+
+					belowOn = -1;
+					aboveOn = -1;
+					belowOff = -1;
+
+				}
+				p.y += d;
+				belowOn = -1;
+				belowOff = -1;
+				aboveOn = -1;
+				if (p.y >= im.h || p.y < 0){
+					break;
+				}
+				while (!im.isOn(p) && 0 < p.x && p.x < im.w){
+					p.x -= dx;
+				}
+				while (im.isOn(p)){
+					p.x+=dx;
+				}
+				if (0 < p.x && p.x < im.w){
+					walk.add(new Pt((lineStart+lineEnd)/2,p.y));
+				}
+				lineStart = p.x;
+				invBranch = false;
+				dx = -dx;
+			}else{
+				pts.add(new Pt(p));
+				im.set(p,-1);
+			}
+		}
+		for (int i = 0; i < walk.size(); i++){
+			pts.add(0,walk.get(i));
+		}
+		return pts;
+	}
 
 
 	static void remove1pxHolesAndIslands(Im im){
@@ -529,7 +702,12 @@ public class PEmbroiderHatchSatin {
 		Im cpy = new Im(im);
 		Im src = new Im(im);
 		ArrayList<ArrayList<Pt>> ret = new ArrayList<ArrayList<Pt>>();
-		ArrayList<Pt> pts = satinStitches(cpy,src,hiPt(im),1);
+		ArrayList<Pt> pts;
+		if (G.SATIN_MODE != PEmbroiderGraphics.BOUSTROPHEDON) {
+			pts = satinStitches(cpy,src,hiPt(im),1);
+		}else {
+			pts = boustrophedonStitches(cpy,src,hiPt(im),1);
+		}
 		ret.add(pts);
 		for (int i = 0; i < pts.size(); i++){
 			cpy.set(pts.get(i),0);
@@ -564,7 +742,12 @@ public class PEmbroiderHatchSatin {
 		ArrayList<ArrayList<Pt>> pts = satinStitchesMultiple(srcImg);
 		ArrayList<ArrayList<PVector>> ret = new ArrayList<ArrayList<PVector>>();
 		for (int i = 0; i < pts.size(); i++) {
-			ArrayList<ArrayList<PVector>> p = resampleSatinStitches(pts.get(i), n);
+			ArrayList<ArrayList<PVector>> p;
+			if (G.SATIN_MODE != PEmbroiderGraphics.BOUSTROPHEDON) {
+				p = resampleSatinStitches(pts.get(i), n);
+			}else {
+				p = resampleBoustrophedonStitches(pts.get(i), n);
+			}
 			for (int j = p.size()-1; j >= 0; j--) {
 				if (p.get(j).size()<=2) {
 					p.remove(j);
@@ -655,7 +838,7 @@ public class PEmbroiderHatchSatin {
 				for (int j = pts.get(i-1).x-1; j > pts.get(i).x; j--) {
 					if ((j+hn)%n == 0) {
 						float t = 0.5f;
-						if (!G.SATIN_NO_ZIGZAG) {
+						if (G.SATIN_MODE != PEmbroiderGraphics.SIGSAG) {
 							t = (float)(j-pts.get(i).x)/(float)(pts.get(i-1).x-pts.get(i).x);
 						}
 						float y = (float)pts.get(i).y * (1-t) + (float)pts.get(i-1).y * t;
@@ -663,6 +846,41 @@ public class PEmbroiderHatchSatin {
 					}
 				}
 				ret.get(ret.size()-1).add(new PVector(pts.get(i).x, pts.get(i).y));
+			}else if (i != pts.size()-1 && PApplet.abs(pts.get(i).y - pts.get(i-1).y) == 1 && pts.get(i+1).y - pts.get(i).y == pts.get(i).y - pts.get(i-1).y) {
+				if (pts.get(i).y % 2 == 0) {
+					ret.get(ret.size()-1).add(new PVector(pts.get(i).x, pts.get(i).y));
+				}
+			}else if (PApplet.abs(pts.get(i).y - pts.get(i-1).y) > 8 || PApplet.abs(pts.get(i).x - pts.get(i-1).x) > 8){
+//				ret.add(new ArrayList<PVector>());
+				ret.get(ret.size()-1).add(new PVector(pts.get(i).x, pts.get(i).y));
+			}else {
+				ret.get(ret.size()-1).add(new PVector(pts.get(i).x, pts.get(i).y));
+			}
+		}
+		
+		return ret;
+	}
+	
+	public static ArrayList<ArrayList<PVector>> resampleBoustrophedonStitches(ArrayList<Pt> pts, int n){
+		int hn = n/2;
+		ArrayList<ArrayList<PVector>> ret = new ArrayList<ArrayList<PVector>>();
+
+		for (int i = 0; i < pts.size(); i++) {
+			if (i == 0) {
+				ret.add(new ArrayList<PVector>());
+				ret.get(0).add(new PVector(pts.get(i).x, pts.get(i).y));
+				continue;
+			}
+			if (i != pts.size()-1 && pts.get(i).y == pts.get(i-1).y && pts.get(i).y == pts.get(i+1).y && PApplet.abs(pts.get(i).x-pts.get(i-1).x) == 1 && pts.get(i+1).x-pts.get(i).x == pts.get(i).x-pts.get(i-1).x) {
+				if (pts.get(i).y % 2 == 0) {
+					if (pts.get(i).x % n == 0) {
+						ret.get(ret.size()-1).add(new PVector(pts.get(i).x, pts.get(i).y));
+					}
+				}else {
+					if ((pts.get(i).x+hn) % n == 0) {
+						ret.get(ret.size()-1).add(new PVector(pts.get(i).x, pts.get(i).y));
+					}
+				}
 			}else if (i != pts.size()-1 && PApplet.abs(pts.get(i).y - pts.get(i-1).y) == 1 && pts.get(i+1).y - pts.get(i).y == pts.get(i).y - pts.get(i-1).y) {
 				if (pts.get(i).y % 2 == 0) {
 					ret.get(ret.size()-1).add(new PVector(pts.get(i).x, pts.get(i).y));
