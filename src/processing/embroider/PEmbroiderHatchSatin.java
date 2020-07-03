@@ -565,7 +565,11 @@ public class PEmbroiderHatchSatin {
 		ArrayList<ArrayList<PVector>> ret = new ArrayList<ArrayList<PVector>>();
 		for (int i = 0; i < pts.size(); i++) {
 			ArrayList<ArrayList<PVector>> p = resampleSatinStitches(pts.get(i), n);
-			for (int j = 0; j < p.size(); j++) {
+			for (int j = p.size()-1; j >= 0; j--) {
+				if (p.get(j).size()<=2) {
+					p.remove(j);
+					continue;
+				}
 				for (int k = 0; k < p.get(j).size(); k++) {
 					p.get(j).get(k).x = (p.get(j).get(k).x+0.5f)*sx;
 					p.get(j).get(k).y = (p.get(j).get(k).y+0.5f)*sy;

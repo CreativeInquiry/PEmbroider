@@ -3817,6 +3817,7 @@ public class PEmbroiderGraphics {
 				app.line(p0.x,p0.y,p1.x,p1.y);
 				n++;
 				if (n >= nStitches) {
+//					PApplet.println(p0,p1);
 					break;
 				}
 			}

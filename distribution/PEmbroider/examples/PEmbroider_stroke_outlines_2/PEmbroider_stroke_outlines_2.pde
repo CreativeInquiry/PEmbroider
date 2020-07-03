@@ -22,24 +22,27 @@ void setup() {
 
   // ------------------------
 
-  E.noStroke();
-  //fill settings
-  E.fill(0,0,0);
-  E.hatchMode(E.SPIRAL);
-  E.setStitch(5,20,0); 
-  //cull settings
-  E.CULL_SPACING = 25;
+  //E.noStroke();
+  ////fill settings
+  //E.fill(0,0,0);
+  //E.hatchMode(E.SPIRAL);
+  //E.setStitch(5,20,0); 
+  ////cull settings
+  //E.CULL_SPACING = 25;
   
-  E.beginCull();
-  E.circle(320,250,200);
-  E.circle(200,350,150);
-  E.circle(200,200,250);
-  E.endCull();
+  //E.beginCull();
+  //E.circle(320,250,200);
+  //E.circle(200,350,150);
+  //E.circle(200,200,250);
+  //E.endCull();
+    
+    
     
   E.noFill();
   //stroke settings
-  E.strokeMode(E.TANGENT);
-  //E.stroke(0);  //when i comment this out it works fine
+  E.strokeMode(E.PERPENDICULAR);
+  //E.strokeMode(E.TANGENT);
+  E.stroke(0);  //when i comment this out it works fine
   E.strokeWeight(10);
   E.strokeLocation(OUTSIDE);
   E.strokeSpacing(3);

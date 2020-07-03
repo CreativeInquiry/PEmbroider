@@ -16,7 +16,7 @@ float shapeCoords[][] = {
 
 
 void setup() {
-  noLoop(); 
+  //noLoop(); 
   size (1250, 500);
 
   E = new PEmbroiderGraphics(this, width, height);
@@ -115,7 +115,10 @@ void setup() {
 
 
 void draw() {
-  ;
+  background(200);
+  scale(2);
+  translate(-100,0);
+  E.visualize(false,true,true,frameCount);
 }
 
 void keyPressed() {

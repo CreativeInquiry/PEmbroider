@@ -641,6 +641,13 @@ public class PEmbroiderHatchSpine{
 		 G.clip(polys, mask);
 //		 pg2.filter(PConstants.ERODE);
 		 for (int i = 0; i < polys.size(); i++) {
+			 for (int j = polys.get(i).size()-2; j >=0; j--) {
+				 if ((j < polys.get(i).size()-3 && polys.get(i).get(j).dist(polys.get(i).get(j+3))<1) || (j < polys.get(i).size()-2 && polys.get(i).get(j).dist(polys.get(i).get(j+2))<1) || polys.get(i).get(j).dist(polys.get(i).get(j+1))<1) {
+//					 polys.get(i).remove(j+1);
+					 polys.get(i).remove(j);
+				 }
+			 }
+			 
 			 G.pushPolyline(polys.get(i),G.currentStroke,0);
 		 }
 		 ArrayList<ArrayList<PVector>> cpr = PEmbroiderTrace.findContours(pg2);

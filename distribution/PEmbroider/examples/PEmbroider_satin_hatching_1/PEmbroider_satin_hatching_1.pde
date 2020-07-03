@@ -20,15 +20,17 @@ void setup() {
   size (800, 800);
 
   E = new PEmbroiderGraphics(this, width, height);
-  String outputFilePath = sketchPath("PEmbroider_satin_hatching_1.vp3");
+  String outputFilePath = sketchPath("4_true_PEmbroider_satin_hatching_1.vp3");
   E.setPath(outputFilePath); 
 
   E.beginDraw(); 
   E.clear();
+  
+  E.SATIN_NO_ZIGZAG = true;
 
   E.noStroke(); 
   E.fill(0, 0, 0); 
-  E.hatchSpacing(5.0);
+  E.hatchSpacing(4);
   E.hatchAngleDeg(45);
   E.hatchMode(PEmbroiderGraphics.SATIN);
   E.setStitch(10, 50, 0); 
@@ -42,7 +44,8 @@ void setup() {
   E.endShape(CLOSE);
   
 
-  E.optimize(); // slow, but very good and very important
+  //E.optimize(); // slow, but very good and very important
   E.visualize(true, true, true);
   //E.endDraw(); // write out the file
+  //save("Pembroider_satin_hatching_1.png");
 }
