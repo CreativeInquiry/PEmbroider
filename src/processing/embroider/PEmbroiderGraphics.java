@@ -2255,6 +2255,355 @@ public class PEmbroiderGraphics {
 
 		return spirals;
 	}
+	
+	public ArrayList<ArrayList<PVector>> hatchSpiral_v2(ArrayList<PVector> poly, float d){
+		
+		ArrayList<ArrayList<PVector>> ret = new ArrayList<ArrayList<PVector>>();
+		ArrayList<PVector> spiral = new ArrayList<PVector>();
+		
+		BBox bb = new BBox(poly);
+		bb.x-=2;
+		bb.y-=2;
+		bb.w+=4;
+		bb.h+=4;
+		
+		bb.w += bb.x;
+		bb.h += bb.y;
+		bb.x = 0;
+		bb.y = 0;
+		
+		
+		PVector c = centerpoint(poly);
+		float r = PApplet.max(bb.w,bb.h)*200f;
+		
+		PGraphics pg = app.createGraphics((int)PApplet.ceil(bb.w), (int)PApplet.ceil(bb.h));
+
+		float dd = d;
+		float a = 0;
+		for (int k = 0; k < 9999; k++) {
+			
+			pg.beginDraw();
+			pg.pushMatrix();
+			pg.background(0);
+			pg.stroke(0);
+			pg.fill(255);
+			pg.strokeWeight(dd);
+
+			pg.beginShape();
+			for (int i = 0; i < poly.size(); i++) {
+				pg.vertex(poly.get(i).x-bb.x,poly.get(i).y-bb.y);
+			}
+			pg.endShape(PConstants.CLOSE);
+			pg.popMatrix();
+			pg.endDraw();
+//			app.image(pg,k*100,0);
+//			pg.save("/Users/studio/Downloads/hsv2-"+k+".png");
+			ArrayList<ArrayList<PVector>> conts = PEmbroiderTrace.findContours(pg);
+			for (int i = 0; i < conts.size(); i++) {
+				conts.set(i, PEmbroiderTrace.approxPolyDP(conts.get(i),2));
+			}
+//			PApplet.println(k,conts.size());
+			if (conts.size() == 0) {
+				break;
+			} else if (conts.size() > 1) {
+				for (int i = 1; i < conts.size(); i++) {
+//					ret.addAll(hatchSpiral_v2(conts.get(i),d));
+				}
+			}
+			
+			ArrayList<PVector> ppp = conts.get(0);
+			
+			ArrayList<PVector> poly2 = new ArrayList<PVector>();
+			for (int i = 0; i < ppp.size(); i++) {
+				poly2.add(new PVector(ppp.get(i).x+bb.x,ppp.get(i).y+bb.y));
+			}
+			
+			
+//			ret.add(poly2);
+			
+			PVector p = new PVector(c.x+r*PApplet.cos(a),c.y+r*PApplet.sin(a));
+			
+			ArrayList<PVector> qs = segmentIntersectPolygon(c,p,ppp);
+			if (qs.size()>0) {
+				PVector q = qs.get(0);
+				
+//				PApplet.println(q);
+//				app.rect(qs.get(0).x,qs.get(0).y,20,20);
+				spiral.add(new PVector(q.x+bb.x,q.y+bb.y));
+			}else {
+//				PApplet.println("???",c,p);
+			}
+			c = centerpoint(ppp);
+			a += 0.1;
+			dd += d;
+		}
+		ret.add(spiral);
+		return ret;
+	}
+	public ArrayList<ArrayList<PVector>> hatchSpiral_v3(ArrayList<PVector> poly, float d, int maxIter, boolean checkOrientation, boolean reverse){
+		ArrayList<ArrayList<PVector>> spirals = new ArrayList<ArrayList<PVector>>();
+		
+		if (!polygonOrientation(poly) && checkOrientation) {
+			poly = new ArrayList<PVector>(poly);
+			Collections.reverse(poly);
+		}
+
+		
+		BBox bb = new BBox(poly);
+		bb.x-=2;
+		bb.y-=2;
+		bb.w+=4;
+		bb.h+=4;
+		
+		bb.w += bb.x;
+		bb.h += bb.y;
+		bb.x = 0;
+		bb.y = 0;
+		
+		PGraphics pg = app.createGraphics((int)PApplet.ceil(bb.w), (int)PApplet.ceil(bb.h));
+
+		float dd = 0;
+
+		
+		ArrayList<ArrayList<PVector>> polys2 = new ArrayList<ArrayList<PVector>>();
+//		polys2.add(poly);
+		
+		ArrayList<ArrayList<PVector>> gone = new ArrayList<ArrayList<PVector>>();
+		
+		for (int k = 0; k < 9999; k++) {
+			
+			pg.beginDraw();
+			pg.pushMatrix();
+			pg.background(0);
+			pg.stroke(0);
+			pg.fill(255);
+			pg.strokeWeight(dd);
+			pg.strokeJoin(PConstants.ROUND);
+
+			pg.beginShape();
+			for (int i = 0; i < poly.size(); i++) {
+				pg.vertex(poly.get(i).x-bb.x,poly.get(i).y-bb.y);
+			}
+			pg.endShape(PConstants.CLOSE);
+			
+			for (int i = 0; i < gone.size(); i++) {
+				pg.noStroke();
+				pg.fill(0);
+				pg.strokeJoin(PConstants.ROUND);
+				pg.beginShape();
+				for (int j = 0; j < gone.get(i).size();j ++) {
+					pg.vertex(gone.get(i).get(j).x,gone.get(i).get(j).y);
+				}
+				
+				pg.endShape(PConstants.CLOSE);
+			}
+			
+			pg.popMatrix();
+			pg.endDraw();
+			ArrayList<ArrayList<PVector>> conts = PEmbroiderTrace.findContours(pg);
+			for (int i = 0; i < conts.size(); i++) {
+				conts.set(i, PEmbroiderTrace.approxPolyDP(conts.get(i),2f));
+			}
+			if (conts.size() == 0) {
+				break;
+			}
+			
+			if (conts.size() > 1) {
+				for (int i = 0; i < conts.size(); i++) {
+					spirals.addAll(hatchSpiral_v3(conts.get(i),d,maxIter,checkOrientation,reverse));
+					gone.add(conts.get(i));
+				}
+				break;
+			}
+			polys2.add(conts.get(0));
+			if (k == 0) {
+				dd += d;
+			}else {
+				dd += d*2;
+			}
+		}
+		
+		float l = 0;
+		for (int i = 0; i < poly.size()-1; i++) {
+			l += poly.get(i).dist(poly.get(i+1));
+		}
+
+		int n = 20*((int)Math.ceil((float)l / (float)STITCH_LENGTH));
+
+
+		for (int i = polys2.size()-1; i >= 0; i--) {
+			if (polys2.get(i).size() <= 2) {
+				polys2.remove(i);
+				continue;
+			}
+//			polys2.get(i).add(polys2.get(i).get(0));
+			polys2.set(i,resampleN(polys2.get(i),n));
+			if (reverse) {
+				Collections.reverse(polys2.get(i));
+			}
+		}
+		
+//		spirals.addAll(polys2);
+		ArrayList<PVector> spiral = new ArrayList<PVector>();
+		for (int i = 1; i < polys2.size(); i++) {
+			int jo = 0;
+			if (i > 0) {
+				jo = rotatePolygonToMatch(polys2.get(i-1),polys2.get(i));
+			}
+			
+			for (int j = 0; j < n; j++) {
+				PVector p0 = polys2.get(i).get((j+jo)%polys2.get(i).size());
+				PVector p1;
+
+				if (i == polys2.size()-1) {
+					if (polys2.size() >= 1 && i > 0) {
+
+						p1 = polys2.get(i-1).get(j);
+					}else {
+						p1 = p0.copy();
+					}
+				}else {
+					p1 = polys2.get(i+1).get(j);
+				}
+				float t = (float)j/(float)n;
+				spiral.add(p0.copy().mult(1-t).add(p1.copy().mult(t)));
+			}
+//			spirals.add(polys2.get(i));
+		}
+
+		
+		if (spiral.size() >= 2) {
+			spirals.add(spiral);
+		}
+
+		return spirals;
+	}
+	
+	public ArrayList<ArrayList<PVector>> hatchSpiral_v4(ArrayList<PVector> poly, float d, int maxIter, boolean checkOrientation, boolean reverse){
+		ArrayList<ArrayList<PVector>> spirals = new ArrayList<ArrayList<PVector>>();
+		
+		if (!polygonOrientation(poly) && checkOrientation) {
+			poly = new ArrayList<PVector>(poly);
+			Collections.reverse(poly);
+		}
+
+		
+		BBox bb = new BBox(poly);
+		bb.x-=2;
+		bb.y-=2;
+		bb.w+=4;
+		bb.h+=4;
+		
+		bb.w += bb.x;
+		bb.h += bb.y;
+		bb.x = 0;
+		bb.y = 0;
+		
+		PGraphics pg = app.createGraphics((int)PApplet.ceil(bb.w), (int)PApplet.ceil(bb.h));
+
+		float dd = 0;
+
+		
+		ArrayList<ArrayList<PVector>> polys2 = new ArrayList<ArrayList<PVector>>();
+//		polys2.add(poly);
+		
+		ArrayList<ArrayList<PVector>> gone = new ArrayList<ArrayList<PVector>>();
+		
+		for (int k = 0; k < 9999; k++) {
+			
+			pg.beginDraw();
+			pg.pushMatrix();
+			pg.background(0);
+			pg.stroke(0);
+			pg.fill(255);
+			pg.strokeWeight(dd);
+			pg.strokeJoin(PConstants.ROUND);
+
+			pg.beginShape();
+			for (int i = 0; i < poly.size(); i++) {
+				pg.vertex(poly.get(i).x-bb.x,poly.get(i).y-bb.y);
+			}
+			pg.endShape(PConstants.CLOSE);
+			
+			for (int i = 0; i < gone.size(); i++) {
+				pg.noStroke();
+				pg.fill(0);
+				pg.strokeJoin(PConstants.ROUND);
+				pg.beginShape();
+				for (int j = 0; j < gone.get(i).size();j ++) {
+					pg.vertex(gone.get(i).get(j).x,gone.get(i).get(j).y);
+				}
+				
+				pg.endShape(PConstants.CLOSE);
+			}
+			
+			pg.popMatrix();
+			pg.endDraw();
+			ArrayList<ArrayList<PVector>> conts = PEmbroiderTrace.findContours(pg);
+			for (int i = 0; i < conts.size(); i++) {
+				conts.set(i, PEmbroiderTrace.approxPolyDP(conts.get(i),2f));
+			}
+			if (conts.size() == 0) {
+				break;
+			}
+			
+			if (conts.size() > 1) {
+				for (int i = 0; i < conts.size(); i++) {
+					spirals.addAll(hatchSpiral_v4(conts.get(i),d,maxIter,checkOrientation,reverse));
+					gone.add(conts.get(i));
+				}
+				break;
+			}
+			polys2.add(conts.get(0));
+			if (k == 0) {
+				dd += d;
+			}else {
+				dd += d*2;
+			}
+		}
+		
+		float l = 0;
+		for (int i = 0; i < poly.size()-1; i++) {
+			l += poly.get(i).dist(poly.get(i+1));
+		}
+
+		int n = 100*((int)Math.ceil((float)l / (float)STITCH_LENGTH));
+
+
+		for (int i = polys2.size()-1; i >= 0; i--) {
+			if (polys2.get(i).size() <= 2) {
+				polys2.remove(i);
+				continue;
+			}
+//			polys2.get(i).add(polys2.get(i).get(0));
+			polys2.set(i,resampleN(polys2.get(i),n));
+			if (reverse) {
+				Collections.reverse(polys2.get(i));
+			}
+		}
+		
+//		spirals.addAll(polys2);
+		ArrayList<PVector> spiral = new ArrayList<PVector>();
+		int jo = 0;
+		for (int i = 0; i < polys2.size(); i++) {
+
+			if (i > 0) {
+				jo += rotatePolygonToMatch(polys2.get(i-1),polys2.get(i));
+			}
+			
+			spiral.add(polys2.get(i).get((i+jo)%polys2.get(i).size()));
+			
+//			spirals.add(polys2.get(i));
+		}
+
+		
+		if (spiral.size() >= 2) {
+			spirals.add(spiral);
+		}
+
+		return spirals;
+	}
+	
 	/** 
 	 *  Hatch a polygon with PERLIN mode.
 	 *  The vector frontend to perlinField
@@ -3115,7 +3464,9 @@ public class PEmbroiderGraphics {
 				polys.get(i).add(polys.get(i).get(0));
 			}
 		}else if (HATCH_MODE == SPIRAL) {
-			polys = hatchSpiral(poly,HATCH_SPACING,9999,HATCH_SPIRAL_DIRECTION == CCW);
+//			polys = hatchSpiral(poly,HATCH_SPACING,9999,HATCH_SPIRAL_DIRECTION == CCW);
+//			polys = hatchSpiral_v2(poly,HATCH_SPACING);
+			polys = hatchSpiral_v3(poly,HATCH_SPACING,9999,true,HATCH_SPIRAL_DIRECTION == CCW);
 		}else if (HATCH_MODE == PERLIN) {
 			polys = hatchPerlin(poly,HATCH_SPACING,STITCH_LENGTH,HATCH_SCALE,9999);
 		}else if (HATCH_MODE == VECFIELD) {
