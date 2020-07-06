@@ -820,7 +820,7 @@ public class PEmbroiderHatchSatin {
 	}
 	
 	public static ArrayList<ArrayList<PVector>> resampleSatinStitches(ArrayList<Pt> pts, int n){
-		int hn = n/2;
+		int hn = (int)PApplet.ceil(n * G.SATIN_RESAMPLING_OFFSET_FACTOR);
 		ArrayList<ArrayList<PVector>> ret = new ArrayList<ArrayList<PVector>>();
 
 		for (int i = 0; i < pts.size(); i++) {
@@ -862,7 +862,7 @@ public class PEmbroiderHatchSatin {
 	}
 	
 	public static ArrayList<ArrayList<PVector>> resampleBoustrophedonStitches(ArrayList<Pt> pts, int n){
-		int hn = n/2;
+		int hn = (int)PApplet.ceil(n * G.SATIN_RESAMPLING_OFFSET_FACTOR);
 		ArrayList<ArrayList<PVector>> ret = new ArrayList<ArrayList<PVector>>();
 
 		for (int i = 0; i < pts.size(); i++) {

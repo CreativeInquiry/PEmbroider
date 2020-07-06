@@ -142,6 +142,7 @@ public class PEmbroiderGraphics {
 	float randomizeOffsetPrevious = 0.0f;
 	
 	public float PARALLEL_RESAMPLING_OFFSET_FACTOR = 0.5f;
+	public float SATIN_RESAMPLING_OFFSET_FACTOR = 0.5f;
 	
 	public boolean EXPERIMENTAL_CROSS_RESAMPLE = false;
 	
