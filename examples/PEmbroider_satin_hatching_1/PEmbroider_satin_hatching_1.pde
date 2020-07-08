@@ -25,14 +25,16 @@ void setup() {
 
   E.beginDraw(); 
   E.clear();
-  
-  E.SATIN_NO_ZIGZAG = true;
+
+  // E.satinMode(E.ZIGZAG); // Original style
+  // E.satinMode(E.SIGSAG); // Zigzag parallelized
+  E.satinMode(E.BOUSTROPHEDON); // The new mode, back-and-forth!
 
   E.noStroke(); 
   E.fill(0, 0, 0); 
   E.hatchSpacing(4);
   E.hatchAngleDeg(45);
-  E.hatchMode(PEmbroiderGraphics.SATIN);
+  E.hatchMode(E.SATIN);
   E.setStitch(10, 50, 0); 
 
   E.beginShape();
@@ -42,10 +44,9 @@ void setup() {
     E.vertex(px, py);
   }
   E.endShape(CLOSE);
-  
 
-  //E.optimize(); // slow, but very good and very important
+
+  // E.optimize(); // slow, but very important for file output!
   E.visualize(true, true, true);
-  //E.endDraw(); // write out the file
-  //save("Pembroider_satin_hatching_1.png");
+  // E.endDraw(); // write out the file
 }

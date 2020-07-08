@@ -4,6 +4,7 @@
 
 * Here is the detailed [**API for PEmbroider**](https://github.com/CreativeInquiry/PEmbroider/blob/master/API.md), in progress.
 * This document assumes that you're familiar with the [**Processing drawing API**](https://processing.org/reference/). 
+* All of our examples can be browsed [**here**](examples/README.md). 
 
 
 ## Overview of Startup, Drawing and Export
@@ -58,7 +59,7 @@ PEmbroider tries to mirror the Processing drawing API. It includes commands for 
     
 ## Composite Shapes
 
-*See Examples: stroke_outlines, stroke_outlines_2*
+*See Examples: [stroke_outlines](examples/PEmbroider_stroke_outlines), [stroke_outlines_2](examples/PEmbroider_stroke_outlines_2)*
 
       E.beginComposite();
     	E.composite.circle(320, 250, 200);
@@ -69,7 +70,7 @@ PEmbroider tries to mirror the Processing drawing API. It includes commands for 
   
 ## Fills & Hatching
 
-*See Examples: shape_hatching_1-4*
+*See Examples: [shape_hatching_1](examples/PEmbroider_shape_hatching_1), [shape_hatching_2](examples/PEmbroider_shape_hatching_2), [shape_hatching_3](examples/PEmbroider_shape_hatching_3), [shape_hatching_4](examples/PEmbroider_shape_hatching_4), [satin_hatching_1](examples/PEmbroider_satin_hatching_1)
 
     E.noFill();
     
@@ -78,7 +79,7 @@ Hatch Modes:
     E.hatchMode(E.CONCENTRIC);
     E.hatchMode(E.PARALLEL);
     E.hatchMode(E.SATIN);
-    E.hatchMode(E.SPIRAL);
+    E.hatchMode(E.SPIRAL); 
     E.hatchMode(E.PERLIN);
     E.hatchMode(E.CROSS);
       
@@ -91,7 +92,7 @@ Hatch Modes:
   
 ## Strokes
 
-*See Examples: lines_1-2, stroke_outlines*
+*See Examples: [lines_1](examples/PEmbroider_lines_1), [lines_2](examples/PEmbroider_lines_2), [stroke_outlines](examples/PEmbroider_stroke_outlines), [stroke_outlines_2](examples/PEmbroider_stroke_outlines_2),[interactive_demo_2 (drawing)](examples/PEmbroider_interactive_demo_2)*
 
 Stroke Modes:
 
@@ -114,19 +115,33 @@ Stroke Settings
 
 ## Text
 
-*See Examples: Hello_PEmbroider, text_1, text_2, text_3* 
+*See Examples: [Hello_PEmbroider](examples/), [text_1](examples/PEmbroider_text_1), [text_2](examples/PEmbroider_text_2), [text_3](examples/PEmbroider_text_3)* 
 
     E.textSize(size);
-    E.textAlign
-    E.textFont( PEmbroiderFont.DUPLEX )
-    E.text( string, x, y);
+    E.textAlign(CENTER); // LEFT, RIGHT, etc., just like Processing
+    E.textFont(PEmbroiderFont.DUPLEX);
+    E.text(string, x, y);
+
 
 ## Images
 
-*see bitmap_animation, bitmap_image_1,  bitmap_image_2, png_image_mulitcolor, *
+PEmbroider can work with both bitmap and vector images. 
 
-    PImage myImage = loadImage(filename);
+*See Examples: [bitmap_image_1](examples/PEmbroider_bitmap_image_1), [bitmap_image_2](examples/PEmbroider_bitmap_image_2), [bitmap_animation](examples/PEmbroider_bitmap_animation), [png_image_multicolor](examples/PEmbroider_png_image_multicolor), [svg_image](examples/PEmbroider_svg_image)*
+
+Rastr (bitmap) images must be black-and-white only, where white shapes indicate the graphics to be embroidered. Processing will expect your image assets to be located in the "data" folder of your sketch; for more information on this, see [here](https://processing.org/reference/environment/#Sketchbook).
+
+    PImage myImage = loadImage("filename.png");
+    E.fill(0,0,0);
     E.image(myImage, x, y);
+    
+Vector shapes: 
+
+    PShape mySvgImage = loadShape("filename.svg");
+    E.fill(0,0,0);
+    E.shape(mySvgImage,50,50,350,350);
+
+Experimentally, we have also begun using the TSP code to render photographs. See [this](examples/work_in_progress/PEmbroider_TSP_grayscale) and [this](examples/work_in_progress/PEmbroider_TSP_CMYK)
 
 ## Other Really Useful Things!
 
@@ -144,11 +159,11 @@ The `setStitch()` function allows you to set the following:
 * the desired stitch length (in machine units)
 * the amount of noise (0...1) affecting stitch length. (This can be helpful for dithering the stitches in fills, so that they don't all line up.)
 
-*See Examples: hatching_3*
+*See Examples: [shape_hatching_3](examples/PEmbroider_shape_hatching_3)*
 
     E.setStitch(minLength, desiredLength, noise);
    
-For SPIRAL fill, setStitch behaves differently;
+For `SPIRAL` hatching, `setStitch` behaves differently;
 
     E.setStitch(desiredLength, minLength, noise);
     
@@ -156,7 +171,7 @@ For SPIRAL fill, setStitch behaves differently;
 
 The `repeatEnd()` function is very helpful for detailed linework; it essentially ties a knot so your single-line designs don't fray. 
 
-*See Examples: ruler*
+*See Examples: [ruler](examples/PEmbroider_ruler)*
 
     beginRepeatEnd(3);  
     // draw some lines... 
@@ -164,11 +179,10 @@ The `repeatEnd()` function is very helpful for detailed linework; it essentially
     
 ### Render Order
 
-*See Examples: text_1*
+You can render a shape's stroke before or after its fill: 
+
+*See Examples: [text_1](examples/PEmbroider_text_1)*
 
     E.SetRenderOrder(STROKE_OVER_FILL);
     E.SetRenderOrder(FILL_OVER_STROKE);
-
-      
-
 
