@@ -41,7 +41,7 @@ Calling `visualize()` is the same as calling `visualize(false, true, false)`. Th
 
 
 ## Shapes
-*See Examples: [shape_hatching_1](PEmbroider_shape_hatching_1), shape_culling, shapes*
+*See Examples: [shape_hatching_1](examples/PEmbroider_shape_hatching_1), shape_culling, shapes*
 
     E.circle( x, y, radius)
     E.rect(x, y, width, height)
