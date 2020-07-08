@@ -6,7 +6,14 @@
 
 PEmbroider includes file-writing code adapted from the EmbroidePy [EmbroideryIO](https://github.com/EmbroidePy/EmbroideryIO) project, under its MIT License. Additional thanks to Chris Coleman, Huw Messie, Bryce Summers, Lea Albaugh, Dan Moore, the Processing Foundation, and the staff of the STUDIO. PEmbroider is free, open-source software released under an [MIT License](license.txt).
 
-*Here's a quick [link to download](distribution/PEmbroider/download/Pembroider.zip)<br />the PEmbroider library .ZIP file:*<br/>
+---
+## TL;DR
+
+* **Download** the PEmbroider library [**.ZIP file**](distribution/PEmbroider/download/Pembroider.zip)
+* Here's a [**Cheat Sheet**](PEmbroider_Cheat_Sheet.md) 
+* Browse the [**Examples**](examples/README.md)
+* Read the [**Full API**](https://github.com/CreativeInquiry/PEmbroider/blob/master/API.md)
+
 [![Download the PEmbroider Library for Processing](images/download_pembroider.jpg)](distribution/PEmbroider/download/Pembroider.zip)
 
 ---
@@ -48,7 +55,7 @@ PEmbroider has been tested on MacOS 10.13.6+ and Windows 10, using the STUDIO's 
 ---
 ## Examples
 
-PEmbroider comes with a variety of [examples](examples/README.md) which demonstrate how to achieve different sorts of embroidery effects with lines, shapes, typography, images and more.
+PEmbroider comes with a variety of [examples](examples/README.md) which demonstrate how to achieve different sorts of embroidery effects with lines, shapes, typography, images and more. Here are some of them:
 
 [![Examples](images/examples.png)](examples/README.md)
 
