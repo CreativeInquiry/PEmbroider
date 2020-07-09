@@ -13,7 +13,7 @@ PEmbroider includes file-writing code adapted from the EmbroidePy [EmbroideryIO]
 * Instructions for [**Getting Started**](#getting-started-with-pembroider-in-processing)
 * Here's a [**Cheat Sheet**](PEmbroider_Cheat_Sheet.md) 
 * Browse the [**Examples**](examples/README.md)
-* Read the [**Full API**](https://github.com/CreativeInquiry/PEmbroider/blob/master/API.md)
+* Read the [**Full API**](API.md)
 
 [![Download the PEmbroider Library for Processing](images/download_pembroider.jpg)](distribution/PEmbroider/download/Pembroider.zip)
 
