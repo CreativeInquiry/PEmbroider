@@ -25,34 +25,34 @@ void setup() {
   // Two overlapping circles, with PARALLEL hatch
   E.hatchMode(PEmbroiderGraphics.PARALLEL); 
   E.hatchAngleDeg(45); 
-  E.circle( 25, 25, 250);
+  E.circle( 150, 150, 250);
   E.hatchAngleDeg(90); 
-  E.circle(150, 25, 250);
+  E.circle(275, 150, 250);
 
   // One circle culling another, with PARALLEL hatch
   E.hatchMode(PEmbroiderGraphics.PARALLEL);
   E.beginCull();
   E.hatchAngleDeg(45); 
-  E.circle( 25, 300, 250);
+  E.circle( 150, 425, 250);
   E.hatchAngleDeg(90); 
-  E.circle(150, 300, 250);
+  E.circle(275, 425, 250);
   E.endCull();
 
   //-----------------------
   // Two overlapping circles, with CONCENTRIC hatch
   E.hatchMode(PEmbroiderGraphics.CONCENTRIC);
   E.hatchAngleDeg(45); 
-  E.circle(425, 25, 250);
+  E.circle(550, 150, 250);
   E.hatchAngleDeg(90); 
-  E.circle(550, 25, 250);
+  E.circle(675, 150, 250);
 
   // One circle culling another, with CONCENTRIC hatch
   E.hatchMode(PEmbroiderGraphics.CONCENTRIC);
   E.beginCull();
   E.hatchAngleDeg(45); 
-  E.circle(425, 300, 250);
+  E.circle(550, 425, 250);
   E.hatchAngleDeg(90); 
-  E.circle(550, 300, 250);
+  E.circle(675, 425, 250);
   E.endCull();
   
   //-----------------------
@@ -60,15 +60,15 @@ void setup() {
   E.hatchAngle(radians(90));
   
   E.hatchMode(PEmbroiderGraphics.CONCENTRIC);
-  E.circle(825, 25, 250);
+  E.circle(950, 150, 250);
   E.HATCH_MODE = PEmbroiderGraphics.PARALLEL;
-  E.circle(975, 25, 250);
+  E.circle(1100, 150, 250);
   
   E.beginCull();
   E.hatchMode(PEmbroiderGraphics.CONCENTRIC);
-  E.circle(825, 300, 250);
+  E.circle(950, 425, 250);
   E.HATCH_MODE = PEmbroiderGraphics.PARALLEL;
-  E.circle(975, 300, 250);
+  E.circle(1100, 425, 250);
   E.endCull();
 
   //-----------------------
@@ -78,8 +78,3 @@ void setup() {
   //save("PEmbroider_shape_culling.png");
 }
 
-
-//--------------------------------------------
-void draw2() {
-  ;
-}

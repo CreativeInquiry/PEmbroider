@@ -48,19 +48,19 @@ void setup() {
   E.HATCH_ANGLE = radians(90);
   E.HATCH_ANGLE2 = radians(0); 
   E.HATCH_SPACING = 4;
-  E.circle(25, 250, 200);
+  E.circle(125, 350, 200);
 
   E.HATCH_MODE = PEmbroiderGraphics.CROSS;
   E.HATCH_ANGLE = radians(90); 
   E.HATCH_ANGLE2 = radians(75); 
   E.HATCH_SPACING = 8;
-  E.circle(250, 250, 200);
+  E.circle(350, 350, 200);
   
   E.HATCH_MODE = PEmbroiderGraphics.PERLIN;
   E.HATCH_ANGLE = radians(90); 
   E.HATCH_ANGLE2 = radians(75); 
   E.HATCH_SPACING = 8;
-  E.circle(475, 250, 200);
+  E.circle(575, 350, 200);
 
 
   /*
@@ -87,7 +87,7 @@ void setup() {
   E.HATCH_MODE = PEmbroiderGraphics.VECFIELD;
   E.HATCH_VECFIELD = mvf;
   E.HATCH_SPACING = 4;
-  E.ellipse ( 25, 475, 650, 200);
+  E.ellipse ( 350, 575, 650, 200);
 
 
   //-----------------------
