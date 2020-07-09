@@ -9,7 +9,7 @@
 
 ## Overview of Startup, Drawing and Export
 	
-```
+```java
 // Example PEmbroider program
 import processing.embroider.*;
 PEmbroiderGraphics E;
@@ -52,43 +52,51 @@ PEmbroider tries to mirror the Processing drawing API. It includes commands for 
 
 *See Examples: [shapes](examples/PEmbroider_shapes), [shape_hatching_1](examples/PEmbroider_shape_hatching_1), [shape_hatching_2](examples/PEmbroider_shape_hatching_2), [shape_hatching_3](examples/PEmbroider_shape_hatching_3), [shape_hatching_4](examples/PEmbroider_shape_hatching_4), [shape_culling](examples/PEmbroider_shape_culling)*
 
-    E.circle(x, y, radius)
-    E.rect(x, y, width, height)
-    E.triangle(x1, y1, x2, y2, x3, y3);
-    E.line(x1, y1, x2, y2);
-    
+```java
+E.circle(x, y, radius)
+E.rect(x, y, width, height)
+E.triangle(x1, y1, x2, y2, x3, y3);
+E.line(x1, y1, x2, y2);
+```
+
 ## Composite Shapes
 
 *See Examples: [stroke_outlines](examples/PEmbroider_stroke_outlines), [stroke_outlines_2](examples/PEmbroider_stroke_outlines_2)*
 
-      E.beginComposite();
-    	E.composite.circle(320, 250, 200);
-    	E.composite.circle(420, 250, 200);
-    	// add more, etc. ...
-      E.endComposite(); 
-
+```java
+E.beginComposite();
+  E.composite.circle(320, 250, 200);
+  E.composite.circle(420, 250, 200);
+  // add more, etc. ...
+E.endComposite(); 
+```
   
 ## Fills & Hatching
 
 *See Examples: [shape_hatching_1](examples/PEmbroider_shape_hatching_1), [shape_hatching_2](examples/PEmbroider_shape_hatching_2), [shape_hatching_3](examples/PEmbroider_shape_hatching_3), [shape_hatching_4](examples/PEmbroider_shape_hatching_4), [satin_hatching_1](examples/PEmbroider_satin_hatching_1)
 
-    E.noFill();
-    
+```java
+E.noFill();
+```
+
 Hatch Modes: 
 
-    E.hatchMode(E.CONCENTRIC);
-    E.hatchMode(E.PARALLEL);
-    E.hatchMode(E.SATIN);
-    E.hatchMode(E.SPIRAL); 
-    E.hatchMode(E.PERLIN);
-    E.hatchMode(E.CROSS);
-      
- Hatch Settings:
+```java
+E.hatchMode(E.CONCENTRIC);
+E.hatchMode(E.PARALLEL);
+E.hatchMode(E.SATIN);
+E.hatchMode(E.SPIRAL); 
+E.hatchMode(E.PERLIN);
+E.hatchMode(E.CROSS);
+```
 
-    E.hatchSpacing(spacing); // sets the density of adjacent runs
-    E.hatchAngleDeg(angle);  // sets the orientation for SATIN & PARALLEL
-    E.fill(R, G, B);         // sets your thread color
+Hatch Settings:
 
+```java
+E.hatchSpacing(spacing); // sets the density of adjacent runs
+E.hatchAngleDeg(angle);  // sets the orientation for SATIN & PARALLEL
+E.fill(R, G, B);         // sets your thread color
+```
   
 ## Strokes
 
@@ -96,32 +104,38 @@ Hatch Modes:
 
 Stroke Modes:
 
-    E.noStroke();
-    E.strokeMode( E.PERPENDICULAR );
-    E.strokeMode( E.TANGENT);
-     
+```java
+E.noStroke();
+E.strokeMode( E.PERPENDICULAR );
+E.strokeMode( E.TANGENT);
+```
+
 Stroke Locations
 
-    E.strokeLocation(E.CENTER);
-    E.strokeLocation(E.INSIDE);
-    E.strokeLocation(E.OUTSIDE);
-    
+```java
+E.strokeLocation(E.CENTER);
+E.strokeLocation(E.INSIDE);
+E.strokeLocation(E.OUTSIDE);
+```
+
 Stroke Settings
 
-    E.strokeWeight(width);
-    E.strokeSpacing(spacing);
-    E.stroke(R, G, B);
-    
+```java
+E.strokeWeight(width);
+E.strokeSpacing(spacing);
+E.stroke(R, G, B);
+```
 
 ## Text
 
 *See Examples: [Hello_PEmbroider](examples/), [text_1](examples/PEmbroider_text_1), [text_2](examples/PEmbroider_text_2), [text_3](examples/PEmbroider_text_3)* 
 
-    E.textSize(size);
-    E.textAlign(CENTER); // LEFT, RIGHT, etc., just like Processing
-    E.textFont(PEmbroiderFont.DUPLEX);
-    E.text(string, x, y);
-
+```java
+E.textSize(size);
+E.textAlign(CENTER); // LEFT, RIGHT, etc., just like Processing
+E.textFont(PEmbroiderFont.DUPLEX);
+E.text(string, x, y);
+```
 
 ## Images
 
@@ -131,15 +145,19 @@ PEmbroider can work with both bitmap and vector images.
 
 Rastr (bitmap) images must be black-and-white only, where white shapes indicate the graphics to be embroidered. Processing will expect your image assets to be located in the "data" folder of your sketch; for more information on this, see [here](https://processing.org/reference/environment/#Sketchbook).
 
-    PImage myImage = loadImage("filename.png");
-    E.fill(0,0,0);
-    E.image(myImage, x, y);
-    
+```java
+PImage myImage = loadImage("filename.png");
+E.fill(0,0,0);
+E.image(myImage, x, y);
+```
+
 Vector shapes: 
 
-    PShape mySvgImage = loadShape("filename.svg");
-    E.fill(0,0,0);
-    E.shape(mySvgImage,50,50,350,350);
+```java
+PShape mySvgImage = loadShape("filename.svg");
+E.fill(0,0,0);
+E.shape(mySvgImage,50,50,350,350);
+```
 
 Experimentally, we have also begun using the TSP code to render photographs. See [this](examples/work_in_progress/PEmbroider_TSP_grayscale) and [this](examples/work_in_progress/PEmbroider_TSP_CMYK)
 
@@ -149,8 +167,9 @@ Experimentally, we have also begun using the TSP code to render photographs. See
 
 As mentioned above, the `hatchSpacing()` function has a major impact on your design. It sets the distance between adjacent runs in hatch modes like SATIN, PARALLEL, and CONCENTRIC. The units are machine units (for our machine, this is 0.1mm). 
 
-    E.hatchSpacing(3);
-
+```java
+E.hatchSpacing(3);
+```
 
 ### Set stitch properties with `setStitch()`
 
@@ -161,28 +180,36 @@ The `setStitch()` function allows you to set the following:
 
 *See Examples: [shape_hatching_3](examples/PEmbroider_shape_hatching_3)*
 
-    E.setStitch(minLength, desiredLength, noise);
+```java
+E.setStitch(minLength, desiredLength, noise);
+```
    
 For `SPIRAL` hatching, `setStitch` behaves differently;
 
-    E.setStitch(desiredLength, minLength, noise);
-    
+```java
+E.setStitch(desiredLength, minLength, noise);
+```
+
 ### Protect your lines with `repeatEnd()`
 
 The `repeatEnd()` function is very helpful for detailed linework; it essentially ties a knot so your single-line designs don't fray. 
 
 *See Examples: [ruler](examples/PEmbroider_ruler)*
 
-    beginRepeatEnd(3);  
-    // draw some lines... 
-    endRepeatEnd();
-    
+```java
+beginRepeatEnd(3);  
+// draw some lines... 
+endRepeatEnd();
+``` 
+
 ### Render Order
 
 You can render a shape's stroke before or after its fill: 
 
 *See Examples: [text_1](examples/PEmbroider_text_1)*
 
-    E.SetRenderOrder(STROKE_OVER_FILL);
-    E.SetRenderOrder(FILL_OVER_STROKE);
+```java
+E.SetRenderOrder(STROKE_OVER_FILL);
+E.SetRenderOrder(FILL_OVER_STROKE);
+```
 
