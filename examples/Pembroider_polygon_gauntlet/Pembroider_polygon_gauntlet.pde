@@ -1,5 +1,6 @@
-import processing.embroider.*;
+// Challenging Polygons
 
+import processing.embroider.*;
 PEmbroiderGraphics E;
 
 void setup(){

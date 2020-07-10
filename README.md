@@ -56,9 +56,9 @@ PEmbroider has been tested on MacOS 10.13.6+ and Windows 10, using the STUDIO's 
 ---
 ## Examples
 
-PEmbroider comes with a variety of [examples](examples/README.md) which demonstrate how to achieve different sorts of embroidery effects with lines, shapes, typography, images and more. Here are some of them:
+PEmbroider comes with a variety of [examples](examples/README.md) which demonstrate how to achieve different sorts of embroidery effects with lines, shapes, typography, images and more. Here are just some of them:
 
-[![Examples](images/examples.png)](examples/README.md)
+[![Examples](images/examples_photo.jpg)](examples/README.md)
 
 
 ---
