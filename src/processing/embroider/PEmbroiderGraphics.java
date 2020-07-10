@@ -160,7 +160,7 @@ public class PEmbroiderGraphics {
 	/**
 	* The constructor for PEmbroiderGraphics object.
 	*
-	* @param  _app the running PApplet instance: in Processing, just pass the keyword `this`
+	* @param  _app the running PApplet instance: in Processing, just pass the keyword 'this'
 	* @param  w    width 
 	* @param  h    height
 	*/
@@ -185,15 +185,18 @@ public class PEmbroiderGraphics {
 
 	/**
 	* Set the output file path.
+	* The filename should include the file type extension. 
+	* Supported embroidery formats are: .DST, .EXP, .JEF, .PEC, .PES, .VP3, and .XXX. 
+	* Additionally supported formats are: .PDF, .SVG, .TSV, and .GCODE. 
 	* 
-	* @param  _path output file path. The format will be automatically inferred from the extension
+	* @param  _path output file path. The format will be automatically inferred from the extension.
 	*/
 	public void setPath(String _path) {
 		path = _path;
 	}
 	
 	/**
-	* Clear all current drawings
+	* Clear all current drawings. 
 	* 
 	*/
 	public void clear() {
@@ -205,9 +208,9 @@ public class PEmbroiderGraphics {
 	/* ======================================== STYLE SETTING ======================================== */
 	
 	/** Change fill color
-	 *  @param r red color 0-255
-	 *  @param g green color 0-255
-	 *  @param b blue color 0-255
+	 *  @param r red value, 0-255
+	 *  @param g green value, 0-255
+	 *  @param b blue value, 0-255
 	 *  @see   stroke
 	 */
 	public void fill(int r, int g, int b) {
@@ -215,7 +218,7 @@ public class PEmbroiderGraphics {
 		currentFill = 0xFF000000 | ((r & 255) << 16) | ((g & 255) << 8) | (b & 255);
 	}
 	/** Change fill color
-	 *  @param gray  grayscale value 0-255
+	 *  @param gray grayscale value, 0-255
 	 */
 	public void fill(int gray) {
 		fill(gray,gray,gray);
@@ -228,9 +231,9 @@ public class PEmbroiderGraphics {
 	}
 	
 	/** Change stroke color
-	 *  @param r red color 0-255
-	 *  @param g green color 0-255
-	 *  @param b blue color 0-255
+	 *  @param r red value, 0-255
+	 *  @param g green value, 0-255
+	 *  @param b blue value, 0-255
 	 *  @see   fill
 	 */
 	public void stroke(int r, int g, int b) {
@@ -257,7 +260,7 @@ public class PEmbroiderGraphics {
 		STROKE_WEIGHT = Math.max(d,1);
 	}
 	/** Change stroke join (turning point) style
-	 *  @param j  Same as Processing strokejoin, this can be ROUND, MITER, BEVEL etc.
+	 *  @param j  Same as Processing strokeJoin, this can be ROUND, MITER, BEVEL etc.
 	 *  @see   strokeCap
 	 */
 	public void strokeJoin(int j) {
@@ -289,7 +292,7 @@ public class PEmbroiderGraphics {
 	}
 	/** Change number of steps bezier curve is interpolated. 
 	 *  
-	 *  @param n higher this number, smoother the bezier
+	 *  @param n The higher this number, the smoother the Bezier curve.
 	 */
 	public void bezierDetail(int n) {
 		BEZIER_DETAIL = Math.max(1, n);
@@ -302,32 +305,43 @@ public class PEmbroiderGraphics {
 	}
 	/** Change hatching pattern
 	 *  
-	 *  @param mode  this can be one of PARALLEL, CROSS, CONCENTRIC, SPIRAL, PERLIN, VECFIELD, DRUNK	
+	 *  @param mode  This can be one of: PARALLEL, CROSS, CONCENTRIC, SPIRAL, PERLIN, VECFIELD, DRUNK	
 	 */
 	public void hatchMode(int mode) {
 		HATCH_MODE = mode;
 	}
+
 	/** Change outline drawing method
 	 *  
-	 *  @param mode  this can be either PERPENDICULAR or TANGENT	
+	 *  @param mode  This can be either PERPENDICULAR or TANGENT	
 	 */
 	public void strokeMode(int mode) {
 		STROKE_MODE = mode;
 	}
+
 	/** Change outline drawing method
 	 *  
-	 *  @param mode     this can be either PERPENDICULAR or TANGENT	
-	 *  @param tanMode  this can be one of COUNT (stroke weight used as line count), WEIGHT (honour stroke weight setting over spacing) or SPACING (honour spacing over stroke weight)
+	 *  @param mode     This can be either PERPENDICULAR or TANGENT	
+	 *  @param tanMode  This can be one of COUNT (stroke weight used as line count), WEIGHT (honour stroke weight setting over spacing) or SPACING (honour spacing over stroke weight)
 	 */
 	public void strokeMode(int mode, int tanMode) {
 		STROKE_MODE = mode;
 		STROKE_TANGENT_MODE = tanMode;
 	}
 	
+
+	/** Set the position of the stroke, relative to the shape's edge
+	 *  
+	 *  @param x     Float between -1.0 (inside), 0.0 (centered) and 1.0 (outside).  	
+	 */
 	public void strokeLocation(float x) {
 		STROKE_LOCATION = PApplet.min(PApplet.max(-1,x),1);
 	}
 	
+	/** Set the position of the stroke, relative to the shape's edge
+	 *  
+	 *  @param x     This can be one of CENTER, INSIDE, or OUTSIDE 	
+	 */
 	public void strokeLocation(int mode) {
 		if (mode == CENTER) {
 			strokeLocation(0.0f);
@@ -408,6 +422,7 @@ public class PEmbroiderGraphics {
 	 *  @param d   the spacing in pixels
 	 *  @see       strokeSpacing
 	 */
+	
 	public void hatchSpacing(float d) {
 		HATCH_SPACING = Math.max(0.1f,d);
 	}
@@ -416,6 +431,7 @@ public class PEmbroiderGraphics {
 	 *  @param d   the spacing in pixels
 	 *  @see       hatchSpacing
 	 */
+
 	public void strokeSpacing(float d) {
 		STROKE_SPACING = Math.max(0.1f,d);
 	}
@@ -426,6 +442,7 @@ public class PEmbroiderGraphics {
 	public void hatchScale(float s) {
 		HATCH_SCALE = Math.max(0.000001f,s);;
 	}
+
 	/** Switches the algorithms used to compute the drawing
 	 *  
 	 *  @param mode   one of ADAPTIVE (use most appropriate method for each situation according to Lingdong) FORCE_VECTOR (uses vector math whenever possible) FORCE_RASTER (first render shapes as raster and re-extract the structures, generally more robust)
