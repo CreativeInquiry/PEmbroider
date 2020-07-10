@@ -153,8 +153,6 @@ public class PEmbroiderGraphics {
 	
 	static String logPrefix = "[PEmbroider] ";
 	
-	
-	
 	public PEmbroiderBooleanShapeGraphics composite;
 	
 	/**
@@ -217,12 +215,14 @@ public class PEmbroiderGraphics {
 		isFill = true;
 		currentFill = 0xFF000000 | ((r & 255) << 16) | ((g & 255) << 8) | (b & 255);
 	}
+
 	/** Change fill color
 	 *  @param gray grayscale value, 0-255
 	 */
 	public void fill(int gray) {
 		fill(gray,gray,gray);
 	}
+
 	/** Disable filling shapes
 	 *
 	 */
@@ -247,18 +247,21 @@ public class PEmbroiderGraphics {
 	public void stroke(int gray) {
 		stroke(gray,gray,gray);
 	}
+
 	/** Disable outlining shapes
 	 *
 	 */
 	public void noStroke() {
 		isStroke = false;
 	}
+
 	/** Change width of stroke
 	 *  @param d  the stroke weight to use
 	 */
 	public void strokeWeight(float d) {
 		STROKE_WEIGHT = Math.max(d,1);
 	}
+
 	/** Change stroke join (turning point) style
 	 *  @param j  Same as Processing strokeJoin, this can be ROUND, MITER, BEVEL etc.
 	 *  @see   strokeCap
@@ -266,6 +269,7 @@ public class PEmbroiderGraphics {
 	public void strokeJoin(int j) {
 		STROKE_JOIN = j;
 	}
+
 	/** Change stroke cap (end point) style
 	 *  @param j  Same as Processing strokeCap, this can be ROUND, SQUARE, PROJECT etc.
 	 *  @see strokejoin
@@ -273,6 +277,7 @@ public class PEmbroiderGraphics {
 	public void strokeCap(int j) {
 		STROKE_CAP = j;
 	}
+
 	/** Modifies the location from which ellipses are drawn by changing the way in which parameters given to ellipse() are intepreted.
 	 *  also governs circle()
 	 *  
@@ -282,6 +287,7 @@ public class PEmbroiderGraphics {
 	public void ellipseMode(int mode) {
 		ELLIPSE_MODE = mode;
 	}
+
 	/** Modifies the location from which rectangles are drawn by changing the way in which parameters given to rect() are intepreted.
 	 *  
 	 *  @param j  Same as Processing rectMode, this can be RADIUS, CENTER, CORNER, CORNERS etc.
@@ -290,6 +296,7 @@ public class PEmbroiderGraphics {
 	public void rectMode(int mode) {
 		RECT_MODE = mode;
 	}
+
 	/** Change number of steps bezier curve is interpolated. 
 	 *  
 	 *  @param n The higher this number, the smoother the Bezier curve.
@@ -303,6 +310,7 @@ public class PEmbroiderGraphics {
 	public void curveTightness(float n) {
 		CATMULLROM_TIGHTNESS = Math.max(0, n);
 	}
+
 	/** Change hatching pattern
 	 *  
 	 *  @param mode  This can be one of: PARALLEL, CROSS, CONCENTRIC, SPIRAL, PERLIN, VECFIELD, DRUNK	
@@ -332,7 +340,7 @@ public class PEmbroiderGraphics {
 
 	/** Set the position of the stroke, relative to the shape's edge
 	 *  
-	 *  @param x     Float between -1.0 (inside), 0.0 (centered) and 1.0 (outside).  	
+	 *  @param x     Float between -1.0 (inside) and 1.0 (outside). 0.0 is centered.	
 	 */
 	public void strokeLocation(float x) {
 		STROKE_LOCATION = PApplet.min(PApplet.max(-1,x),1);
@@ -364,6 +372,7 @@ public class PEmbroiderGraphics {
 		AUTO_HATCH_ANGLE = false;
 		HATCH_ANGLE = ang;
 	}
+
 	/** Change angles of parallel and cross hatching lines
 	 *  
 	 *  @param ang1     the angle from +x in radians (for parallel hatches and the first direction of cross hatching)
@@ -380,6 +389,7 @@ public class PEmbroiderGraphics {
 		HATCH_ANGLE  = ang1;
 		HATCH_ANGLE2 = ang2;
 	}
+
 	/** Change angle of parallel hatch lines
 	 *  
 	 *  @param ang     the angle from +x in degrees
@@ -394,6 +404,7 @@ public class PEmbroiderGraphics {
 		AUTO_HATCH_ANGLE = false;
 		hatchAngle(PApplet.radians(ang));
 	}
+
 	/** Change angles of parallel and cross hatching lines
 	 *  
 	 *  @param ang1     the angle from +x in degrees (for parallel hatches and the first direction of cross hatching)
@@ -410,14 +421,21 @@ public class PEmbroiderGraphics {
 		hatchAngles(PApplet.radians(ang1),PApplet.radians(ang2));
 	}
 	
+	/** Sets the orientation of the stitches within a stroke
+	 *  @param ang     the angle (in radians)
+	 */
 	public void strokeAngle(float ang) {
 		STROKE_ANGLE=ang;
 	}
+
+	/** Sets the orientation of the stitches within a stroke
+	 *  @param ang     the angle (in degrees) 
+	 */
 	public void strokeAngleDeg(float ang) {
 		STROKE_ANGLE=PApplet.radians(ang);
 	}
 	
-	/** Changes the spacing between hatching lines: a.k.a sparsity or anti-density
+	/** Changes the spacing between hatching lines: a.k.a sparsity or inverse-density
 	 *  
 	 *  @param d   the spacing in pixels
 	 *  @see       strokeSpacing
@@ -426,7 +444,8 @@ public class PEmbroiderGraphics {
 	public void hatchSpacing(float d) {
 		HATCH_SPACING = Math.max(0.1f,d);
 	}
-	/** Changes the spacing between stroke lines: a.k.a sparsity or anti-density
+
+	/** Changes the spacing between stroke lines: a.k.a sparsity or inverse-density
 	 *  
 	 *  @param d   the spacing in pixels
 	 *  @see       hatchSpacing
@@ -435,6 +454,7 @@ public class PEmbroiderGraphics {
 	public void strokeSpacing(float d) {
 		STROKE_SPACING = Math.max(0.1f,d);
 	}
+
 	/** Changes the scaling for perlin noise hatching
 	 *  
 	 *  @param s   the scale
@@ -450,6 +470,7 @@ public class PEmbroiderGraphics {
 	public void hatchBackend(int mode) {
 		HATCH_BACKEND = mode;
 	}
+
 	/** Set the vector field used for vector field hatching
 	 *  
 	 *  @param vf a vector field defination -- simple, just a class with a get(x,y) method
@@ -457,6 +478,7 @@ public class PEmbroiderGraphics {
 	public void setVecField(VectorField vf) {
 		HATCH_VECFIELD = vf;
 	}
+
 	/** Set the desirable stitch length. Stitches will try their best to be around this length, but actual length will vary slightly for best result
 	 *  
 	 *  @param x the desirable stitch length
@@ -466,6 +488,7 @@ public class PEmbroiderGraphics {
 	public void stitchLength(float x) {
 		STITCH_LENGTH = Math.max(0.1f,x);
 	}
+
 	/** Set the minimum stitch length. Drawings with higher precision than this will be resampled down to have at least this stitch length
 	 *  
 	 *  @param x the minimum stitch length
@@ -475,20 +498,22 @@ public class PEmbroiderGraphics {
 	public void minStitchLength(float x) {
 		MIN_STITCH_LENGTH = Math.max(0f,x);
 	}
+
 	/** Set stitch properties
 	 *  
 	 *  @param msl minimum stitch length
 	 *  @param sl  desirable stitch length
-	 *  @param rn  resample noise -- to avoid alignment patterns; must be inside range (0-1) inclusive
+	 *  @param rn  resample noise -- to avoid alignment patterns; must be in the range [0...1]
 	 */
 	public void setStitch(float msl, float sl, float rn) {
 		MIN_STITCH_LENGTH = Math.max(0f,msl);
 		STITCH_LENGTH = Math.max(0.1f,sl);
 		RESAMPLE_NOISE = Math.max(0.0f,Math.min(1f,rn));
 	}
+
 	/** Set render order: render strokes over fill, or other way around?
 	 *  
-	 *  @param mode  this can either be STROKE_OVER_FILL or FILL_OVER_STROKE
+	 *  @param mode  This can either be STROKE_OVER_FILL or FILL_OVER_STROKE
 	 */
 	public void setRenderOrder(int mode) {
 		if (mode == STROKE_OVER_FILL) {
@@ -497,6 +522,7 @@ public class PEmbroiderGraphics {
 			FIRST_STROKE_THEN_FILL = true;
 		}
 	}
+
 	/** Turn resampling on and off. For embroidery machines, you might want it; for plotters you probably won't need it.
 	 *  
 	 *  @param b   true for on, false for off
@@ -505,14 +531,26 @@ public class PEmbroiderGraphics {
 		NO_RESAMPLE = !b;
 	}
 	
+	/** Sets whether SPIRAL hatching proceeds clockwise or counterclockwise
+	 *  
+	 *  @param mode   This can be CLOCKWISE or COUNTERCLOCKWISE. CW and CCW are also permissible.
+	 */
 	public void setSpiralDirection(int mode) {
 		HATCH_SPIRAL_DIRECTION = mode;
 	}
 	
+	/** Sets the file exporting behavior if a stitch was placed out of bounds.
+	 *  
+	 *  @param mode   This can be one of WARN, CROP, IGNORE, ASK, or ABORT
+	 */
 	public void setOutOfBoundsHandler(int mode) {
 		OUT_OF_BOUNDS_HANDLER = mode;
 	}
-	
+
+	/** Sets how the SATIN hatching mode operates. 
+	 *  
+	 *  @param mode   This can be one of ZIGZAG, SIGSAG, or BOUSTROPHEDON
+	 */
 	public void satinMode(int mode) {
 		SATIN_MODE = mode;
 	}
@@ -563,6 +601,7 @@ public class PEmbroiderGraphics {
 		}
 		return new PVector(t,s);
 	}
+
 	/** Averages a bunch of points
 	 *  
 	 *  @param poly a bunch of points
@@ -577,6 +616,7 @@ public class PEmbroiderGraphics {
 		}
 		return new PVector(x/(float)poly.size(),y/(float)poly.size());
 	}
+
 	/** Averages a bunch of bunches of points
 	 *  
 	 *  @param poly a bunch of bunches of points
@@ -594,6 +634,7 @@ public class PEmbroiderGraphics {
 		}
 		return new PVector(x/(float)poly.size(),y/(float)poly.size());
 	}
+
 	/** Class for a bounding box
 	 * 
 	 */
@@ -602,6 +643,7 @@ public class PEmbroiderGraphics {
 		public float y;
 		public float w;
 		public float h;
+
 		/** Constructor that makes a bounding box from top left corner and dimensions
 		 *  
 		 *  @param _x left
@@ -615,6 +657,7 @@ public class PEmbroiderGraphics {
 			w = _w;
 			h = _h;
 		}
+
 		/** Constructor that makes a bounding box from top left corner and bottom right corner
 		 *  
 		 *  @param p top left corner
@@ -626,6 +669,7 @@ public class PEmbroiderGraphics {
 			w = q.x-p.x;
 			h = q.y-p.y;
 		}
+
 		/** Constructor that makes a bounding box from a bunch of points
 		 *  
 		 *  @param poly a bunch of points
@@ -671,6 +715,7 @@ public class PEmbroiderGraphics {
 			h = ymax-ymin;
 		}
 	}
+
 	/** Class for a bounding circle.
 	 * The bounding circle is not the minimal bounding circle for now. It's just some bounding circle.
 	 * It works well enough for current use cases, but we might implement minimal bounding circle in the future
