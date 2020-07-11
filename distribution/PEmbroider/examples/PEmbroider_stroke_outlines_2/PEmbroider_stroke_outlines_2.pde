@@ -22,41 +22,49 @@ void setup() {
 
   // ------------------------
 
-  //E.noStroke();
-  ////fill settings
-  //E.fill(0,0,0);
-  //E.hatchMode(E.SPIRAL);
-  //E.setStitch(5,20,0); 
-  ////cull settings
-  //E.CULL_SPACING = 25;
+  E.noStroke();
+  //fill settings
+  E.fill(0,0,0);
+  E.hatchMode(E.CONCENTRIC);
+  E.setStitch(5,20,0); 
+  //cull settings
+  E.CULL_SPACING = 5;
   
-  //E.beginCull();
-  //E.circle(320,250,200);
-  //E.circle(200,350,150);
-  //E.circle(200,200,250);
-  //E.endCull();
+  E.beginCull();
+  
+  E.fill(255,0,0);
+  E.circle(320,250,200);
+  E.fill(0,255,0);
+  E.circle(200,350,150);
+  E.fill(0,0,255);
+  E.circle(200,200,250);
+  
+  E.endCull();
     
     
     
   E.noFill();
   //stroke settings
   E.strokeMode(E.PERPENDICULAR);
-  //E.strokeMode(E.TANGENT);
-  E.stroke(0);  //when i comment this out it works fine
-  E.strokeWeight(10);
+  
+  E.stroke(0);  
+  E.strokeWeight(35);
   E.strokeLocation(OUTSIDE);
   E.strokeSpacing(3);
-  
+    
   E.beginComposite();
-  E.circle(320,250,200);
-  E.circle(200,350,150);
-  E.circle(200,200,250);
+  E.composite.circle(320,250,200);
+  E.composite.circle(200,350,150);
+  E.composite.circle(200,200,250);
   E.endComposite(); 
   
   
+  
+
+   
   //-----------------------
   //E.optimize(); // slow but good and important
-  E.visualize();
+  E.visualize(true,false,false);
   //E.endDraw(); // write out the file
   //save("PEmbroider_stroke_outlines_2.png");
 }

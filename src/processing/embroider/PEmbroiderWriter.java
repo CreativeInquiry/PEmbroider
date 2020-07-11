@@ -109,13 +109,14 @@ public class PEmbroiderWriter {
 
 		public static void write(String name, float[] bounds, ArrayList<PVector> stitches, ArrayList<Integer> colors) throws IOException {
 
+
+			OutputStream stream = new FileOutputStream(name+".dst");
 			if (name == null) {
 				name = "Untitled";
 			}
 			if (name.length() > 8) {
 				name = name.substring(0, 8);
 			}
-			OutputStream stream = new FileOutputStream(name+".dst");
 			int pointsize = stitches.size();
 
 			stream.write(String.format("LA:%-16s\r", name).getBytes());

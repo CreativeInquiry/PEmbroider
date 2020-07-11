@@ -41,13 +41,13 @@ void setup() {
   // do not want to use this value, as it can cause problems
   // in the physical embroidery.
   E.PARALLEL_RESAMPLING_OFFSET_FACTOR = 1.0;
-  E.circle(25, 25, 200);
+  E.circle(125, 125, 200);
 
   E.PARALLEL_RESAMPLING_OFFSET_FACTOR = 0.5;
-  E.circle(250, 25, 200);
+  E.circle(350, 125, 200);
 
   E.PARALLEL_RESAMPLING_OFFSET_FACTOR = 0.33333;
-  E.circle(475, 25, 200);
+  E.circle(575, 125, 200);
 
 
   //-----------------------
@@ -58,13 +58,13 @@ void setup() {
   E.setStitch( 5, 40, 0);
 
   E.PARALLEL_RESAMPLING_OFFSET_FACTOR = 1.0;
-  E.circle(25, 250, 200);
+  E.circle(125, 350, 200);
 
   E.PARALLEL_RESAMPLING_OFFSET_FACTOR = 0.5;
-  E.circle(250, 250, 200);
+  E.circle(350, 350, 200);
 
   E.PARALLEL_RESAMPLING_OFFSET_FACTOR = 0.33333;
-  E.circle(475, 250, 200);
+  E.circle(575, 350, 200);
 
 
   //-----------------------
@@ -75,13 +75,13 @@ void setup() {
   E.setStitch(5, 30, 0.5);
 
   E.PARALLEL_RESAMPLING_OFFSET_FACTOR = 1.0;
-  E.circle(25, 475, 200);
+  E.circle(125, 575, 200);
 
   E.PARALLEL_RESAMPLING_OFFSET_FACTOR = 0.5;
-  E.circle(250, 475, 200);
+  E.circle(350, 575, 200);
 
   E.PARALLEL_RESAMPLING_OFFSET_FACTOR = 0.33333;
-  E.circle(475, 475, 200);
+  E.circle(575, 575, 200);
   
  
 

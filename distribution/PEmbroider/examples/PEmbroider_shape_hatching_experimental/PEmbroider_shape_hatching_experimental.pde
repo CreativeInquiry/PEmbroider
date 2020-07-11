@@ -16,7 +16,7 @@ float shapeCoords[][] = {
 
 
 void setup() {
-  //noLoop(); 
+  noLoop(); 
   size (1250, 500);
 
   E = new PEmbroiderGraphics(this, width, height);
@@ -37,9 +37,6 @@ void setup() {
   //
   // Create a bitmap image by drawing to an offscreen graphics buffer.
   PGraphics pg = createGraphics(width, height); 
-
-
-
 
   pg.beginDraw();
   pg.background(0); 
@@ -78,10 +75,9 @@ void setup() {
   PEmbroiderHatchSpine.hatchSpineVF(pg);
 
 
-
   //===================================================
   // SPIRAL hatch mode works alright for convex shapes, 
-  // but currently has issues on shapes with concavities. 
+  // but may have issues on shapes with sharp concavities. 
   // For better results, consider using the very similar 
   // PEmbroiderGraphics.CONCENTRIC mode instead.
   //
@@ -107,6 +103,9 @@ void setup() {
   E.popMatrix();
 
 
+
+
+
   //-----------------------
   // E.optimize(); // slow, but very good and very important
   E.visualize();
@@ -115,14 +114,42 @@ void setup() {
 
 
 void draw() {
-  background(200);
-  scale(2);
-  translate(-100,0);
-  E.visualize(false,true,true,frameCount);
+  ;
 }
 
 void keyPressed() {
   if (key == ' ') {
-    saveFrame("PEmbroider_shapes_hatching_experimental.png");
+    saveFrame("PEmbroider_shape_hatching_experimental.png");
   }
 }
+
+
+
+/*
+  //===================================================
+ // SPIRAL hatch mode works alright for convex shapes, 
+ // but currently has issues on shapes with concavities. 
+ // For better results, consider using the very similar 
+ // PEmbroiderGraphics.CONCENTRIC mode instead.
+ //
+ E.hatchMode(PEmbroiderGraphics.SPIRAL);
+ E.hatchSpacing(3.5);
+ E.setStitch(10, 30, 0);
+ 
+ E.pushMatrix();
+ E.translate(0, -175); 
+ 
+ E.beginShape();
+ E.vertex(50, 450);
+ E.vertex(50, 575);
+ E.vertex( 330, 575);
+ E.vertex( 330, 500);
+ E.quadraticVertex(250, 500, 200, 450);
+ E.vertex(175, 425);
+ E.endShape(CLOSE);
+ 
+ E.triangle (410, 575, 460, 425, 510, 575); 
+ E.arc      (525, 425, 150, 150, 0, PI*1.25, PIE); 
+ E.arc      (700, 425, 150, 150, 0, PI*1.25, CHORD); 
+ E.popMatrix();
+ */

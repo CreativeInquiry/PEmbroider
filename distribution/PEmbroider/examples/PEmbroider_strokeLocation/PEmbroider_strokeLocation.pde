@@ -1,11 +1,11 @@
-import processing.embroider.*;
+// Interactive demo; move the mouse.
 
+import processing.embroider.*;
 PEmbroiderGraphics E;
 
 void setup(){
   size(600,400);
   E = new PEmbroiderGraphics(this);
-
 }
 
 void draw(){
