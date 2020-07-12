@@ -424,6 +424,10 @@ public class PEmbroiderHatchSpine{
 //		 app.image(pg,0,0);
 	 }
 	 public static void hatchSpineVF(PImage mask, float d) {
+		 hatchSpineVF(mask,d,2000);
+	 }
+	 
+	 public static void hatchSpineVF(PImage mask, float d, int maxVertices) {
 
 		 int w = mask.width;
 		 int h = mask.height;
@@ -565,7 +569,7 @@ public class PEmbroiderHatchSpine{
 //				 app.fill(dt[i]*2);
 //				 app.rect(i%w,i/w,1,1);
 //			}
-		 int maxVertices = 2000;
+//		 int maxVertices = 2000;
 		 int minVertices = 3;
 		 ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
 		 PGraphics pg2 = G.app.createGraphics(mask.width,mask.height);
