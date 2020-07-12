@@ -820,7 +820,7 @@ public class PEmbroiderHatchSatin {
 	}
 	
 	public static ArrayList<ArrayList<PVector>> resampleSatinStitches(ArrayList<Pt> pts, int n){
-		int hn = (int)PApplet.ceil(n * G.SATIN_RESAMPLING_OFFSET_FACTOR);
+		
 		ArrayList<ArrayList<PVector>> ret = new ArrayList<ArrayList<PVector>>();
 
 		for (int i = 0; i < pts.size(); i++) {
@@ -830,12 +830,14 @@ public class PEmbroiderHatchSatin {
 				continue;
 			}
 			if (i != pts.size()-1 && pts.get(i).y == pts.get(i-1).y && pts.get(i).y == pts.get(i+1).y && PApplet.abs(pts.get(i).x-pts.get(i-1).x) == 1 && pts.get(i+1).x-pts.get(i).x == pts.get(i).x-pts.get(i-1).x) {
-				if (pts.get(i).x % n == 0) {
+				int hn = (int)PApplet.ceil(G.SATIN_RESAMPLING_OFFSET_FACTOR * ((float)pts.get(i).y * 2) * (float)n);
+				if ((pts.get(i).x+hn) % n == 0) {
 					ret.get(ret.size()-1).add(new PVector(pts.get(i).x, pts.get(i).y));
 				}
 			}else if (PApplet.abs(pts.get(i).y - pts.get(i-1).y) == 1 && pts.get(i-1).x-pts.get(i).x > 2) {
 //
 				for (int j = pts.get(i-1).x-1; j > pts.get(i).x; j--) {
+					int hn = (int)PApplet.ceil(G.SATIN_RESAMPLING_OFFSET_FACTOR * ((float)pts.get(i).y * 2 + 1) * (float)n);
 					if ((j+hn)%n == 0) {
 						float t = 0.5f;
 						if (G.SATIN_MODE != PEmbroiderGraphics.SIGSAG) {
@@ -862,7 +864,7 @@ public class PEmbroiderHatchSatin {
 	}
 	
 	public static ArrayList<ArrayList<PVector>> resampleBoustrophedonStitches(ArrayList<Pt> pts, int n){
-		int hn = (int)PApplet.ceil(n * G.SATIN_RESAMPLING_OFFSET_FACTOR);
+		
 		ArrayList<ArrayList<PVector>> ret = new ArrayList<ArrayList<PVector>>();
 
 		for (int i = 0; i < pts.size(); i++) {
@@ -872,15 +874,12 @@ public class PEmbroiderHatchSatin {
 				continue;
 			}
 			if (i != pts.size()-1 && pts.get(i).y == pts.get(i-1).y && pts.get(i).y == pts.get(i+1).y && PApplet.abs(pts.get(i).x-pts.get(i-1).x) == 1 && pts.get(i+1).x-pts.get(i).x == pts.get(i).x-pts.get(i-1).x) {
-				if (pts.get(i).y % 2 == 0) {
-					if (pts.get(i).x % n == 0) {
-						ret.get(ret.size()-1).add(new PVector(pts.get(i).x, pts.get(i).y));
-					}
-				}else {
-					if ((pts.get(i).x+hn) % n == 0) {
-						ret.get(ret.size()-1).add(new PVector(pts.get(i).x, pts.get(i).y));
-					}
+				int hn = (int)PApplet.ceil(G.SATIN_RESAMPLING_OFFSET_FACTOR * (float)pts.get(i).y * (float)n);
+				
+				if ((pts.get(i).x+hn) % n == 0) {
+					ret.get(ret.size()-1).add(new PVector(pts.get(i).x, pts.get(i).y));
 				}
+				
 			}else if (i != pts.size()-1 && PApplet.abs(pts.get(i).y - pts.get(i-1).y) == 1 && pts.get(i+1).y - pts.get(i).y == pts.get(i).y - pts.get(i-1).y) {
 				if (pts.get(i).y % 2 == 0) {
 					ret.get(ret.size()-1).add(new PVector(pts.get(i).x, pts.get(i).y));

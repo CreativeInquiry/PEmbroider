@@ -31,9 +31,9 @@ void setup() {
   E.setStitch(10, 40, 0); 
   E.CONCENTRIC_ANTIALIGN = 0;
   E.satinMode(E.BOUSTROPHEDON);
-  //E.SATIN_NO_ZIGZAG = true;
-  // It's fun to change this angle in SATIN mode. 
-  //E.hatchAngleDeg(0); 
+
+  // It's fun to tinker with this angle in SATIN mode. 
+  // E.hatchAngleDeg(0); 
 
   // Choose one of these hatch modes by un-commenting it!
   E.hatchMode(PEmbroiderGraphics.SATIN);  
@@ -58,31 +58,34 @@ void setup() {
 
 //-----------------------------------------------------
 void draw() {
+  // Draw the world
   background(200); 
   renderShapeToScreen();
-
   E.visualize(false, true, true, stitchPlaybackCount);
 
-
-  if (stitchPlaybackCount > E.getNumStitches()){
+  // Advance the playback of the stitches.
+  //
+  int hurryUp = 25; // how big is the skip step.
+  if (stitchPlaybackCount > (E.getNumStitches()+hurryUp)) {
     println("Finished!"); 
-    noLoop(); 
+    noLoop();
   } else {
-    //// If you'd like to save out frames to make a GIF, 
-    //// uncomment the following line of code: 
+    /* If you want to export frames to make an animated GIF, 
+     * uncomment the following line of code: */
     // saveFrame("output/myDesign_####.png");
   }
-  int hurryUp = 25; 
   stitchPlaybackCount += hurryUp;
 }
 
 //-----------------------------------------------------
 void keyPressed() {
+  // Reset playback if you press the space bar.
   if (key == ' ') stitchPlaybackCount = 0;
 }
 
 //-----------------------------------------------------
 void renderShapeToScreen() {
+  // Just display the shape faintly in the background.
   noStroke(); 
   fill(255, 255, 255, 50); 
   beginShape();
