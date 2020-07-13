@@ -37,7 +37,6 @@ public class PEmbroiderWriter {
 
 
 
-
 	public static class DST{
 
 		public static final String PROP_EXTENDED_HEADER = "extended_header";
@@ -619,6 +618,9 @@ public class PEmbroiderWriter {
 	}
 	
 	public static class PES {
+		public static int VERSION = 1;
+		public static boolean TRUNCATED = true;
+		
 	    static final int MASK_07_BIT = 0b01111111;
 	    static final int JUMP_CODE = 0b00010000;
 	    static final int TRIM_CODE = 0b00100000;
@@ -655,6 +657,27 @@ public class PEmbroiderWriter {
 					stream.write((value >> 8) & 0xFF);
 					stream.write(value & 0xFF);
 				}
+
+			    public void writeInt32LE(int value) throws IOException {
+			        position += 4;
+			        stream.write(value & 0xFF);
+			        stream.write((value >> 8) & 0xFF);
+			        stream.write((value >> 16) & 0xFF);
+			        stream.write((value >> 24) & 0xFF);
+			    }
+			    public void writeInt24LE(int value) throws IOException {
+			        position += 3;
+			        stream.write(value & 0xFF);
+			        stream.write((value >> 8) & 0xFF);
+			        stream.write((value >> 16) & 0xFF);
+			    }
+
+			    public void writeSpaceHolder16LE(int value) throws IOException {
+			        ByteArrayOutputStream baos = pop();
+			        stream.write(value & 0xFF);
+			        stream.write((value >> 8) & 0xFF);
+			        stream.write(baos.toByteArray());
+			    }
 			    private ByteArrayOutputStream pop() {
 			        ByteArrayOutputStream pop = streamStack.pop();
 			        if (streamStack.isEmpty()) {
@@ -671,7 +694,14 @@ public class PEmbroiderWriter {
 			        stream.write((value >> 16) & 0xFF);
 			        stream.write(baos.toByteArray());
 			    }
-
+			    public void writeSpaceHolder32LE(int value) throws IOException {
+			        ByteArrayOutputStream baos = pop();
+			        stream.write(value & 0xFF);
+			        stream.write((value >> 8) & 0xFF);
+			        stream.write((value >> 16) & 0xFF);
+			        stream.write((value >> 24) & 0xFF);
+			        stream.write(baos.toByteArray());
+			    }
 				public int tell() {
 					return position;
 				}
@@ -726,7 +756,9 @@ public class PEmbroiderWriter {
 			    	return mi+1;
 			    }
 			    
-			    public void write_pec_header() throws IOException {
+			    public Object[] write_pec_header() throws IOException {
+			    	ArrayList<Integer> color_index_list = new ArrayList<>();
+			        
 			        String name = "Untitled";
 			        name = name.substring(0, 8);
 			        write(String.format(Locale.ENGLISH, "LA:%-16s\r", name).getBytes());
@@ -762,11 +794,13 @@ public class PEmbroiderWriter {
 						writeInt8(palette.size()-1);
 //			        
 						for (int i = 0; i < palette.size(); i++) {
-							writeInt8(find_color(palette.get(i)));
+							int idx = find_color(palette.get(i));
+							writeInt8(idx);
 						}
 			        for (int i = 0; i < (463-palette.size()); i++) {
 			            writeInt8(0x20);
 			        }
+			        return new Object[] {color_index_list, palette};
 			    }
 			    void write_pec_block() throws IOException {
 			        int width = (int) Math.rint(bounds[2]-bounds[0]);
@@ -890,13 +924,196 @@ public class PEmbroiderWriter {
 			        }
 			        writeInt8(0xff);//end
 			    }
+
+			    public void writePesString16(String string) throws IOException {
+			        writeInt16LE(string.length());
+			        write(string.getBytes());
+			    }
+
+
+			    public ArrayList<Integer> write_pes_blocks(float left, float top, float right, float bottom, float cx, float cy) throws IOException {
+			        if (stitches.size() == 0) {
+			            return null;
+			        }
+			        writePesString16("CEmbOne");
+			        write_pes_sewsegheader(left, top, right, bottom);
+			        space_holder(2);
+			        writeInt16LE(0xFFFF);
+			        writeInt16LE(0x0000); //FFFF0000 means more blocks exist.
+			        writePesString16("CSewSeg");
+			        Object[] data = write_pes_embsewseg_segments(left, bottom, cx, cy);
+			        Integer sections = (Integer) data[0];
+			        ArrayList<Integer> colorlog = (ArrayList<Integer>) data[1];
+			        writeSpaceHolder16LE(sections);
+			        return colorlog;
+			    }
+
+			    public Object[] write_pes_embsewseg_segments(float left, float bottom, float cx, float cy) throws IOException {
+			        ArrayList<Integer> segment = new ArrayList<>();
+			        ArrayList<Integer> colorlog = new ArrayList<>();
+			        int section = 0;
+			        int flag = -1;
+
+			        int mode;
+			        int adjust_x = (int) (left + cx);
+			        int adjust_y = (int) (bottom + cy);
+
+			        int colorIndex = 0;
+			        int colorCode = 0;
+
+			        colorCode = find_color(colors.get(0));
+			        colorlog.add(section);
+			        colorlog.add(colorCode);
+			        
+			        float lastx = 0, lasty = 0;
+			        float x, y;
+			        for (int i = 0, ie = stitches.size(); i < ie; i++) {
+			        	int thisColor = colors.get(i);
+			        	mode = STITCH & COMMAND_MASK;
+			        	if (i > 0 && !colors.get(i-1).equals(thisColor)) {	
+			        		mode = COLOR_CHANGE & COMMAND_MASK;
+			        	}
+			            if ((mode != END) && (flag != -1)) {
+			            	writeInt16LE(0x8003);
+			            }
+			            switch (mode) {
+			                case COLOR_CHANGE:
+			                    colorCode = find_color(colors.get(i));
+			                    colorlog.add(section);
+			                    colorlog.add(colorCode);
+			                    flag = 1;
+			                    break;
+			                case STITCH:
+			                    while (i < ie && colors.get(i).equals(thisColor) ) {
+			                        lastx = stitches.get(i).x;
+			                        lasty = stitches.get(i).y;
+			                        x = lastx;
+			                        y = lasty;
+			                        segment.add((int) (x - adjust_x));
+			                        segment.add((int) (y - adjust_y));
+			                        i++;
+			                    }
+			                    i--;
+			                    flag = 0;
+			                    break;
+			            }
+			            if (segment.size() != 0) {
+			                writeInt16LE(flag);
+			                writeInt16LE((short) colorCode);
+			                writeInt16LE((short) segment.size() / 2);
+			                for (Integer v : segment) {
+			                    writeInt16LE(v);
+			                }
+			                section++;
+			            } else {
+			                flag = -1;
+			            }
+			            segment.clear();
+			        }
+			        int count = colorlog.size() / 2;
+			        writeInt16LE(count);
+			        for (Integer v : colorlog) {
+			            writeInt16LE(v);
+			        }
+			        writeInt16LE(0x0000);
+			        writeInt16LE(0x0000);
+			        return new Object[]{section, colorlog};
+			    }
+
+			    public int write_pes_sewsegheader(float left, float top, float right, float bottom) throws IOException {
+			        float height = bottom - top;
+			        float width = right - left;
+			        int hoopHeight = 1800, hoopWidth = 1300;
+			        writeInt16LE(0);  //writeInt16LE((int) bounds.left);
+			        writeInt16LE(0);  //writeInt16LE((int) bounds.top);
+			        writeInt16LE(0);  //writeInt16LE((int) bounds.right);
+			        writeInt16LE(0);  //writeInt16LE((int) bounds.bottom);
+			        writeInt16LE(0);  //writeInt16LE((int) bounds.left);
+			        writeInt16LE(0);  //writeInt16LE((int) bounds.top);
+			        writeInt16LE(0);  //writeInt16LE((int) bounds.right);
+			        writeInt16LE(0);  //writeInt16LE((int) bounds.bottom);
+			        float transX = 0;
+			        float transY = 0;
+			        transX += 350f;
+			        transY += 100f + height;
+			        transX += hoopWidth / 2;
+			        transY += hoopHeight / 2;
+			        transX += -width / 2;
+			        transY += -height / 2;
+			        writeInt32LE(Float.floatToIntBits(1f));
+			        writeInt32LE(Float.floatToIntBits(0f));
+			        writeInt32LE(Float.floatToIntBits(0f));
+			        writeInt32LE(Float.floatToIntBits(1f));
+			        writeInt32LE(Float.floatToIntBits(transX));
+			        writeInt32LE(Float.floatToIntBits(transY));
+			        writeInt16LE(1);
+			        writeInt16LE(0);
+			        writeInt16LE(0);
+			        writeInt16LE((short) width);
+			        writeInt16LE((short) height);
+			        writeInt32LE(0);
+			        writeInt32LE(0);
+			        return tell();
+			    }
+			    public void write_pes_header_v1(int distinctBlockObjects) throws IOException {
+			        writeInt16LE(0x01); //1 is scale to fit.
+			        writeInt16LE(0x01); // 0 = 100x100 else 130x180 or above
+			        writeInt16LE(distinctBlockObjects);//number of distinct blocks
+			    }
+			    
+			    void write_version_1() throws IOException {
+
+			        write("#PES0001");
+
+			        float pattern_left = bounds[0];
+			        float pattern_top = bounds[1];
+			        float pattern_right = bounds[2];
+			        float pattern_bottom = bounds[3];
+
+			        float cx = ((pattern_left + pattern_right) / 2);
+			        float cy = ((pattern_top + pattern_bottom) / 2);
+
+			        float left = pattern_left - cx;
+			        float top = pattern_top - cy;
+			        float right = pattern_right - cx;
+			        float bottom = pattern_bottom - cy;
+
+			        int placeholder_pec_block = tell();
+			        space_holder(4);
+
+			        if (stitches.size() == 0) {
+			            write_pes_header_v1(0);
+			            writeInt16LE(0x0000);
+			            writeInt16LE(0x0000);
+			        } else {
+			            write_pes_header_v1(1);
+			            writeInt16LE(0xFFFF);
+			            writeInt16LE(0x0000);
+			            write_pes_blocks(left, top, right, bottom, cx, cy);
+			        }
+			        writeSpaceHolder32LE(tell());
+			        write_pec();
+			    }
+			    void write_truncated_version_1() throws IOException {
+			        write("#PES0001");
+			        writeInt8(0x16);
+			        for (int i = 0; i < 13; i++) {
+			            writeInt8(0x00);
+			        }
+			        write_pec();
+			    }
+
 			}; _BinWriter bin = new _BinWriter();
-	        bin.write("#PES0001");
-	        bin.writeInt8(0x16);
-	        for (int i = 0; i < 13; i++) {
-	            bin.writeInt8(0x00);
-	        }
-			bin.write_pec();
+			if (VERSION == 1) {
+				if (TRUNCATED) {
+					bin.write_truncated_version_1();
+				}else {
+					bin.write_version_1();
+				}
+			}else {
+				System.out.println(logPrefix+"Error: Unimplemented");
+			}
+	        
 	    }
 
 	}
