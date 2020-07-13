@@ -12,7 +12,8 @@ void setup() {
 
   // Create the PEmbroider object
   E = new PEmbroiderGraphics(this, width, height);
-  E.setPath (sketchPath("Hello_PEmbroider.dst")); 
+  PEmbroiderWriter.PES.TRUNCATED = false;
+  E.setPath (sketchPath("Hello_PEmbroider.pes")); 
 
   // Start rendering to the PEmbroiderer
   E.beginDraw(); 

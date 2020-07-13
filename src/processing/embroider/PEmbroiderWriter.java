@@ -175,6 +175,7 @@ public class PEmbroiderWriter {
 				yy += dy;
 				
 				if (Math.abs(dx) >= 121 || Math.abs(dy) >= 121) {
+					data = JUMP & COMMAND_MASK;
 					int steps = Math.max(Math.abs(dx/121),Math.abs(dy/121))+1;
 					float inc = 1f/(float)steps;
 					int accx = 0;
@@ -722,12 +723,13 @@ public class PEmbroiderWriter {
 					streamStack.push(push);
 					stream = push;
 				}
-			    public void write_pec() throws IOException {
+			    public Object[] write_pec() throws IOException {
 
-			        write_pec_header();
+			    	Object[] data = write_pec_header();
 			        write_pec_block();
 			        write_pec_graphics();
-			        stream.close();
+			        
+			        return data;
 			    }
 			    public int find_color(int color) {
 					int r = (color >> 16) & 0xFF;
@@ -929,6 +931,17 @@ public class PEmbroiderWriter {
 			        writeInt16LE(string.length());
 			        write(string.getBytes());
 			    }
+			    public void writePesString8(String string) throws IOException {
+			        if (string == null) {
+			            writeInt8(0);
+			            return;
+			        }
+			        if (string.length() > 255) {
+			            string = string.substring(0, 255);
+			        }
+			        writeInt8(string.length());
+			        write(string.getBytes());
+			    }
 
 
 			    public ArrayList<Integer> write_pes_blocks(float left, float top, float right, float bottom, float cx, float cy) throws IOException {
@@ -1055,6 +1068,98 @@ public class PEmbroiderWriter {
 			        writeInt32LE(0);
 			        return tell();
 			    }
+			    public void write_pes_header_v6(int distinctBlockObjects) throws IOException {
+			        writeInt16LE(0x01); // 0 = 100x100 else 130x180 or above
+			        writeInt8(0x30);
+			        writeInt8(0x32);
+			        String name = "untitled";
+
+			        writePesString8(name);
+			        writePesString8("category");
+			        writePesString8("author");
+			        writePesString8("keywords");
+			        writePesString8("comments");
+
+			        writeInt16LE(0);//boolean optimizeHoopChange = (readInt16LE() == 1);
+
+			        writeInt16LE(0);//boolean designPageIsCustom = (readInt16LE() == 1);
+
+			        writeInt16LE(0x64); //hoopwidth
+			        writeInt16LE(0x64); //hoopheight
+			        writeInt16LE(0);// 1 means "UseExistingDesignArea" 0 means "Design Page Area"        
+
+			        writeInt16LE(0xC8);//int designWidth = readInt16LE();
+			        writeInt16LE(0xC8);//int designHeight = readInt16LE();
+			        writeInt16LE(0x64);//int designPageSectionWidth = readInt16LE();
+			        writeInt16LE(0x64);//int designPageSectionHeight = readInt16LE();
+			        writeInt16LE(0x64);//int p6 = readInt16LE(); // 100
+
+			        writeInt16LE(0x07);//int designPageBackgroundColor = readInt16LE();
+			        writeInt16LE(0x13);//int designPageForegroundColor = readInt16LE();
+			        writeInt16LE(0x01); //boolean ShowGrid = (readInt16LE() == 1);
+			        writeInt16LE(0x01);//boolean WithAxes = (readInt16LE() == 1);
+			        writeInt16LE(0x00);//boolean SnapToGrid = (readInt16LE() == 1);
+			        writeInt16LE(100);//int GridInterval = readInt16LE();
+
+			        writeInt16LE(0x01);//int p9 = readInt16LE(); // curves?
+			        writeInt16LE(0x00);//boolean OptimizeEntryExitPoints = (readInt16LE() == 1);
+
+			        writeInt8(0);//int fromImageStringLength = readInt8();
+			        //String FromImageFilename = readString(fromImageStringLength);
+
+			        writeInt32LE(Float.floatToIntBits(1f));
+			        writeInt32LE(Float.floatToIntBits(0f));
+			        writeInt32LE(Float.floatToIntBits(0f));
+			        writeInt32LE(Float.floatToIntBits(1f));
+			        writeInt32LE(Float.floatToIntBits(0f));
+			        writeInt32LE(Float.floatToIntBits(0f));
+			        writeInt16LE(0);//int numberOfProgrammableFillPatterns = readInt16LE();
+			        writeInt16LE(0);//int numberOfMotifPatterns = readInt16LE();
+			        writeInt16LE(0);//int featherPatternCount = readInt16LE();
+			        ArrayList<Integer> chart = new ArrayList<Integer>();
+					int color_count = 1;
+					for (int i = 1; i < colors.size(); i++) {
+						if (!colors.get(i).equals(colors.get(i-1))) {
+							color_count ++;
+						}
+					}
+			        writeInt16LE(color_count);//int numberOfColors = readInt16LE();
+			        for (Integer t : chart) {
+			            write_pes_thread(t);
+			        }
+			        writeInt16LE(distinctBlockObjects);//number of distinct blocks
+			    }
+			    public void write_pes_thread(int color) throws IOException {
+			        writePesString8(Integer.toString(find_color(color)));
+			        writeInt8((color >> 16) & 255);
+			        writeInt8((color >> 8) & 255);
+			        writeInt8(color & 255);
+			        writeInt8(0); //unknown
+			        writeInt32LE(0xA);
+			        writePesString8("description");
+			        writePesString8("brand");
+			        writePesString8("chart");
+			    }
+			    void write_pes_addendum(Object[] color_info) throws IOException {
+			        ArrayList<Integer> color_index_list = (ArrayList<Integer>) color_info[0];
+			        ArrayList<Integer> rgb_list = (ArrayList<Integer>) color_info[1];
+			        int count = color_index_list.size();
+			        for (int i = 0, ie = count; i < ie; i++) {
+			            writeInt8(color_index_list.get(i));
+			        }
+			        for (int i = count, ie = 128 - count; i < ie; i++) {
+			            writeInt8(0x20);
+			        }
+
+			        for (int s = 0, se = rgb_list.size(); s < se; s++) {
+			            for (int i = 0, ie = 0x90; i < ie; i++) {
+			                writeInt8(0x00);
+			            }
+			        }
+			        for (int s = 0, se = rgb_list.size(); s < se; s++) {
+			            writeInt24LE(rgb_list.get(s));
+			        }
+			    }
 			    public void write_pes_header_v1(int distinctBlockObjects) throws IOException {
 			        writeInt16LE(0x01); //1 is scale to fit.
 			        writeInt16LE(0x01); // 0 = 100x100 else 130x180 or above
@@ -1093,6 +1198,7 @@ public class PEmbroiderWriter {
 			        }
 			        writeSpaceHolder32LE(tell());
 			        write_pec();
+			        stream.close();
 			    }
 			    void write_truncated_version_1() throws IOException {
 			        write("#PES0001");
@@ -1101,8 +1207,68 @@ public class PEmbroiderWriter {
 			            writeInt8(0x00);
 			        }
 			        write_pec();
+			        stream.close();
 			    }
 
+			    void write_truncated_version_6() throws IOException {
+			        write("#PES0060");
+			        space_holder(4);
+			        write_pes_header_v6(0);
+			        for (int i = 0; i < 5; i++) {
+			            writeInt8(0x00);
+			        }
+			        writeInt16LE(0x0000);
+			        writeInt16LE(0x0000);
+			        int current_position = tell();
+			        writeSpaceHolder32LE(current_position);
+			        Object[] color_info = write_pec();
+			        write_pes_addendum(color_info);
+			        writeInt16LE(0x0000); //found v6, not 5,4
+			        stream.close();
+			    }
+			    void write_version_6() throws IOException {
+
+			        write("#PES0060");
+
+			        float pattern_left = bounds[0];
+			        float pattern_top = bounds[1];
+			        float pattern_right = bounds[2];
+			        float pattern_bottom = bounds[3];
+
+			        float cx = ((pattern_left + pattern_right) / 2);
+			        float cy = ((pattern_top + pattern_bottom) / 2);
+
+			        float left = pattern_left - cx;
+			        float top = pattern_top - cy;
+			        float right = pattern_right - cx;
+			        float bottom = pattern_bottom - cy;
+
+			        int placeholder_pec_block = tell();
+			        space_holder(4);
+
+			        if (stitches.size() == 0) {
+			            write_pes_header_v6( 0);
+			            writeInt16LE(0x0000);
+			            writeInt16LE(0x0000);
+			        } else {
+			            write_pes_header_v6( 1);
+			            writeInt16LE(0xFFFF);
+			            writeInt16LE(0x0000);
+			            ArrayList<Integer> log = write_pes_blocks(left, top, right, bottom, cx, cy);
+			            //In version 6 there is some node, tree, order thing.
+			            writeInt32LE(0);
+			            writeInt32LE(0);
+			            for (int i = 0, ie = log.size(); i < ie; i++) {
+			                writeInt32LE(i);
+			                writeInt32LE(0);
+			            }
+			        }
+			        writeSpaceHolder32LE(tell());
+			        Object[] color_info = write_pec();
+			        write_pes_addendum(color_info);
+			        writeInt16LE(0x0000); //found v6, not 5,4
+
+			    }
 			}; _BinWriter bin = new _BinWriter();
 			if (VERSION == 1) {
 				if (TRUNCATED) {
@@ -1110,8 +1276,15 @@ public class PEmbroiderWriter {
 				}else {
 					bin.write_version_1();
 				}
+			}else if (VERSION == 6){
+				if (TRUNCATED) {
+					bin.write_truncated_version_6();
+				}else {
+					bin.write_version_6();
+				}
+				
 			}else {
-				System.out.println(logPrefix+"Error: Unimplemented");
+				System.out.println(logPrefix+"Error: PES version inexistent or unimplemented");
 			}
 	        
 	    }
