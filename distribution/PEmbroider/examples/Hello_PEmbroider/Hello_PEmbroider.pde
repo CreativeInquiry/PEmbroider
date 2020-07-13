@@ -12,7 +12,7 @@ void setup() {
 
   // Create the PEmbroider object
   E = new PEmbroiderGraphics(this, width, height);
-  E.setPath (sketchPath("Hello_etebigger_3widfacespace3_text3.vp3")); 
+  E.setPath (sketchPath("Hello_etebigger_3widfacespace3_text3.dst")); 
 
   // Start rendering to the PEmbroiderer
   E.beginDraw(); 
@@ -67,6 +67,6 @@ void setup() {
   
    //E.optimize();  // VERY SLOW, but ESSENTIAL for good file output!
    E.visualize(); // Display (preview) the embroidery onscreen.
-   //E.endDraw();   // Write out the embroidery file.
+   E.endDraw();   // Write out the embroidery file.
    //save("Hello_Pembroider.png");
 }

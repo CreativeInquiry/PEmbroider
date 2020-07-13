@@ -52,6 +52,7 @@ public class PEmbroiderWriter {
 		}
 
 		private static void encodeRecord(byte[] command, int x, int y, int flags) {
+
 			y = -y;
 			byte b0 = 0;
 			byte b1 = 0;
@@ -118,10 +119,15 @@ public class PEmbroiderWriter {
 				name = name.substring(0, 8);
 			}
 			int pointsize = stitches.size();
-
+			int count_color_blocks_total = 1;
+			for (int i = 1; i < colors.size(); i++) {
+				if (!colors.get(i).equals(colors.get(i-1))) {
+					count_color_blocks_total ++;
+				}
+			}
 			stream.write(String.format("LA:%-16s\r", name).getBytes());
 			stream.write(String.format(Locale.ENGLISH, "ST:%7d\r", pointsize).getBytes());
-			stream.write(String.format(Locale.ENGLISH, "CO:%3d\r", colors.size()-1).getBytes());
+			stream.write(String.format(Locale.ENGLISH, "CO:%3d\r", count_color_blocks_total-1).getBytes());
 			/* number of color changes, not number of colors! */
 			stream.write(String.format(Locale.ENGLISH, "+X:%5d\r", (int) Math.abs(bounds[2])).getBytes());
 			stream.write(String.format(Locale.ENGLISH, "-X:%5d\r", (int) Math.abs(bounds[0])).getBytes());
@@ -156,7 +162,7 @@ public class PEmbroiderWriter {
 			byte[] command = new byte[COMMANDSIZE];
 
 			double xx = 0, yy = 0;
-			for (int i = 0, ie = stitches.size(); i < ie; i++) {
+			for (int i = 0; i < stitches.size(); i++) {
 				if (i > 0 && !colors.get(i).equals(colors.get(i-1))) {
 					encodeRecord(command, 0, 0, COLOR_CHANGE & COMMAND_MASK);
 					stream.write(command);
@@ -168,21 +174,32 @@ public class PEmbroiderWriter {
 				int dy = (int) Math.rint(y - yy);
 				xx += dx;
 				yy += dy;
-				switch (data) {
-				case TRIM:
-					encodeRecord(command, 2, 2, JUMP);
-					stream.write(command);
-					encodeRecord(command, -4, -4, JUMP);
-					stream.write(command);
-					encodeRecord(command, 2, 2, JUMP);
-					stream.write(command);
-					break;
-				default:
-					encodeRecord(command, dx, dy, data);
-					stream.write(command);
-					break;
+				
+				if (Math.abs(dx) >= 121 || Math.abs(dy) >= 121) {
+					int steps = Math.max(Math.abs(dx/121),Math.abs(dy/121))+1;
+					float inc = 1f/(float)steps;
+					int accx = 0;
+					int accy = 0;
+					int ddx = (int)Math.rint(dx * inc);
+					int ddy = (int)Math.rint(dy * inc);
+					for (int j = 0; j < steps-1; j++) {
+						int deltaX = ddx;
+						int deltaY = ddy;
+						encodeRecord(command, deltaX, deltaY, data);
+						stream.write(command);
+						accx += ddx;
+						accy += ddy;
+					}
+					dx -= accx;
+					dy -= accy;
 				}
+
+				encodeRecord(command, dx, dy, data);
+				stream.write(command);
+
+				
 			}
+			encodeRecord(command, 0, 0, END & COMMAND_MASK);
 			stream.close();
 		}
 	}
