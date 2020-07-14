@@ -1873,6 +1873,7 @@ public class PEmbroiderGraphics {
 		polyss.add( new ArrayList<ArrayList<PVector>>());
 		int mm = PApplet.ceil(PApplet.PI*(d*2)/s);
 		for (int i = 0; i < poly.size(); i++) {
+			
 			ArrayList<ArrayList<PVector>> polys = polyss.get((i-1+poly.size())%poly.size());
 			PVector p0 = poly.get(i);
 			float x0 = p0.x;
@@ -1932,7 +1933,8 @@ public class PEmbroiderGraphics {
 		}
 		
 		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
-		for (int i = 0; i < polyss.size(); i++) {
+		for (int _i = 0; _i < polyss.size(); _i++) {
+			int i = (_i - 1 + polyss.size())%polyss.size();
 			for (int j = 0; j < polyss.get(i).size(); j++) {
 				if (j % 2 == 0) {
 					Collections.reverse(polyss.get(i).get(j));
@@ -1965,7 +1967,8 @@ public class PEmbroiderGraphics {
 	
 	
 	public ArrayList<ArrayList<PVector>> strokePolyNormalAng(ArrayList<PVector> poly, float d, float s, float ang, boolean close){
-		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
+//		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
+		ArrayList<ArrayList<ArrayList<PVector>>> polyss = new ArrayList<ArrayList<ArrayList<PVector>>>();
 		
 		float dd = PApplet.abs(d / PApplet.cos(ang));
 		
@@ -1983,6 +1986,8 @@ public class PEmbroiderGraphics {
 		pg.translate(-bb.x,-bb.y);
 		pg.strokeCap(PConstants.SQUARE);
 		for (int i = 0; i < poly.size()-(close?0:1); i++) {
+			ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
+			polyss.add(polys);
 			
 			PVector p0 = poly.get(i);
 			PVector p1 = poly.get((i+1)%poly.size());
@@ -2049,8 +2054,13 @@ public class PEmbroiderGraphics {
 			}
 			
 		}
+		pg.filter(PConstants.DILATE);
+
+		polyss.add( new ArrayList<ArrayList<PVector>>());
 		int mm = PApplet.ceil(PApplet.PI*(d*2)/s);
 		for (int i = 0; i < poly.size(); i++) {
+			ArrayList<ArrayList<PVector>> polys = polyss.get((i-1+poly.size())%poly.size());
+			
 			PVector p0 = poly.get(i);
 			float x0 = p0.x;
 			float y0 = p0.y;
@@ -2108,7 +2118,16 @@ public class PEmbroiderGraphics {
 			}
 		}
 		
-		
+		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
+		for (int _i = 0; _i < polyss.size(); _i++) {
+			int i = (_i - 1 + polyss.size())%polyss.size();
+			for (int j = 0; j < polyss.get(i).size(); j++) {
+				if (j % 2 == 0) {
+					Collections.reverse(polyss.get(i).get(j));
+				}
+				polys.add(polyss.get(i).get(j));
+			}
+		}
 		pg.endDraw();
 		float ml = PApplet.min(2,d-1);
 		for (int i = polys.size()-1; i >= 0; i--) {
@@ -2123,6 +2142,10 @@ public class PEmbroiderGraphics {
 			for (int j = polys.get(i).size()-2; j > 0; j--) {
 				polys.get(i).remove(j);
 			}
+		}
+		for (int i = 1; i < polys.size(); i++) {
+			polys.get(0).addAll(polys.get(i));
+			polys.get(i).clear();
 		}
 //		app.image(pg,0,0);
 		return polys;
