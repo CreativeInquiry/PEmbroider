@@ -146,6 +146,7 @@ public class PEmbroiderGraphics {
 	
 	public boolean EXPERIMENTAL_CROSS_RESAMPLE = false;
 	
+	public float PERPENDICULAR_STROKE_CAP_DENSITY_MULTIPLIER = 1.0f;
 	
 	public float CULL_SPACING = 7;
 	
@@ -1871,7 +1872,7 @@ public class PEmbroiderGraphics {
 		pg.filter(PConstants.DILATE);
 
 		polyss.add( new ArrayList<ArrayList<PVector>>());
-		int mm = PApplet.ceil(PApplet.PI*(d*2)/s);
+		int mm = PApplet.ceil(PApplet.PI*(d*2)/s*PERPENDICULAR_STROKE_CAP_DENSITY_MULTIPLIER);
 		for (int i = 0; i < poly.size(); i++) {
 			
 			ArrayList<ArrayList<PVector>> polys = polyss.get((i-1+poly.size())%poly.size());
@@ -2057,7 +2058,7 @@ public class PEmbroiderGraphics {
 		pg.filter(PConstants.DILATE);
 
 		polyss.add( new ArrayList<ArrayList<PVector>>());
-		int mm = PApplet.ceil(PApplet.PI*(d*2)/s);
+		int mm = PApplet.ceil(PApplet.PI*(d*2)/s*PERPENDICULAR_STROKE_CAP_DENSITY_MULTIPLIER);
 		for (int i = 0; i < poly.size(); i++) {
 			ArrayList<ArrayList<PVector>> polys = polyss.get((i-1+poly.size())%poly.size());
 			
