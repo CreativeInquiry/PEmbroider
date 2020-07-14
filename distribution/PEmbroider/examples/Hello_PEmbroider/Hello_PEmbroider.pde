@@ -5,15 +5,16 @@ import processing.embroider.*;
 PEmbroiderGraphics E;
 
 void setup() {
-  noLoop(); 
+  //noLoop(); 
   size (600, 750);
   float cx = width/2; 
   float cy = height/2 - 40;
 
   // Create the PEmbroider object
   E = new PEmbroiderGraphics(this, width, height);
-  PEmbroiderWriter.PES.TRUNCATED = false;
-  E.setPath (sketchPath("Hello_PEmbroider.pes")); 
+  PEmbroiderWriter.PES.TRUNCATED = true;
+  PEmbroiderWriter.PES.VERSION = 1;
+  E.setPath (sketchPath("pes_v1_trunc.pes")); 
 
   // Start rendering to the PEmbroiderer
   E.beginDraw(); 
@@ -54,7 +55,7 @@ void setup() {
   E.setStitch(10, 25, 0); 
   E.arc(cx, cy, 270, 270, PI*0.15, PI*0.85); 
 
-  // Say hello
+   //Say hello
   E.stroke(0, 0, 0); 
   E.textSize(2.5); 
   E.textAlign(CENTER, BOTTOM);
@@ -66,8 +67,13 @@ void setup() {
   // in order to actually export the embroidery file. 
   // Note that E.optimize() can take about a minute to run. Patience!
   
-   //E.optimize();  // VERY SLOW, but ESSENTIAL for good file output!
-   E.visualize(); // Display (preview) the embroidery onscreen.
-   //E.endDraw();   // Write out the embroidery file.
+   //E.optimize(5,0);  // VERY SLOW, but ESSENTIAL for good file output!
+   //E.visualize(true,false,true); // Display (preview) the embroidery onscreen.
+   E.endDraw();   // Write out the embroidery file.
    //save("Hello_Pembroider.png");
+}
+
+void draw(){
+  background(255);
+  E.visualize(true,false,false,frameCount);
 }

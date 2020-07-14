@@ -1797,7 +1797,7 @@ public class PEmbroiderGraphics {
 		pg.beginDraw();
 		pg.background(0);
 		pg.stroke(255);
-		pg.strokeWeight(s*1.0f);
+		pg.strokeWeight(s*1f);
 		pg.translate(-bb.x,-bb.y);
 		pg.strokeCap(PConstants.SQUARE);
 		for (int i = 0; i < poly.size()-(close?0:1); i++) {
@@ -1868,6 +1868,8 @@ public class PEmbroiderGraphics {
 			}
 			
 		}
+		pg.filter(PConstants.DILATE);
+
 		polyss.add( new ArrayList<ArrayList<PVector>>());
 		int mm = PApplet.ceil(PApplet.PI*(d*2)/s);
 		for (int i = 0; i < poly.size(); i++) {
@@ -1900,7 +1902,7 @@ public class PEmbroiderGraphics {
 						}
 						continue;
 					}
-					if ((pg.get((int)(x2-bb.x),(int)(y2-bb.y))>>16&0xFF)<127) {
+					if ((pg.get((int)(x2-bb.x),(int)(y2-bb.y))>>16&0xFF)<1) {
 						if (!lastOn) {
 							ArrayList<PVector> pp = new ArrayList<PVector>();
 							pp.add(new PVector(x2,y2));
@@ -1931,7 +1933,12 @@ public class PEmbroiderGraphics {
 		
 		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
 		for (int i = 0; i < polyss.size(); i++) {
-			polys.addAll(polyss.get(i));
+			for (int j = 0; j < polyss.get(i).size(); j++) {
+				if (j % 2 == 0) {
+					Collections.reverse(polyss.get(i).get(j));
+				}
+				polys.add(polyss.get(i).get(j));
+			}
 		}
 		pg.endDraw();
 		float ml = PApplet.min(2,d-1);
@@ -1947,6 +1954,10 @@ public class PEmbroiderGraphics {
 			for (int j = polys.get(i).size()-2; j > 0; j--) {
 				polys.get(i).remove(j);
 			}
+		}
+		for (int i = 1; i < polys.size(); i++) {
+			polys.get(0).addAll(polys.get(i));
+			polys.get(i).clear();
 		}
 //		app.image(pg,0,0);
 		return polys;
