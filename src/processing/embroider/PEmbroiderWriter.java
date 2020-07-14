@@ -174,9 +174,9 @@ public class PEmbroiderWriter {
 				xx += dx;
 				yy += dy;
 				
-				if (Math.abs(dx) >= 121 || Math.abs(dy) >= 121) {
+				if (Math.abs(dx) >= 100 || Math.abs(dy) >= 100) {
 					data = JUMP & COMMAND_MASK;
-					int steps = Math.max(Math.abs(dx/121),Math.abs(dy/121))+1;
+					int steps = Math.max(Math.abs(dx/100),Math.abs(dy/100))+1;
 					float inc = 1f/(float)steps;
 					int accx = 0;
 					int accy = 0;
@@ -789,7 +789,9 @@ public class PEmbroiderWriter {
 						ArrayList<Integer> palette = new ArrayList<Integer>();
 						for (int i = 0; i < colors.size(); i++) {
 							if (i==0 || (!colors.get(i).equals(colors.get(i-1)))) {
-								palette.add(colors.get(i));
+//								if (!palette.contains(colors.get(i))) {
+									palette.add(colors.get(i));
+//								}
 							}
 						}
 						System.out.println(logPrefix+"Color count: "+palette.size());
