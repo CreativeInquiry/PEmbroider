@@ -18,9 +18,9 @@ void setup() {
 
   E.noFill();
   E.stroke(0, 0, 0); 
-  E.strokeWeight(60); 
-  E.strokeSpacing(2);
-  E.setStitch(5, 30, 0);
+  E.strokeWeight(44); 
+  E.strokeSpacing(2.0);
+  E.setStitch(5, 66, 0);
   
   // These are the 3 options:
   // E.strokeMode(E.PERPENDICULAR);
