@@ -728,6 +728,12 @@ public class PEmbroiderWriter {
 			    	Object[] data = write_pec_header();
 			        write_pec_block();
 			        write_pec_graphics();
+			        write_pec_graphics();
+			        for (int i = 0; i < colors.size(); i++) {
+			        	if (i > 0 && !colors.get(i-1).equals(colors.get(i))) {
+			        		write_pec_graphics();
+			        	}
+			        }
 			        
 			        return data;
 			    }
@@ -773,34 +779,27 @@ public class PEmbroiderWriter {
 			        writeInt8(PEC_ICON_WIDTH / 8);
 			        writeInt8(PEC_ICON_HEIGHT);
 
-			            writeInt8(0x20);
-			            writeInt8(0x20);
-			            writeInt8(0x20);
-			            writeInt8(0x20);
-			            writeInt8(0x64);
-			            writeInt8(0x20);
-			            writeInt8(0x00);
-			            writeInt8(0x20);
-			            writeInt8(0x00);
-			            writeInt8(0x20);
-			            writeInt8(0x20);
-			            writeInt8(0x20);
+			        
+					ArrayList<Integer> palette = new ArrayList<Integer>();
+					for (int i = 0; i < colors.size(); i++) {
+						if (i==0 || (!colors.get(i).equals(colors.get(i-1)))) {
+//							if (!palette.contains(colors.get(i))) {
+								palette.add(colors.get(i));
+//							}
+						}
+					}
 
-						ArrayList<Integer> palette = new ArrayList<Integer>();
-						for (int i = 0; i < colors.size(); i++) {
-							if (i==0 || (!colors.get(i).equals(colors.get(i-1)))) {
-//								if (!palette.contains(colors.get(i))) {
-									palette.add(colors.get(i));
-//								}
-							}
-						}
-						System.out.println(logPrefix+"Color count: "+palette.size());
-						writeInt8(palette.size()-1);
-//			        
-						for (int i = 0; i < palette.size(); i++) {
-							int idx = find_color(palette.get(i));
-							writeInt8(idx);
-						}
+		            for (int i = 0; i < 12; i++) {
+		                writeInt8(0x20);
+		            }
+		            color_index_list.add(palette.size()-1);
+		            writeInt8(palette.size()-1);
+		            for (int i = 0; i < palette.size(); i++) {
+		            	int idx = find_color(palette.get(i));
+		            	color_index_list.add(idx);
+		            	writeInt8(idx);
+		            }
+		            
 			        for (int i = 0; i < (463-palette.size()); i++) {
 			            writeInt8(0x20);
 			        }
@@ -882,7 +881,9 @@ public class PEmbroiderWriter {
 			        value |= 0b10000000_00000000;
 			        return value;
 			    }
-
+			    public int flagTrim(int longForm) {
+			        return longForm | (TRIM_CODE << 8);
+			    }
 
 			    private void pec_encode() throws IOException {
 			        boolean color_two = true;
@@ -900,20 +901,38 @@ public class PEmbroiderWriter {
 		                    writeInt8((color_two) ? 2 : 1);
 		                    color_two = !color_two;
 						}
+
 			            float x = stitches.get(i).x;
 			            float y = stitches.get(i).y;
 			            
 //			            System.out.println(x+" "+y);
 			            dx = (int) Math.rint(x - xx);
 			            dy = (int) Math.rint(y - yy);
+			            int odx = dx;
+			            int ody = dy;
 			            xx += dx;
 			            yy += dy;
+			            
+			        	if (i == 0) {
+//		                    jumping = true;
+		                    dx = encode_long_form(dx);
+		                    dx = flagTrim(dx);
+		                    dy = encode_long_form(dy);
+		                    dy = flagTrim(dy);
+		                    writeInt16BE(dx);
+		                    writeInt16BE(dy);
+			            	writeInt8((byte) 0x00);
+			            	writeInt8((byte) 0x00);
+			            	dx = 0;
+			            	dy = 0;
+			        	}
 
-			            if ((jumping) && (dx != 0) && (dy != 0)) {
-			            	writeInt8((byte) 0x00);
-			            	writeInt8((byte) 0x00);
-			            	jumping = false;
-			            }
+
+//			            if ((jumping) && (dx != 0) && (dy != 0)) {
+//			            	writeInt8((byte) 0x00);
+//			            	writeInt8((byte) 0x00);
+//			            	jumping = false;
+//			            }
 			            if (dx < 63 && dx > -64 && dy < 63 && dy > -64) {
 			            	writeInt8(dx & MASK_07_BIT);
 			            	writeInt8(dy & MASK_07_BIT);
@@ -972,7 +991,7 @@ public class PEmbroiderWriter {
 			        int mode;
 			        int adjust_x = (int) (left + cx);
 			        int adjust_y = (int) (bottom + cy);
-
+			        
 			        int colorIndex = 0;
 			        int colorCode = 0;
 
@@ -982,6 +1001,26 @@ public class PEmbroiderWriter {
 			        
 			        float lastx = 0, lasty = 0;
 			        float x, y;
+			        
+			        
+                    x = lastx;
+                    y = lasty;
+                    segment.add((int) (x - adjust_x));
+                    segment.add((int) (y - adjust_y));
+                    x = stitches.get(0).x;
+                    y = stitches.get(0).y;
+                    segment.add((int) (x - adjust_x));
+                    segment.add((int) (y - adjust_y));
+                    flag = 1;
+                    writeInt16LE(flag);
+	                writeInt16LE((short) colorCode);
+	                writeInt16LE((short) segment.size() / 2);
+	                for (Integer v : segment) {
+	                    writeInt16LE(v);
+	                }
+	                section++;
+	                segment.clear();
+                    
 			        for (int i = 0, ie = stitches.size(); i < ie; i++) {
 			        	int thisColor = colors.get(i);
 			        	mode = STITCH & COMMAND_MASK;
@@ -1017,6 +1056,7 @@ public class PEmbroiderWriter {
 			                writeInt16LE((short) colorCode);
 			                writeInt16LE((short) segment.size() / 2);
 			                for (Integer v : segment) {
+//			                	processing.core.PApplet.println(v);
 			                    writeInt16LE(v);
 			                }
 			                section++;
@@ -1036,6 +1076,7 @@ public class PEmbroiderWriter {
 			    }
 
 			    public int write_pes_sewsegheader(float left, float top, float right, float bottom) throws IOException {
+
 			        float height = bottom - top;
 			        float width = right - left;
 			        int hoopHeight = 1800, hoopWidth = 1300;
@@ -2289,7 +2330,7 @@ public class PEmbroiderWriter {
 			}
 		}
 
-		float[] bounds = {-width/2,-height/2,width/2,height/2};
+		float[] bounds = {-(float)width/2,-(float)height/2,(float)width/2,(float)height/2};
 		String[] tokens = filename.split("\\.(?=[^\\.]+$)");
 		System.out.println(logPrefix+"BASENAME :"+tokens[0]);
 		System.out.println(logPrefix+"EXTENSION:"+tokens[1]);
