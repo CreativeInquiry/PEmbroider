@@ -4013,6 +4013,22 @@ public class PEmbroiderGraphics {
 		cubicVertex(x1,y1,x2,y2,x3,y3);
 		curveBuff.clear();
 	}
+	public void bezier(float x0, float y0,float x1, float y1, float x2, float y2, float x3, float y3) {
+		beginShape();
+		vertex(x0,y0);
+		bezierVertex(x1,y1,x2,y2,x3,y3);
+		endShape();	
+	}
+	public void curve(float x0, float y0,float x1, float y1, float x2, float y2, float x3, float y3) {
+		beginShape();
+		curveVertex(x0,y0);
+		curveVertex(x1,y1);
+		curveVertex(x2,y2);
+		curveVertex(x3,y3);
+		endShape();
+		
+	}
+	
 	/** 
 	 *  Add a rational quadratic bezier vertex to the current polygon/polyline. This must be preceded by beginShape() and at least a vertex()
 	 *  @param x1  x coordinate of first control point

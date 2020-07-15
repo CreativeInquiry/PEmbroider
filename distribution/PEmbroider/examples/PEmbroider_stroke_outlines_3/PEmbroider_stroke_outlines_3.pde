@@ -21,9 +21,10 @@ void setup() {
   E.strokeWeight(44); 
   E.strokeSpacing(2.0);
   E.setStitch(5, 66, 0);
+  E.PERPENDICULAR_STROKE_CAP_DENSITY_MULTIPLIER = 0.4;
   
   // These are the 3 options:
-  // E.strokeMode(E.PERPENDICULAR);
+   //E.strokeMode(E.PERPENDICULAR);
   // E.strokeMode(E.TANGENT);
   E.strokeMode(E.ANGLED);
 
@@ -32,6 +33,7 @@ void setup() {
   for (int i=0; i<nCurves; i++) {
     float ax = map(i, 0, (nCurves-1), 0+50, width-200-50);
     float sa = map(i, 0, (nCurves-1), 30, -30); 
+    println(sa);
     E.strokeAngleDeg(sa);
 
     E.beginShape();
@@ -41,10 +43,11 @@ void setup() {
     E.endShape();
   }
 
+  //E.line(100,100,100,200);
 
   //-----------------------
   E.optimize(); // slow but good and important
-  E.visualize();//true, false, false);
+  E.visualize(true,false,false);//true, false, false);
   // E.endDraw(); // write out the file
   // save("PEmbroider_stroke_outlines_3.png");
 }
