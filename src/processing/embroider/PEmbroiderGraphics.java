@@ -1873,6 +1873,51 @@ public class PEmbroiderGraphics {
 
 		polyss.add( new ArrayList<ArrayList<PVector>>());
 		int mm = PApplet.ceil(PApplet.PI*(d*2)/s*PERPENDICULAR_STROKE_CAP_DENSITY_MULTIPLIER);
+		
+		if (!close) {
+			for (int i = 0; i < poly.size(); i++) {
+				
+				ArrayList<ArrayList<PVector>> polys = polyss.get((i-1+poly.size())%poly.size());
+				PVector p0 = poly.get(i);
+				
+				if ((i == 0 || i == poly.size()-1 ) && poly.size()>1) {
+					float a;
+					if (i == 0) {
+						a = PApplet.atan2(poly.get(0).y-poly.get(1).y, poly.get(0).x-poly.get(1).x);
+					}else {
+						a = PApplet.atan2(poly.get(poly.size()-1).y-poly.get(poly.size()-2).y, poly.get(poly.size()-1).x-poly.get(poly.size()-2).x);
+					}
+					for (int j = 0; j < mm/2; j++) {
+						float t = (float)j/(float)(mm/2);
+						float x1 = p0.x+d*t*PApplet.cos(a);
+						float y1 = p0.y+d*t*PApplet.sin(a);
+						float cw = d*PApplet.sqrt(1-t*t);
+						
+						float xa = x1+cw*PApplet.cos(a-PConstants.HALF_PI);
+						float ya = y1+cw*PApplet.sin(a-PConstants.HALF_PI);
+						
+						float xb = x1+cw*PApplet.cos(a+PConstants.HALF_PI);
+						float yb = y1+cw*PApplet.sin(a+PConstants.HALF_PI);
+						
+						ArrayList<PVector> pp = new ArrayList<PVector>();
+						pp.add(new PVector(xa,ya));
+						pp.add(new PVector(xb,yb));
+						polys.add(pp);
+
+					}
+					pg.pushStyle();
+					pg.fill(255);
+					pg.noStroke();
+					pg.circle(poly.get(i).x,poly.get(i).y,d*2+2);
+					pg.popStyle();				
+				}
+			}
+			
+			
+		}
+		
+		
+		
 		for (int i = 0; i < poly.size(); i++) {
 			
 			ArrayList<ArrayList<PVector>> polys = polyss.get((i-1+poly.size())%poly.size());
@@ -1880,16 +1925,17 @@ public class PEmbroiderGraphics {
 			float x0 = p0.x;
 			float y0 = p0.y;
 			
+			
 			for (int j = 0; j < mm; j++) {
 				float a = (float)j/(float)mm*PApplet.TWO_PI;
 				float x1 = p0.x - d*PApplet.cos(a);
 				float y1 = p0.y - d*PApplet.sin(a);
 				boolean lastOn = false;
-				
+
 				int m = PApplet.ceil(d);
 				int mmm = PApplet.min(10,m/3);
 				mmm = 0;
-				
+
 				pg.beginShape();
 				for (int k = 0; k < m; k++) {
 					float u = (float)k/(float)(m-1);
@@ -1900,7 +1946,7 @@ public class PEmbroiderGraphics {
 							polys.remove(polys.size()-1);
 						}else {
 							polys.get(polys.size()-1).add(new PVector(x2,y2));
-						    pg.vertex(x2,y2);
+							pg.vertex(x2,y2);
 						}
 						continue;
 					}
@@ -1931,6 +1977,7 @@ public class PEmbroiderGraphics {
 				pg.endShape();
 				pg.endShape();
 			}
+			
 		}
 		
 		ArrayList<ArrayList<PVector>> polys = new ArrayList<ArrayList<PVector>>();
@@ -2059,6 +2106,55 @@ public class PEmbroiderGraphics {
 
 		polyss.add( new ArrayList<ArrayList<PVector>>());
 		int mm = PApplet.ceil(PApplet.PI*(d*2)/s*PERPENDICULAR_STROKE_CAP_DENSITY_MULTIPLIER);
+		
+		
+		
+		if (!close) {
+			for (int i = 0; i < poly.size(); i++) {
+				
+				ArrayList<ArrayList<PVector>> polys = polyss.get((i-1+poly.size())%poly.size());
+				PVector p0 = poly.get(i);
+				
+				if ((i == 0 || i == poly.size()-1 ) && poly.size()>1) {
+					float a;
+					if (i == 0) {
+						a = PApplet.atan2(poly.get(0).y-poly.get(1).y, poly.get(0).x-poly.get(1).x);
+					}else {
+						a = PApplet.atan2(poly.get(poly.size()-1).y-poly.get(poly.size()-2).y, poly.get(poly.size()-1).x-poly.get(poly.size()-2).x);
+					}
+					a += ang;
+					for (int j = 0; j < mm/2; j++) {
+						float t = (float)j/(float)(mm/2);
+						if (i == 0) {
+							t = 1-t;
+						}
+						float x1 = p0.x+d*t*PApplet.cos(a);
+						float y1 = p0.y+d*t*PApplet.sin(a);
+						float cw = d*PApplet.sqrt(1-t*t)/PApplet.abs(PApplet.cos(ang));
+						
+						float xa = x1+cw*PApplet.cos(a-PConstants.HALF_PI);
+						float ya = y1+cw*PApplet.sin(a-PConstants.HALF_PI);
+						
+						float xb = x1+cw*PApplet.cos(a+PConstants.HALF_PI);
+						float yb = y1+cw*PApplet.sin(a+PConstants.HALF_PI);
+						
+						ArrayList<PVector> pp = new ArrayList<PVector>();
+						pp.add(new PVector(xa,ya));
+						pp.add(new PVector(xb,yb));
+						polys.add(pp);
+
+					}
+					pg.pushStyle();
+					pg.fill(255);
+					pg.noStroke();
+					pg.circle(poly.get(i).x,poly.get(i).y,d*2+2);
+					pg.popStyle();				
+				}
+			}
+			
+			
+		}
+		
 		for (int i = 0; i < poly.size(); i++) {
 			ArrayList<ArrayList<PVector>> polys = polyss.get((i-1+poly.size())%poly.size());
 			
