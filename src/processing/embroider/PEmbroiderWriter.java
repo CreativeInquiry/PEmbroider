@@ -620,7 +620,7 @@ public class PEmbroiderWriter {
 	
 	public static class PES {
 		public static int VERSION = 1;
-		public static boolean TRUNCATED = true;
+		public static boolean TRUNCATED = false;
 		
 	    static final int MASK_07_BIT = 0b01111111;
 	    static final int JUMP_CODE = 0b00010000;
