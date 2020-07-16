@@ -4,7 +4,7 @@
 
 ![](images/cosa-and-sfci-logos.jpg)
 
-PEmbroider includes file-writing code adapted from the EmbroidePy [EmbroideryIO](https://github.com/EmbroidePy/EmbroideryIO) project, under its MIT License. Additional thanks to Chris Coleman, Huw Messie, Bryce Summers, Lea Albaugh, Dan Moore, the Processing Foundation, and the staff of the STUDIO. PEmbroider is free, open-source software released under an [MIT License](license.txt).
+PEmbroider includes file-writing code adapted from the EmbroidePy [EmbroideryIO](https://github.com/EmbroidePy/EmbroideryIO) project, under its MIT License. Additional thanks to our beta-test community; Chris Coleman, and the Processing Foundation; Huw Messie, Bryce Summers, Lea Albaugh, Dan Moore, and the staff of the STUDIO. PEmbroider is free, open-source software released under an [MIT License](license.txt).
 
 ---
 ## TL;DR
@@ -16,6 +16,7 @@ PEmbroider includes file-writing code adapted from the EmbroidePy [EmbroideryIO]
 * Read the [**Full API**](API.md)
 
 [![Download the PEmbroider Library for Processing](images/download_pembroider.jpg)](distribution/PEmbroider/download/Pembroider.zip)
+
 
 ---
 ## Contents
@@ -42,7 +43,8 @@ PEmbroider, by contrast, is a free, cross-platform, open-source, lightweight Jav
 PEmbroider is a embroidery library for the Java flavor of the [Processing](http://processing.org) creative coding environment, suitable for generating embroidery designs computationally. PEmbroider has the following features:
 
 * PEmbroider is structured similarly to other alternative renderers for Processing, providing basic drawing functions (lines, shapes, typography, etc.) that have drop-in compatibility with Processing code. 
-* PEmbroider is able to generate embroidery files in .DST, .EXP, .JEF, .PEC, .PES, .VP3, and .XXX file formats, suitable for consumer CNC embroidery machines such as those made by Brother or Husqvarna-Viking. PEmbroider is also able to generate .PDF, .SVG, .TSV, and .GCODE files for other output devices such as AxiDraw pen plotters, CNC routers, etc.
+* PEmbroider is able to generate embroidery files in .DST, .EXP, .JEF, .PEC, .PES, .VP3, and .XXX file formats, suitable for consumer CNC embroidery machines such as those made by Brother, Janome, or Husqvarna-Viking. 
+* PEmbroider is also able to export .PDF, .SVG, .TSV, and .GCODE files for other 2D output devices such as CNC routers, AxiDraw pen plotters, etc. Although PEmbroider has not been *primarily* designed for plotter output, some of our hatching algorithms may be useful for this community.
 * PEmbroider is able to generate embroidery designs from vector (.SVG) and black-and-white bitmap files (.PNG, .GIF). 
 * PEmbroider allows a variety of ways of composing shapes (including overlapping, cropping, and merging) using various computer vision and computational geometry algorithms.
 * PEmbroider offers a wide range of embroidery hatching (fill) methods.
@@ -72,7 +74,7 @@ PEmbroider comes with a variety of [examples](examples/README.md) which demonstr
 * For a manual install, Unzip the PEmbroider .ZIP file and install it in your Processing *Libraries* directory. More detailed instructions for doing this can be found [here](https://github.com/processing/processing/wiki/How-to-Install-a-Contributed-Library).
 * Restart Processing. You should now be able to open and run the included example programs, which you can find inside the PEmbroider directory, or [here](examples/README.md).
 * To export embroidery files, make sure that `optimize()` and `endDraw()` are called in your code. The `optimize()` function produces *much, much* more efficient embroidery paths, while `endDraw()` is the code that actually exports the file. Note that `optimize()` may take up to a minute to execute. 
-* In the code for your sketch, be sure you have specified the correct file format extension for your embroidery machine. PEmbroider currently supports .DST, .EXP, .JEF, .PEC, .PES, .VP3, and .XXX. If your machine's format is not yet supported, try using [this online converter](https://htmtopdf.herokuapp.com/embroidery/).
+* In the code for your sketch, be sure you have specified the correct file format extension for your embroidery machine. PEmbroider currently supports .DST, .EXP, .JEF, .PEC, .PES, .VP3, and .XXX. If your machine's format is not yet supported, try using [this online converter](https://htmtopdf.herokuapp.com/embroidery/), [Ink/Stitch](https://inkstitch.org/), or [Embird](https://www.embird.net/).
 * PEmbroider provides the `visualize()` function to view the planned stitches. You can also preview and validate your embroidery files with software such as [this online viewer](https://htmtopdf.herokuapp.com/embroidery/), Husqvarna/Viking [PREMIER+ 2](http://www.husqvarnaviking.com/en-US/Support/Complimentary-Software), or Brother [PE-Design](http://www.brother.com/common/hsm/ped10/ped10trial.html).
 * See [here for instructions](https://github.com/CreativeInquiry/STUDIO-Embroidery-Machine) on using the STUDIO's Husqvarna Viking Designer Jade 35 embroidery machine.
 
