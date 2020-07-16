@@ -2,7 +2,6 @@
 // Filling a pre-loaded SVG image
 
 import processing.embroider.*;
-import static processing.embroider.PEmbroiderGraphics.*; // PEmbroiderGraphics.PARALLEL -> PARALLEL
 PEmbroiderGraphics E;
 
 PShape mySvgImage;
@@ -22,21 +21,21 @@ void setup() {
   E.hatchSpacing(4); 
   E.setStitch(5, 15, 0); 
   
-  E.hatchMode(PERLIN);
+  E.hatchMode(E.PERLIN);
   E.shape(mySvgImage,50,50,350,350);
   
-  E.hatchMode(PARALLEL);
+  E.hatchMode(E.PARALLEL);
   E.shape(mySvgImage,425,200,150,150);
   
-  E.hatchMode(CROSS);
+  E.hatchMode(E.CROSS);
   E.shape(mySvgImage,600,200,150,150);
   
-  E.hatchMode(CONCENTRIC);
+  E.hatchMode(E.CONCENTRIC);
   E.shape(mySvgImage,775,200,150,150);
   
   E.noFill();
   E.strokeWeight(10);
-  E.strokeMode(PERPENDICULAR);
+  E.strokeMode(E.PERPENDICULAR);
   E.shape(mySvgImage,950,200,150,150);
 
   //-----------------------
