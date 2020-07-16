@@ -766,10 +766,10 @@ public class PEmbroiderWriter {
 			    
 			    public Object[] write_pec_header() throws IOException {
 			    	ArrayList<Integer> color_index_list = new ArrayList<>();
-			        
-			        String name = "Untitled";
-			        name = name.substring(0, 8);
-			        write(String.format(Locale.ENGLISH, "LA:%-16s\r", name).getBytes());
+			    	String[] strs = name.split("[.]|/|\\\\");
+			        String name_ = strs[strs.length-2];
+			        name_ = name_.substring(0, 8);
+			        write(String.format(Locale.ENGLISH, "LA:%-16s\r", name_).getBytes());
 			        for (int i = 0; i < 12; i++) {
 			            writeInt8(0x20);
 			        }
