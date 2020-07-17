@@ -70,15 +70,15 @@ void setup() {
    //save("Hello_Pembroider.png");
    
    
-   PEmbroiderWriter.PATH = sketchPath("pes1fix.pes"); 
+   PEmbroiderWriter.PATH = sketchPath("pes1fix.pdf"); 
    
    PEmbroiderWriter.PES.TRUNCATED = false;
    PEmbroiderWriter.PES.VERSION = 1;
    PEmbroiderWriter.TITLE = "HELLWRLD"; // 8 char
     
-   //PEmbroiderWriter.TRANSFORM = new PMatrix2D();
-   //PEmbroiderWriter.TRANSFORM.scale(1.5);
-   //PEmbroiderWriter.TRANSFORM.translate(-width/2,-height/2);
+   PEmbroiderWriter.TRANSFORM = new PMatrix2D();
+   PEmbroiderWriter.TRANSFORM.scale(1.5);
+   PEmbroiderWriter.TRANSFORM.translate(-width/2,-height/2);
     
    PEmbroiderWriter.BOUNDS = new float[]{-width,-height,width,height};
     

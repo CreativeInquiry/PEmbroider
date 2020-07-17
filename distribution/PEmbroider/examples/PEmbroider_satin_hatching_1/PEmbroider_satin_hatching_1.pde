@@ -20,7 +20,7 @@ void setup() {
   size (800, 800);
 
   E = new PEmbroiderGraphics(this, width, height);
-  String outputFilePath = sketchPath("4_true_PEmbroider_satin_hatching_1.vp3");
+  String outputFilePath = sketchPath("PEmbroider_satin_hatching_1.vp3");
   E.setPath(outputFilePath); 
 
   E.beginDraw(); 
@@ -29,13 +29,15 @@ void setup() {
   // E.satinMode(E.ZIGZAG); // Original style
   // E.satinMode(E.SIGSAG); // Zigzag parallelized
   E.satinMode(E.BOUSTROPHEDON); // The new mode, back-and-forth!
+  E.SATIN_RESAMPLING_OFFSET_FACTOR=0.2;
 
   E.noStroke(); 
   E.fill(0, 0, 0); 
-  E.hatchSpacing(4);
+  E.hatchSpacing(1.66);
   E.hatchAngleDeg(45);
   E.hatchMode(E.SATIN);
-  E.setStitch(10, 50, 0); 
+  E.setStitch(10, 60, 0); 
+  
 
   E.beginShape();
   for (int i=0; i<shapeCoords.length; i++) {
@@ -44,9 +46,9 @@ void setup() {
     E.vertex(px, py);
   }
   E.endShape(CLOSE);
-
-
-  // E.optimize(); // slow, but very important for file output!
+  
+  //E.optimize(); // slow, but very important for file output!
   E.visualize(true, true, true);
-  // E.endDraw(); // write out the file
+  //E.endDraw(); // write out the file
+  //save("PEmbroider_satin_hatching_1.png");
 }

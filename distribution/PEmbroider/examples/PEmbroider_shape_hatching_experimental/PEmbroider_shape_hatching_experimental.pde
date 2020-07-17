@@ -1,6 +1,5 @@
 // Test program for the PEmbroider library for Processing:
 // EXPERIMENTAL hatching modes: "spine" with PEmbroiderHatchSpine, 
-// and SPIRAL hatching
 
 import processing.embroider.*;
 PEmbroiderGraphics E;
@@ -36,6 +35,7 @@ void setup() {
   // Here, we use the (best) "vector field" (VF) version.
   //
   // Create a bitmap image by drawing to an offscreen graphics buffer.
+  
   PGraphics pg = createGraphics(width, height); 
 
   pg.beginDraw();
@@ -56,6 +56,9 @@ void setup() {
   pg.triangle (410, 200, 460, 050, 510, 400-200); 
   pg.arc      (525, 050, 150, 150, 0, PI*1.25, PIE); 
   pg.arc      (700, 050, 150, 150, 0, PI*1.25, CHORD); 
+  pg.square   (300,250,200);
+  pg.triangle (550,450, 750, 450, 650, 450-173);
+  pg.rect     (770,250, 100, 200);
 
   pg.pushMatrix(); 
   pg.translate(875, 0); 
@@ -66,90 +69,23 @@ void setup() {
   }
   pg.endShape(CLOSE);
   pg.popMatrix();
+  
+  pg.ellipse   (50,275,200,150);
 
   pg.endDraw(); 
+  
 
-  E.hatchSpacing(3.5);
+
+  E.hatchSpacing(3);
   E.setStitch(10, 30, 0);
   PEmbroiderHatchSpine.setGraphics(E);
   PEmbroiderHatchSpine.hatchSpineVF(pg);
 
 
-  //===================================================
-  // SPIRAL hatch mode works alright for convex shapes, 
-  // but may have issues on shapes with sharp concavities. 
-  // For better results, consider using the very similar 
-  // PEmbroiderGraphics.CONCENTRIC mode instead.
-  //
-  E.hatchMode(PEmbroiderGraphics.SPIRAL);
-  E.hatchSpacing(3.5);
-  E.setStitch(10, 30, 0);
-
-  E.pushMatrix();
-  E.translate(0, -175); 
-
-  E.beginShape();
-  E.vertex(50, 450);
-  E.vertex(50, 575);
-  E.vertex( 330, 575);
-  E.vertex( 330, 500);
-  E.quadraticVertex(250, 500, 200, 450);
-  E.vertex(175, 425);
-  E.endShape(CLOSE);
-
-  E.triangle (410, 575, 460, 425, 510, 575); 
-  E.arc      (525, 425, 150, 150, 0, PI*1.25, PIE); 
-  E.arc      (700, 425, 150, 150, 0, PI*1.25, CHORD); 
-  E.popMatrix();
-
-
-
-
-
   //-----------------------
-  // E.optimize(); // slow, but very good and very important
+  //E.optimize(); // slow, but very good and very important
   E.visualize();
-  // E.endDraw(); // write out the file
+  //E.endDraw(); // write out the files
+  //save("PEmbroider_shape_hatching_experimental.png");
+  
 }
-
-
-void draw() {
-  ;
-}
-
-void keyPressed() {
-  if (key == ' ') {
-    saveFrame("PEmbroider_shape_hatching_experimental.png");
-  }
-}
-
-
-
-/*
-  //===================================================
- // SPIRAL hatch mode works alright for convex shapes, 
- // but currently has issues on shapes with concavities. 
- // For better results, consider using the very similar 
- // PEmbroiderGraphics.CONCENTRIC mode instead.
- //
- E.hatchMode(PEmbroiderGraphics.SPIRAL);
- E.hatchSpacing(3.5);
- E.setStitch(10, 30, 0);
- 
- E.pushMatrix();
- E.translate(0, -175); 
- 
- E.beginShape();
- E.vertex(50, 450);
- E.vertex(50, 575);
- E.vertex( 330, 575);
- E.vertex( 330, 500);
- E.quadraticVertex(250, 500, 200, 450);
- E.vertex(175, 425);
- E.endShape(CLOSE);
- 
- E.triangle (410, 575, 460, 425, 510, 575); 
- E.arc      (525, 425, 150, 150, 0, PI*1.25, PIE); 
- E.arc      (700, 425, 150, 150, 0, PI*1.25, CHORD); 
- E.popMatrix();
- */

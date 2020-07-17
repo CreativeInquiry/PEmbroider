@@ -43,11 +43,9 @@ void setup() {
     E.endShape();
   }
 
-  //E.line(100,100,100,200);
-
   //-----------------------
-  E.optimize(); // slow but good and important
+  //E.optimize(); // slow but good and important
   E.visualize(true,false,false);//true, false, false);
-  // E.endDraw(); // write out the file
-  // save("PEmbroider_stroke_outlines_3.png");
+  //E.endDraw(); // write out the file
+  //save("PEmbroider_stroke_outlines_3.png");
 }

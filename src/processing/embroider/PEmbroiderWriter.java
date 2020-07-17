@@ -628,7 +628,7 @@ public class PEmbroiderWriter {
 	    static final int PEC_ICON_WIDTH = 48;
 	    static final int PEC_ICON_HEIGHT = 38;
 
-	    public static void write(String name, float[] bounds, ArrayList<PVector> stitches, ArrayList<Integer> colors, String title) throws IOException {
+	    public static void write(String name, float[] bounds, ArrayList<PVector> stitches, ArrayList<Integer> colors, String title, ArrayList<Boolean> jumps) throws IOException {
 
 			class _BinWriter{
 				int position = 0;
@@ -909,7 +909,7 @@ public class PEmbroiderWriter {
 			            xx += dx;
 			            yy += dy;
 			            
-			        	if (i == 0) {
+			        	if (jumps.get(i)) {
 //		                    jumping = true;
 		                    dx = encode_long_form(dx);
 		                    dx = flagTrim(dx);
@@ -1022,11 +1022,25 @@ public class PEmbroiderWriter {
 			        	mode = STITCH & COMMAND_MASK;
 			        	if (i > 0 && !colors.get(i-1).equals(thisColor)) {	
 			        		mode = COLOR_CHANGE & COMMAND_MASK;
+			        	}else if (i > 0 && jumps.get(i)) {
+			        		mode = JUMP & COMMAND_MASK;
 			        	}
 			            if ((mode != END) && (flag != -1)) {
 			            	writeInt16LE(0x8003);
 			            }
 			            switch (mode) {
+			            	case JUMP:
+			                    x = lastx;
+			                    y = lasty;
+			                    segment.add((int) (x - adjust_x));
+			                    segment.add((int) (y - adjust_y));
+			                    x = stitches.get(i).x;
+			                    y = stitches.get(i).y;
+			                    segment.add((int) (x - adjust_x));
+			                    segment.add((int) (y - adjust_y));
+			                    flag = 1;
+			                    break;
+			                    
 			                case COLOR_CHANGE:
 			                    colorCode = find_color(colors.get(i));
 			                    colorlog.add(section);
@@ -2331,11 +2345,13 @@ public class PEmbroiderWriter {
 		
 		ArrayList<PVector> stitches = new ArrayList<PVector>();
 		ArrayList<Integer> flatColors = new ArrayList<Integer>();
+		ArrayList<Boolean> jumps = new ArrayList<Boolean>();
 		for (int i = 0; i < polylines.size(); i++) {
 			for (int j = 0; j < polylines.get(i).size(); j++) {
 				PVector p = TRANSFORM.mult(polylines.get(i).get(j).copy(),null);
 				stitches.add(p);
 				flatColors.add(colors.get(i));
+				jumps.add(j==0 && (i == 0 || (polylines.get(i).get(0).dist(polylines.get(i-1).get(polylines.get(i-1).size()-1))>=64)));
 			}
 		}
 
@@ -2368,7 +2384,7 @@ public class PEmbroiderWriter {
 			}else if (tokens[1].equalsIgnoreCase("PEC")) {
 				PEC.write(tokens[0], BOUNDS, stitches, flatColors,TITLE);
 			}else if (tokens[1].equalsIgnoreCase("PES")) {
-				PES.write(tokens[0], BOUNDS, stitches, flatColors,TITLE);
+				PES.write(tokens[0], BOUNDS, stitches, flatColors,TITLE,jumps);
 			}else if (tokens[1].equalsIgnoreCase("JEF")) {
 				JEF.write(tokens[0], BOUNDS, stitches, flatColors,TITLE);
 			}else if (tokens[1].equalsIgnoreCase("XXX")) {
