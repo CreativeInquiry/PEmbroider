@@ -12,9 +12,6 @@ void setup() {
 
   // Create the PEmbroider object
   E = new PEmbroiderGraphics(this, width, height);
-  PEmbroiderWriter.PES.TRUNCATED = true;
-  PEmbroiderWriter.PES.VERSION = 1;
-  E.setPath (sketchPath("pes_v1_trunc.pes")); 
 
   // Start rendering to the PEmbroiderer
   E.beginDraw(); 
@@ -67,13 +64,28 @@ void setup() {
   // in order to actually export the embroidery file. 
   // Note that E.optimize() can take about a minute to run. Patience!
   
-   //E.optimize(5,0);  // VERY SLOW, but ESSENTIAL for good file output!
-   //E.visualize(true,false,true); // Display (preview) the embroidery onscreen.
-   E.endDraw();   // Write out the embroidery file.
+   E.optimize(3,99);  // VERY SLOW, but ESSENTIAL for good file output!
+   E.visualize(true,false,true); // Display (preview) the embroidery onscreen.
+   //E.endDraw();   // Write out the embroidery file.
    //save("Hello_Pembroider.png");
+   
+   
+   PEmbroiderWriter.PATH = sketchPath("pes1fix.pdf"); 
+   
+   PEmbroiderWriter.PES.TRUNCATED = false;
+   PEmbroiderWriter.PES.VERSION = 1;
+   PEmbroiderWriter.TITLE = "HELLWRLD"; // 8 char
+    
+   PEmbroiderWriter.TRANSFORM = new PMatrix2D();
+   PEmbroiderWriter.TRANSFORM.scale(1.5);
+   PEmbroiderWriter.TRANSFORM.translate(-width/2,-height/2);
+    
+   PEmbroiderWriter.BOUNDS = new float[]{-width,-height,width,height};
+    
+   PEmbroiderWriter.write(E);
 }
 
 void draw(){
-  background(255);
-  E.visualize(true,false,false,frameCount);
+  //background(255);
+  //E.visualize(true,false,true,frameCount);
 }
