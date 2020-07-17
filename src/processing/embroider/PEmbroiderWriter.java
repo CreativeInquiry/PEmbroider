@@ -909,7 +909,7 @@ public class PEmbroiderWriter {
 			            xx += dx;
 			            yy += dy;
 			            
-			        	if (jumps.get(i)) {
+			        	if (i == 0) {
 //		                    jumping = true;
 		                    dx = encode_long_form(dx);
 		                    dx = flagTrim(dx);
@@ -1022,25 +1022,11 @@ public class PEmbroiderWriter {
 			        	mode = STITCH & COMMAND_MASK;
 			        	if (i > 0 && !colors.get(i-1).equals(thisColor)) {	
 			        		mode = COLOR_CHANGE & COMMAND_MASK;
-			        	}else if (i > 0 && jumps.get(i)) {
-			        		mode = JUMP & COMMAND_MASK;
 			        	}
 			            if ((mode != END) && (flag != -1)) {
 			            	writeInt16LE(0x8003);
 			            }
 			            switch (mode) {
-			            	case JUMP:
-			                    x = lastx;
-			                    y = lasty;
-			                    segment.add((int) (x - adjust_x));
-			                    segment.add((int) (y - adjust_y));
-			                    x = stitches.get(i).x;
-			                    y = stitches.get(i).y;
-			                    segment.add((int) (x - adjust_x));
-			                    segment.add((int) (y - adjust_y));
-			                    flag = 1;
-			                    break;
-			                    
 			                case COLOR_CHANGE:
 			                    colorCode = find_color(colors.get(i));
 			                    colorlog.add(section);
@@ -2351,7 +2337,7 @@ public class PEmbroiderWriter {
 				PVector p = TRANSFORM.mult(polylines.get(i).get(j).copy(),null);
 				stitches.add(p);
 				flatColors.add(colors.get(i));
-				jumps.add(j==0 && (i == 0 || (polylines.get(i).get(0).dist(polylines.get(i-1).get(polylines.get(i-1).size()-1))>=64)));
+				jumps.add(j==0);
 			}
 		}
 
