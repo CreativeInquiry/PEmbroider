@@ -30,7 +30,7 @@
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_d_s_t_1aff19adecb56b51aeb7124ea50910db4f" kind="variable"><name>DSTHEADERSIZE</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_d_s_t_1aa28b48db5b321ed3a57cdb9de287d307" kind="variable"><name>COMMANDSIZE</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_d_s_t_1a8fe13d3ba6fdc89fa3ce69681518e017" kind="function"><name>bit</name></member>
-    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_d_s_t_1a3586137a2521f80590d077ab998d0dba" kind="function"><name>write</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_d_s_t_1acf0d853154e04c081fc1b7c99f583e5c" kind="function"><name>write</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_d_s_t_1aedefc9442737722e595a3582f7530105" kind="function"><name>encodeRecord</name></member>
   </compound>
   <compound refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1_1_edge" kind="class"><name>processing::embroider::PEmbroiderTSP::Edge</name>
@@ -43,11 +43,11 @@
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_t_s_p_1_1_edge_1a41ed55428eff07a72338b51fdf6bd3ff" kind="variable"><name>p1</name></member>
   </compound>
   <compound refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_e_x_p" kind="class"><name>processing::embroider::PEmbroiderWriter::EXP</name>
-    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_e_x_p_1a8040c25c7aa9e30f7a1d683a52f62a9d" kind="function"><name>write</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_e_x_p_1a72e0e7c8d882e700b0fcf2cbddd98324" kind="function"><name>write</name></member>
   </compound>
   <compound refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_g_c_o_d_e" kind="class"><name>processing::embroider::PEmbroiderWriter::GCODE</name>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_g_c_o_d_e_1aeac23b624ae1bc112147fc38195ddaf9" kind="function"><name>gcodeString</name></member>
-    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_g_c_o_d_e_1a9e56fed86f39a017eb60cc9ac76e59c5" kind="function"><name>write</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_g_c_o_d_e_1a7406f4b792bed89fa29dd9ed669ab8f4" kind="function"><name>write</name></member>
   </compound>
   <compound refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im" kind="class"><name>processing::embroider::PEmbroiderHatchSatin::Im</name>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_im_1af77b6be7b2d0b70e6a3c4c38609eab25" kind="variable"><name>data</name></member>
@@ -73,11 +73,11 @@
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_j_e_f_1ad079714ea281d9cbcc9ef0e2170ed3dd" kind="function"><name>get_jef_hoop_size</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_j_e_f_1a3a758ae13f3852232346f44d6689911f" kind="function"><name>get_thread_color</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_j_e_f_1a2e4a1a9c56dfad3a32f8f2277d2c1441" kind="function"><name>find_thread_nearest_index</name></member>
-    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_j_e_f_1a8ce3b3383a5e2b4102c72c4320912a33" kind="function"><name>write</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_j_e_f_1a2c497edddfccfc43569a2895fe10ed2f" kind="function"><name>write</name></member>
   </compound>
   <compound refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_d_f" kind="class"><name>processing::embroider::PEmbroiderWriter::PDF</name>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_d_f_1a2d2b78592e3c56637744a6c702d99f04" kind="function"><name>pdfString</name></member>
-    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_d_f_1a042118c96a2012892d849e1a00d51cfd" kind="function"><name>write</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_d_f_1a32d6f510d47001f58d5f7614b024dc6a" kind="function"><name>write</name></member>
   </compound>
   <compound refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c" kind="class"><name>processing::embroider::PEmbroiderWriter::PEC</name>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c_1ad071962327cd6bef19cb55ac0a2a33f5" kind="variable"><name>MASK_07_BIT</name></member>
@@ -86,7 +86,7 @@
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c_1a34712856addceb9341ec6eeae1e9f3e1" kind="variable"><name>FLAG_LONG</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c_1a5ff335d70e692237ecb82822961678ec" kind="variable"><name>PEC_ICON_WIDTH</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c_1ad1b8ce9fb02566740ee2ca7f786164ae" kind="variable"><name>PEC_ICON_HEIGHT</name></member>
-    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c_1a6d69be51deacb03a1a2d7f8aa0f96c5f" kind="function"><name>write</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_c_1af04188c857df85688c24ead58b919ea6" kind="function"><name>write</name></member>
   </compound>
   <compound refid="classprocessing_1_1embroider_1_1_p_embroider_boolean_shape_graphics" kind="class"><name>processing::embroider::PEmbroiderBooleanShapeGraphics</name>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_boolean_shape_graphics_1a174e99fa9cc4ddf534ab333a3d5faf04" kind="variable"><name>UNION</name></member>
@@ -199,8 +199,11 @@
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a537be6cb5e514873b7be7d0254dc0ea0" kind="variable"><name>RESAMPLE_MAXTURN</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a956f81b5d0121cb59bf5b59fc37e9480" kind="variable"><name>OUT_OF_BOUNDS_HANDLER</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a22dde3eebd3f96ea253d2d64ebe77e67" kind="variable"><name>PARALLEL_RESAMPLING_OFFSET_FACTOR</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a6a675ac41dc5ffc8e22cc02aebbe4efa" kind="variable"><name>SATIN_RESAMPLING_OFFSET_FACTOR</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a4bd89d333339cc96d626e6ebbeb1dae3" kind="variable"><name>EXPERIMENTAL_CROSS_RESAMPLE</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a9615908084be3e502191f3ded4b01ee5" kind="variable"><name>PERPENDICULAR_STROKE_CAP_DENSITY_MULTIPLIER</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a326a468b2d0fda38813b5f064b1b325c" kind="variable"><name>CULL_SPACING</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1ac8ad709999a14c272ae00d25946e62a0" kind="variable"><name>SATIN_MODE</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a57d11bbcb2130da29ede976ca69f516e" kind="variable"><name>composite</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1af793cbf2636579013fd6b9aca2d3087f" kind="variable"><name>AUTO</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a376c18b7da94c5a61a2ccc3b30ee8a0c" kind="variable"><name>NONE</name></member>
@@ -235,6 +238,9 @@
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a390f55bd910c18243551a4992bdaa673" kind="variable"><name>CENTER</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a6cdd13e59f2ac16b7f171d51daabd1aa" kind="variable"><name>INSIDE</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a323eac0a4f3b5c6de25faa8459fc0d83" kind="variable"><name>OUTSIDE</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a038d33a2887f5f7de7bfa39bccc0f4b7" kind="variable"><name>ZIGZAG</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1aa80f69ddae544339e473495758a693cd" kind="variable"><name>SIGSAG</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a996e6e33170e8c51164a4351b8fde900" kind="variable"><name>BOUSTROPHEDON</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1ae87fc3d795e83175fc423191cf0a9e4e" kind="variable"><name>logPrefix</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a9d707975559bdd064b2405b56881a657" kind="function"><name>PEmbroiderGraphics</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1adb8ff47b7b2daa001038198f94e4f64d" kind="function"><name>PEmbroiderGraphics</name></member>
@@ -277,6 +283,7 @@
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a4f22bdad8ae6c4195649f194d27bc114" kind="function"><name>toggleResample</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1ab836e3613b76511b349d9c0451fd9198" kind="function"><name>setSpiralDirection</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a818dc9e6dbe41aa67a6454444c4de6b0" kind="function"><name>setOutOfBoundsHandler</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a3cf178d06bf249d7c666e001fe119086" kind="function"><name>satinMode</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a068498ee1ffff7e19d1fdb50ccd38692" kind="function"><name>centerpoint</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1adf37d132028ccab45d75ba38fe78562d" kind="function"><name>centerpoint</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a3b644b6c8b3b7d19f8d04e6755f22331" kind="function"><name>segmentIntersectPolygon</name></member>
@@ -305,6 +312,9 @@
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a02319dd3720b57c17306213c55c20c77" kind="function"><name>hatchInset</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a833f21bc3a1c000514e53220ca53d17d" kind="function"><name>hatchSpiral</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1af6a5f2ca973e7c945a50847f4fdb9020" kind="function"><name>hatchSpiral</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a5d1ed9127dce67c854755b5ae460cace" kind="function"><name>hatchSpiral_v2</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1ac51cbeb7d8ef067c04de209001395b69" kind="function"><name>hatchSpiral_v3</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a4ffceec06c21843befc4a72a11897661" kind="function"><name>hatchSpiral_v4</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a90d695e3730930649e05817ca8abac9a" kind="function"><name>hatchPerlin</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1ae0f3a84e4ae5ea8bee0d1ea9e99befe6" kind="function"><name>hatchCustomField</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a809f0b48f34d72b54d2201019a57b7ce" kind="function"><name>hatchParallel</name></member>
@@ -334,6 +344,8 @@
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a39aadcedd9e7463573c8cc426f5d0d2f" kind="function"><name>beginShape</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a3e67f2b23cee2acd7bc72c0eab926578" kind="function"><name>vertex</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1aa12382d415963a32bbd412e3b6ab426a" kind="function"><name>bezierVertex</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1ae255a78587b2ac84ad8892c533315de8" kind="function"><name>bezier</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1aaccdf835b36962e402072611dfe9a901" kind="function"><name>curve</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1add250593cd87b4f8af706f312d7d08af" kind="function"><name>rationalVertex</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1ab92e8194ddebb9782310f5ae8d898b07" kind="function"><name>quadraticVertex</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1aba45e9c44fb95ac09a40fa16d9ca8931" kind="function"><name>cubicVertex</name></member>
@@ -430,8 +442,10 @@
   <compound refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin" kind="class"><name>processing::embroider::PEmbroiderHatchSatin</name>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1ad6838f1f9e69280c1a37594cec9553ae" kind="variable"><name>G</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1ab5fc3e3cc41bfe35946523fcbe77d6a2" kind="function"><name>setGraphics</name></member>
-    <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1aa553faf3d8aa9e21a62d60840361c287" kind="function"><name>hatchSatinRaster</name></member>
-    <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1af7a2875fef87df8f6b20fc7aa14af77f" kind="function"><name>hatchSatinAngledRaster</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a4e78982d2cc0a316d8f72258ede2ae2c" kind="function"><name>hatchSatinRaster</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a2e434476adc2f2964d37ddd639494f36" kind="function"><name>hatchSatinAngledRaster</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a68eb6f935c711ba46b9a3998a08f259e" kind="function"><name>resampleSatinStitches</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1ae1bd5f2f044228a784ce59978b934c4e" kind="function"><name>resampleBoustrophedonStitches</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1abd676fd3a44a9bdbeae127df7d0b75e1" kind="function"><name>hiPt</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1af8c749db4442c6b51460b6cb9870c456" kind="function"><name>loPt</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1afec28e666afbecbc63cf753a3f8a80fe" kind="function"><name>floodfill</name></member>
@@ -439,6 +453,7 @@
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a0cfdc86c1ad68350b0c02f66e4db47c2" kind="function"><name>floodBridgeHoleAt</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1aab564404bf2a915fd513bc758b851202" kind="function"><name>findArea</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1ad86c9c885195cd537f8a696658f84370" kind="function"><name>satinStitches</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a336da0ebe0bd84bb00d04bebbcfaa14d" kind="function"><name>boustrophedonStitches</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a937933d8b6b09228ebb83fc4b2951eb1" kind="function"><name>remove1pxHolesAndIslands</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a0de5586718de4be8bd715f4309bdf7b9" kind="function"><name>removeNpxHolesAndIslands</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a96280ed88ea38e7f5cca296439e4ef75" kind="function"><name>bridgeHoles</name></member>
@@ -453,6 +468,7 @@
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_spine_1a0080c80573e7af7a6a17a6f575755718" kind="function"><name>hatchSpine</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_spine_1a9906ec2705fef8d0ef10b9bb48510786" kind="function"><name>hatchSpineSmooth</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_spine_1a64785b8554047c3ce7605597d520d56f" kind="function"><name>hatchSpineVF</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_spine_1acefef54595eea2373b57e3c3d2525c05" kind="function"><name>hatchSpineVF</name></member>
   </compound>
   <compound refid="classprocessing_1_1embroider_1_1_p_embroider_trace" kind="class"><name>processing::embroider::PEmbroiderTrace</name>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a5228e20869f91e492d386fa3abfb3a8d" kind="variable"><name>logPrefix</name></member>
@@ -499,17 +515,24 @@
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1ac51402fd58b6cd32d367cc189ada5b46" kind="variable"><name>SLOW</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1aed85e2614ef6c7f5fe545a883a8276bd" kind="variable"><name>FAST</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1aba5e157896da7c5ada5e3ea84737c1e7" kind="variable"><name>COMMAND_MASK</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1ada6df279e512353a0b2bd4846745404c" kind="variable"><name>TRANSFORM</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a296b0d0f19e1d3b63aa1638a35828433" kind="variable"><name>BOUNDS</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a680a15bcda67f485b23718a67aee5b26" kind="variable"><name>TITLE</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a17cd138f7f531a0361e745d24091953c" kind="variable"><name>PATH</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1ac8cba44ec594c25b54fe05c746313a82" kind="variable"><name>logPrefix</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a54665be43a1ba3233f94149f6eba558c" kind="function"><name>write</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a5783acc2d525bf47f9f1907f2a8c11c4" kind="function"><name>write</name></member>
   </compound>
   <compound refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_s" kind="class"><name>processing::embroider::PEmbroiderWriter::PES</name>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_s_1a90d87d4dd7d15b18dabe54e54f5ad38d" kind="variable"><name>VERSION</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_s_1a67da22961e4063187b7c604e1da51322" kind="variable"><name>TRUNCATED</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_s_1a99fbe0980f05f392aedf7d35c86e7547" kind="variable"><name>MASK_07_BIT</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_s_1adbdae8509c7b31a39f095bf38a9f3dbd" kind="variable"><name>JUMP_CODE</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_s_1a56122ec1609ac6a7dcf03fc7ccf45350" kind="variable"><name>TRIM_CODE</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_s_1a7575a35f5a56bf4b6b1b4063395f7891" kind="variable"><name>FLAG_LONG</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_s_1a55532adf6c724aabd8985efbbb03698c" kind="variable"><name>PEC_ICON_WIDTH</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_s_1a9bd193a9b7b3d1be40638afba7f3f38b" kind="variable"><name>PEC_ICON_HEIGHT</name></member>
-    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_s_1afbadf6246b3b1f1fdab9751724c38dcd" kind="function"><name>write</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_e_s_1a0a80bdb8b269152406ae86fa6426fd9b" kind="function"><name>write</name></member>
   </compound>
   <compound refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_pt" kind="class"><name>processing::embroider::PEmbroiderHatchSatin::Pt</name>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1_1_pt_1ac44a1e039f6911704657326a7f6615dd" kind="variable"><name>x</name></member>
@@ -520,20 +543,20 @@
   </compound>
   <compound refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_s_v_g" kind="class"><name>processing::embroider::PEmbroiderWriter::SVG</name>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_s_v_g_1a1900360a52f3b4f2e151e187f55f3a53" kind="function"><name>svgString</name></member>
-    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_s_v_g_1a0ea8761eaa0f72e6814804ca044fc6e3" kind="function"><name>write</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_s_v_g_1aa0923340a6bc324b0d506722100f25ed" kind="function"><name>write</name></member>
   </compound>
   <compound refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_t_s_v" kind="class"><name>processing::embroider::PEmbroiderWriter::TSV</name>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_t_s_v_1abc389a6fb7af0115fae1c23324444cb3" kind="function"><name>tsvString</name></member>
-    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_t_s_v_1a1be62f131e699acb459e677463d9f7d3" kind="function"><name>write</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_t_s_v_1a60e592bf56f04d20fa9b8895c08810c3" kind="function"><name>write</name></member>
   </compound>
   <compound refid="interfaceprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_vector_field" kind="interface"><name>processing::embroider::PEmbroiderGraphics::VectorField</name>
     <member refid="interfaceprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_vector_field_1ad35639ef02c22af35870c6f353a7485e" kind="function"><name>get</name></member>
   </compound>
   <compound refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_v_p3" kind="class"><name>processing::embroider::PEmbroiderWriter::VP3</name>
-    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_v_p3_1a8f53ff750ed773347fb1a88cbcb53937" kind="function"><name>write</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_v_p3_1a3f734c57f8fbd13f8b9e44d515867664" kind="function"><name>write</name></member>
   </compound>
   <compound refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_x_x_x" kind="class"><name>processing::embroider::PEmbroiderWriter::XXX</name>
-    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_x_x_x_1aa15ba4099b070951f4287ec64741ab4c" kind="function"><name>write</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_x_x_x_1acd4383858f40d081db4f1af9086bdb8f" kind="function"><name>write</name></member>
   </compound>
   <compound refid="namespacejava_1_1io" kind="namespace"><name>java::io</name>
   </compound>

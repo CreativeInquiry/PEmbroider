@@ -26,12 +26,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1772" column="22" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1772" bodyend="1808"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="2220" column="22" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="2220" bodyend="2256"/>
       </memberdef>
-      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_d_f_1a042118c96a2012892d849e1a00d51cfd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_d_f_1a32d6f510d47001f58d5f7614b024dc6a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>static void processing.embroider.PEmbroiderWriter.PDF.write</definition>
-        <argsstring>(String name, float[] bounds, ArrayList&lt; PVector &gt; stitches, ArrayList&lt; Integer &gt; colors)</argsstring>
+        <argsstring>(String name, float[] bounds, ArrayList&lt; PVector &gt; stitches, ArrayList&lt; Integer &gt; colors, String title)</argsstring>
         <name>write</name>
         <param>
           <type>String</type>
@@ -49,6 +49,10 @@
           <type>ArrayList&lt; Integer &gt;</type>
           <declname>colors</declname>
         </param>
+        <param>
+          <type>String</type>
+          <declname>title</declname>
+        </param>
         <exceptions> throws IOException</exceptions>
         <briefdescription>
         </briefdescription>
@@ -56,17 +60,17 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1809" column="20" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1809" bodyend="1815"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="2257" column="20" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="2257" bodyend="2263"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1771" column="15" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1771" bodyend="1817"/>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="2219" column="15" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="2219" bodyend="2265"/>
     <listofallmembers>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_d_f_1a2d2b78592e3c56637744a6c702d99f04" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::PDF</scope><name>pdfString</name></member>
-      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_d_f_1a042118c96a2012892d849e1a00d51cfd" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::PDF</scope><name>write</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_p_d_f_1a32d6f510d47001f58d5f7614b024dc6a" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::PDF</scope><name>write</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

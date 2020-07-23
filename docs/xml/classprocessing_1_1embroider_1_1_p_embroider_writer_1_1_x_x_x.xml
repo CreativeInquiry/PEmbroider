@@ -3,10 +3,10 @@
   <compounddef id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_x_x_x" kind="class" language="Java" prot="public">
     <compoundname>processing::embroider::PEmbroiderWriter::XXX</compoundname>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_x_x_x_1aa15ba4099b070951f4287ec64741ab4c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_x_x_x_1acd4383858f40d081db4f1af9086bdb8f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>static void processing.embroider.PEmbroiderWriter.XXX.write</definition>
-        <argsstring>(String name, float[] bounds, ArrayList&lt; PVector &gt; stitches, ArrayList&lt; Integer &gt; colors)</argsstring>
+        <argsstring>(String name, float[] bounds, ArrayList&lt; PVector &gt; stitches, ArrayList&lt; Integer &gt; colors, String title)</argsstring>
         <name>write</name>
         <param>
           <type>String</type>
@@ -24,6 +24,10 @@
           <type>ArrayList&lt; Integer &gt;</type>
           <declname>colors</declname>
         </param>
+        <param>
+          <type>String</type>
+          <declname>title</declname>
+        </param>
         <exceptions> throws IOException </exceptions>
         <briefdescription>
         </briefdescription>
@@ -31,16 +35,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="889" column="20" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="889" bodyend="1114"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1337" column="20" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1337" bodyend="1562"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="887" column="15" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="887" bodyend="1117"/>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1335" column="15" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1335" bodyend="1565"/>
     <listofallmembers>
-      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_x_x_x_1aa15ba4099b070951f4287ec64741ab4c" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::XXX</scope><name>write</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_x_x_x_1acd4383858f40d081db4f1af9086bdb8f" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::XXX</scope><name>write</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

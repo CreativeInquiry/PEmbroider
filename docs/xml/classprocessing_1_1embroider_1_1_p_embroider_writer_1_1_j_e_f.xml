@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1410" column="29" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1410" bodyend="-1"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1858" column="29" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1858" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_j_e_f_1a81e6a563be092f644b60e3a132e5539e" prot="public" static="yes" mutable="no">
         <type>final int</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1411" column="29" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1411" bodyend="-1"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1859" column="29" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1859" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_j_e_f_1af0a839d3d7c2b787883d52eb9a79d77e" prot="public" static="yes" mutable="no">
         <type>final int</type>
@@ -43,7 +43,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1412" column="29" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1412" bodyend="-1"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1860" column="29" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1860" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_j_e_f_1aa46342fc242b227cefa25dbbb0ae0982" prot="public" static="yes" mutable="no">
         <type>final int</type>
@@ -57,7 +57,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1413" column="29" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1413" bodyend="-1"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1861" column="29" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1861" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_j_e_f_1a1cc3399573b1d17ff37c0a5fa31a1e29" prot="public" static="yes" mutable="no">
         <type>final int</type>
@@ -71,7 +71,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1414" column="29" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1414" bodyend="-1"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1862" column="29" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1862" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-static-func">
@@ -94,7 +94,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1417" column="24" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1417" bodyend="1431"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1865" column="24" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1865" bodyend="1879"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -113,7 +113,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1434" column="23" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1434" bodyend="1515"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1882" column="23" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1882" bodyend="1963"/>
       </memberdef>
       <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_j_e_f_1a2e4a1a9c56dfad3a32f8f2277d2c1441" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -130,12 +130,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1517" column="23" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1517" bodyend="1535"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1965" column="23" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1965" bodyend="1983"/>
       </memberdef>
-      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_j_e_f_1a8ce3b3383a5e2b4102c72c4320912a33" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_j_e_f_1a2c497edddfccfc43569a2895fe10ed2f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>static void processing.embroider.PEmbroiderWriter.JEF.write</definition>
-        <argsstring>(String name, float[] bounds, ArrayList&lt; PVector &gt; stitches, ArrayList&lt; Integer &gt; colors)</argsstring>
+        <argsstring>(String name, float[] bounds, ArrayList&lt; PVector &gt; stitches, ArrayList&lt; Integer &gt; colors, String title)</argsstring>
         <name>write</name>
         <param>
           <type>String</type>
@@ -153,6 +153,10 @@
           <type>ArrayList&lt; Integer &gt;</type>
           <declname>colors</declname>
         </param>
+        <param>
+          <type>String</type>
+          <declname>title</declname>
+        </param>
         <exceptions> throws IOException </exceptions>
         <briefdescription>
         </briefdescription>
@@ -160,14 +164,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1537" column="24" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1537" bodyend="1730"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1985" column="24" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1985" bodyend="2178"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1409" column="15" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1409" bodyend="1732"/>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1857" column="15" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1857" bodyend="2180"/>
     <listofallmembers>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_j_e_f_1a2e4a1a9c56dfad3a32f8f2277d2c1441" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::JEF</scope><name>find_thread_nearest_index</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_j_e_f_1ad079714ea281d9cbcc9ef0e2170ed3dd" prot="private" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::JEF</scope><name>get_jef_hoop_size</name></member>
@@ -177,7 +181,7 @@
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_j_e_f_1af0a839d3d7c2b787883d52eb9a79d77e" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::JEF</scope><name>HOOP_140X200</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_j_e_f_1a1cc3399573b1d17ff37c0a5fa31a1e29" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::JEF</scope><name>HOOP_200X200</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_j_e_f_1a81e6a563be092f644b60e3a132e5539e" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::JEF</scope><name>HOOP_50X50</name></member>
-      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_j_e_f_1a8ce3b3383a5e2b4102c72c4320912a33" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::JEF</scope><name>write</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1_1_j_e_f_1a2c497edddfccfc43569a2895fe10ed2f" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter::JEF</scope><name>write</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

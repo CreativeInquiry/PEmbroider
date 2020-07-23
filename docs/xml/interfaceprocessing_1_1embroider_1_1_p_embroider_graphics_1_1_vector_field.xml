@@ -40,7 +40,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="4237" column="9"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="4823" column="9"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -48,7 +48,7 @@
     <detaileddescription>
 <para>Signature for a vector field </para>
     </detaileddescription>
-    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="4231" column="18" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" bodystart="4231" bodyend="4238"/>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" line="4817" column="18" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderGraphics.java" bodystart="4817" bodyend="4824"/>
     <listofallmembers>
       <member refid="interfaceprocessing_1_1embroider_1_1_p_embroider_graphics_1_1_vector_field_1ad35639ef02c22af35870c6f353a7485e" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderGraphics::VectorField</scope><name>get</name></member>
     </listofallmembers>

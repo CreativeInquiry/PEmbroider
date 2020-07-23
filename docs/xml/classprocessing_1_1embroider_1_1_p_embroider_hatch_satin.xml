@@ -37,10 +37,10 @@
         </inbodydescription>
         <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="8" column="21" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="8" bodyend="10"/>
       </memberdef>
-      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1aa553faf3d8aa9e21a62d60840361c287" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a4e78982d2cc0a316d8f72258ede2ae2c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>ArrayList&lt; ArrayList&lt; PVector &gt; &gt;</type>
         <definition>static ArrayList&lt;ArrayList&lt;PVector&gt; &gt; processing.embroider.PEmbroiderHatchSatin.hatchSatinRaster</definition>
-        <argsstring>(PImage im, float d)</argsstring>
+        <argsstring>(PImage im, float d, int n)</argsstring>
         <name>hatchSatinRaster</name>
         <param>
           <type>PImage</type>
@@ -50,18 +50,22 @@
           <type>float</type>
           <declname>d</declname>
         </param>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="550" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="550" bodyend="574"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="728" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="728" bodyend="764"/>
       </memberdef>
-      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1af7a2875fef87df8f6b20fc7aa14af77f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a2e434476adc2f2964d37ddd639494f36" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>ArrayList&lt; ArrayList&lt; PVector &gt; &gt;</type>
         <definition>static ArrayList&lt;ArrayList&lt;PVector&gt; &gt; processing.embroider.PEmbroiderHatchSatin.hatchSatinAngledRaster</definition>
-        <argsstring>(PImage im, float ang, float d)</argsstring>
+        <argsstring>(PImage im, float ang, float d, int n)</argsstring>
         <name>hatchSatinAngledRaster</name>
         <param>
           <type>PImage</type>
@@ -75,13 +79,59 @@
           <type>float</type>
           <declname>d</declname>
         </param>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="575" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="575" bodyend="630"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="765" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="765" bodyend="820"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a68eb6f935c711ba46b9a3998a08f259e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ArrayList&lt; ArrayList&lt; PVector &gt; &gt;</type>
+        <definition>static ArrayList&lt;ArrayList&lt;PVector&gt; &gt; processing.embroider.PEmbroiderHatchSatin.resampleSatinStitches</definition>
+        <argsstring>(ArrayList&lt; Pt &gt; pts, int n)</argsstring>
+        <name>resampleSatinStitches</name>
+        <param>
+          <type>ArrayList&lt; Pt &gt;</type>
+          <declname>pts</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="822" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="822" bodyend="864"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1ae1bd5f2f044228a784ce59978b934c4e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ArrayList&lt; ArrayList&lt; PVector &gt; &gt;</type>
+        <definition>static ArrayList&lt;ArrayList&lt;PVector&gt; &gt; processing.embroider.PEmbroiderHatchSatin.resampleBoustrophedonStitches</definition>
+        <argsstring>(ArrayList&lt; Pt &gt; pts, int n)</argsstring>
+        <name>resampleBoustrophedonStitches</name>
+        <param>
+          <type>ArrayList&lt; Pt &gt;</type>
+          <declname>pts</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="866" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="866" bodyend="896"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="package-static-func">
@@ -256,6 +306,35 @@
         </inbodydescription>
         <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="272" column="18" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="272" bodyend="448"/>
       </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a336da0ebe0bd84bb00d04bebbcfaa14d" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ArrayList&lt; Pt &gt;</type>
+        <definition>static ArrayList&lt;Pt&gt; processing.embroider.PEmbroiderHatchSatin.boustrophedonStitches</definition>
+        <argsstring>(Im prevIm, Im im, Pt p0, int d)</argsstring>
+        <name>boustrophedonStitches</name>
+        <param>
+          <type>Im</type>
+          <declname>prevIm</declname>
+        </param>
+        <param>
+          <type>Im</type>
+          <declname>im</declname>
+        </param>
+        <param>
+          <type>Pt</type>
+          <declname>p0</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="451" column="18" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="451" bodyend="621"/>
+      </memberdef>
       <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a937933d8b6b09228ebb83fc4b2951eb1" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>static void processing.embroider.PEmbroiderHatchSatin.remove1pxHolesAndIslands</definition>
@@ -271,7 +350,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="451" column="13" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="451" bodyend="473"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="624" column="13" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="624" bodyend="646"/>
       </memberdef>
       <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a0de5586718de4be8bd715f4309bdf7b9" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -292,7 +371,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="474" column="13" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="474" bodyend="505"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="647" column="13" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="647" bodyend="678"/>
       </memberdef>
       <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a96280ed88ea38e7f5cca296439e4ef75" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -309,7 +388,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="508" column="13" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="508" bodyend="526"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="681" column="13" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="681" bodyend="699"/>
       </memberdef>
       <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a33bea147359c07d4ec545fcaac1c3e50" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>ArrayList&lt; ArrayList&lt; Pt &gt; &gt;</type>
@@ -326,7 +405,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="528" column="18" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="528" bodyend="548"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="701" column="18" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="701" bodyend="726"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -403,20 +482,23 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="6" column="7" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="6" bodyend="632"/>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" line="6" column="7" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderHatchSatin.java" bodystart="6" bodyend="898"/>
     <listofallmembers>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a336da0ebe0bd84bb00d04bebbcfaa14d" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin</scope><name>boustrophedonStitches</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a96280ed88ea38e7f5cca296439e4ef75" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin</scope><name>bridgeHoles</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1aab564404bf2a915fd513bc758b851202" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin</scope><name>findArea</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a0cfdc86c1ad68350b0c02f66e4db47c2" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin</scope><name>floodBridgeHoleAt</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1afec28e666afbecbc63cf753a3f8a80fe" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin</scope><name>floodfill</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a2d07f0cf88866a2331dfa70f990d15b0" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin</scope><name>floodfillQ</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1ad6838f1f9e69280c1a37594cec9553ae" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin</scope><name>G</name></member>
-      <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1af7a2875fef87df8f6b20fc7aa14af77f" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin</scope><name>hatchSatinAngledRaster</name></member>
-      <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1aa553faf3d8aa9e21a62d60840361c287" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin</scope><name>hatchSatinRaster</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a2e434476adc2f2964d37ddd639494f36" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin</scope><name>hatchSatinAngledRaster</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a4e78982d2cc0a316d8f72258ede2ae2c" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin</scope><name>hatchSatinRaster</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1abd676fd3a44a9bdbeae127df7d0b75e1" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin</scope><name>hiPt</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1af8c749db4442c6b51460b6cb9870c456" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin</scope><name>loPt</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a937933d8b6b09228ebb83fc4b2951eb1" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin</scope><name>remove1pxHolesAndIslands</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a0de5586718de4be8bd715f4309bdf7b9" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin</scope><name>removeNpxHolesAndIslands</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1ae1bd5f2f044228a784ce59978b934c4e" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin</scope><name>resampleBoustrophedonStitches</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a68eb6f935c711ba46b9a3998a08f259e" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin</scope><name>resampleSatinStitches</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1ad86c9c885195cd537f8a696658f84370" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin</scope><name>satinStitches</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1a33bea147359c07d4ec545fcaac1c3e50" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin</scope><name>satinStitchesMultiple</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_hatch_satin_1ab5fc3e3cc41bfe35946523fcbe77d6a2" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderHatchSatin</scope><name>setGraphics</name></member>

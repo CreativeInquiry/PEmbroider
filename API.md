@@ -6,7 +6,7 @@ The constructor for PEmbroiderGraphics object.
 ```
 |parameter|description|
 |---|---|
-|`_app`|```the running PApplet instance: in Processing, just pass the keyword ```|
+|`_app`|```the running PApplet instance: in Processing, just pass the keyword 'this' ```|
 |`w`|```width ```|
 |`h`|```height ```|
 
@@ -18,11 +18,11 @@ The constructor for PEmbroiderGraphics object.
 
 ### `void setPath(String _path)`
 ```
-Set the output file path.
+Set the output file path. The filename should include the file type extension. Supported embroidery formats are: .DST, .EXP, .JEF, .PEC, .PES, .VP3, and .XXX. Additionally supported formats are: .PDF, .SVG, .TSV, and .GCODE.
 ```
 |parameter|description|
 |---|---|
-|`_path`|```output file path. The format will be automatically inferred from the extension ```|
+|`_path`|```output file path. The format will be automatically inferred from the extension. ```|
 
 
 
@@ -32,7 +32,7 @@ Set the output file path.
 
 ### `void clear()`
 ```
-Clear all current drawings 
+Clear all current drawings. 
 ```
 |parameter|description|
 |---|---|
@@ -49,9 +49,9 @@ Change fill color
 ```
 |parameter|description|
 |---|---|
-|`r`|```red color 0-255 ```|
-|`g`|```green color 0-255 ```|
-|`b`|```blue color 0-255 ```|
+|`r`|```red value, 0-255 ```|
+|`g`|```green value, 0-255 ```|
+|`b`|```blue value, 0-255 ```|
 
 
 **return** `stroke `
@@ -67,7 +67,7 @@ Change fill color
 ```
 |parameter|description|
 |---|---|
-|`gray`|```grayscale value 0-255 ```|
+|`gray`|```grayscale value, 0-255 ```|
 
 
 
@@ -94,9 +94,9 @@ Change stroke color
 ```
 |parameter|description|
 |---|---|
-|`r`|```red color 0-255 ```|
-|`g`|```green color 0-255 ```|
-|`b`|```blue color 0-255 ```|
+|`r`|```red value, 0-255 ```|
+|`g`|```green value, 0-255 ```|
+|`b`|```blue value, 0-255 ```|
 
 
 **return** `fill `
@@ -153,7 +153,7 @@ Change stroke join (turning point) style
 ```
 |parameter|description|
 |---|---|
-|`j`|```Same as Processing strokejoin, this can be ROUND, MITER, BEVEL etc. ```|
+|`j`|```Same as Processing strokeJoin, this can be ROUND, MITER, BEVEL etc. ```|
 
 
 **return** `strokeCap `
@@ -217,7 +217,7 @@ Change number of steps bezier curve is interpolated.
 ```
 |parameter|description|
 |---|---|
-|`n`|```higher this number, smoother the bezier ```|
+|`n`|```The higher this number, the smoother the Bezier curve. ```|
 
 
 
@@ -231,7 +231,7 @@ Change hatching pattern
 ```
 |parameter|description|
 |---|---|
-|`mode`|```this can be one of PARALLEL, CROSS, CONCENTRIC, SPIRAL, PERLIN, VECFIELD, DRUNK ```|
+|`mode`|```This can be one of: PARALLEL, CROSS, CONCENTRIC, SPIRAL, PERLIN, VECFIELD, DRUNK ```|
 
 
 
@@ -245,7 +245,7 @@ Change outline drawing method
 ```
 |parameter|description|
 |---|---|
-|`mode`|```this can be either PERPENDICULAR or TANGENT ```|
+|`mode`|```This can be either PERPENDICULAR or TANGENT ```|
 
 
 
@@ -259,8 +259,36 @@ Change outline drawing method
 ```
 |parameter|description|
 |---|---|
-|`mode`|```this can be either PERPENDICULAR or TANGENT ```|
-|`tanMode`|```this can be one of COUNT (stroke weight used as line count), WEIGHT (honour stroke weight setting over spacing) or SPACING (honour spacing over stroke weight) ```|
+|`mode`|```This can be either PERPENDICULAR or TANGENT ```|
+|`tanMode`|```This can be one of COUNT (stroke weight used as line count), WEIGHT (honour stroke weight setting over spacing) or SPACING (honour spacing over stroke weight) ```|
+
+
+
+
+-----------------
+
+
+### `void strokeLocation(float x)`
+```
+Set the position of the stroke, relative to the shape's edge
+```
+|parameter|description|
+|---|---|
+|`x`|```Float between -1.0 (inside) and 1.0 (outside). 0.0 is centered. ```|
+
+
+
+
+-----------------
+
+
+### `void strokeLocation(int mode)`
+```
+Set the position of the stroke, relative to the shape's edge
+```
+|parameter|description|
+|---|---|
+|`x`|```This can be one of CENTER, INSIDE, or OUTSIDE ```|
 
 
 
@@ -342,9 +370,37 @@ Change angles of parallel and cross hatching lines
 -----------------
 
 
+### `void strokeAngle(float ang)`
+```
+Sets the orientation of the stitches within a stroke 
+```
+|parameter|description|
+|---|---|
+|`ang`|```the angle (in radians) ```|
+
+
+
+
+-----------------
+
+
+### `void strokeAngleDeg(float ang)`
+```
+Sets the orientation of the stitches within a stroke 
+```
+|parameter|description|
+|---|---|
+|`ang`|```the angle (in degrees) ```|
+
+
+
+
+-----------------
+
+
 ### `void hatchSpacing(float d)`
 ```
-Changes the spacing between hatching lines: a.k.a sparsity or anti-density
+Changes the spacing between hatching lines: a.k.a sparsity or inverse-density
 ```
 |parameter|description|
 |---|---|
@@ -360,7 +416,7 @@ Changes the spacing between hatching lines: a.k.a sparsity or anti-density
 
 ### `void strokeSpacing(float d)`
 ```
-Changes the spacing between stroke lines: a.k.a sparsity or anti-density
+Changes the spacing between stroke lines: a.k.a sparsity or inverse-density
 ```
 |parameter|description|
 |---|---|
@@ -474,7 +530,7 @@ Set render order: render strokes over fill, or other way around?
 ```
 |parameter|description|
 |---|---|
-|`mode`|```this can either be STROKE_OVER_FILL or FILL_OVER_STROKE ```|
+|`mode`|```This can either be STROKE_OVER_FILL or FILL_OVER_STROKE ```|
 
 
 
@@ -489,6 +545,48 @@ Turn resampling on and off. For embroidery machines, you might want it; for plot
 |parameter|description|
 |---|---|
 |`b`|```true for on, false for off ```|
+
+
+
+
+-----------------
+
+
+### `void setSpiralDirection(int mode)`
+```
+Sets whether SPIRAL hatching proceeds clockwise or counterclockwise
+```
+|parameter|description|
+|---|---|
+|`mode`|```This can be CLOCKWISE or COUNTERCLOCKWISE. CW and CCW are also permissible. ```|
+
+
+
+
+-----------------
+
+
+### `void setOutOfBoundsHandler(int mode)`
+```
+Sets the file exporting behavior if a stitch was placed out of bounds.
+```
+|parameter|description|
+|---|---|
+|`mode`|```This can be one of WARN, CROP, IGNORE, ASK, or ABORT ```|
+
+
+
+
+-----------------
+
+
+### `void satinMode(int mode)`
+```
+Sets how the SATIN hatching mode operates.
+```
+|parameter|description|
+|---|---|
+|`mode`|```This can be one of ZIGZAG, SIGSAG, or BOUSTROPHEDON ```|
 
 
 

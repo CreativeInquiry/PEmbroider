@@ -196,6 +196,61 @@
         </inbodydescription>
         <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="34" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="34" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1ada6df279e512353a0b2bd4846745404c" prot="public" static="yes" mutable="no">
+        <type>processing.core.PMatrix2D</type>
+        <definition>processing.core.PMatrix2D processing.embroider.PEmbroiderWriter.TRANSFORM</definition>
+        <argsstring></argsstring>
+        <name>TRANSFORM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="38" column="39" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1a296b0d0f19e1d3b63aa1638a35828433" prot="public" static="yes" mutable="no">
+        <type>float[]</type>
+        <definition>float [] processing.embroider.PEmbroiderWriter.BOUNDS</definition>
+        <argsstring></argsstring>
+        <name>BOUNDS</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="39" column="21" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1a680a15bcda67f485b23718a67aee5b26" prot="public" static="yes" mutable="no">
+        <type>String</type>
+        <definition>String processing.embroider.PEmbroiderWriter.TITLE</definition>
+        <argsstring></argsstring>
+        <name>TITLE</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="40" column="22" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1a17cd138f7f531a0361e745d24091953c" prot="public" static="yes" mutable="no">
+        <type>String</type>
+        <definition>String processing.embroider.PEmbroiderWriter.PATH</definition>
+        <argsstring></argsstring>
+        <name>PATH</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="41" column="22" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="41" bodyend="-1"/>
+      </memberdef>
       </sectiondef>
       <sectiondef kind="package-static-attrib">
       <memberdef kind="variable" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1ac8cba44ec594c25b54fe05c746313a82" prot="package" static="yes" mutable="no">
@@ -245,15 +300,33 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="1871" column="20" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="1871" bodyend="1917"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="2320" column="20" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="2320" bodyend="2404"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_writer_1a5783acc2d525bf47f9f1907f2a8c11c4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void processing.embroider.PEmbroiderWriter.write</definition>
+        <argsstring>(PEmbroiderGraphics E)</argsstring>
+        <name>write</name>
+        <param>
+          <type><ref refid="classprocessing_1_1embroider_1_1_p_embroider_graphics" kindref="compound">PEmbroiderGraphics</ref></type>
+          <declname>E</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="2406" column="20" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="2406" bodyend="2408"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="19" column="7" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="19" bodyend="1919"/>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" line="19" column="7" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderWriter.java" bodystart="19" bodyend="2410"/>
     <listofallmembers>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a296b0d0f19e1d3b63aa1638a35828433" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>BOUNDS</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1ad63c60a5b65e1c73e4d5245155a193fd" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>COLOR_CHANGE</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1aba5e157896da7c5ada5e3ea84737c1e7" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>COMMAND_MASK</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a368a75ea20b3ab97ec0e87859a3ae7f4" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>END</name></member>
@@ -262,13 +335,17 @@
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1ac8cba44ec594c25b54fe05c746313a82" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>logPrefix</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1af6ea884d8bdcae3eb42a7fa9026dd95c" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>NEEDLE_SET</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a3358b4f9ce309f998504070fd69c4b49" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>NO_COMMAND</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a17cd138f7f531a0361e745d24091953c" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>PATH</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a79d4004de6e3c82a8c3f23920c403901" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>SEQUIN_EJECT</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a636d2152e1edf8a17e64be2b045f4e1e" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>SEQUIN_MODE</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1ac51402fd58b6cd32d367cc189ada5b46" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>SLOW</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1ac0ab20a384a55e29184f0b5f53a151fb" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>STITCH</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a9d3e3ed51b7ca51a1be5240ded857daf" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>STOP</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a680a15bcda67f485b23718a67aee5b26" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>TITLE</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1ada6df279e512353a0b2bd4846745404c" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>TRANSFORM</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1aab04f67b3f8607e2886ebd774e729b15" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>TRIM</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a54665be43a1ba3233f94149f6eba558c" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>write</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_writer_1a5783acc2d525bf47f9f1907f2a8c11c4" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderWriter</scope><name>write</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>
