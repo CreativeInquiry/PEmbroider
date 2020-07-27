@@ -5228,15 +5228,27 @@ public class PEmbroiderGraphics {
 	int optBlockTrials;
 	int optBlockMaxIter;
 	int optColor;
+	/**
+	 * Begin a block of stitch order optimization (TSP solver), to be paired with endOptimize()
+	 * @param reorderColor number of seconds to try to reorder color to reduce number of color changes without modifying the final look of the design, 0 means no color reordering
+	 * @param trials number of trials to run the TSP
+	 * @param maxIter number of iterations for each trial of TSP
+	 */
 	public void beginOptimize(int reorderColor, int trials,int maxIter) {
 		optBlockIdx0 = polylines.size();
 		optBlockTrials = trials;
 		optBlockMaxIter = maxIter;
 		optColor = reorderColor;
 	}
+	/**
+	 * Same as beginOptimize(3) with default parameters
+	 */
 	public void beginOptimize() {
 		beginOptimize(0,5,999);
 	}
+	/**
+	 * Close a beginOptimize() block.
+	 */
 	public void endOptimize() {
 		if (polylines.size()-optBlockIdx0 <= 2) {
 			return;

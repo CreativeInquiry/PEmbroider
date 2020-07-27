@@ -2035,6 +2035,48 @@ Simplified version of optimize(2) where the trial and maxIter is picked for you
 -----------------
 
 
+### `void beginOptimize(int reorderColor, int trials, int maxIter)`
+```
+Begin a block of stitch order optimization (TSP solver), to be paired with endOptimize() 
+```
+|parameter|description|
+|---|---|
+|`reorderColor`|```number of seconds to try to reorder color to reduce number of color changes without modifying the final look of the design, 0 means no color reordering ```|
+|`trials`|```number of trials to run the TSP ```|
+|`maxIter`|```number of iterations for each trial of TSP ```|
+
+
+
+
+-----------------
+
+
+### `void beginOptimize()`
+```
+Same as beginOptimize(3) with default parameters 
+```
+|parameter|description|
+|---|---|
+
+
+
+
+-----------------
+
+
+### `void endOptimize()`
+```
+Close a beginOptimize() block. 
+```
+|parameter|description|
+|---|---|
+
+
+
+
+-----------------
+
+
 ### `void textAlign(int align)`
 ```
 Change horizontal alignment of text 
