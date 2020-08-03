@@ -51,7 +51,7 @@ Lines with varying stitch lengths. Lines with tangent versus parallel stitches.
 
 Curves and line segments.
 
-[![](PEmbroider_lines_2/PEmbroider_lines_2_photo.png)](PEmbroider_lines_1/)
+[![](PEmbroider_lines_2/PEmbroider_lines_2_photo.png)](PEmbroider_lines_2/)
 
 
 ## PEmbroider_ruler
