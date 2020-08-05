@@ -19,7 +19,7 @@ void setup() {
 
 
   E = new PEmbroiderGraphics(this, width, height);
-  String outputFilePath = sketchPath("PEmbroider_multicolor_png.vp3");
+  String outputFilePath = sketchPath("PEmbroider_multicolor_png.jef");
   E.setPath(outputFilePath); 
   // The image should consist of white shapes on a black background. 
   // The ideal image is an exclusively black-and-white .PNG or .GIF.
@@ -97,7 +97,7 @@ void setup() {
   //setting first vaule true shows colorized preview
   E.visualize(true,false,false);  // 
   //E.printStats(); //
-  //E.endDraw();    // write out the file
+  E.endDraw();    // write out the file
   //save("PEmbroider_png_image_multicolor.png");
 }
 

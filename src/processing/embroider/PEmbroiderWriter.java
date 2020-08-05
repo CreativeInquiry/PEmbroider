@@ -2115,8 +2115,8 @@ public class PEmbroiderWriter {
 						xx += dx;
 						yy += dy;
 						
-						if (Math.abs(dx) > 128 || Math.abs(dy) > 128) {
-							int steps = Math.max(Math.abs(dx/128),Math.abs(dy/128))+1;
+						if (Math.abs(dx) > 100 || Math.abs(dy) > 100) {
+							int steps = Math.max(Math.abs(dx/100),Math.abs(dy/100))+1;
 							float inc = 1f/(float)steps;
 							int accx = 0;
 							int accy = 0;
