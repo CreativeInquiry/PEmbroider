@@ -231,6 +231,10 @@ public class PEmbroiderTrace {
 	}
 	
 	public static ArrayList<ArrayList<PVector>> findContours(int[] F, int w, int h) {
+		return findContours(F,w,h,null,null);
+	}
+	
+	public static ArrayList<ArrayList<PVector>> findContours(int[] F, int w, int h, ArrayList<Boolean> oIsHole, ArrayList<Integer> oParent) {
 		//ported from https://github.com/LingDong-/PContour/blob/master/src/pcontour/PContour.java
 
 		int nbd = 1;
@@ -285,6 +289,32 @@ public class PEmbroiderTrace {
 				contours.add(new ArrayList<PVector>());
 				contours.get(contours.size()-1).add(new PVector(j,i));
 
+				
+		        boolean isHole = (j2 == j+1);
+		        if (oIsHole != null) {
+		        	oIsHole.add(isHole);
+		        }
+		        if (oParent != null) {
+		        	int b0 = lnbd-2;
+		        	int parent = -1;
+		        	if (b0 >= 0) {
+			        	if (oIsHole.get(b0)){
+			        		if (isHole){
+			        			parent = oParent.get(b0);
+			        		}else{
+			        			parent = b0;
+			        		}
+			        	}else{
+			        		if (isHole){
+			        			parent = b0;
+			        		}else{
+			        			parent = oParent.get(b0);
+			        		}
+			        	}
+		        	}
+		        	oParent.add(parent);
+		        }
+		        
 				while (true){
 					int[] i4j4 = ccwNon0(F,w,h,i3,j3,i2,j2,1);
 					int i4 = i4j4[0];
@@ -324,13 +354,16 @@ public class PEmbroiderTrace {
 		return findContours_naive(bim,im.width,im.height);
 	}
 	public static ArrayList<ArrayList<PVector>> findContours(PImage im){
+		return findContours(im,null,null);
+	}
+	public static ArrayList<ArrayList<PVector>> findContours(PImage im, ArrayList<Boolean> oIsHole, ArrayList<Integer> oParent){
 		
 		int[] bim = new int[im.width*im.height];
 		im.loadPixels();
 		for (int i = 0; i < im.width * im.height; i++){
 			bim[i] = (im.pixels[i]>>16&0xFF)>0x7F?1:0;
 		}
-		return findContours(bim,im.width,im.height);
+		return findContours(bim,im.width,im.height,oIsHole,oParent);
 	}
 	
 	public static ArrayList<PVector> approxPolyDP(ArrayList<PVector> polyline, float epsilon){
