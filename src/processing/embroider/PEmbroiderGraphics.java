@@ -5048,6 +5048,7 @@ public class PEmbroiderGraphics {
 		im2.filter(PConstants.THRESHOLD);
 		im2.endDraw();
 
+		
 		ArrayList<ArrayList<PVector>> polys = PEmbroiderTrace.findContours(im2);
 
 		for (int i = polys.size() - 1; i >= 0; i--) {

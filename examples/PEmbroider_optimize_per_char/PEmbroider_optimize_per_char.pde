@@ -32,7 +32,7 @@ void setup() {
 }
 
 void draw(){
-  background(128);
-  E.visualize(true,false,false,frameCount);
+  //background(128);
+  //E.visualize(true,false,false,frameCount);
   
 }
