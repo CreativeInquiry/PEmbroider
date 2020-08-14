@@ -6,7 +6,8 @@ import processing.embroider.*;
 PEmbroiderGraphics E;
 int stitchPlaybackCount = 0; 
 
-float shapeCoords[][] = {
+
+float shapeCoords[][] = { /* A fussy 2D polygon */
   {579, 51}, {712, 59}, {716, 182}, {744, 300}, {748, 345}, 
   {749, 389}, {732, 470}, {716, 510}, {692, 551}, {648, 618}, 
   {585, 670}, {471, 699}, {372, 729}, {282, 711}, {169, 643}, 
@@ -20,7 +21,7 @@ void setup() {
   size (800, 800); 
 
   // In this demo, we just animate the stitch planning, 
-  // so we haven't bothered setting up file output. 
+  // -- so we haven't bothered setting up file output. 
   //
   // Set up a new PEmbroiderGraphics object. 
   E = new PEmbroiderGraphics(this, width, height);
@@ -65,10 +66,9 @@ void draw() {
 
   // Advance the playback of the stitches.
   //
-  int hurryUp = 25; // how big is the skip step.
+  int hurryUp = 25; // How many stitches do we skip between frames.
   if (stitchPlaybackCount > (E.getNumStitches()+hurryUp)) {
-    println("Finished!"); 
-    noLoop();
+    stitchPlaybackCount = 0; // restart the animation. 
   } else {
     /* If you want to export frames to make an animated GIF, 
      * uncomment the following line of code: */
