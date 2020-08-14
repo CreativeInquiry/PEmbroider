@@ -1,5 +1,5 @@
 // Test program for the PEmbroider library for Processing:
-// Embroidering the frames of an animation. 
+// Embroidering the frames of an Eadweard Mubridge animation. 
 
 import processing.embroider.*;
 PEmbroiderGraphics E;
@@ -34,14 +34,13 @@ void setup() {
   E.beginDraw(); 
   E.clear();
 
-  // Embroider each of the frames of the animation 
-
-E.beginCull();
+  E.beginCull();
   E.setStitch(5, 40, 0);
   E.stroke(0, 0, 0);
   E.strokeWeight(1); 
   E.noFill(); 
-  //E.fill(0);
+
+  // Make a rounded rect around each animation frame.
   int pw = frames[0].width;
   int ph = frames[0].height;
   for (int i=0; i<nFrames; i++) {
@@ -50,18 +49,21 @@ E.beginCull();
     E.rect(px, py, pw, ph, 25);
   }
 
-
+  // The (white) shapes will be filled with dense concentric 
+  // stitching. Each shape will be bordered by a thin line. 
+  //
   E.hatchMode(PEmbroiderGraphics.CONCENTRIC);
   E.strokeMode(PEmbroiderGraphics.TANGENT); 
   E.PARALLEL_RESAMPLING_OFFSET_FACTOR = 0.3333;
   E.setStitch(3, 40, 0);
-  E.hatchAngleDeg(85); 
+  E.hatchAngleDeg(85); // not currently used (i.e. with CONCENTRIC hatch)
   E.hatchSpacing(2.0);
   E.strokeSpacing(1.0); 
   E.strokeWeight(1); 
   E.stroke(0, 0, 0);
   E.fill(0, 0, 0); 
 
+  // Render each frame of the animation, in a 4x4 grid
   for (int i=0; i<nFrames; i++) {
     int px = (i%4) * (pw+25) + 25;
     int py = (i/4) * (ph+25) + 25;
@@ -71,12 +73,14 @@ E.beginCull();
 
 
   //-------------------
-  // E.optimize(); // slow, but good and important
+  // Be sure to un-comment E.optimize() and E.endDraw() below
+  // when you want to actually export the embroidery file!!!!
+  //
+  // E.optimize();   // slow, but good and very important
   E.visualize();
-  // E.endDraw(); // write out the file
-  //E.printStats();
-  //save("PEmbroider_bitmap_animation.png");
-
+  // E.endDraw();    // write out the file
+  // E.printStats(); // tell us about the embroidery
+  // save("PEmbroider_bitmap_animation.png");
 }
 
 

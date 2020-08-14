@@ -4523,6 +4523,10 @@ public class PEmbroiderGraphics {
 	 */
 	public ArrayList<PVector> resampleHalfKeepCorners(ArrayList<PVector> poly, float maxTurn){
 		ArrayList<PVector> poly2 = new ArrayList<PVector>();
+		if (poly.size() <= 2) {
+			poly2.addAll(poly);
+			return poly2;
+		}
 		for (int i = 0; i < poly.size(); i++) {
 			PVector p1 = poly.get(i);
 			if (i % 2 == 0 || i == poly.size()-1) {
@@ -4565,7 +4569,7 @@ public class PEmbroiderGraphics {
 		if (beginCullIndex >= cullGroups.size()) {
 			return;
 		}
-
+		
 		ArrayList<ArrayList<ArrayList<PVector>>> groups = new ArrayList<ArrayList<ArrayList<PVector>>>();
 		ArrayList<ArrayList<Integer>> groupColors = new ArrayList<ArrayList<Integer>>();
 

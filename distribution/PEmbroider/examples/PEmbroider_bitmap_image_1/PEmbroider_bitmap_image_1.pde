@@ -1,5 +1,5 @@
 // Test program for the PEmbroider library for Processing:
-// Filling a pre-loaded "image" using various hatches.
+// Filling a pre-loaded "image" using various hatching methods.
 
 import processing.embroider.*;
 PEmbroiderGraphics E;
@@ -8,7 +8,6 @@ PEmbroiderGraphics E;
 void setup() {
   size(1000, 500); 
   noLoop(); 
-
 
   // Load the bitmap image to embroider. 
   // Should consist of white shapes on a black background. 
@@ -19,8 +18,6 @@ void setup() {
   String outputFilePath = sketchPath("PEmbroider_bitmap_image_1.vp3");
   E.setPath(outputFilePath); 
 
-  E.toggleResample(false);
-
   //-------------------
   // Initial setup of PEmbroider object.
   E.beginDraw(); 
@@ -30,7 +27,7 @@ void setup() {
 
   //-------------------
   // Parallel hatch 
-  E.setStitch(2, 20, 0); 
+  E.setStitch(5, 30, 0); 
   E.hatchMode(PEmbroiderGraphics.PARALLEL);
   E.hatchAngleDeg(15);
   E.hatchSpacing(3.0);
@@ -38,7 +35,7 @@ void setup() {
 
   //-------------------
   // Cross hatch 
-  E.setStitch(2, 20, 0);
+  E.setStitch(5, 30, 0);
   E.hatchMode(PEmbroiderGraphics.CROSS); 
   E.HATCH_ANGLE = radians(30);
   E.HATCH_ANGLE2 = radians(0);
@@ -49,7 +46,7 @@ void setup() {
   // Dense concentric hatch 
   E.hatchMode(PEmbroiderGraphics.CONCENTRIC); 
   E.hatchSpacing(2.0);
-  E.setStitch(2, 10, 1.0);
+  E.setStitch(5, 20, 1.0);
   E.image(myImage, 0, 250);
   
   //-------------------
@@ -62,7 +59,7 @@ void setup() {
   // Draw fat perpendicular stroke only, no fill. 
   E.noFill(); 
   E.stroke(0, 0, 0); 
-  E.setStitch(2, 30, 1.0);
+  E.setStitch(5, 30, 1.0);
   E.strokeWeight(16); 
   E.strokeSpacing(4);
   E.strokeMode(PEmbroiderGraphics.PERPENDICULAR);
@@ -73,6 +70,7 @@ void setup() {
   E.stroke(0, 0, 0); 
   E.noFill(); 
   E.strokeWeight(16); 
+  E.setStitch(5, 30, 1.0);
   E.strokeMode(PEmbroiderGraphics.TANGENT);
   E.strokeSpacing(4);
   E.image(myImage, 750, 250);
@@ -83,7 +81,7 @@ void setup() {
   // Here, we use the (best) "vector field" (VF) version.
   E.pushMatrix();
   E.translate(500, 0);
-  E.setStitch(6,20, 0.0); 
+  E.setStitch(5, 25, 0.0); 
   PEmbroiderHatchSpine.setGraphics(E);
   PEmbroiderHatchSpine.hatchSpineVF(myImage, 3.0); 
   E.popMatrix(); 
@@ -92,16 +90,12 @@ void setup() {
   // Draw the original raster image (for reference).
   image(myImage, 750, 0);
 
-
   //-------------------
-  // E.optimize(); // slow, but good and important
+  // Be sure to un-comment E.optimize() and E.endDraw() below
+  // when you want to actually export the embroidery file!!!
+  // 
+  E.optimize();    // really slow, but good and important
   E.visualize();
-  // E.endDraw(); // write out the file
-  E.printStats();
-}
-
-
-//--------------------------------------------
-void draw() {
-  ;
+  // E.endDraw();  // write out the embroidery file
+  E.printStats();  // tell us about it
 }
