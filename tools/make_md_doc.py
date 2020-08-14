@@ -10,7 +10,34 @@ tree = ET.ElementTree(file="tmp")
 os.system('rm tmp')
 
 sections = tree.iter("sectiondef")
+
+hints = "## Hints\n| Type | Name | Default | Description |\n|---|---|---|---|\n";
+
 for sec in sections:
+	if "attrib" in sec.attrib['kind'] and "public" in sec.attrib['kind']:
+		memdefs = sec.iter("memberdef")
+		for defn in memdefs:
+			typ = defn.find("type").text
+			try:
+				if not typ:
+					typ = defn.find("type").find("ref").text
+			except:
+				typ = None
+			name = defn.find("name").text;
+
+			detail = defn.find("detaileddescription").find("para")
+			if detail != None:
+				detail = detail.text;
+
+			if detail == None:
+				continue
+
+			default = defn.find("initializer").text.replace("=","")
+
+			hints += "|"+typ+"| `"+name+"` |"+default+"|"+detail+"|\n"
+
+		continue
+
 	if "func" not in sec.attrib['kind']:
 		continue
 	memdefs = sec.iter("memberdef")
@@ -61,3 +88,6 @@ for sec in sections:
 			except:
 				pass
 		print("\n\n-----------------\n\n")
+
+
+print(hints)

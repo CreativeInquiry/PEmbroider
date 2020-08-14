@@ -204,6 +204,7 @@
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a9615908084be3e502191f3ded4b01ee5" kind="variable"><name>PERPENDICULAR_STROKE_CAP_DENSITY_MULTIPLIER</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a326a468b2d0fda38813b5f064b1b325c" kind="variable"><name>CULL_SPACING</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1ac8ad709999a14c272ae00d25946e62a0" kind="variable"><name>SATIN_MODE</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a3d0eb0d96a117efe1d5c7ee7aaee46fa" kind="variable"><name>TEXT_OPTIMIZE_PER_CHAR</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a57d11bbcb2130da29ede976ca69f516e" kind="variable"><name>composite</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1af793cbf2636579013fd6b9aca2d3087f" kind="variable"><name>AUTO</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a376c18b7da94c5a61a2ccc3b30ee8a0c" kind="variable"><name>NONE</name></member>
@@ -404,6 +405,7 @@
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a4f46a6552b608e59a04d6de9267b4028" kind="function"><name>textSize</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a6064e26b13860b436c9f5de1794062d9" kind="function"><name>textFont</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a66139157376f332e2ff24ad04ac83550" kind="function"><name>textFont</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a977f7fb845adeb6fecefe28f2c7eaf12" kind="function"><name>mergePolylinesByColor</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1ac9b662b40d0c7bad3b9396a5bf04eaa4" kind="function"><name>text</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1af9d4f3ffbf9ab53ddbe80d86a7498ef5" kind="function"><name>printStats</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_graphics_1a2f250923dcf92723ccf435de2a8fa75c" kind="function"><name>getNumStitches</name></member>
@@ -475,8 +477,10 @@
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a706971ccc0cb31059fc1433611d60d0b" kind="variable"><name>N_PIXEL_NEIGHBOR</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a18250ecfe6fb528d13e643f99f8c0ee8" kind="function"><name>findContours_naive</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1ab08ec11a588077744c022c61274ef0f0" kind="function"><name>findContours</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a176716818dbc8f23e3f1b436dc863f02" kind="function"><name>findContours</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a18a11e7163dda5400f5403b0839587f4" kind="function"><name>findContours_naive</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a6893a48f07e86ac8e46b7226f6db1d40" kind="function"><name>findContours</name></member>
+    <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a379919d5a793dd0e0f86f9be455621f6" kind="function"><name>findContours</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a1dc0aa33af53d61bcecc427a883bcffd" kind="function"><name>approxPolyDP</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1aeab898020189709e9c1b325bc4e71c26" kind="function"><name>findIsolines</name></member>
     <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a3f627afd4607426eb1c53686f3567fa6" kind="function"><name>thinning</name></member>

@@ -133,7 +133,14 @@ public class PEmbroiderGraphics {
 	public int FONT_ALIGN = PConstants.LEFT;
 	public int FONT_ALIGN_VERTICAL = PConstants.BASELINE;
 	
+	/**
+	 * Anti-alignment for rings of concentric hatching to reduce visual ridges.
+	 */
 	public float CONCENTRIC_ANTIALIGN = 0.6f;
+	
+	/**
+	 * Maximum turning angle (in radians) for vertices that the resampling algorithm is allowed optimize out.
+	 */
 	public float RESAMPLE_MAXTURN = 0.2f;
 	
 	public int OUT_OF_BOUNDS_HANDLER = ASK;
@@ -141,18 +148,35 @@ public class PEmbroiderGraphics {
 	boolean randomizeOffsetEvenOdd = false;
 	float randomizeOffsetPrevious = 0.0f;
 	
+	
+	/**
+	 * Add staggering to the resampling of parallel hatches, to reduce visual ridges. Recommanded range: (0,1)
+	 */
 	public float PARALLEL_RESAMPLING_OFFSET_FACTOR = 0.5f;
+	
+	/**
+	 * Add staggering to the resampling of satin hatches, to reduce visual ridges. Recommanded range: (0,1)
+	 */
 	public float SATIN_RESAMPLING_OFFSET_FACTOR = 0.5f;
 	
+	/**
+	 * Experimental resampling method for crosshatching, that tries un-align stitch placement.
+	 */
 	public boolean EXPERIMENTAL_CROSS_RESAMPLE = false;
 	
+	/**
+	 * Stroke density of perpendicular stroke caps / stroke joins.
+	 */
 	public float PERPENDICULAR_STROKE_CAP_DENSITY_MULTIPLIER = 1.0f;
 	
 	public float CULL_SPACING = 7;
 	
 	public int SATIN_MODE = ZIGZAG;
 	
-	public boolean TEXT_OPTIMIZE_PER_CHAR = false;
+	/**
+	 * When drawing text, optimize the stroke order of each character individually, instead of optimizing once for the whole sentece.
+	 */
+	public boolean TEXT_OPTIMIZE_PER_CHAR = true;
 	
 	
 	static String logPrefix = "[PEmbroider] ";

@@ -82,7 +82,40 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="233" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="233" bodyend="315"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="233" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="233" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1a176716818dbc8f23e3f1b436dc863f02" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ArrayList&lt; ArrayList&lt; PVector &gt; &gt;</type>
+        <definition>static ArrayList&lt;ArrayList&lt;PVector&gt; &gt; processing.embroider.PEmbroiderTrace.findContours</definition>
+        <argsstring>(int[] F, int w, int h, ArrayList&lt; Boolean &gt; oIsHole, ArrayList&lt; Integer &gt; oParent)</argsstring>
+        <name>findContours</name>
+        <param>
+          <type>int[]</type>
+          <declname>F</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>h</declname>
+        </param>
+        <param>
+          <type>ArrayList&lt; Boolean &gt;</type>
+          <declname>oIsHole</declname>
+        </param>
+        <param>
+          <type>ArrayList&lt; Integer &gt;</type>
+          <declname>oParent</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="237" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="237" bodyend="345"/>
       </memberdef>
       <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1a18a11e7163dda5400f5403b0839587f4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>ArrayList&lt; ArrayList&lt; PVector &gt; &gt;</type>
@@ -99,7 +132,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="318" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="318" bodyend="325"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="348" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="348" bodyend="355"/>
       </memberdef>
       <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1a6893a48f07e86ac8e46b7226f6db1d40" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>ArrayList&lt; ArrayList&lt; PVector &gt; &gt;</type>
@@ -116,7 +149,32 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="326" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="326" bodyend="334"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="356" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="356" bodyend="358"/>
+      </memberdef>
+      <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1a379919d5a793dd0e0f86f9be455621f6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ArrayList&lt; ArrayList&lt; PVector &gt; &gt;</type>
+        <definition>static ArrayList&lt;ArrayList&lt;PVector&gt; &gt; processing.embroider.PEmbroiderTrace.findContours</definition>
+        <argsstring>(PImage im, ArrayList&lt; Boolean &gt; oIsHole, ArrayList&lt; Integer &gt; oParent)</argsstring>
+        <name>findContours</name>
+        <param>
+          <type>PImage</type>
+          <declname>im</declname>
+        </param>
+        <param>
+          <type>ArrayList&lt; Boolean &gt;</type>
+          <declname>oIsHole</declname>
+        </param>
+        <param>
+          <type>ArrayList&lt; Integer &gt;</type>
+          <declname>oParent</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="359" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="359" bodyend="367"/>
       </memberdef>
       <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1a1dc0aa33af53d61bcecc427a883bcffd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>ArrayList&lt; PVector &gt;</type>
@@ -137,7 +195,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="336" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="336" bodyend="363"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="369" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="369" bodyend="396"/>
       </memberdef>
       <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1aeab898020189709e9c1b325bc4e71c26" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>ArrayList&lt; ArrayList&lt; ArrayList&lt; PVector &gt; &gt; &gt;</type>
@@ -162,7 +220,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="365" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="365" bodyend="407"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="398" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="398" bodyend="440"/>
       </memberdef>
       <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1a3f627afd4607426eb1c53686f3567fa6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -187,7 +245,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="412" column="22" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="412" bodyend="426"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="445" column="22" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="445" bodyend="459"/>
       </memberdef>
       <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1aa0f313ff0e531a9992d69e60f7a234cf" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>boolean[]</type>
@@ -212,7 +270,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="459" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="459" bodyend="473"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="492" column="25" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="492" bodyend="506"/>
       </memberdef>
       <memberdef kind="function" id="classprocessing_1_1embroider_1_1_p_embroider_trace_1a5f7afe628e437a4a329fbbd90b67a72c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>float[]</type>
@@ -237,7 +295,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="474" column="23" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="474" bodyend="487"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="507" column="23" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="507" bodyend="520"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="package-static-func">
@@ -412,14 +470,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="428" column="15" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="428" bodyend="457"/>
+        <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="461" column="15" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="461" bodyend="490"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="8" column="7" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="8" bodyend="488"/>
+    <location file="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" line="8" column="7" bodyfile="/Users/studio/Desktop/CreativeInquiry/PEmbroider/src/processing/embroider/PEmbroiderTrace.java" bodystart="8" bodyend="521"/>
     <listofallmembers>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a1dc0aa33af53d61bcecc427a883bcffd" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>approxPolyDP</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a5f7afe628e437a4a329fbbd90b67a72c" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>blur5</name></member>
@@ -427,7 +485,9 @@
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a1ad5d6ec911b6a3cf107726ac07e2844" prot="package" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>cwNon0</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1aa0f313ff0e531a9992d69e60f7a234cf" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>dilate5</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1ab08ec11a588077744c022c61274ef0f0" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>findContours</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a176716818dbc8f23e3f1b436dc863f02" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>findContours</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a6893a48f07e86ac8e46b7226f6db1d40" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>findContours</name></member>
+      <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a379919d5a793dd0e0f86f9be455621f6" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>findContours</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a18250ecfe6fb528d13e643f99f8c0ee8" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>findContours_naive</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1a18a11e7163dda5400f5403b0839587f4" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>findContours_naive</name></member>
       <member refid="classprocessing_1_1embroider_1_1_p_embroider_trace_1aeab898020189709e9c1b325bc4e71c26" prot="public" virt="non-virtual"><scope>processing::embroider::PEmbroiderTrace</scope><name>findIsolines</name></member>

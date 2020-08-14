@@ -2349,3 +2349,14 @@ Compute a point on a higher-order bezier curve
 -----------------
 
 
+## Hints
+| Type | Name | Default | Description |
+|---|---|---|---|
+|float| `CONCENTRIC_ANTIALIGN` | 0.6f|Anti-alignment for rings of concentric hatching to reduce visual ridges. |
+|float| `RESAMPLE_MAXTURN` | 0.2f|Maximum turning angle (in radians) for vertices that the resampling algorithm is allowed optimize out. |
+|float| `PARALLEL_RESAMPLING_OFFSET_FACTOR` | 0.5f|Add staggering to the resampling of parallel hatches, to reduce visual ridges. Recommanded range: (0,1) |
+|float| `SATIN_RESAMPLING_OFFSET_FACTOR` | 0.5f|Add staggering to the resampling of satin hatches, to reduce visual ridges. Recommanded range: (0,1) |
+|boolean| `EXPERIMENTAL_CROSS_RESAMPLE` | false|Experimental resampling method for crosshatching, that tries un-align stitch placement. |
+|float| `PERPENDICULAR_STROKE_CAP_DENSITY_MULTIPLIER` | 1.0f|Stroke density of perpendicular stroke caps / stroke joins. |
+|boolean| `TEXT_OPTIMIZE_PER_CHAR` | true|When drawing text, optimize the stroke order of each character individually, instead of optimizing once for the whole sentece. |
+
