@@ -4,7 +4,7 @@ import processing.embroider.*;
 PEmbroiderGraphics E;
 
 void setup(){
-  size(600,400);
+  size(600,350);
   E = new PEmbroiderGraphics(this);
 }
 
@@ -19,8 +19,8 @@ void draw(){
   //E.strokeLocation(E.INSIDE);
   //E.strokeLocation(E.OUTSIDE);
   
-  E.strokeLocation(map(mouseX,0,width,-1,1));
-  
+  float strokeLocationVal = map(mouseX,0,width,-1,1);
+  E.strokeLocation(strokeLocationVal);
   E.fill(0);
 
   E.beginComposite();
@@ -42,9 +42,8 @@ void draw(){
   
   E.composite.endShape(CLOSE);
   E.endComposite();
-  
-  E.text("strokeLocation("+nf(E.STROKE_LOCATION,1,2)+")",0,20);
-  
-  E.visualize();
-  
+ 
+  fill(0);
+  text("strokeLocation("+nf(E.STROKE_LOCATION,1,2)+")",15,20);
+  E.visualize(true, false, false);
 }

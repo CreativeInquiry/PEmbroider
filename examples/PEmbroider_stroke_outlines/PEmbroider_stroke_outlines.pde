@@ -1,6 +1,7 @@
 // Test program for the PEmbroider library for Processing:
 // When a shape has a thick stroke around it: 
 // Is the stroke inside, outside, or centered on the shape's contour?
+// ALSO SEE: the PEmbroider_strokeLocation example.
 //
 // PEmbroider provides some constants for doing this, for example: 
 // E.strokeLocation(CENTER); // or INSIDE or OUTSIDE
