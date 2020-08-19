@@ -6,7 +6,7 @@
 
 ![](images/cosa-and-sfci-logos.jpg)
 
-PEmbroider includes file-writing code adapted from the EmbroidePy [EmbroideryIO](https://github.com/EmbroidePy/EmbroideryIO) project, under its MIT License. Additional thanks to our beta-test community; Chris Coleman, and the Processing Foundation; Huw Messie, Bryce Summers, Lea Albaugh, Dan Moore, and the staff of the STUDIO. PEmbroider is free, open-source software released under an [MIT License](license.txt).
+PEmbroider includes file-writing code adapted from the EmbroidePy [EmbroideryIO](https://github.com/EmbroidePy/EmbroideryIO) project, under EmbroidePy's MIT License. Additional thanks to our beta-test community; Chris Coleman, and the Processing Foundation; Huw Messie, Bryce Summers, Lea Albaugh, Dan Moore, and the staff of the STUDIO. PEmbroider is free, open-source software released under the [Anti-Capitalist Software License](license.txt). More information about this license can be found [here](https://anticapitalist.software/). 
 
 ---
 ## TL;DR
