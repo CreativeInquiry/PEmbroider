@@ -11,6 +11,7 @@ A simple "Hello World!" program that renders a smily face.
 [![](Hello_PEmbroider/Hello_PEmbroider_photo.png)](Hello_PEmbroider/)
 
 
+
 ## PEmbroider_shapes
 
 Basic filled shapes: circle, square, rectangle, rounded rectangle, triangle, quad, ellipse, arc pie, arc chord. Shapes created with user-defined vertices, including: non-convex shapes; shapes with compound contours (i.e. holes); shapes combinining linear and curvilinear segments. All shapes are filled and unstroked. 
@@ -18,25 +19,36 @@ Basic filled shapes: circle, square, rectangle, rounded rectangle, triangle, qua
 [![](PEmbroider_shapes/PEmbroider_shapes_photo.png)](PEmbroider_shapes/)
 
 
-## PEmbroider_strokes
+
+## PEmbroider_strokes_1
 
 Shapes with and without stroke and/or fills. Varying thicknesses of shapes' strokes. Varying the stroke spacing (spacing of stitch runs within strokes). Strokes with tangent versus parallel stitches.
 
-[![](PEmbroider_strokes/PEmbroider_strokes_photo.png)](PEmbroider_strokes/)
+[![](PEmbroider_strokes_1/documentation/PEmbroider_strokes_1_photo.png)](PEmbroider_strokes_1/)
 
 
-## PEmbroider_stroke_outlines
+
+## PEmbroider_strokes_2
+
+Demonstration of how the orientation of stitches, relative to strokes, can be precisely controlled.
+
+[![](PEmbroider_strokes_2/documentation/PEmbroider_strokes_2_photo.png)](PEmbroider_strokes_2/)<br />[![](PEmbroider_strokes_2/documentation/PEmbroider_strokes_2.png)](PEmbroider_strokes_2/)
+
+
+
+## PEmbroider_stroke_outlines_1
 
 Choose how much your strokes overlap the interior of their shapes.
 
-[![](PEmbroider_stroke_outlines/PEmbroider_stroke_outlines_photo.png)](PEmbroider_stroke_outlines/)
+[![](PEmbroider_stroke_outlines_1/documentation/PEmbroider_stroke_outlines_1_photo.png)](PEmbroider_stroke_outlines_1/)
+
 
 
 ## PEmbroider_stroke_outlines_2
 
-Make some outlined shapes.
+Make a single outline around a group of shapes.
 
-[![](PEmbroider_stroke_outlines_2/PEmbroider_stroke_outlines_2_photo.png)](PEmbroider_stroke_outlines_2/)
+[![](PEmbroider_stroke_outlines_2/documentation/PEmbroider_stroke_outlines_2_photo.png)](PEmbroider_stroke_outlines_2/)
 
 
 ## PEmbroider_lines_1
@@ -44,14 +56,14 @@ Make some outlined shapes.
 Lines with varying stroke weight. Lines with varying stroke spacing.
 Lines with varying stitch lengths. Lines with tangent versus parallel stitches.
 
-[![](PEmbroider_lines_1/PEmbroider_lines_1_photo.png)](PEmbroider_lines_1/)
+[![](PEmbroider_lines_1/documentation/PEmbroider_lines_1_photo.png)](PEmbroider_lines_1/)
 
 
 ## PEmbroider_lines_2
 
 Curves and line segments.
 
-[![](PEmbroider_lines_2/PEmbroider_lines_2_photo.png)](PEmbroider_lines_2/)
+[![](PEmbroider_lines_2/documentation/PEmbroider_lines_2_photo.png)](PEmbroider_lines_2/)
 
 
 ## PEmbroider_ruler
@@ -85,11 +97,20 @@ Varying stitch offsets in parallel hatching for filled shapes. Varying the amoun
 [![](PEmbroider_shape_hatching_3/PEmbroider_shape_hatching_3_photo.png)](PEmbroider_shape_hatching_3/)
 
 
+
 ## PEmbroider_shape_hatching_experimental
 
 Some hatching modes that are still in active development: "spine" hatching mode, and SPIRAL mode. 
 
-[![](PEmbroider_shape_hatching_experimental/PEmbroider_shape_hatching_experimental.png)](PEmbroider_shape_hatching_experimental/)
+[![](PEmbroider_shape_hatching_experimental/documentation/PEmbroider_shape_hatching_experimental_photo.png)](PEmbroider_shape_hatching_experimental/)
+
+
+
+## PEmbroider_hatchAngle_auto
+
+Sketch which demonstrates a feature that automatically sets the hatch angle of a shape, depending on the shape's overall orientation.
+
+[![](PEmbroider_hatchAngle_auto/documentation/PEmbroider_hatchAngle_auto.gif)](PEmbroider_hatchAngle_auto/)
 
 
 
@@ -177,6 +198,14 @@ Options for high-quality type alignment (baseline, ascent, descent; left, center
 Built-in implmentations of [Hershey fonts](https://en.wikipedia.org/wiki/Hershey_fonts) (single-stroke vector fonts) for quick embroidered typography without font rasterization. 
 
 [![](PEmbroider_text_3/PEmbroider_text_3_photo.png)](PEmbroider_text_3/)
+
+
+
+## PEmbroider_optimize_per_char
+
+Demonstration of an optional feature which optimizes the embroidery of filled text on a per-character basis.
+
+[![](PEmbroider_optimize_per_char/documentation/PEmbroider_optimize_per_char.png)](PEmbroider_optimize_per_char/)
 
 
 
