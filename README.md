@@ -29,10 +29,13 @@ PEmbroider includes file-writing code adapted from the EmbroidePy [EmbroideryIO]
 * [Getting Started with PEmbroider in Processing](#getting-started-with-pembroider-in-processing)
 * [How to Build PEmbroider From Source](#how-to-build-pembroider-from-source)
 * [FAQ](#faq)
+* [License](#licence)
 
 
 ---
 ## Motivation
+
+[![Commercial embroidery software can cost more than a car.](images/commercial_embroidery_software_is_a_racket.jpg)](images/commercial_embroidery_software_is_a_racket.jpg)
 
 As [this comparison of embroidery software](https://en.wikipedia.org/wiki/Comparison_of_embroidery_software) shows, existing software for the creation of custom embroidery designs frequently costs thousands of dollars; is rarely cross-platform; and is almost never open-source. The free and open-source tools which do exist are either full-featured standalone GUI tools (Ink/Stitch, Embroidermodder) or large-scale libraries (EmbroidePy)—neither of which integrate easily with popular "creative coding" toolkits, nor easily allow for the creation of generative and computational designs. 
 
