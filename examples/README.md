@@ -125,6 +125,14 @@ The Processing logo. Combining stroke and fill in a filled shape taken from a bi
 
 
 
+## PEmbroider_png_image_multicolor
+
+Using multiple PNG images to create a multicolor embroidery design.
+
+![](PEmbroider_png_image_multicolor/documentation/PEmbroider_png_image_multicolor_photo.png)
+
+
+
 ## PEmbroider_bitmap_animation
 
 Frames of the classic Muybridge horse, rendered as embroidered graphics. 
@@ -140,7 +148,7 @@ Frames of the classic Muybridge horse, rendered as embroidered graphics.
 
 ## PEmbroider_svg_image
 
-Embroidering shapes loaded from SVG files.
+Embroidering shapes loaded from simple SVG files.
 
 [![](PEmbroider_svg_image/PEmbroider_svg_image_photo.png)](PEmbroider_svg_image/)
 
@@ -187,6 +195,22 @@ Multi-stroke doodle recorder.
 [![](PEmbroider_interactive_demo_2/documentation/PEmbroider_interactive_demo_2a_photo.jpg)](PEmbroider_interactive_demo_2/)
 
 [![](PEmbroider_interactive_demo_2/documentation/interactive_demo_2e_photo.png)](PEmbroider_interactive_demo_2/)
+
+
+
+## PEmbroider_trace_skeleton
+
+Trace thin lines in a scanned drawing to produce a single-stroke vectorized version suitable for embroidery.
+
+[![Challenging polygons](PEmbroider_trace_skeleton/documentation/PEmbroider_trace_skeleton.png)](PEmbroider_trace_skeleton/)
+
+
+
+## Pembroider_polygon_gauntlet
+
+An obstacle course of challenging polygons to test the PEmbroider hatching algorithms. 
+
+[![](Pembroider_polygon_gauntlet/documentation/Pembroider_polygon_gauntlet.png)](Pembroider_polygon_gauntlet/)
 
 
 
