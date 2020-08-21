@@ -2032,9 +2032,10 @@ public class PEmbroiderGraphics {
 				polys.get(i).remove(j);
 			}
 		}
-		for (int i = 1; i < polys.size(); i++) {
+		for (int i = polys.size()-1; i>0; i--) {
 			polys.get(0).addAll(polys.get(i));
 			polys.get(i).clear();
+			polys.remove(i);
 		}
 //		app.image(pg,0,0);
 		return polys;
