@@ -11,6 +11,7 @@ A simple "Hello World!" program that renders a smily face.
 [![](Hello_PEmbroider/Hello_PEmbroider_photo.png)](Hello_PEmbroider/)
 
 
+
 ## PEmbroider_shapes
 
 Basic filled shapes: circle, square, rectangle, rounded rectangle, triangle, quad, ellipse, arc pie, arc chord. Shapes created with user-defined vertices, including: non-convex shapes; shapes with compound contours (i.e. holes); shapes combinining linear and curvilinear segments. All shapes are filled and unstroked. 
@@ -18,25 +19,36 @@ Basic filled shapes: circle, square, rectangle, rounded rectangle, triangle, qua
 [![](PEmbroider_shapes/PEmbroider_shapes_photo.png)](PEmbroider_shapes/)
 
 
-## PEmbroider_strokes
+
+## PEmbroider_strokes_1
 
 Shapes with and without stroke and/or fills. Varying thicknesses of shapes' strokes. Varying the stroke spacing (spacing of stitch runs within strokes). Strokes with tangent versus parallel stitches.
 
-[![](PEmbroider_strokes/PEmbroider_strokes_photo.png)](PEmbroider_strokes/)
+[![](PEmbroider_strokes_1/documentation/PEmbroider_strokes_1_photo.png)](PEmbroider_strokes_1/)
 
 
-## PEmbroider_stroke_outlines
+
+## PEmbroider_strokes_2
+
+Demonstration of how the orientation of stitches, relative to strokes, can be precisely controlled.
+
+[![](PEmbroider_strokes_2/documentation/PEmbroider_strokes_2_photo.png)](PEmbroider_strokes_2/)<br />[![](PEmbroider_strokes_2/documentation/PEmbroider_strokes_2.png)](PEmbroider_strokes_2/)
+
+
+
+## PEmbroider_stroke_outlines_1
 
 Choose how much your strokes overlap the interior of their shapes.
 
-[![](PEmbroider_stroke_outlines/PEmbroider_stroke_outlines_photo.png)](PEmbroider_stroke_outlines/)
+[![](PEmbroider_stroke_outlines_1/documentation/PEmbroider_stroke_outlines_1_photo.png)](PEmbroider_stroke_outlines_1/)
+
 
 
 ## PEmbroider_stroke_outlines_2
 
-Make some outlined shapes.
+Make a single outline around a group of shapes.
 
-[![](PEmbroider_stroke_outlines_2/PEmbroider_stroke_outlines_2_photo.png)](PEmbroider_stroke_outlines_2/)
+[![](PEmbroider_stroke_outlines_2/documentation/PEmbroider_stroke_outlines_2_photo.png)](PEmbroider_stroke_outlines_2/)
 
 
 ## PEmbroider_lines_1
@@ -44,14 +56,14 @@ Make some outlined shapes.
 Lines with varying stroke weight. Lines with varying stroke spacing.
 Lines with varying stitch lengths. Lines with tangent versus parallel stitches.
 
-[![](PEmbroider_lines_1/PEmbroider_lines_1_photo.png)](PEmbroider_lines_1/)
+[![](PEmbroider_lines_1/documentation/PEmbroider_lines_1_photo.png)](PEmbroider_lines_1/)
 
 
 ## PEmbroider_lines_2
 
 Curves and line segments.
 
-[![](PEmbroider_lines_2/PEmbroider_lines_2_photo.png)](PEmbroider_lines_2/)
+[![](PEmbroider_lines_2/documentation/PEmbroider_lines_2_photo.png)](PEmbroider_lines_2/)
 
 
 ## PEmbroider_ruler
@@ -85,11 +97,20 @@ Varying stitch offsets in parallel hatching for filled shapes. Varying the amoun
 [![](PEmbroider_shape_hatching_3/PEmbroider_shape_hatching_3_photo.png)](PEmbroider_shape_hatching_3/)
 
 
+
 ## PEmbroider_shape_hatching_experimental
 
 Some hatching modes that are still in active development: "spine" hatching mode, and SPIRAL mode. 
 
-[![](PEmbroider_shape_hatching_experimental/PEmbroider_shape_hatching_experimental.png)](PEmbroider_shape_hatching_experimental/)
+[![](PEmbroider_shape_hatching_experimental/documentation/PEmbroider_shape_hatching_experimental_photo.png)](PEmbroider_shape_hatching_experimental/)
+
+
+
+## PEmbroider_hatchAngle_auto
+
+Sketch which demonstrates a feature that automatically sets the hatch angle of a shape, depending on the shape's overall orientation.
+
+[![](PEmbroider_hatchAngle_auto/documentation/PEmbroider_hatchAngle_auto.gif)](PEmbroider_hatchAngle_auto/)
 
 
 
@@ -125,6 +146,14 @@ The Processing logo. Combining stroke and fill in a filled shape taken from a bi
 
 
 
+## PEmbroider_png_image_multicolor
+
+Using multiple PNG images to create a multicolor embroidery design.
+
+![](PEmbroider_png_image_multicolor/documentation/PEmbroider_png_image_multicolor_photo.png)
+
+
+
 ## PEmbroider_bitmap_animation
 
 Frames of the classic Muybridge horse, rendered as embroidered graphics. 
@@ -140,7 +169,7 @@ Frames of the classic Muybridge horse, rendered as embroidered graphics.
 
 ## PEmbroider_svg_image
 
-Embroidering shapes loaded from SVG files.
+Embroidering shapes loaded from simple SVG files.
 
 [![](PEmbroider_svg_image/PEmbroider_svg_image_photo.png)](PEmbroider_svg_image/)
 
@@ -172,6 +201,14 @@ Built-in implmentations of [Hershey fonts](https://en.wikipedia.org/wiki/Hershey
 
 
 
+## PEmbroider_optimize_per_char
+
+Demonstration of an optional feature which optimizes the embroidery of filled text on a per-character basis.
+
+[![](PEmbroider_optimize_per_char/documentation/PEmbroider_optimize_per_char.png)](PEmbroider_optimize_per_char/)
+
+
+
 ## PEmbroider_interactive_demo_1
 
 Demonstration of how an embroidery file can be generated and exported *during live interaction*.
@@ -187,6 +224,22 @@ Multi-stroke doodle recorder.
 [![](PEmbroider_interactive_demo_2/documentation/PEmbroider_interactive_demo_2a_photo.jpg)](PEmbroider_interactive_demo_2/)
 
 [![](PEmbroider_interactive_demo_2/documentation/interactive_demo_2e_photo.png)](PEmbroider_interactive_demo_2/)
+
+
+
+## PEmbroider_trace_skeleton
+
+Trace thin lines in a scanned drawing to produce a single-stroke vectorized version suitable for embroidery.
+
+[![Challenging polygons](PEmbroider_trace_skeleton/documentation/PEmbroider_trace_skeleton.png)](PEmbroider_trace_skeleton/)
+
+
+
+## Pembroider_polygon_gauntlet
+
+An obstacle course of challenging polygons to test the PEmbroider hatching algorithms. 
+
+[![](Pembroider_polygon_gauntlet/documentation/Pembroider_polygon_gauntlet.png)](Pembroider_polygon_gauntlet/)
 
 
 
