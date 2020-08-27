@@ -17,7 +17,7 @@ PEmbroider includes file-writing code adapted from the EmbroidePy [EmbroideryIO]
 * Browse the [**Examples**](examples/README.md)
 * Read the [**Full API**](API.md)
 
-[![Download the PEmbroider Library for Processing](images/download_pembroider.jpg)](distribution/PEmbroider/download/Pembroider.zip)
+[![Download the PEmbroider Library for Processing](images/download_pembroider_transparent.png)](distribution/PEmbroider/download/Pembroider.zip)
 
 
 ---
