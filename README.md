@@ -6,7 +6,10 @@
 
 ![](images/cosa-and-sfci-logos.jpg)
 
-PEmbroider includes file-writing code adapted from the EmbroidePy [EmbroideryIO](https://github.com/EmbroidePy/EmbroideryIO) project, under EmbroidePy's MIT License. Additional thanks to our beta-test community; Chris Coleman, and the Processing Foundation; Huw Messie, Bryce Summers, Lea Albaugh, Dan Moore, and the staff of the STUDIO. PEmbroider is free, open-source software released under the [Anti-Capitalist Software License](license.txt). More information about this license can be found [here](https://anticapitalist.software/). 
+PEmbroider includes file-writing code adapted from the EmbroidePy [EmbroideryIO](https://github.com/EmbroidePy/EmbroideryIO) project, under EmbroidePy's MIT License. Additional thanks to our beta-test community; Chris Coleman, and the Processing Foundation; Huw Messie, Bryce Summers, Lea Albaugh, Dan Moore, and the staff of the STUDIO. 
+
+Intended primarily for artists, craftspersons, educators, makers, and schools, PEmbroider is free, open-source software released under *both* the [GNU General Public Licence](https://www.gnu.org/licenses/gpl-3.0.en.html) (GPLv3) *and* the [Anti-Capitalist Software License](https://anticapitalist.software/) (ACSL 1.4). In short: you are *encouraged* to use PEmbroider to make art; you are *required* to share your improvements to PEmbroider; and you are *expressly forbidden* from using PEmbroider to [profiteer](images/commercial_embroidery_software_is_a_racket.jpg). More information on [PEmbroider's license is below](#license).
+
 
 ---
 ## TL;DR
@@ -118,21 +121,31 @@ If there are any issues, download a fresh copy of this repository, and try caref
 * **Why can't PEmbroider read pre-existing embroidery design files?** This is a purposeful limitation of the project's scope. Philosophically, PEmbroider is intended to do one thing well: to allow you to generate new embroidery designs, with code. There is already plenty of software that allows you to load other people's designs. If you would like to manipulate pre-existing embroidery files computationally, we recommend the [EmbroidePy](https://github.com/EmbroidePy/) project.
 * **How can I learn to code in Processing?** There's great documentation at the main [Processing website](http://processing.org), or you can check out Dan Shiffman's amazing [Coding Train](https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw) tutorials on YouTube. 
 * **How can I learn to do machine embroidery?** Here are YouTube tutorials for the [Viking Jade 35](https://www.youtube.com/watch?v=h_uhV8DiyXI), the [Brother PE800](https://www.youtube.com/watch?v=DfpJXuBeEPM), and the [Brother SE600](https://www.youtube.com/watch?v=N0yPILKhHVc).
- 
+
+
 ---
 ## License
 
-PEmbroider is Copyright © 2020, the [Frank-Ratchye STUDIO for Creative Inquiry](http://studioforcreativeinquiry.org) at Carnegie Mellon University. PEmbroider is released under the [Anti-Capitalist Software License](https://anticapitalist.software/) (v. 1.0). 
+PEmbroider is Copyright © 2020, the [Frank-Ratchye STUDIO for Creative Inquiry](http://studioforcreativeinquiry.org) at Carnegie Mellon University. Intended primarily for artists, craftspersons, educators, makers, and schools, PEmbroider is free, open-source software released under *both* the [GNU General Public Licence](https://www.gnu.org/licenses/gpl-3.0.en.html) (GPLv3) *and* the [Anti-Capitalist Software License](https://anticapitalist.software/) (ACSL v. 1.4). In short: 
+
+* you are *encouraged* to use PEmbroider to make art; 
+* you are *required* to share your improvements to PEmbroider; 
+* and you are *expressly forbidden* from using PEmbroider to profiteer on the backs of artists, craftspersons, educators, makers, and schools. An example of this would be using PEmbroider to make commercial software such as (e.g.) Floriani Total Control Embroidery Software ($3499), DIME Designs in Machine Embroidery ($2999), Viking Premier Plus 2 Ultra ($2979), Hatch Embroidery Digitizer ($1099), Janome Artistic Digitizer Software ($1199), DesignerPlus Full Version ($1874), DRAWings PRO XI ($1299), *etcetera*.
+
+
+#### ANTI-CAPITALIST SOFTWARE LICENSE (v 1.4)
 
 This is anti-capitalist software, released for free use by individuals and organizations that do not operate by capitalist principles.
 
-Permission is hereby granted, free of charge, to any person or organization (the "User") obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person or organization (the "User") obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify, merge, distribute, and/or sell copies of the Software, subject to the following conditions:
 
-1. The above copyright notice and this permission notice shall be included in all copies of the Software.
+1. The above copyright notice and this permission notice shall be included in all copies or modified versions of the Software.
 2. The User is one of the following:
-	* (a) An individual person
-	* (b) An organization of people that does not seek profit
-	* (c) An organization of people that seeks shared profit for all its members
-3. If the User is an organization with owners, then all owners are workers and all workers are owners.
+	* a. An individual person, laboring for themselves
+	* b. A non-profit organization
+	* c. An educational institution
+	* d. An organization that seeks shared profit for all of its members, and allows non-members to set the cost of their labor
+3. If the User is an organization with owners, then all owners are workers and all workers are owners with equal equity and/or equal vote.
+4. If the User is an organization, then the User is not law enforcement or military, or working for or under either.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT EXPRESS OR IMPLIED WARRANTY OF ANY KIND, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT EXPRESS OR IMPLIED WARRANTY OF ANY KIND, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
