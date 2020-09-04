@@ -2181,14 +2181,14 @@ public class PEmbroiderWriter {
 	
 
 	public static class SVG {
-		public static String svgString(float[] bounds, ArrayList<PVector> stitches, ArrayList<Integer> colors) {
+		public static String svgString(float[] bounds, ArrayList<PVector> stitches, ArrayList<Integer> colors, ArrayList<Boolean> jumps) {
 			String svg = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" width=\""+(bounds[2]-bounds[0])+"\" height=\""+(bounds[3]-bounds[1])+"\" viewBox=\""+bounds[0]+" "+bounds[1]+" "+(bounds[2]-bounds[0])+" "+(bounds[3]-bounds[1])+"\">";
 			if (stitches.size() == 0) {
 				return svg+"</svg>";
 			}
 
 			for (int i = 0; i < stitches.size(); i++) {
-				if (i == 0 || (!colors.get(i).equals(colors.get(i-1)))) {
+				if (i == 0 || (!colors.get(i).equals(colors.get(i-1))) || jumps.get(i)) {
 					int r = (colors.get(i) >> 16) & 0xFF;
 					int g = (colors.get(i) >> 8) & 0xFF;
 					int b = (colors.get(i)) & 0xFF;
@@ -2206,9 +2206,9 @@ public class PEmbroiderWriter {
 			return svg+"\"/></svg>";
 			
 		}
-		public static void write(String name, float[] bounds, ArrayList<PVector> stitches, ArrayList<Integer> colors, String title) throws IOException{
+		public static void write(String name, float[] bounds, ArrayList<PVector> stitches, ArrayList<Integer> colors, String title, ArrayList<Boolean> jumps) throws IOException{
 			OutputStream stream = new FileOutputStream(name+".svg");
-			String svg = svgString(bounds,stitches,colors);
+			String svg = svgString(bounds,stitches,colors,jumps);
 //			System.out.println(svg);
 			stream.write(svg.getBytes());
 			stream.close();
@@ -2217,7 +2217,7 @@ public class PEmbroiderWriter {
 	}
 	
 	public static class PDF{
-		public static String pdfString(float[] bounds, ArrayList<PVector> stitches, ArrayList<Integer> colors) {
+		public static String pdfString(float[] bounds, ArrayList<PVector> stitches, ArrayList<Integer> colors, ArrayList<Boolean> jumps) {
 			String pdf0 = "%PDF-1.1\n%%¥±ë\n1 0 obj\n<< /Type /Catalog\n/Pages 2 0 R\n>>endobj\n"
 			    + "2 0 obj\n<< /Type /Pages\n/Kids [3 0 R]\n/Count 1\n/MediaBox [0 0 "+(bounds[2]-bounds[0])+" "+(bounds[3]-bounds[1])+"]\n>>\nendobj\n"
 				+  "3 0 obj\n<< /Type /Page\n/Parent 2 0 R\n/Resources\n<< /Font\n<< /F1\n<< /Type /Font\n/Subtype /Type1\n/BaseFont /Times-Roman\n>>\n>>\n>>\n/Contents [";
@@ -2225,7 +2225,7 @@ public class PEmbroiderWriter {
 			String pdf = "";
 			int cnt = 4;
 			for (int i = 0; i < stitches.size(); i++) {
-				boolean first = (i == 0 || (!colors.get(i).equals(colors.get(i-1))));
+				boolean first = (i == 0 || (!colors.get(i).equals(colors.get(i-1))) || jumps.get(i) );
 				if (first) {
 					float r = (float)((int)((colors.get(i) >> 16)&0xFF)*1f)/255f;
 					float g = (float)((int)((colors.get(i) >> 8)&0xFF)*1f)/255f;
@@ -2254,9 +2254,9 @@ public class PEmbroiderWriter {
 			return pdf0+pdf;
 			
 		}
-		public static void write(String name, float[] bounds, ArrayList<PVector> stitches, ArrayList<Integer> colors, String title) throws IOException{
+		public static void write(String name, float[] bounds, ArrayList<PVector> stitches, ArrayList<Integer> colors, String titles, ArrayList<Boolean> jumps) throws IOException{
 			OutputStream stream = new FileOutputStream(name+".pdf");
-			String pdf = pdfString(bounds,stitches,colors);
+			String pdf = pdfString(bounds,stitches,colors,jumps);
 //			System.out.println(svg);
 			stream.write(pdf.getBytes());
 			stream.close();
@@ -2376,9 +2376,9 @@ public class PEmbroiderWriter {
 			}else if (tokens[1].equalsIgnoreCase("XXX")) {
 				XXX.write(tokens[0], BOUNDS, stitches, flatColors,TITLE);
 			}else if (tokens[1].equalsIgnoreCase("SVG")) {
-				SVG.write(tokens[0], BOUNDS, stitches, flatColors,TITLE);
+				SVG.write(tokens[0], BOUNDS, stitches, flatColors,TITLE,jumps);
 			}else if (tokens[1].equalsIgnoreCase("PDF")) {
-				PDF.write(tokens[0], BOUNDS, stitches, flatColors,TITLE);	
+				PDF.write(tokens[0], BOUNDS, stitches, flatColors,TITLE,jumps);	
 			}else if (tokens[1].equalsIgnoreCase("TSV")) {
 				TSV.write(tokens[0], BOUNDS, stitches, flatColors,TITLE);	
 			}else if (tokens[1].equalsIgnoreCase("GCODE")) {
