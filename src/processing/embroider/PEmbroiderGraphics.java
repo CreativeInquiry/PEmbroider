@@ -5241,7 +5241,9 @@ public class PEmbroiderGraphics {
 			if (i == polylines.size() || !colors.get(i).equals(colors.get(i-1))){
 				ArrayList<ArrayList<PVector>> p = new ArrayList<ArrayList<PVector>>(polylines.subList(idx0,i));
 				PApplet.println(p.size());
-				p = PEmbroiderTSP.solve(p,trials,maxIter);
+				if (p.size() > 2) {
+					p = PEmbroiderTSP.solve(p,trials,maxIter);
+				}
 				PApplet.println(p.size());
 				polylines.subList(idx0,i).clear();
 				polylines.addAll(idx0,p);

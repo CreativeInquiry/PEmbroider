@@ -10,7 +10,7 @@ void setup() {
   size (600, 600);
 
   E = new PEmbroiderGraphics(this, width, height);
-  String outputFilePath = sketchPath("PEmbroider_bitmap_image_2.pdf");
+  String outputFilePath = sketchPath("PEmbroider_bitmap_image_2.vp3");
   E.setPath(outputFilePath); 
 
   // The image should consist of white shapes on a black background. 
@@ -50,7 +50,7 @@ void setup() {
   // E.optimize();   // slow, but good and important
   E.visualize();  // 
   E.printStats(); //
-   E.endDraw();    // write out the file
+  // E.endDraw();    // write out the file
   // save("PEmbroider_bitmap_image_2.png");
 }
 
