@@ -6,7 +6,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/studio/Desktop/Pembroider/lib/core.jar">
+	<classpathentry kind="lib" path="/Users/studio/Desktop/CreativeInquiry/PEmbroider/lib/core.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

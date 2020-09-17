@@ -1,6 +1,9 @@
 package processing.embroider;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -120,6 +123,7 @@ public class PEmbroiderGraphics {
 	
 	public boolean FIRST_STROKE_THEN_FILL = false;
 	public boolean NO_RESAMPLE = false;
+	public boolean NO_CONNECT = false;
 	
 	public VectorField HATCH_VECFIELD;
 
@@ -557,6 +561,9 @@ public class PEmbroiderGraphics {
 	 */
 	public void toggleResample(boolean b) {
 		NO_RESAMPLE = !b;
+	}
+	public void toggleConnectingLines(boolean b) {
+		NO_CONNECT = !b;
 	}
 	
 	/** Sets whether SPIRAL hatching proceeds clockwise or counterclockwise
@@ -2032,10 +2039,13 @@ public class PEmbroiderGraphics {
 				polys.get(i).remove(j);
 			}
 		}
-		for (int i = polys.size()-1; i>0; i--) {
-			polys.get(0).addAll(polys.get(i));
-			polys.get(i).clear();
-			polys.remove(i);
+		if (!NO_CONNECT) {
+			for (int i = 1; i < polys.size(); i++) {
+				polys.get(0).addAll(polys.get(i));
+			}
+			for (int i = polys.size()-1; i>0; i--) {
+				polys.remove(i);
+			}
 		}
 //		app.image(pg,0,0);
 		return polys;
@@ -2268,9 +2278,13 @@ public class PEmbroiderGraphics {
 				polys.get(i).remove(j);
 			}
 		}
-		for (int i = 1; i < polys.size(); i++) {
-			polys.get(0).addAll(polys.get(i));
-			polys.get(i).clear();
+		if (!NO_CONNECT) {
+			for (int i = 1; i < polys.size(); i++) {
+				polys.get(0).addAll(polys.get(i));
+			}
+			for (int i = polys.size()-1; i>0; i--) {
+				polys.remove(i);
+			}
 		}
 //		app.image(pg,0,0);
 		return polys;
@@ -4496,7 +4510,7 @@ public class PEmbroiderGraphics {
 			return;
 		}
 		checkOutOfBounds();
-		PEmbroiderWriter.write(path, polylines, colors, width, height);
+		PEmbroiderWriter.write(path, polylines, colors, width, height, NO_CONNECT);
 	}
 
 
@@ -5491,7 +5505,9 @@ public class PEmbroiderGraphics {
 				endShape(PConstants.CLOSE);
 				if (TEXT_OPTIMIZE_PER_CHAR) {
 					endOptimize();
-					mergePolylinesByColor(lastLen,polylines.size()-1);
+					if (!NO_CONNECT) {
+						mergePolylinesByColor(lastLen,polylines.size()-1);
+					}
 				}
 			}
 			popMatrix();

@@ -2188,7 +2188,7 @@ public class PEmbroiderWriter {
 			}
 
 			for (int i = 0; i < stitches.size(); i++) {
-				if (i == 0 || (!colors.get(i).equals(colors.get(i-1))) || jumps.get(i)) {
+				if (i == 0 || (!colors.get(i).equals(colors.get(i-1))) || (jumps!=null && jumps.get(i))) {
 					int r = (colors.get(i) >> 16) & 0xFF;
 					int g = (colors.get(i) >> 8) & 0xFF;
 					int b = (colors.get(i)) & 0xFF;
@@ -2225,7 +2225,7 @@ public class PEmbroiderWriter {
 			String pdf = "";
 			int cnt = 4;
 			for (int i = 0; i < stitches.size(); i++) {
-				boolean first = (i == 0 || (!colors.get(i).equals(colors.get(i-1))) || jumps.get(i) );
+				boolean first = (i == 0 || (!colors.get(i).equals(colors.get(i-1))) || (jumps!=null && jumps.get(i)) );
 				if (first) {
 					float r = (float)((int)((colors.get(i) >> 16)&0xFF)*1f)/255f;
 					float g = (float)((int)((colors.get(i) >> 8)&0xFF)*1f)/255f;
@@ -2316,8 +2316,10 @@ public class PEmbroiderWriter {
 	}
 	
 
-	
 	public static void write(String filename, ArrayList<ArrayList<PVector>> polylines, ArrayList<Integer> colors, int width, int height){
+		write(filename,polylines,colors,width,height,false);
+	}
+	public static void write(String filename, ArrayList<ArrayList<PVector>> polylines, ArrayList<Integer> colors, int width, int height, boolean noConnect){
 		System.out.println(filename);
 		boolean isCustomMatrix = true;
 		boolean isCustomBounds = true;
@@ -2376,9 +2378,9 @@ public class PEmbroiderWriter {
 			}else if (tokens[1].equalsIgnoreCase("XXX")) {
 				XXX.write(tokens[0], BOUNDS, stitches, flatColors,TITLE);
 			}else if (tokens[1].equalsIgnoreCase("SVG")) {
-				SVG.write(tokens[0], BOUNDS, stitches, flatColors,TITLE,jumps);
+				SVG.write(tokens[0], BOUNDS, stitches, flatColors,TITLE,noConnect?jumps:null);
 			}else if (tokens[1].equalsIgnoreCase("PDF")) {
-				PDF.write(tokens[0], BOUNDS, stitches, flatColors,TITLE,jumps);	
+				PDF.write(tokens[0], BOUNDS, stitches, flatColors,TITLE,noConnect?jumps:null);	
 			}else if (tokens[1].equalsIgnoreCase("TSV")) {
 				TSV.write(tokens[0], BOUNDS, stitches, flatColors,TITLE);	
 			}else if (tokens[1].equalsIgnoreCase("GCODE")) {
