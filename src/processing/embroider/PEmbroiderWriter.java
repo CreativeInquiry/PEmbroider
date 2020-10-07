@@ -110,7 +110,7 @@ public class PEmbroiderWriter {
 		}
 
 
-		public static void write(String name, float[] bounds, ArrayList<PVector> stitches, ArrayList<Integer> colors, String title) throws IOException {
+		public static void write(String name, float[] bounds, ArrayList<PVector> stitches, ArrayList<Integer> colors, String title, ArrayList<Boolean> jumps) throws IOException {
 
 
 			OutputStream stream = new FileOutputStream(name+".dst");
@@ -190,6 +190,10 @@ public class PEmbroiderWriter {
 					}
 					dx -= accx;
 					dy -= accy;
+				}
+				
+				if (i != 0 && (jumps!=null && jumps.get(i))) {
+					data = JUMP & COMMAND_MASK;
 				}
 
 				encodeRecord(command, dx, dy, data);
@@ -2364,7 +2368,7 @@ public class PEmbroiderWriter {
         
 		try {
 			if       (tokens[1].equalsIgnoreCase("DST")) {
-				DST.write(tokens[0], BOUNDS, stitches, flatColors,TITLE);
+				DST.write(tokens[0], BOUNDS, stitches, flatColors,TITLE,jumps);
 			}else if (tokens[1].equalsIgnoreCase("EXP")) {
 				EXP.write(tokens[0], BOUNDS, stitches, flatColors,TITLE);
 			}else if (tokens[1].equalsIgnoreCase("VP3")) {
