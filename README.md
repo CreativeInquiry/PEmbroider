@@ -2,7 +2,7 @@
 
 ![](images/pembroider_banner.jpg)
 
-**PEmbroider is an open library for computational embroidery with [Processing](http://processing.org).** PEmbroider was developed during Endless March 2020 at the CMU [Frank-Ratchye STUDIO for Creative Inquiry](http://studioforcreativeinquiry.org) by Golan Levin, Lingdong Huang, and Tatyana Mustakos, with generous support from the [Clinic for Open Source Arts](https://www.du.edu/ahss/opensourcearts/) (COSA) at the University of Denver. For questions, please contact [Golan Levin](https://twitter.com/golan). If you found this project useful, please consider [making a donation](https://studioforcreativeinquiry.org/donate).
+**PEmbroider is an open library for computational embroidery with [Processing](http://processing.org).** PEmbroider was developed during Endless March 2020 at the CMU [Frank-Ratchye STUDIO for Creative Inquiry](http://studioforcreativeinquiry.org) by Golan Levin, Lingdong Huang, and Tatyana Mustakos, with generous support from an anonymous donor and the [Clinic for Open Source Arts](https://www.du.edu/ahss/opensourcearts/) (COSA) at the University of Denver. For questions, please contact [Golan Levin](https://twitter.com/golan). If you found this project useful, please consider [making a donation](https://studioforcreativeinquiry.org/donate).
 
 ![](images/cosa-and-sfci-logos.jpg)
 
