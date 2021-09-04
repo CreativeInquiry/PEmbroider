@@ -145,8 +145,8 @@ E.strokeLocation(value);      // float between -1.0 (inside) and 1.0 (outside)
 *See Examples: [text_1](examples/PEmbroider_text_1)*
 
 ``` java
-E.SetRenderOrder(E.STROKE_OVER_FILL);  // stroke is embroidered after fill
-E.SetRenderOrder(E.FILL_OVER_STROKE);  // stroke is embroidered before fill
+E.setRenderOrder(E.STROKE_OVER_FILL);  // stroke is embroidered after fill
+E.setRenderOrder(E.FILL_OVER_STROKE);  // stroke is embroidered before fill
 ```
 
 
