@@ -165,6 +165,11 @@ Frames of the classic Muybridge horse, rendered as embroidered graphics.
 [![](PEmbroider_bitmap_animation/gifs/muybridge_composite.gif)](PEmbroider_bitmap_animation/)
 
 
+## PEmbroider_axidraw_plotter_svg
+
+This example is intended for people who would like to use PEmbroider's SVG-generation features with pen plotters, such as the EMSL AxiDraw. The example includes certain plotter-specific optimizations, such as the elimination of jump-stitches (lines connecting shapes).
+
+[![](PEmbroider_axidraw_plotter_svg/PEmbroider_axidraw_plotter_svg_output.png)](PEmbroider_axidraw_plotter_svg/)
 
 
 ## PEmbroider_svg_image
