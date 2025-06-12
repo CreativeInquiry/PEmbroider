@@ -16,7 +16,8 @@ Intended primarily for artists, craftspersons, educators, makers, and schools, P
 
 * **Download** the PEmbroider library [**.ZIP file** for processing 3](distribution/PEmbroider/download/PEmbroider_for_Processing_3.zip) or [for processing 4](distribution/PEmbroider/download/PEmbroider_for_Processing_4.zip)
 * Instructions for [**Getting Started**](#getting-started-with-pembroider-in-processing)
-* Here's a [**Cheat Sheet**](PEmbroider_Cheat_Sheet.md) 
+* Here's a [**Cheat Sheet**](PEmbroider_Cheat_Sheet.md)
+* Here's a [**Tutorial Video**](https://www.youtube.com/watch?v=BDE2Tx6HHLc&t=0)
 * Browse the [**Examples**](examples/README.md)
 * Read the [**Full API**](API.md)
 
@@ -73,6 +74,8 @@ PEmbroider comes with a variety of [examples](examples/README.md) which demonstr
 
 ---
 ## Getting Started with PEmbroider in Processing
+
+[![Tatyana's PEmbroider Tutorial Video](images/tatyana_pembroider_tutorial.jpg)](https://www.youtube.com/watch?v=BDE2Tx6HHLc&t=0)<br />[Here's a half-hour tutorial video](https://www.youtube.com/watch?v=BDE2Tx6HHLc&t=0)!
 
 *This section is primarily intended for end-users who wish to get started using PEmbroider to make embroidery designs.* 
 
