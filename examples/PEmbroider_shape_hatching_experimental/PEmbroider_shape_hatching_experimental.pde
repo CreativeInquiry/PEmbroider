@@ -16,6 +16,7 @@ float shapeCoords[][] = {
 
 void setup() {
   noLoop(); 
+  pixelDensity(1); // needed for Processing 4.4+
   size (1250, 500);
 
   E = new PEmbroiderGraphics(this, width, height);
