@@ -7,6 +7,7 @@ PEmbroiderGraphics E;
 void setup() {
   //noLoop(); 
   size (1050, 550);
+  pixelDensity(1); // needed for Processing 4.4+
   PFont myFont = createFont("Helvetica-Bold", 400);
 
   E = new PEmbroiderGraphics(this, width, height);
