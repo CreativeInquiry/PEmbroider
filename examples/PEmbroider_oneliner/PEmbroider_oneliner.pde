@@ -20,6 +20,7 @@ int numFrames = 0;
 //--------------------------------------
 void setup() {
   size (1200, 700);
+  pixelDensity(1); // needed for Processing 4.4+
   //noLoop();
   E = new PEmbroiderGraphics(this);
 
