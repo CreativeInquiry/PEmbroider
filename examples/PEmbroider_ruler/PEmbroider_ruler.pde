@@ -7,6 +7,8 @@ PEmbroiderGraphics E;
 void setup() {
   noLoop(); 
   size (800, 400);
+  pixelDensity(1); // needed for Processing 4.4+
+
 
   E = new PEmbroiderGraphics(this, width, height);
   String outputFilePath = sketchPath("PEmbroider_ruler.vp3");
@@ -63,7 +65,7 @@ void setup() {
 
   //-----------------------
   //E.optimize(); // slow, but very good and very important);
-  //E.visualize(); 
+  E.visualize(); 
   E.endDraw(); // write out the file
   //save("PEmbroider_ruler.png");
 }
