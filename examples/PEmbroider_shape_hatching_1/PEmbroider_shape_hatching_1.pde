@@ -13,7 +13,7 @@ PEmbroiderGraphics E;
 void setup() {
   noLoop(); 
   size (700, 700);
-  pixelDensity(1);
+  pixelDensity(1); // Needed for Processing 4.4+
   E = new PEmbroiderGraphics(this, width, height);
 
   String outputFilePath = sketchPath("PEmbroider_shape_hatching_1.vp3");
