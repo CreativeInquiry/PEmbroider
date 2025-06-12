@@ -8,6 +8,7 @@ PShape mySvgImage;
 
 void setup() {
   size(1200, 450); 
+  pixelDensity(1); // required for Processing v.4.4.3+
   noLoop(); 
   
   E = new PEmbroiderGraphics(this, width, height);
