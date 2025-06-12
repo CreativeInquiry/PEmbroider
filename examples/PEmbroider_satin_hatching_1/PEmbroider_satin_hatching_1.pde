@@ -18,6 +18,7 @@ float shapeCoords[][] = {
 void setup() {
   noLoop(); 
   size (800, 800);
+  pixelDensity(1); // needed for Processing 4.4+
 
   E = new PEmbroiderGraphics(this, width, height);
   String outputFilePath = sketchPath("PEmbroider_satin_hatching_1.vp3");
