@@ -7,6 +7,7 @@ PGraphics PG;
 
 void setup() {
   size(1000, 500); 
+  pixelDensity(1); // needed for Processing 4.4+
   noLoop(); 
 
   PG = createGraphics(500, 500);
