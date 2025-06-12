@@ -23,6 +23,7 @@ PEmbroiderGraphics E;
 void setup() {
   noLoop(); 
   size (1150, 475);
+  pixelDensity(1); // needed for Processing 4.4+
   E = new PEmbroiderGraphics(this, width, height);
 
   String embroideryFileType = ".vp3"; // or ".dst", ".pes", ".jef" etc. 
