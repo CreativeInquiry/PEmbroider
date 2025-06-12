@@ -8,6 +8,7 @@ PEmbroiderGraphics E;
 void setup() {
   noLoop(); 
   size (950, 950);
+  pixelDensity(1); // needed for Processing 4.4+
   
   E = new PEmbroiderGraphics(this, width, height);
   String outputFilePath = sketchPath("PEmbroider_strokes.vp3");
