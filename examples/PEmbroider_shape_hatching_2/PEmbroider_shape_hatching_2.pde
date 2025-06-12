@@ -11,6 +11,7 @@ PEmbroiderGraphics E;
 
 void setup() {
   noLoop(); 
+  pixelDensity(1); // needed for Processing 4.4+
   size (700, 700);
   E = new PEmbroiderGraphics(this, width, height);
 
