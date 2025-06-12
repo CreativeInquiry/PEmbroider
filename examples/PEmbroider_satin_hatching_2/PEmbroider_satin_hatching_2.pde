@@ -8,6 +8,7 @@ PEmbroiderGraphics E;
 void setup() {
   // noLoop(); 
   size (900, 600);
+  pixelDensity(1); // needed for Processing 4.4+
 
   E = new PEmbroiderGraphics(this, width, height);
   String outputFilePath = sketchPath("PEmbroider_satin_hatching_2.vp3");
