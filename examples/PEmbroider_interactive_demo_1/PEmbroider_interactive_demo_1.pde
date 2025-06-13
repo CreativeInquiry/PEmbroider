@@ -9,9 +9,8 @@ int fileNumber = 1;
 
 void setup() {
   size (750, 750);
+  pixelDensity(1); // needed for Processing 4.4+
   E = new PEmbroiderGraphics(this, width, height);
-  
-
 }
 
 
