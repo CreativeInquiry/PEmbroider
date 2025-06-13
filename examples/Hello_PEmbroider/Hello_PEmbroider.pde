@@ -7,6 +7,8 @@ PEmbroiderGraphics E;
 
 void setup() {
   size (600, 750);
+  pixelDensity(1); // needed for Processing 4.4+
+
   float cx = width/2; 
   float cy = height/2 - 40;
 
