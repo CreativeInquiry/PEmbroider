@@ -21,6 +21,7 @@ String[] modelPaths = {
 //---------------------------------------------
 void setup() {
   size(1000, 1000, P3D);
+  pixelDensity(1); // needed for Processing 4.4+
   model = loadShape(modelPaths[modelIndex]);
   normalize(model, modelScalings[modelIndex]);
   E = new PEmbroiderGraphics(this);
