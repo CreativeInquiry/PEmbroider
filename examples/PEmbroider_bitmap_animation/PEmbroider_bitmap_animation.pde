@@ -10,6 +10,7 @@ PImage frames[];
 
 void setup() {
   size(1325, 925); 
+  pixelDensity(1); // needed for Processing 4.4+
   frameRate(12);
   // noLoop(); 
 
