@@ -30,7 +30,7 @@ Shapes with and without stroke and/or fills. Varying thicknesses of shapes' stro
 
 ## PEmbroider_strokes_2
 
-Demonstration of how the orientation of stitches, relative to strokes, can be precisely controlled.
+Demonstration of how the *orientation of stitches*, relative to design strokes, can be precisely controlled.
 
 [![](PEmbroider_strokes_2/documentation/PEmbroider_strokes_2_photo.png)](PEmbroider_strokes_2/)<br />[![](PEmbroider_strokes_2/documentation/PEmbroider_strokes_2.png)](PEmbroider_strokes_2/)
 
@@ -38,7 +38,7 @@ Demonstration of how the orientation of stitches, relative to strokes, can be pr
 
 ## PEmbroider_stroke_outlines_1
 
-Choose how much your strokes overlap the interior of their shapes.
+Interactively choose how much your strokes overlap the interior of their shapes.
 
 [![](PEmbroider_stroke_outlines_1/documentation/PEmbroider_stroke_outlines_1_photo.png)](PEmbroider_stroke_outlines_1/)
 
@@ -61,7 +61,7 @@ Lines with varying stitch lengths. Lines with tangent versus parallel stitches.
 
 ## PEmbroider_lines_2
 
-Curves and line segments.
+Simple curves and line segments.
 
 [![](PEmbroider_lines_2/documentation/PEmbroider_lines_2_photo.png)](PEmbroider_lines_2/)
 

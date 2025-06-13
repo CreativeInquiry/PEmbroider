@@ -14,7 +14,7 @@ Intended primarily for artists, craftspersons, educators, makers, and schools, P
 ---
 ## TL;DR
 
-* **Download** the PEmbroider library [**.ZIP file** for processing 3](distribution/PEmbroider/download/PEmbroider_for_Processing_3.zip) or [for processing 4](distribution/PEmbroider/download/PEmbroider_for_Processing_4.zip)
+* **Download** the PEmbroider library [**.ZIP file** for processing 3](distribution/PEmbroider/download/PEmbroider_for_Processing_3.zip) or [**for processing 4**](distribution/PEmbroider/download/PEmbroider_for_Processing_4.zip)
 * Instructions for [**Getting Started**](#getting-started-with-pembroider-in-processing)
 * Here's a [**Cheat Sheet**](PEmbroider_Cheat_Sheet.md)
 * Here's a [**Tutorial Video**](https://www.youtube.com/watch?v=BDE2Tx6HHLc&t=0)
@@ -41,7 +41,7 @@ Intended primarily for artists, craftspersons, educators, makers, and schools, P
 
 [![Commercial embroidery software can cost more than a car.](images/commercial_embroidery_software_is_a_racket.jpg)](images/commercial_embroidery_software_is_a_racket.jpg)
 
-As [this comparison of embroidery software](https://en.wikipedia.org/wiki/Comparison_of_embroidery_software) shows, existing software for the creation of custom embroidery designs frequently costs thousands of dollars; is rarely cross-platform; and is almost never open-source. The free and open-source tools which do exist are either full-featured standalone GUI tools (Ink/Stitch, Embroidermodder) or large-scale libraries (EmbroidePy)—neither of which integrate easily with popular "creative coding" toolkits, nor easily allow for the creation of generative and computational designs. 
+[Existing software](images/commercial_embroidery_software_is_a_racket.jpg) for the creation of custom embroidery designs frequently costs thousands of dollars; is rarely cross-platform; and is almost never open-source. The free and open-source tools which do exist are either full-featured standalone GUI tools (Ink/Stitch, Embroidermodder) or large-scale libraries (EmbroidePy)—neither of which integrate easily with popular "creative coding" toolkits, nor easily allow for the creation of generative and computational designs. 
 
 PEmbroider, by contrast, is a free, cross-platform, open-source, lightweight Java library for generative embroidery design. It integrates with the popular [Processing](http://processing.org) creative coding framework, providing ready access to a vast and diverse [ecosystem](https://processing.org/reference/libraries/) of functionality including high quality typography, live interaction, motion capture, computer vision, GIS cartography, physics simulation, and much more.
 
@@ -75,7 +75,7 @@ PEmbroider comes with a variety of [examples](examples/README.md) which demonstr
 ---
 ## Getting Started with PEmbroider in Processing
 
-[![Tatyana's PEmbroider Tutorial Video](images/tatyana_pembroider_tutorial.jpg)](https://www.youtube.com/watch?v=BDE2Tx6HHLc&t=0)<br />[Here's a half-hour tutorial video](https://www.youtube.com/watch?v=BDE2Tx6HHLc&t=0)!
+[![Tatyana's PEmbroider Tutorial Video](images/tatyana_pembroider_tutorial.jpg)](https://www.youtube.com/watch?v=BDE2Tx6HHLc&t=0)<br />[Here's a half-hour tutorial video by Tatyana](https://www.youtube.com/watch?v=BDE2Tx6HHLc&t=0)!
 
 *This section is primarily intended for end-users who wish to get started using PEmbroider to make embroidery designs.* 
 
