@@ -569,6 +569,7 @@ void drawEditMode(){
 
 void setup(){
   size(1000,820);
+  pixelDensity(1); // needed for Processing 4.4+
   render = createGraphics(W,H);
   layers = new ArrayList<Layer>();
   layers.add(new Layer());
