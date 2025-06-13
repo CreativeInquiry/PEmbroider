@@ -8,6 +8,7 @@ PEmbroiderGraphics E;
 //------------------------------------------------
 void setup() {
   size(500, 500);
+  pixelDensity(1); // needed for Processing 4.4+
 
   E = new PEmbroiderGraphics(this);
   E.noStroke();
