@@ -7,6 +7,7 @@ PEmbroiderGraphics E;
 
 void setup() {
   size(1000, 500); 
+  pixelDensity(1); // needed for Processing 4.4+
   noLoop(); 
 
   // Load the bitmap image to embroider. 
