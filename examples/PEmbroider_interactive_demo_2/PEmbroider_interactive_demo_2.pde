@@ -10,6 +10,8 @@ ArrayList<ArrayList<PVector>> marks;
 //===================================================
 void setup() { 
   size (800, 600);
+  pixelDensity(1); // needed for Processing 4.4+
+
   E = new PEmbroiderGraphics(this, width, height);
   String outputFilePath = sketchPath("PEmbroider_interactive_demo_2.vp3");
   E.setPath(outputFilePath);
