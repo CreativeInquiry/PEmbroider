@@ -8,6 +8,7 @@ PImage myImage;
 void setup() {
   noLoop(); 
   size (600, 600);
+  pixelDensity(1); // needed for Processing 4.4+
 
   E = new PEmbroiderGraphics(this, width, height);
   String outputFilePath = sketchPath("PEmbroider_bitmap_image_2.vp3");
